@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */; };
+		A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */; };
+		A1ADDDEF26E1F8E6000EBE9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEE26E1F8E6000EBE9A /* ViewController.swift */; };
+		A1ADDDF226E1F8E6000EBE9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF026E1F8E6000EBE9A /* Main.storyboard */; };
+		A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */; };
+		A1ADDDF726E1F8E8000EBE9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF626E1F8E8000EBE9A /* Assets.xcassets */; };
+		A1ADDDFA26E1F8E8000EBE9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF826E1F8E8000EBE9A /* LaunchScreen.storyboard */; };
+		A1ADDE0526E1F8E8000EBE9A /* KaleidoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDE0426E1F8E8000EBE9A /* KaleidoTests.swift */; };
+		A1ADDE1026E1F8E8000EBE9A /* KaleidoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDE0F26E1F8E8000EBE9A /* KaleidoUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1ADDE0126E1F8E8000EBE9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1ADDDDF26E1F8E6000EBE9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1ADDDE626E1F8E6000EBE9A;
+			remoteInfo = Kaleido;
+		};
+		A1ADDE0C26E1F8E8000EBE9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1ADDDDF26E1F8E6000EBE9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1ADDDE626E1F8E6000EBE9A;
+			remoteInfo = Kaleido;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A1ADDDE726E1F8E6000EBE9A /* Kaleido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaleido.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A1ADDDEE26E1F8E6000EBE9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A1ADDDF126E1F8E6000EBE9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A1ADDDF426E1F8E6000EBE9A /* Kaleido.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kaleido.xcdatamodel; sourceTree = "<group>"; };
+		A1ADDDF626E1F8E8000EBE9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1ADDDF926E1F8E8000EBE9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1ADDDFB26E1F8E8000EBE9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1ADDE0026E1F8E8000EBE9A /* KaleidoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaleidoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1ADDE0426E1F8E8000EBE9A /* KaleidoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaleidoTests.swift; sourceTree = "<group>"; };
+		A1ADDE0626E1F8E8000EBE9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1ADDE0B26E1F8E8000EBE9A /* KaleidoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaleidoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1ADDE0F26E1F8E8000EBE9A /* KaleidoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaleidoUITests.swift; sourceTree = "<group>"; };
+		A1ADDE1126E1F8E8000EBE9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1ADDDE426E1F8E6000EBE9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1ADDDFD26E1F8E8000EBE9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1ADDE0826E1F8E8000EBE9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1ADDDDE26E1F8E6000EBE9A = {
+			isa = PBXGroup;
+			children = (
+				A1ADDDE926E1F8E6000EBE9A /* Kaleido */,
+				A1ADDE0326E1F8E8000EBE9A /* KaleidoTests */,
+				A1ADDE0E26E1F8E8000EBE9A /* KaleidoUITests */,
+				A1ADDDE826E1F8E6000EBE9A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1ADDDE826E1F8E6000EBE9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1ADDDE726E1F8E6000EBE9A /* Kaleido.app */,
+				A1ADDE0026E1F8E8000EBE9A /* KaleidoTests.xctest */,
+				A1ADDE0B26E1F8E8000EBE9A /* KaleidoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1ADDDE926E1F8E6000EBE9A /* Kaleido */ = {
+			isa = PBXGroup;
+			children = (
+				A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */,
+				A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */,
+				A1ADDDEE26E1F8E6000EBE9A /* ViewController.swift */,
+				A1ADDDF026E1F8E6000EBE9A /* Main.storyboard */,
+				A1ADDDF626E1F8E8000EBE9A /* Assets.xcassets */,
+				A1ADDDF826E1F8E8000EBE9A /* LaunchScreen.storyboard */,
+				A1ADDDFB26E1F8E8000EBE9A /* Info.plist */,
+				A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */,
+			);
+			path = Kaleido;
+			sourceTree = "<group>";
+		};
+		A1ADDE0326E1F8E8000EBE9A /* KaleidoTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1ADDE0426E1F8E8000EBE9A /* KaleidoTests.swift */,
+				A1ADDE0626E1F8E8000EBE9A /* Info.plist */,
+			);
+			path = KaleidoTests;
+			sourceTree = "<group>";
+		};
+		A1ADDE0E26E1F8E8000EBE9A /* KaleidoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A1ADDE0F26E1F8E8000EBE9A /* KaleidoUITests.swift */,
+				A1ADDE1126E1F8E8000EBE9A /* Info.plist */,
+			);
+			path = KaleidoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1ADDDE626E1F8E6000EBE9A /* Kaleido */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1ADDE1426E1F8E8000EBE9A /* Build configuration list for PBXNativeTarget "Kaleido" */;
+			buildPhases = (
+				A1ADDDE326E1F8E6000EBE9A /* Sources */,
+				A1ADDDE426E1F8E6000EBE9A /* Frameworks */,
+				A1ADDDE526E1F8E6000EBE9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Kaleido;
+			productName = Kaleido;
+			productReference = A1ADDDE726E1F8E6000EBE9A /* Kaleido.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A1ADDDFF26E1F8E8000EBE9A /* KaleidoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1ADDE1726E1F8E8000EBE9A /* Build configuration list for PBXNativeTarget "KaleidoTests" */;
+			buildPhases = (
+				A1ADDDFC26E1F8E8000EBE9A /* Sources */,
+				A1ADDDFD26E1F8E8000EBE9A /* Frameworks */,
+				A1ADDDFE26E1F8E8000EBE9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1ADDE0226E1F8E8000EBE9A /* PBXTargetDependency */,
+			);
+			name = KaleidoTests;
+			productName = KaleidoTests;
+			productReference = A1ADDE0026E1F8E8000EBE9A /* KaleidoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1ADDE0A26E1F8E8000EBE9A /* KaleidoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1ADDE1A26E1F8E8000EBE9A /* Build configuration list for PBXNativeTarget "KaleidoUITests" */;
+			buildPhases = (
+				A1ADDE0726E1F8E8000EBE9A /* Sources */,
+				A1ADDE0826E1F8E8000EBE9A /* Frameworks */,
+				A1ADDE0926E1F8E8000EBE9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1ADDE0D26E1F8E8000EBE9A /* PBXTargetDependency */,
+			);
+			name = KaleidoUITests;
+			productName = KaleidoUITests;
+			productReference = A1ADDE0B26E1F8E8000EBE9A /* KaleidoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1ADDDDF26E1F8E6000EBE9A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					A1ADDDE626E1F8E6000EBE9A = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					A1ADDDFF26E1F8E8000EBE9A = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = A1ADDDE626E1F8E6000EBE9A;
+					};
+					A1ADDE0A26E1F8E8000EBE9A = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = A1ADDDE626E1F8E6000EBE9A;
+					};
+				};
+			};
+			buildConfigurationList = A1ADDDE226E1F8E6000EBE9A /* Build configuration list for PBXProject "Kaleido" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1ADDDDE26E1F8E6000EBE9A;
+			productRefGroup = A1ADDDE826E1F8E6000EBE9A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1ADDDE626E1F8E6000EBE9A /* Kaleido */,
+				A1ADDDFF26E1F8E8000EBE9A /* KaleidoTests */,
+				A1ADDE0A26E1F8E8000EBE9A /* KaleidoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1ADDDE526E1F8E6000EBE9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1ADDDFA26E1F8E8000EBE9A /* LaunchScreen.storyboard in Resources */,
+				A1ADDDF726E1F8E8000EBE9A /* Assets.xcassets in Resources */,
+				A1ADDDF226E1F8E6000EBE9A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1ADDDFE26E1F8E8000EBE9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1ADDE0926E1F8E8000EBE9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1ADDDE326E1F8E6000EBE9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1ADDDEF26E1F8E6000EBE9A /* ViewController.swift in Sources */,
+				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
+				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
+				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1ADDDFC26E1F8E8000EBE9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1ADDE0526E1F8E8000EBE9A /* KaleidoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1ADDE0726E1F8E8000EBE9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1ADDE1026E1F8E8000EBE9A /* KaleidoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1ADDE0226E1F8E8000EBE9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1ADDDE626E1F8E6000EBE9A /* Kaleido */;
+			targetProxy = A1ADDE0126E1F8E8000EBE9A /* PBXContainerItemProxy */;
+		};
+		A1ADDE0D26E1F8E8000EBE9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1ADDDE626E1F8E6000EBE9A /* Kaleido */;
+			targetProxy = A1ADDE0C26E1F8E8000EBE9A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A1ADDDF026E1F8E6000EBE9A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1ADDDF126E1F8E6000EBE9A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A1ADDDF826E1F8E8000EBE9A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1ADDDF926E1F8E8000EBE9A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A1ADDE1226E1F8E8000EBE9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1ADDE1326E1F8E8000EBE9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1ADDE1526E1F8E8000EBE9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L9GNZ9RRBN;
+				INFOPLIST_FILE = Kaleido/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.Kaleido";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1ADDE1626E1F8E8000EBE9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L9GNZ9RRBN;
+				INFOPLIST_FILE = Kaleido/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.Kaleido";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A1ADDE1826E1F8E8000EBE9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L9GNZ9RRBN;
+				INFOPLIST_FILE = KaleidoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.KaleidoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kaleido.app/Kaleido";
+			};
+			name = Debug;
+		};
+		A1ADDE1926E1F8E8000EBE9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L9GNZ9RRBN;
+				INFOPLIST_FILE = KaleidoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.KaleidoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kaleido.app/Kaleido";
+			};
+			name = Release;
+		};
+		A1ADDE1B26E1F8E8000EBE9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L9GNZ9RRBN;
+				INFOPLIST_FILE = KaleidoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.KaleidoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Kaleido;
+			};
+			name = Debug;
+		};
+		A1ADDE1C26E1F8E8000EBE9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L9GNZ9RRBN;
+				INFOPLIST_FILE = KaleidoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.KaleidoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Kaleido;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1ADDDE226E1F8E6000EBE9A /* Build configuration list for PBXProject "Kaleido" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1ADDE1226E1F8E8000EBE9A /* Debug */,
+				A1ADDE1326E1F8E8000EBE9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1ADDE1426E1F8E8000EBE9A /* Build configuration list for PBXNativeTarget "Kaleido" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1ADDE1526E1F8E8000EBE9A /* Debug */,
+				A1ADDE1626E1F8E8000EBE9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1ADDE1726E1F8E8000EBE9A /* Build configuration list for PBXNativeTarget "KaleidoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1ADDE1826E1F8E8000EBE9A /* Debug */,
+				A1ADDE1926E1F8E8000EBE9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1ADDE1A26E1F8E8000EBE9A /* Build configuration list for PBXNativeTarget "KaleidoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1ADDE1B26E1F8E8000EBE9A /* Debug */,
+				A1ADDE1C26E1F8E8000EBE9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A1ADDDF426E1F8E6000EBE9A /* Kaleido.xcdatamodel */,
+			);
+			currentVersion = A1ADDDF426E1F8E6000EBE9A /* Kaleido.xcdatamodel */;
+			path = Kaleido.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A1ADDDDF26E1F8E6000EBE9A /* Project object */;
+}
