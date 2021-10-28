@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
+		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
+		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
 		A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */; };
 		A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */; };
-		A1ADDDEF26E1F8E6000EBE9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEE26E1F8E6000EBE9A /* ViewController.swift */; };
 		A1ADDDF226E1F8E6000EBE9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF026E1F8E6000EBE9A /* Main.storyboard */; };
 		A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */; };
 		A1ADDDF726E1F8E8000EBE9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF626E1F8E8000EBE9A /* Assets.xcassets */; };
@@ -36,10 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
+		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ../../../../../CivetMac/git/Kaleido/Kaleido/View/MainViewController.swift; sourceTree = "<group>"; };
+		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonExt.swift; path = ../../../../../CivetMac/git/Kaleido/Kaleido/Extension/ButtonExt.swift; sourceTree = "<group>"; };
 		A1ADDDE726E1F8E6000EBE9A /* Kaleido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaleido.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A1ADDDEE26E1F8E6000EBE9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A1ADDDF126E1F8E6000EBE9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1ADDDF426E1F8E6000EBE9A /* Kaleido.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kaleido.xcdatamodel; sourceTree = "<group>"; };
 		A1ADDDF626E1F8E8000EBE9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +82,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A120DBD72726917E009B1C7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A120DBD8272691A7009B1C7E /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A120DBD8272691A7009B1C7E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A120DBD927269215009B1C7E /* MainViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		A120DBDB272693CD009B1C7E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A120DBDC272693EE009B1C7E /* ButtonExt.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A18F99A727265D3D00CBA9B5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A120DBD527268EE9009B1C7E /* ColorDefine.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		A1ADDDDE26E1F8E6000EBE9A = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +137,11 @@
 		A1ADDDE926E1F8E6000EBE9A /* Kaleido */ = {
 			isa = PBXGroup;
 			children = (
+				A120DBDB272693CD009B1C7E /* Extension */,
+				A120DBD72726917E009B1C7E /* View */,
+				A18F99A727265D3D00CBA9B5 /* Data */,
 				A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */,
 				A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */,
-				A1ADDDEE26E1F8E6000EBE9A /* ViewController.swift */,
 				A1ADDDF026E1F8E6000EBE9A /* Main.storyboard */,
 				A1ADDDF626E1F8E8000EBE9A /* Assets.xcassets */,
 				A1ADDDF826E1F8E8000EBE9A /* LaunchScreen.storyboard */,
@@ -261,10 +299,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1ADDDEF26E1F8E6000EBE9A /* ViewController.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
+				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
+				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
+				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
