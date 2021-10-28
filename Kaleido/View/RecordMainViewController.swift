@@ -7,18 +7,13 @@
 
 import UIKit
 
-class RecordMainViewController: UIViewController{
-    
-    override func viewDidLoad() {
-            super.viewDidLoad()
-//        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
-//        self.navigationController?.interactivePopGestureRecognizer!.delegate = nil;
+class RecordMainViewController: BaseViewController{
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleView: UIView!
+    override func initView() {
+        super.initView()
+        self.titleId = "紀錄"
+        titleView.roundedBottRight(radius: 100)
+        titleLabel.text = self.titleId
     }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.navigationController?.interactivePopGestureRecognizer!.isEnabled = true;
-//    }
-//
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//            return true
-//        }
 }

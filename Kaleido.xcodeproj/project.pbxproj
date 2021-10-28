@@ -10,6 +10,9 @@
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
 		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
 		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
+		A1A2B130272A831900943C9E /* ViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2B12F272A831900943C9E /* ViewExt.swift */; };
+		A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2B132272A852E00943C9E /* RecordMainViewController.swift */; };
+		A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2B13A272A8A8A00943C9E /* BaseViewController.swift */; };
 		A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */; };
 		A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */; };
 		A1ADDDF226E1F8E6000EBE9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF026E1F8E6000EBE9A /* Main.storyboard */; };
@@ -40,7 +43,10 @@
 /* Begin PBXFileReference section */
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
 		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ../../../../../CivetMac/git/Kaleido/Kaleido/View/MainViewController.swift; sourceTree = "<group>"; };
-		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonExt.swift; path = ../../../../../CivetMac/git/Kaleido/Kaleido/Extension/ButtonExt.swift; sourceTree = "<group>"; };
+		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
+		A1A2B12F272A831900943C9E /* ViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExt.swift; sourceTree = "<group>"; };
+		A1A2B132272A852E00943C9E /* RecordMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordMainViewController.swift; path = ../../../../../CivetMac/git/Kaleido/Kaleido/View/RecordMainViewController.swift; sourceTree = "<group>"; };
+		A1A2B13A272A8A8A00943C9E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A1ADDDE726E1F8E6000EBE9A /* Kaleido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaleido.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1ADDDEC26E1F8E6000EBE9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +91,8 @@
 		A120DBD72726917E009B1C7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1A2B139272A8A7500943C9E /* Base */,
+				A1A2B131272A84EC00943C9E /* Record */,
 				A120DBD8272691A7009B1C7E /* Main */,
 			);
 			path = View;
@@ -101,6 +109,7 @@
 		A120DBDB272693CD009B1C7E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A1A2B12F272A831900943C9E /* ViewExt.swift */,
 				A120DBDC272693EE009B1C7E /* ButtonExt.swift */,
 			);
 			path = Extension;
@@ -112,6 +121,22 @@
 				A120DBD527268EE9009B1C7E /* ColorDefine.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		A1A2B131272A84EC00943C9E /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				A1A2B132272A852E00943C9E /* RecordMainViewController.swift */,
+			);
+			name = Record;
+			sourceTree = "<group>";
+		};
+		A1A2B139272A8A7500943C9E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A1A2B13A272A8A8A00943C9E /* BaseViewController.swift */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		A1ADDDDE26E1F8E6000EBE9A = {
@@ -303,6 +328,9 @@
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
+				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
+				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
+				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
 			);
@@ -483,7 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9GNZ9RRBN;
 				INFOPLIST_FILE = Kaleido/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -503,7 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9GNZ9RRBN;
 				INFOPLIST_FILE = Kaleido/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

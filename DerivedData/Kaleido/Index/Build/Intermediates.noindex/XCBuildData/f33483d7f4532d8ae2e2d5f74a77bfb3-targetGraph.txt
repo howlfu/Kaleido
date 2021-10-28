@@ -1,0 +1,13 @@
+Target dependency graph (8 targets)
+Kaleido in Kaleido, no dependencies
+Kaleido in Kaleido, no dependencies
+KaleidoTests in Kaleido, depends on:
+Kaleido in Kaleido (explicit)
+KaleidoTests in Kaleido, depends on:
+Kaleido in Kaleido (explicit)
+KaleidoTests in Kaleido, no dependencies
+KaleidoUITests in Kaleido, depends on:
+Kaleido in Kaleido (explicit)
+KaleidoUITests in Kaleido, depends on:
+Kaleido in Kaleido (explicit)
+KaleidoUITests in Kaleido, no dependencies

@@ -1,0 +1,13 @@
+version: "Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)"
+options: "2c895cf7258331bd78fcb26112e3e3b47c59692778e8fa36b0244e3429dcf56d"
+build_start_time: [1635406719, 812981128]
+build_end_time: [1635406720, 553842067]
+inputs:
+  "/Users/CivetMac/git/Kaleido/Kaleido/Extension/ButtonExt.swift": [1635387889, 994918823]
+  "/Users/CivetMac/git/Kaleido/Kaleido/Extension/ViewExt.swift": [1635404734, 195534706]
+  "/Users/CivetMac/git/Kaleido/Kaleido/View/BaseViewController.swift": [1635406719, 597478389]
+  "/Users/CivetMac/git/Kaleido/Kaleido/View/MainViewController.swift": [1635405534, 376899242]
+  "/Users/CivetMac/git/Kaleido/Kaleido/View/RecordMainViewController.swift": [1635406689, 464652538]
+  "/Users/civetmac/git/Kaleido/Kaleido/AppDelegate.swift": [1635387889, 959318637]
+  "/Users/civetmac/git/Kaleido/Kaleido/ColorDefine.swift": [1635403403, 279615879]
+  "/Users/civetmac/git/Kaleido/Kaleido/SceneDelegate.swift": [1635387889, 996419429]

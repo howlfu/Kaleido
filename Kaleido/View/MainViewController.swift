@@ -29,6 +29,10 @@ class MainViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        initView()
+    }
+    
+    private func initView() {
         recordButton.layer.cornerRadius = 20
         showButton.layer.cornerRadius = 20
         storeButton.layer.cornerRadius = 20
