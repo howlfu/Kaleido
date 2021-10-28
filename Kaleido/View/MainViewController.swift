@@ -10,17 +10,29 @@ import Foundation
 
 class MainViewController: UIViewController {
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var showButton: UIButton!
+    @IBOutlet weak var storeButton: UIButton!
+    @IBOutlet weak var settingButton: UIButton!
+    
     @IBAction func recordAction(_ sender: Any) {
         
     }
     
+    @IBAction func showAction(_ sender: Any) {
+    }
+    
+    @IBAction func storeAction(_ sender: Any) {
+    }
+    
+    
+    @IBAction func settingAction(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        recordButton.contentVerticalAlignment = .fill
-//        recordButton.contentHorizontalAlignment = .fill
-//        recordButton.centerTextAndImage(spacing: 8)
-//        recordButton.imageEdgeInsets = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
         recordButton.layer.cornerRadius = 20
+        showButton.layer.cornerRadius = 20
+        storeButton.layer.cornerRadius = 20
+        settingButton.layer.cornerRadius = 20
     }
 
 
