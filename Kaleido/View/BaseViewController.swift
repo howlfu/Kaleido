@@ -7,7 +7,6 @@
 
 import UIKit
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
-    var titleId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
