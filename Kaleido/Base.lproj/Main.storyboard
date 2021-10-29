@@ -186,10 +186,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="77.445652173913047"/>
         </scene>
-        <!--Record Main View Controller-->
+        <!--View Controller-->
         <scene sceneID="mCb-qg-bfc">
             <objects>
-                <viewController id="ZeL-iO-hj5" customClass="RecordMainViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZeL-iO-hj5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sQe-Ip-4mx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="1929" y="-642"/>
         </scene>
-        <!--Record Main View Controller-->
+        <!--View Controller-->
         <scene sceneID="4sx-Vt-fZ6">
             <objects>
-                <viewController id="5UD-7u-iSX" customClass="RecordMainViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5UD-7u-iSX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MB6-ul-iNc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -250,10 +250,10 @@
             </objects>
             <point key="canvasLocation" x="1929" y="786"/>
         </scene>
-        <!--Record Main View Controller-->
+        <!--View Controller-->
         <scene sceneID="bDD-TJ-vkI">
             <objects>
-                <viewController id="UKE-g3-py3" customClass="RecordMainViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UKE-g3-py3" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8pB-oQ-pdP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,10 +282,10 @@
             </objects>
             <point key="canvasLocation" x="1929" y="1518"/>
         </scene>
-        <!--Record Main View Controller-->
+        <!--View Controller-->
         <scene sceneID="jLC-cm-6mh">
             <objects>
-                <viewController id="Jsb-Pn-sKy" customClass="RecordMainViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Jsb-Pn-sKy" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QfB-wo-iId">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -314,10 +314,10 @@
             </objects>
             <point key="canvasLocation" x="2814" y="76"/>
         </scene>
-        <!--Record Main View Controller-->
+        <!--View Controller-->
         <scene sceneID="wyr-hS-17J">
             <objects>
-                <viewController id="iRb-Du-MUJ" customClass="RecordMainViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iRb-Du-MUJ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W1q-c7-dHE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
