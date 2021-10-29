@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63CD4F1F272BD8500085BD4C /* SlashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */; };
+		63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* SlashListType.swift */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
 		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
 		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListViewController.swift; sourceTree = "<group>"; };
+		63CD4F21272BDEDC0085BD4C /* SlashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListType.swift; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
 		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
@@ -88,6 +92,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63CD4F1D272BD7BE0085BD4C /* Slash */ = {
+			isa = PBXGroup;
+			children = (
+				63CD4F20272BDEC60085BD4C /* Data */,
+				63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */,
+			);
+			name = Slash;
+			sourceTree = "<group>";
+		};
+		63CD4F20272BDEC60085BD4C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				63CD4F21272BDEDC0085BD4C /* SlashListType.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		A120DBD72726917E009B1C7E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +147,7 @@
 		A1A2B131272A84EC00943C9E /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				63CD4F1D272BD7BE0085BD4C /* Slash */,
 				A1A2B132272A852E00943C9E /* RecordMainViewController.swift */,
 			);
 			name = Record;
@@ -324,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
@@ -333,6 +356,7 @@
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
+				63CD4F1F272BD8500085BD4C /* SlashListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
