@@ -42,10 +42,10 @@
 
 /* Begin PBXFileReference section */
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
-		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ../../../../../CivetMac/git/Kaleido/Kaleido/View/MainViewController.swift; sourceTree = "<group>"; };
+		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
 		A1A2B12F272A831900943C9E /* ViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExt.swift; sourceTree = "<group>"; };
-		A1A2B132272A852E00943C9E /* RecordMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordMainViewController.swift; path = ../../../../../CivetMac/git/Kaleido/Kaleido/View/RecordMainViewController.swift; sourceTree = "<group>"; };
+		A1A2B132272A852E00943C9E /* RecordMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordMainViewController.swift; sourceTree = "<group>"; };
 		A1A2B13A272A8A8A00943C9E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A1ADDDE726E1F8E6000EBE9A /* Kaleido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaleido.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1ADDDEA26E1F8E6000EBE9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -508,6 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9GNZ9RRBN;
 				INFOPLIST_FILE = Kaleido/Info.plist;
@@ -518,6 +519,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.Kaleido";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -528,6 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9GNZ9RRBN;
 				INFOPLIST_FILE = Kaleido/Info.plist;
@@ -538,6 +541,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "howlfu-gmail.com.Kaleido";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
