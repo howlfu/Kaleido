@@ -14,8 +14,8 @@ class RecordMainViewController: BaseViewController{
     @IBOutlet weak var titleView: UIView!
     override func initView() {
         super.initView()
-        titleView.roundedBottRight(radius: 100)
-        slashBtn.layer.cornerRadius = 20
-        keratinBtn.layer.cornerRadius = 20
+        titleView.roundedBottRight(radius: titleViewRadius)
+        slashBtn.layer.cornerRadius = BigBtnCornerRadius
+        keratinBtn.layer.cornerRadius = BigBtnCornerRadius
     }
 }

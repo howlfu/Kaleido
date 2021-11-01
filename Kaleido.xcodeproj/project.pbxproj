@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		63CD4F1F272BD8500085BD4C /* SlashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */; };
 		63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* SlashListType.swift */; };
+		63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
 		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
 		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListViewController.swift; sourceTree = "<group>"; };
 		63CD4F21272BDEDC0085BD4C /* SlashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListType.swift; sourceTree = "<group>"; };
+		63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewController.swift; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
 		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
@@ -95,8 +97,9 @@
 		63CD4F1D272BD7BE0085BD4C /* Slash */ = {
 			isa = PBXGroup;
 			children = (
+				63CD4F24272FC41A0085BD4C /* Search */,
+				63CD4F23272FC3EC0085BD4C /* List */,
 				63CD4F20272BDEC60085BD4C /* Data */,
-				63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */,
 			);
 			name = Slash;
 			sourceTree = "<group>";
@@ -107,6 +110,22 @@
 				63CD4F21272BDEDC0085BD4C /* SlashListType.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		63CD4F23272FC3EC0085BD4C /* List */ = {
+			isa = PBXGroup;
+			children = (
+				63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		63CD4F24272FC41A0085BD4C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		A120DBD72726917E009B1C7E /* View */ = {
@@ -351,6 +370,7 @@
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
+				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
 				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,

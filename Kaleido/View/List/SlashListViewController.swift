@@ -12,11 +12,20 @@ class SlashListViewController: BaseViewController{
     @IBOutlet weak var toNextViewBtn: UIButton!
     var selectedCellArr: [SlashListType] = []
     let aCellHightOfViewRadio = 8
+    
     override func initView() {
         super.initView()
-        titleView.roundedBottRight(radius: 100)
-        toNextViewBtn.layer.cornerRadius = 20
+        titleView.roundedBottRight(radius: titleViewRadius)
+        toNextViewBtn.layer.cornerRadius = BigBtnCornerRadius
         listTableView.separatorStyle = .none
+        toNextViewBtn.isHidden = true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is SearchCustomsViewController {
+            let  searchVC = segue.destination as! SearchCustomsViewController
+            searchVC.selectedSlashService = self.selectedCellArr
+        }
     }
 }
 
@@ -41,7 +50,7 @@ extension SlashListViewController: UITableViewDataSource, UITableViewDelegate {
         lblTitle.text = SlashListType.allCases[indexPath.row].rawValue
         cell.contentView.frame.size.width = (cell.contentView.frame.size.width * 2) / 3
         cell.contentView.frame.size.height = (cell.contentView.frame.size.height * 2) / 3
-        backgroundView.layer.cornerRadius = 20
+        backgroundView.layer.cornerRadius = BigBtnCornerRadius
         backgroundView.sendSubviewToBack(cell)
         return cell
     }
@@ -73,6 +82,11 @@ extension SlashListViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             selectedCellArr.append(selectedListType)
             statusIcon.image =  UIImage(named: "Checked")
+            toNextViewBtn.isHidden = false
+        }
+        
+        if selectedCellArr.count == 0 {
+            toNextViewBtn.isHidden = true
         }
     }
 }
