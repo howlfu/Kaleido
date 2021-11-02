@@ -18,7 +18,6 @@ class SearchCustomsViewController: BaseViewController{
     
     @IBOutlet weak var birthBackground: UIView!
     @IBOutlet weak var customsListTableView: UITableView!
-    var customsData: Dictionary<String, String>?
     var viewModel: SearchCustomsModel {
         return controller.viewModel
     }
@@ -51,7 +50,6 @@ class SearchCustomsViewController: BaseViewController{
     
     override func initBinding() {
         viewModel.customDataModel.addObserver(fireNow: false) {[weak self] (newCustomsData) in
-            self?.customsData = newCustomsData
             self?.customsListTableView.reloadData()
         }
     }
@@ -82,9 +80,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "customsListCell", for: indexPath)
         let nameText : UITextField = cell.contentView.viewWithTag(1) as! UITextField
         let phoneText : UITextField = cell.contentView.viewWithTag(2) as! UITextField
-        guard let foundCustoms = customsData else {
-            return cell
-        }
+        let foundCustoms = viewModel.customDataModel.value
         let index = foundCustoms.index(foundCustoms.startIndex, offsetBy: indexPath.row)
         let name = foundCustoms.keys[index]
         nameText.text = name
@@ -94,10 +90,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard customsData != nil  else {
-            return 0
-        }
-        return customsData!.count
+        return viewModel.customDataModel.value.count
     }
     //UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

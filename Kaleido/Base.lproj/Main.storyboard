@@ -135,7 +135,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="美睫"/>
                                 <connections>
-                                    <segue destination="Jsb-Pn-sKy" kind="show" id="cwZ-v5-dQk"/>
+                                    <segue destination="Jsb-Pn-sKy" kind="show" identifier="toSearchCusView" id="cwZ-v5-dQk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cW-CZ-Gxl">
@@ -146,7 +146,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="角蛋白"/>
                                 <connections>
-                                    <segue destination="iRb-Du-MUJ" kind="show" id="4As-rC-qbT"/>
+                                    <action selector="keratinAct:" destination="fr8-0I-Njq" eventType="touchUpInside" id="IZO-Ar-SSc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -554,6 +554,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lz6-Jz-6rG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4573.913043478261" y="76.630434782608702"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="0Pt-8H-3gi">
+            <objects>
+                <viewController id="jb7-QH-zoe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0zb-xV-mb1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p9S-fL-ujb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="顧客資訊" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMn-d5-vQR">
+                                        <rect key="frame" x="146" y="17" width="122" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.81176470590000005" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fc0-CE-fjP"/>
+                        <color key="backgroundColor" red="0.95663744210000001" green="0.93724232910000005" blue="0.93725556139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Jx1-Ei-kWr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mjp-O1-Ixi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5381" y="76"/>
         </scene>
     </scenes>
     <resources>
