@@ -17,16 +17,15 @@ class SearchCustomsViewController: BaseViewController{
         super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
         datePicker.backgroundColor = .white
+        datePicker.subviews.first?.semanticContentAttribute = .playback
 //        datePicker.addTarget(self, action: #selector(timeChanged), for: .valueChanged)
     }
     
-    @IBAction func timeChanged(_ sender: Any) {
-//        if let picker = sender as? UIDatePicker {
-//                let calendar = Calendar.current
-//                let tempHour = calendar.component(.hour, from: picker.date)
-//                let tempMinute = calendar.component(.minute, from: picker.date)
-//
-//                Swift.print("hour: \(tempHour) minute: \(tempMinute)")
-//        }
+    @IBAction func timeChanged(_ sender: UIDatePicker) {
+        let calendar = Calendar.current
+        let tempHour = calendar.component(.hour, from: sender.date)
+        let tempMinute = calendar.component(.minute, from: sender.date)
+
+        Swift.print("hour: \(tempHour) minute: \(tempMinute)")
     }
 }
