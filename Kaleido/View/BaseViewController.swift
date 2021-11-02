@@ -9,9 +9,11 @@ import UIKit
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
     let titleViewRadius: CGFloat = 100.0
     let BigBtnCornerRadius: CGFloat = 20.0
+    let textFieldCornerRadius: CGFloat = 10.0
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
+        initBinding()
     }
     
     func initView() {
@@ -20,7 +22,19 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
         if #available(iOS 13.0, *) {
             self.view.window?.overrideUserInterfaceStyle = .light
         }
-
+    }
+    
+    func initBinding() {
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        removeBinding()
+    }
+    
+    func removeBinding()
+    {
+        
     }
 }
 

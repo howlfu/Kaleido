@@ -10,6 +10,10 @@
 		63CD4F1F272BD8500085BD4C /* SlashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */; };
 		63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* SlashListType.swift */; };
 		63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */; };
+		63CD4F2B2730E2CA0085BD4C /* SearchListTempData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2A2730E2CA0085BD4C /* SearchListTempData.swift */; };
+		63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */; };
+		63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2E2730E9E40085BD4C /* Observable.swift */; };
+		63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
 		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
 		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
@@ -47,6 +51,10 @@
 		63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListViewController.swift; sourceTree = "<group>"; };
 		63CD4F21272BDEDC0085BD4C /* SlashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListType.swift; sourceTree = "<group>"; };
 		63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewController.swift; sourceTree = "<group>"; };
+		63CD4F2A2730E2CA0085BD4C /* SearchListTempData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTempData.swift; sourceTree = "<group>"; };
+		63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsController.swift; sourceTree = "<group>"; };
+		63CD4F2E2730E9E40085BD4C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsModel.swift; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
 		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
@@ -108,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				63CD4F21272BDEDC0085BD4C /* SlashListType.swift */,
+				63CD4F2A2730E2CA0085BD4C /* SearchListTempData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -124,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */,
+				63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */,
+				63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -176,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				A1A2B13A272A8A8A00943C9E /* BaseViewController.swift */,
+				63CD4F2E2730E9E40085BD4C /* Observable.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -365,13 +377,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */,
+				63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */,
 				63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
+				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
 				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
+				63CD4F2B2730E2CA0085BD4C /* SearchListTempData.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
