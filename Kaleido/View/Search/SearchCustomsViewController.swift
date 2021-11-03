@@ -65,6 +65,18 @@ class SearchCustomsViewController: BaseViewController{
 
         Swift.print("hour: \(tempHour) minute: \(tempMinute)")
     }
+    
+    func toOrderDetailView() {
+        guard let selectedService = selectedSlashService else {
+            performSegue(withIdentifier: "toKeratinOrder", sender: self)
+            return
+        }
+        performSegue(withIdentifier: "toSlashOrder", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    }
 }
 
 
@@ -105,6 +117,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         let phoneInCell : UITextField = selectedCell.contentView.viewWithTag(2) as! UITextField
         self.nameTextField.text = nameInCell.text
         self.phoneTextField.text = phoneInCell.text
+        self.toOrderDetailView()
     }
 }
 
