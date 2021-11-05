@@ -25,6 +25,7 @@ extension Order {
     @NSManaged public var store_money: Int16
     @NSManaged public var total_price: Int16
     @NSManaged public var user_id: Int32
+    @NSManaged public var created_at: Date
 
 }
 

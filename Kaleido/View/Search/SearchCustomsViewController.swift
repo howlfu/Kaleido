@@ -50,7 +50,9 @@ class SearchCustomsViewController: BaseViewController{
     
     override func initBinding() {
         viewModel.customDataModel.addObserver(fireNow: false) {[weak self] (newCustomsData) in
-            self?.customsListTableView.reloadData()
+            DispatchQueue.main.async {
+                self?.customsListTableView.reloadData()
+            }
         }
     }
     

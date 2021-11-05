@@ -14,6 +14,14 @@
 		63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */; };
 		63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2E2730E9E40085BD4C /* Observable.swift */; };
 		63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */; };
+		63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F362733681A0085BD4C /* EntityGetHelper.swift */; };
+		63CD4F5027336ED80085BD4C /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F4E27336ED80085BD4C /* Order+CoreDataClass.swift */; };
+		63CD4F5127336ED80085BD4C /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F4F27336ED80085BD4C /* Order+CoreDataProperties.swift */; };
+		63CD4F5427336F280085BD4C /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F5227336F280085BD4C /* Customer+CoreDataClass.swift */; };
+		63CD4F5527336F280085BD4C /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F5327336F280085BD4C /* Customer+CoreDataProperties.swift */; };
+		63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F56273373C30085BD4C /* EntityCRUDService.swift */; };
+		63CD4F592733C1B10085BD4C /* CoreDataCRUDTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F582733C1B10085BD4C /* CoreDataCRUDTest.swift */; };
+		63CD4F5A2733D3EF0085BD4C /* Kaleido.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
 		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
 		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
@@ -26,7 +34,6 @@
 		A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */; };
 		A1ADDDF726E1F8E8000EBE9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF626E1F8E8000EBE9A /* Assets.xcassets */; };
 		A1ADDDFA26E1F8E8000EBE9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1ADDDF826E1F8E8000EBE9A /* LaunchScreen.storyboard */; };
-		A1ADDE0526E1F8E8000EBE9A /* KaleidoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDE0426E1F8E8000EBE9A /* KaleidoTests.swift */; };
 		A1ADDE1026E1F8E8000EBE9A /* KaleidoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDE0F26E1F8E8000EBE9A /* KaleidoUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +62,13 @@
 		63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsController.swift; sourceTree = "<group>"; };
 		63CD4F2E2730E9E40085BD4C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsModel.swift; sourceTree = "<group>"; };
+		63CD4F362733681A0085BD4C /* EntityGetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityGetHelper.swift; sourceTree = "<group>"; };
+		63CD4F4E27336ED80085BD4C /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
+		63CD4F4F27336ED80085BD4C /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		63CD4F5227336F280085BD4C /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		63CD4F5327336F280085BD4C /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		63CD4F56273373C30085BD4C /* EntityCRUDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityCRUDService.swift; sourceTree = "<group>"; };
+		63CD4F582733C1B10085BD4C /* CoreDataCRUDTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCRUDTest.swift; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
 		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
@@ -70,7 +84,6 @@
 		A1ADDDF926E1F8E8000EBE9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1ADDDFB26E1F8E8000EBE9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1ADDE0026E1F8E8000EBE9A /* KaleidoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaleidoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1ADDE0426E1F8E8000EBE9A /* KaleidoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaleidoTests.swift; sourceTree = "<group>"; };
 		A1ADDE0626E1F8E8000EBE9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1ADDE0B26E1F8E8000EBE9A /* KaleidoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaleidoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1ADDE0F26E1F8E8000EBE9A /* KaleidoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaleidoUITests.swift; sourceTree = "<group>"; };
@@ -145,6 +158,35 @@
 			children = (
 			);
 			path = Order;
+			sourceTree = "<group>";
+		};
+		63CD4F35273367D20085BD4C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				63CD4F3927336A9D0085BD4C /* Entity */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		63CD4F38273368220085BD4C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				63CD4F5227336F280085BD4C /* Customer+CoreDataClass.swift */,
+				63CD4F5327336F280085BD4C /* Customer+CoreDataProperties.swift */,
+				63CD4F4E27336ED80085BD4C /* Order+CoreDataClass.swift */,
+				63CD4F4F27336ED80085BD4C /* Order+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		63CD4F3927336A9D0085BD4C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				63CD4F38273368220085BD4C /* Model */,
+				63CD4F362733681A0085BD4C /* EntityGetHelper.swift */,
+				63CD4F56273373C30085BD4C /* EntityCRUDService.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		A120DBD72726917E009B1C7E /* View */ = {
@@ -223,6 +265,7 @@
 		A1ADDDE926E1F8E6000EBE9A /* Kaleido */ = {
 			isa = PBXGroup;
 			children = (
+				63CD4F35273367D20085BD4C /* Helper */,
 				A120DBDB272693CD009B1C7E /* Extension */,
 				A120DBD72726917E009B1C7E /* View */,
 				A18F99A727265D3D00CBA9B5 /* Data */,
@@ -240,8 +283,8 @@
 		A1ADDE0326E1F8E8000EBE9A /* KaleidoTests */ = {
 			isa = PBXGroup;
 			children = (
-				A1ADDE0426E1F8E8000EBE9A /* KaleidoTests.swift */,
 				A1ADDE0626E1F8E8000EBE9A /* Info.plist */,
+				63CD4F582733C1B10085BD4C /* CoreDataCRUDTest.swift */,
 			);
 			path = KaleidoTests;
 			sourceTree = "<group>";
@@ -390,16 +433,22 @@
 				63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
+				63CD4F5427336F280085BD4C /* Customer+CoreDataClass.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
+				63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
 				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
+				63CD4F5527336F280085BD4C /* Customer+CoreDataProperties.swift in Sources */,
 				63CD4F2B2730E2CA0085BD4C /* SearchListTempData.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
+				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
+				63CD4F5127336ED80085BD4C /* Order+CoreDataProperties.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
+				63CD4F5027336ED80085BD4C /* Order+CoreDataClass.swift in Sources */,
 				63CD4F1F272BD8500085BD4C /* SlashListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,7 +457,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1ADDE0526E1F8E8000EBE9A /* KaleidoTests.swift in Sources */,
+				63CD4F592733C1B10085BD4C /* CoreDataCRUDTest.swift in Sources */,
+				63CD4F5A2733D3EF0085BD4C /* Kaleido.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
