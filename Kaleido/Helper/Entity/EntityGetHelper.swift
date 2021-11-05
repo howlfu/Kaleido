@@ -9,7 +9,7 @@ import Foundation
 
 class EntityGetHelper {
     static let inst = EntityGetHelper()
-    private let crudService = EntityCRUDService()   
+    private let crudService = EntityCRUDService()
     public func getCustomer(by name: String) -> [Customer]? {
         let result: [Customer] = self.getCustomerByRule(with: "full_name='\(name)'")
         return result

@@ -16,7 +16,7 @@ extension Customer {
         return NSFetchRequest<Customer>(entityName: "Customer")
     }
 
-    @NSManaged public var birthday: Date?
+    @NSManaged public var birthday: String?
     @NSManaged public var created_at: Date?
     @NSManaged public var full_name: String?
     @NSManaged public var id: Int32

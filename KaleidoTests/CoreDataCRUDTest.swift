@@ -46,7 +46,7 @@ class CoreDataCRUDTest: XCTestCase {
     
     func initStubsOfCustomer() {
             
-        func insertCustomer( id: Int, full_name: String, phone_number: String, birthday: Date, created_at: Date) -> Customer? {
+        func insertCustomer( id: Int, full_name: String, phone_number: String, birthday: String, created_at: Date) -> Customer? {
             
             let obj = NSEntityDescription.insertNewObject(forEntityName: "Customer", into: mockPersistantContainer.viewContext)
             
@@ -58,11 +58,11 @@ class CoreDataCRUDTest: XCTestCase {
             return obj as? Customer
         }
         
-        _ = insertCustomer(id: 1, full_name: "Test_1", phone_number: "111", birthday: Date(), created_at: Date())
-        _ = insertCustomer(id: 2, full_name: "Test_2", phone_number: "222", birthday: Date(), created_at: Date())
-        _ = insertCustomer(id: 3, full_name: "Test_3", phone_number: "333", birthday: Date(), created_at: Date())
-        _ = insertCustomer(id: 4, full_name: "Test_4", phone_number: "444", birthday: Date(), created_at: Date())
-        _ = insertCustomer(id: 5, full_name: "Test_5", phone_number: "555", birthday: Date(), created_at: Date())
+        _ = insertCustomer(id: 1, full_name: "Test_1", phone_number: "111", birthday: "2019年5月1日", created_at: Date())
+        _ = insertCustomer(id: 2, full_name: "Test_2", phone_number: "222", birthday: "2019年5月2日", created_at: Date())
+        _ = insertCustomer(id: 3, full_name: "Test_3", phone_number: "333", birthday: "2019年5月3日", created_at: Date())
+        _ = insertCustomer(id: 4, full_name: "Test_4", phone_number: "444", birthday: "2019年5月4日", created_at: Date())
+        _ = insertCustomer(id: 5, full_name: "Test_5", phone_number: "555", birthday: "2019年5月5日", created_at: Date())
         
         
             do {
@@ -112,12 +112,20 @@ class CoreDataCRUDTest: XCTestCase {
     }
     
     func testReadDataByRule() throws {
-        let allCustomer: [NSManagedObject] = sut.readData(name: "Customer", with: "id=5")
+        var allCustomer: [NSManagedObject] = sut.readData(name: "Customer", with: "id=5")
         for oneCust in allCustomer {
             let phone: String = oneCust.value(forKey: "phone_number") as! String
             XCTAssertEqual(phone, "555")
         }
         XCTAssertEqual(allCustomer.count, 1)
+        
+        allCustomer = sut.readData(name: "Customer", with: "birthday='2019年5月3日'")
+        for oneCust in allCustomer {
+            let birth: String = oneCust.value(forKey: "birthday") as! String
+            XCTAssertEqual(birth, "2019年5月3日")
+        }
+        XCTAssertEqual(allCustomer.count, 1)
+        
     }
     
     func testAddEntity() throws {
@@ -128,7 +136,7 @@ class CoreDataCRUDTest: XCTestCase {
         entityInst.setValue(6, forKey: "id")
         entityInst.setValue("Test_6", forKey: "full_name")
         entityInst.setValue("666", forKey: "phone_number")
-        entityInst.setValue(Date(), forKey: "birthday")
+        entityInst.setValue("2019年5月1日", forKey: "birthday")
         entityInst.setValue(Date(), forKey: "created_at")
         
         let allCustomer: [NSManagedObject] = sut.readData(by: "Customer")
@@ -143,7 +151,7 @@ class CoreDataCRUDTest: XCTestCase {
         entityInst2.setValue(7, forKey: "id")
         entityInst2.setValue("Test_6", forKey: "full_name")
         entityInst2.setValue("666", forKey: "phone_number")
-        entityInst2.setValue(Date(), forKey: "birthday")
+        entityInst2.setValue("2019年5月1日", forKey: "birthday")
         entityInst2.setValue(Date(), forKey: "created_at")
         let twoCustomer: [NSManagedObject] = sut.readData(name: "Customer", with: "full_name='Test_6'")
         XCTAssertEqual(twoCustomer.count, 2)
@@ -187,7 +195,7 @@ class CoreDataCRUDTest: XCTestCase {
         entityInst.setValue(6, forKey: "id")
         entityInst.setValue("Test_6", forKey: "full_name")
         entityInst.setValue("666", forKey: "phone_number")
-        entityInst.setValue(Date(), forKey: "birthday")
+        entityInst.setValue("2019年5月1日", forKey: "birthday")
         entityInst.setValue(Date(), forKey: "created_at")
         //When save
         _ = sut.saveData()
