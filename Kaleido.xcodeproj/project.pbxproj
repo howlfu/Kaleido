@@ -22,6 +22,7 @@
 		63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F56273373C30085BD4C /* EntityCRUDService.swift */; };
 		63CD4F592733C1B10085BD4C /* CoreDataCRUDTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F582733C1B10085BD4C /* CoreDataCRUDTest.swift */; };
 		63CD4F5A2733D3EF0085BD4C /* Kaleido.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */; };
+		63CD4F672734E04B0085BD4C /* EntityNameDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F662734E04B0085BD4C /* EntityNameDefine.swift */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
 		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
 		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
@@ -69,6 +70,7 @@
 		63CD4F5327336F280085BD4C /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CD4F56273373C30085BD4C /* EntityCRUDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityCRUDService.swift; sourceTree = "<group>"; };
 		63CD4F582733C1B10085BD4C /* CoreDataCRUDTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCRUDTest.swift; sourceTree = "<group>"; };
+		63CD4F662734E04B0085BD4C /* EntityNameDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNameDefine.swift; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
 		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				63CD4F38273368220085BD4C /* Model */,
 				63CD4F362733681A0085BD4C /* EntityGetHelper.swift */,
 				63CD4F56273373C30085BD4C /* EntityCRUDService.swift */,
+				63CD4F662734E04B0085BD4C /* EntityNameDefine.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				63CD4F5127336ED80085BD4C /* Order+CoreDataProperties.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
 				63CD4F5027336ED80085BD4C /* Order+CoreDataClass.swift in Sources */,
+				63CD4F672734E04B0085BD4C /* EntityNameDefine.swift in Sources */,
 				63CD4F1F272BD8500085BD4C /* SlashListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
