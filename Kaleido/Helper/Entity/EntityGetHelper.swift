@@ -51,7 +51,7 @@ class EntityGetHelper {
         return result
     }
     
-    public func getAllOrders() {
+    public func getAllOrders() -> [Order]? {
         let EntityName = EntityNameDefine.order.rawValue
         return getEntityAllDataBase(entity: EntityName)
     }
