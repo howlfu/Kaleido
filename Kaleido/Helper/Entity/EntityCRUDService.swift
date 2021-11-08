@@ -39,11 +39,14 @@ class EntityCRUDService {
         return retObj
     }
     
-    public func readData<T: NSManagedObject>(name: String, with rule: String) -> [T]{
+    public func readData<T: NSManagedObject>(name: String, with rule: String, limit: Int = 0) -> [T]{
         var array:[T] = []
         let request = NSFetchRequest<T>(entityName: name)
         let predicate = NSPredicate(format: rule)
         request.predicate = predicate
+        if limit > 0 {
+            request.fetchLimit = limit
+        }
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         do {
             let results = try context.fetch(request)
@@ -57,9 +60,12 @@ class EntityCRUDService {
     }
     
     
-    public func readData<T: NSManagedObject>(by name: String) -> [T]{
+    public func readData<T: NSManagedObject>(by name: String, limit: Int = 0) -> [T]{
         var array:[T] = []
         let request = NSFetchRequest<T>(entityName: name)
+        if limit > 0 {
+            request.fetchLimit = limit
+        }
         do {
             let results = try context.fetch(request)
             for result in results {

@@ -47,6 +47,7 @@ class EntityGetHelper {
     }
     
     public func getCustomer(name: String, birthday: String, phone: String) -> [Customer]?{
+        //取得有值的就好
         let result: [Customer] = self.getCustomerByRule(with: "full_name='\(name)' AND phone_number='\(phone)' AND birthday='\(birthday)'")
         if result.isEmpty {
             return nil
@@ -59,9 +60,13 @@ class EntityGetHelper {
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     
-    public func getAllCustomerEntitys() -> [Customer] {
+    public func getAllCustomerEntitys(rows: Int) -> [Customer]?{
         let EntityName = EntityNameDefine.customer
-        return getEntityAllDataBase(entity: EntityName)
+        let result: [Customer] = getEntityAllDataBase(entity: EntityName, rows: rows)
+        if result.isEmpty {
+            return nil
+        }
+        return result
     }
     
     public func getOrders(id: Int) -> [Order]?{
@@ -95,8 +100,8 @@ class EntityGetHelper {
         return retData
     }
     
-    private func getEntityAllDataBase<T>(entity: String) -> [T] {
-        let entityAllData = crudService.readData(by: entity)
+    private func getEntityAllDataBase<T>(entity: String, rows: Int = 0) -> [T] {
+        let entityAllData = crudService.readData(by: entity, limit: rows)
         var retData: [T] = []
         for singleData in entityAllData {
             if let custSingleData = singleData as? T{

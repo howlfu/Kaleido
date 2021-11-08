@@ -2,7 +2,7 @@
 //  Customer+CoreDataProperties.swift
 //  Kaleido
 //
-//  Created by Howlfu on 2021/11/4.
+//  Created by Howlfu on 2021/11/8.
 //
 //
 

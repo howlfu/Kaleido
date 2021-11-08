@@ -23,16 +23,44 @@ class SearchCustomsViewController: BaseViewController{
     }
     var controller: SearchCustomsController = SearchCustomsController()
     let aCellHightOfViewRadio = 8
+    
+    @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
+            view.endEditing(true)
+    }
+    
+    @IBAction func timeChanged(_ sender: UIDatePicker) {
+    }
+    
     @IBAction func searchAct(_ sender: Any)
     {
-        controller.tryGetDataFromDb()
+        if nameTextField.hasText || phoneTextField.hasText || self.viewModel.didSelectTimePicker {
+            guard
+                let name = nameTextField.text,
+                let phone = phoneTextField.text else {
+                    return
+                }
+            var birth = datePicker.date.toYearMonthDayStr()
+            if !self.viewModel.didSelectTimePicker {
+                birth = ""
+            }
+            controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
+        } else {
+            controller.tryGetDataFromDb()
+        }
+        
     }
     @IBAction func addNewAct(_ sender: Any)
     {
-        guard let nameData = nameTextField.text, let phoneData = phoneTextField.text else{
+        guard
+            let nameData = nameTextField.text,
+            let phoneData = phoneTextField.text
+        else{
              return
         }
-        controller.setDataToDb(name: nameData, phone: phoneData)
+        let birthData = datePicker.date.toYearMonthDayStr()
+        if nameData != "" && phoneData != "" {
+            controller.setDataToDb(name: nameData, phone: phoneData, birth: birthData)
+        }
     }
     var selectedSlashService: [SlashListType]?
     
@@ -60,14 +88,6 @@ class SearchCustomsViewController: BaseViewController{
         viewModel.customDataModel.removeObserver()
     }
     
-    @IBAction func timeChanged(_ sender: UIDatePicker) {
-        let calendar = Calendar.current
-        let tempHour = calendar.component(.hour, from: sender.date)
-        let tempMinute = calendar.component(.minute, from: sender.date)
-
-        Swift.print("hour: \(tempHour) minute: \(tempMinute)")
-    }
-    
     func toOrderDetailView() {
         guard let selectedService = selectedSlashService else {
             performSegue(withIdentifier: "toKeratinOrder", sender: self)
@@ -93,22 +113,34 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customsListCell", for: indexPath)
         let nameText : UITextField = cell.contentView.viewWithTag(1) as! UITextField
-        let phoneText : UITextField = cell.contentView.viewWithTag(2) as! UITextField
+        let birthText : UITextField = cell.contentView.viewWithTag(2) as! UITextField
         let foundCustoms = viewModel.customDataModel.value
-        let index = foundCustoms.index(foundCustoms.startIndex, offsetBy: indexPath.row)
-        let name = foundCustoms.keys[index]
+//        let index = foundCustoms.index(foundCustoms.startIndex, offsetBy: indexPath.row)
+        let index = indexPath.row
+        
+        let customerDetail = foundCustoms[index]
+        let name = customerDetail.full_name
+        let birth = customerDetail.birthday
+        
         nameText.text = name
-        let phoneNumber = foundCustoms[name]
-        phoneText.text = phoneNumber
+        birthText.text = birth
+        if let brithday = customerDetail.birthday,
+           let setDate:Date = brithday.toDate()
+        {
+            datePicker.setDate(setDate, animated: false)
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.customDataModel.value.count
+        let allTableCellCount = viewModel.customDataModel.value.count
+        return allTableCellCount
     }
     //UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return customsListTableView.frame.height / CGFloat(aCellHightOfViewRadio)
+        let cellHight = customsListTableView.frame.height / CGFloat(aCellHightOfViewRadio)
+        return cellHight
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

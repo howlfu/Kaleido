@@ -8,5 +8,6 @@
 import Foundation
 
 class SearchCustomsModel {
-    var customDataModel = Observable<Dictionary<String, String>>(value: [:])
+    var customDataModel = Observable<[Customer]>(value: [])
+    var didSelectTimePicker = false
 }

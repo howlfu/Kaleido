@@ -17,8 +17,6 @@
 		63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F362733681A0085BD4C /* EntityGetHelper.swift */; };
 		63CD4F5027336ED80085BD4C /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F4E27336ED80085BD4C /* Order+CoreDataClass.swift */; };
 		63CD4F5127336ED80085BD4C /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F4F27336ED80085BD4C /* Order+CoreDataProperties.swift */; };
-		63CD4F5427336F280085BD4C /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F5227336F280085BD4C /* Customer+CoreDataClass.swift */; };
-		63CD4F5527336F280085BD4C /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F5327336F280085BD4C /* Customer+CoreDataProperties.swift */; };
 		63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F56273373C30085BD4C /* EntityCRUDService.swift */; };
 		63CD4F592733C1B10085BD4C /* CoreDataCRUDTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F582733C1B10085BD4C /* CoreDataCRUDTest.swift */; };
 		63CD4F5A2733D3EF0085BD4C /* Kaleido.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1ADDDF326E1F8E6000EBE9A /* Kaleido.xcdatamodeld */; };
@@ -26,6 +24,9 @@
 		63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6B27351D250085BD4C /* EntitySetHelper.swift */; };
 		63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6D273521450085BD4C /* UserDefaultKey.swift */; };
 		63CD4F702738D0630085BD4C /* EntitySetHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6F2738D0630085BD4C /* EntitySetHelperTest.swift */; };
+		63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7CF2739106E00D4C6A8 /* DateExt.swift */; };
+		63F3B7D3273917C600D4C6A8 /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7D1273917C600D4C6A8 /* Customer+CoreDataClass.swift */; };
+		63F3B7D4273917C600D4C6A8 /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7D2273917C600D4C6A8 /* Customer+CoreDataProperties.swift */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
 		A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD927269215009B1C7E /* MainViewController.swift */; };
 		A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBDC272693EE009B1C7E /* ButtonExt.swift */; };
@@ -69,14 +70,15 @@
 		63CD4F362733681A0085BD4C /* EntityGetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityGetHelper.swift; sourceTree = "<group>"; };
 		63CD4F4E27336ED80085BD4C /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63CD4F4F27336ED80085BD4C /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		63CD4F5227336F280085BD4C /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
-		63CD4F5327336F280085BD4C /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CD4F56273373C30085BD4C /* EntityCRUDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityCRUDService.swift; sourceTree = "<group>"; };
 		63CD4F582733C1B10085BD4C /* CoreDataCRUDTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCRUDTest.swift; sourceTree = "<group>"; };
 		63CD4F662734E04B0085BD4C /* EntityNameDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityNameDefine.swift; sourceTree = "<group>"; };
 		63CD4F6B27351D250085BD4C /* EntitySetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySetHelper.swift; sourceTree = "<group>"; };
 		63CD4F6D273521450085BD4C /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		63CD4F6F2738D0630085BD4C /* EntitySetHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySetHelperTest.swift; sourceTree = "<group>"; };
+		63F3B7CF2739106E00D4C6A8 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
+		63F3B7D1273917C600D4C6A8 /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		63F3B7D2273917C600D4C6A8 /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
 		A120DBD927269215009B1C7E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A120DBDC272693EE009B1C7E /* ButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExt.swift; sourceTree = "<group>"; };
@@ -179,8 +181,8 @@
 		63CD4F38273368220085BD4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				63CD4F5227336F280085BD4C /* Customer+CoreDataClass.swift */,
-				63CD4F5327336F280085BD4C /* Customer+CoreDataProperties.swift */,
+				63F3B7D1273917C600D4C6A8 /* Customer+CoreDataClass.swift */,
+				63F3B7D2273917C600D4C6A8 /* Customer+CoreDataProperties.swift */,
 				63CD4F4E27336ED80085BD4C /* Order+CoreDataClass.swift */,
 				63CD4F4F27336ED80085BD4C /* Order+CoreDataProperties.swift */,
 			);
@@ -231,6 +233,7 @@
 			children = (
 				A1A2B12F272A831900943C9E /* ViewExt.swift */,
 				A120DBDC272693EE009B1C7E /* ButtonExt.swift */,
+				63F3B7CF2739106E00D4C6A8 /* DateExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -453,16 +456,17 @@
 				63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
-				63CD4F5427336F280085BD4C /* Customer+CoreDataClass.swift in Sources */,
+				63F3B7D3273917C600D4C6A8 /* Customer+CoreDataClass.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
+				63F3B7D4273917C600D4C6A8 /* Customer+CoreDataProperties.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
 				63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
 				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
-				63CD4F5527336F280085BD4C /* Customer+CoreDataProperties.swift in Sources */,
 				63CD4F2B2730E2CA0085BD4C /* SearchListTempData.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
+				63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */,
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
