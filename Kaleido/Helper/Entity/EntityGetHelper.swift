@@ -8,36 +8,59 @@
 import Foundation
 
 class EntityGetHelper {
-    static let inst = EntityGetHelper()
-    private let crudService = EntityCRUDService()
+    private let crudService: EntityCRUDService
+    
+    init(entity: EntityCRUDService) {
+        crudService = entity
+    }
     
     public func getCustomer(id: Int) -> [Customer]? {
         let result: [Customer] = self.getCustomerByRule(with: "id=\(id)")
+        if result.isEmpty {
+            return nil
+        }
         return result
     }
     
     public func getCustomer(name: String) -> [Customer]? {
         let result: [Customer] = self.getCustomerByRule(with: "full_name='\(name)'")
+        if result.isEmpty {
+            return nil
+        }
         return result
     }
     
     public func getCustomer(birthday: String) -> [Customer]?{
-        let result: [Customer] = self.getCustomerByRule(with: "birthday=\(birthday)")
+        let result: [Customer] = self.getCustomerByRule(with: "birthday='\(birthday)'")
+        if result.isEmpty {
+            return nil
+        }
         return result
     }
     
     public func getCustomer(phone: String) -> [Customer]?{
-        let result: [Customer] = self.getCustomerByRule(with: "phone_number=\(phone)")
+        let result: [Customer] = self.getCustomerByRule(with: "phone_number='\(phone)'")
+        if result.isEmpty {
+            return nil
+        }
+        return result
+    }
+    
+    public func getCustomer(name: String, birthday: String, phone: String) -> [Customer]?{
+        let result: [Customer] = self.getCustomerByRule(with: "full_name='\(name)' AND phone_number='\(phone)' AND birthday='\(birthday)'")
+        if result.isEmpty {
+            return nil
+        }
         return result
     }
     
     private func getCustomerByRule<T>(with rule: String) -> [T] {
-        let EntityName = EntityNameDefine.customer.rawValue
+        let EntityName = EntityNameDefine.customer
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     
     public func getAllCustomerEntitys() -> [Customer] {
-        let EntityName = EntityNameDefine.customer.rawValue
+        let EntityName = EntityNameDefine.customer
         return getEntityAllDataBase(entity: EntityName)
     }
     
@@ -52,12 +75,12 @@ class EntityGetHelper {
     }
     
     public func getAllOrders() -> [Order]? {
-        let EntityName = EntityNameDefine.order.rawValue
+        let EntityName = EntityNameDefine.order
         return getEntityAllDataBase(entity: EntityName)
     }
     
     private func getOrderByRule<T>(with rule: String) -> [T] {
-        let EntityName = EntityNameDefine.order.rawValue
+        let EntityName = EntityNameDefine.order
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     

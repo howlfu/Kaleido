@@ -6,7 +6,7 @@
 //
 
 import Foundation
-enum EntityNameDefine : String{
-    case customer = "Customer"
-    case order = "Order"
+struct EntityNameDefine{
+    static let customer = "Customer" //Token
+    static let order = "Order" // acc
 }

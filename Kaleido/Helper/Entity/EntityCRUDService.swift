@@ -31,8 +31,11 @@ class EntityCRUDService {
     }
 
     public func addNewToEntity<T: NSManagedObject>(name: String) -> T? {
+        
         let entity = NSEntityDescription.entity(forEntityName: name, in: context)
-        let retObj = NSManagedObject(entity: entity!, insertInto: context) as! T
+        guard let retObj = NSManagedObject(entity: entity!, insertInto: context) as? T else {
+            return nil
+        }
         return retObj
     }
     
@@ -41,6 +44,7 @@ class EntityCRUDService {
         let request = NSFetchRequest<T>(entityName: name)
         let predicate = NSPredicate(format: rule)
         request.predicate = predicate
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         do {
             let results = try context.fetch(request)
             for result in results {

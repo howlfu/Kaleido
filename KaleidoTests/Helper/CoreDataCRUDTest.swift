@@ -9,16 +9,7 @@ import CoreData
 @testable import Kaleido
 
 class CoreDataCRUDTest: XCTestCase {
-
-//    override func setUpWithError() throws {
-//        // Put setup code here. This method is called before the invocation of each test method in the class.
-//    }
-//
-//    override func tearDownWithError() throws {
-//        // Put teardown code here. This method is called after the invocation of each test method in the class.
-//    }
     var sut: EntityCRUDService!
-    
     lazy var mockPersistantContainer: NSPersistentContainer = {
             
             let container = NSPersistentContainer(name: "KaleidoTests", managedObjectModel: self.managedObjectModel)
@@ -108,24 +99,49 @@ class CoreDataCRUDTest: XCTestCase {
             let full_name: String = oneCust.value(forKey: "full_name") as! String
             XCTAssertTrue(full_name.starts(with: "Test_"))
         }
-        XCTAssertEqual(allCustomer.count, 5)
+        XCTAssertEqual(allCustomer.count, 5, "test get all in entity")
     }
     
     func testReadDataByRule() throws {
         var allCustomer: [NSManagedObject] = sut.readData(name: "Customer", with: "id=5")
         for oneCust in allCustomer {
             let phone: String = oneCust.value(forKey: "phone_number") as! String
-            XCTAssertEqual(phone, "555")
+            XCTAssertEqual(phone, "555", "test rule use id")
         }
-        XCTAssertEqual(allCustomer.count, 1)
+        XCTAssertEqual(allCustomer.count, 1, "test rule get uniq data")
         
         allCustomer = sut.readData(name: "Customer", with: "birthday='2019年5月3日'")
         for oneCust in allCustomer {
             let birth: String = oneCust.value(forKey: "birthday") as! String
-            XCTAssertEqual(birth, "2019年5月3日")
+            XCTAssertEqual(birth, "2019年5月3日", "test rule use birthday")
         }
-        XCTAssertEqual(allCustomer.count, 1)
+        XCTAssertEqual(allCustomer.count, 1, "test rule get uniq data")
         
+        guard let entityInst = sut.addNewToEntity(name: "Customer") else {
+            XCTAssertTrue(false)
+            return
+        }
+        entityInst.setValue(5, forKey: "id")
+        entityInst.setValue("Test_6", forKey: "full_name")
+        entityInst.setValue("555", forKey: "phone_number")
+        entityInst.setValue("2019年5月5日", forKey: "birthday")
+        entityInst.setValue(Date(), forKey: "created_at")
+        
+//        allCustomer = sut.readData(name: "Customer", with: "id=5 AND full_name='Test_6'")
+        allCustomer = sut.readData(name: "Customer", with: "id=5")
+        for oneCust in allCustomer {
+            let birth: String = oneCust.value(forKey: "birthday") as! String
+            XCTAssertEqual(birth, "2019年5月5日", "test rule use birthday")
+        }
+        XCTAssertEqual(allCustomer.count, 2, "test rule get two the same data by the same ID")
+        
+        allCustomer = sut.readData(name: "Customer", with: "id=5 AND full_name='Test_6'")
+        
+        for oneCust in allCustomer {
+            let name: String = oneCust.value(forKey: "full_name") as! String
+            XCTAssertEqual(name, "Test_6", "Test name should be 6")
+        }
+        XCTAssertEqual(allCustomer.count, 1, "test rule get uniq data when more condition")
     }
     
     func testAddEntity() throws {
@@ -210,5 +226,5 @@ class CoreDataCRUDTest: XCTestCase {
                 expect.fulfill()
             })
             return expect
-        }
+    }
 }
