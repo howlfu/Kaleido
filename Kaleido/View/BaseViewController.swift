@@ -16,6 +16,10 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
         initBinding()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        initBinding()
+    }
+    
     func initView() {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self;

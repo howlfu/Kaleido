@@ -509,11 +509,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="DiK-aR-KJE">
-                                        <rect key="frame" x="42" y="5" width="118" height="32"/>
+                                        <rect key="frame" x="22" y="5" width="156" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <edgeInsets key="layoutMargins" top="8" left="14" bottom="8" right="8"/>
                                         <locale key="locale" localeIdentifier="zh_TW"/>
+                                        <connections>
+                                            <action selector="timeChanged:" destination="gDm-fy-rDk" eventType="valueChanged" id="LFM-vf-K2U"/>
+                                        </connections>
                                     </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -599,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lz6-Jz-6rG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3697" y="77"/>
+            <point key="canvasLocation" x="3695.652173913044" y="76.630434782608702"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0Pt-8H-3gi">

@@ -47,8 +47,24 @@ class EntityGetHelper {
     }
     
     public func getCustomer(name: String, birthday: String, phone: String) -> [Customer]?{
-        //取得有值的就好
-        let result: [Customer] = self.getCustomerByRule(with: "full_name='\(name)' AND phone_number='\(phone)' AND birthday='\(birthday)'")
+        let result: [Customer]
+        var rule: String = ""
+        func addPrefAndTagetData(target: String, prefix: String) {
+            if target != "" {
+                var andPrefix = ""
+                if rule != "" {
+                    andPrefix = " AND "
+                }
+                rule +=  andPrefix + "\(prefix)='\(target)'"
+            }
+        }
+        if name != "" {
+            rule +=  "full_name='\(name)'"
+        }
+        addPrefAndTagetData(target: birthday, prefix: "birthday")
+        addPrefAndTagetData(target: phone, prefix: "phone_number")
+        
+        result = self.getCustomerByRule(with: rule)
         if result.isEmpty {
             return nil
         }

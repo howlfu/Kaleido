@@ -22,13 +22,19 @@ class SearchCustomsViewController: BaseViewController{
         return controller.viewModel
     }
     var controller: SearchCustomsController = SearchCustomsController()
-    let aCellHightOfViewRadio = 8
+    var selectedSlashService: [SlashListType]?
     
     @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
             view.endEditing(true)
     }
     
     @IBAction func timeChanged(_ sender: UIDatePicker) {
+        if Calendar.current.isDateInToday(sender.date) {
+            self.viewModel.didSelectTimePicker = false
+        } else {
+            self.viewModel.didSelectTimePicker = true
+        }
+        presentedViewController?.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func searchAct(_ sender: Any)
@@ -57,12 +63,14 @@ class SearchCustomsViewController: BaseViewController{
         else{
              return
         }
-        let birthData = datePicker.date.toYearMonthDayStr()
+        var birth = datePicker.date.toYearMonthDayStr()
+        if !self.viewModel.didSelectTimePicker {
+            birth = ""
+        }
         if nameData != "" && phoneData != "" {
-            controller.setDataToDb(name: nameData, phone: phoneData, birth: birthData)
+            controller.setDataToDb(name: nameData, phone: phoneData, birth: birth)
         }
     }
-    var selectedSlashService: [SlashListType]?
     
     override func initView() {
         super.initView()
@@ -124,11 +132,11 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         
         nameText.text = name
         birthText.text = birth
-        if let brithday = customerDetail.birthday,
-           let setDate:Date = brithday.toDate()
-        {
-            datePicker.setDate(setDate, animated: false)
-        }
+//        if let brithday = customerDetail.birthday,
+//           let setDate:Date = brithday.toDate()
+//        {
+//            datePicker.setDate(setDate, animated: false)
+//        }
         
         return cell
     }
@@ -139,18 +147,25 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
     }
     //UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let aCellHightOfViewRadio = 8
         let cellHight = customsListTableView.frame.height / CGFloat(aCellHightOfViewRadio)
         return cellHight
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedCell = tableView.cellForRow(at: indexPath) else {
-            return
+//        guard let selectedCell = tableView.cellForRow(at: indexPath) else {
+//            return
+//        }
+//        let nameInCell : UITextField = selectedCell.contentView.viewWithTag(1) as! UITextField
+//        let birthInCell : UITextField = selectedCell.contentView.viewWithTag(2) as! UITextField
+        let selectedCustomer: Customer = self.viewModel.customDataModel.value[indexPath.row]
+        
+        self.nameTextField.text = selectedCustomer.full_name
+        self.phoneTextField.text = selectedCustomer.phone_number
+        if let birthStr = selectedCustomer.birthday, let birthDate = birthStr.toDate() {
+            self.datePicker.setDate(birthDate, animated: false)
+            self.viewModel.didSelectTimePicker = true
         }
-        let nameInCell : UITextField = selectedCell.contentView.viewWithTag(1) as! UITextField
-        let phoneInCell : UITextField = selectedCell.contentView.viewWithTag(2) as! UITextField
-        self.nameTextField.text = nameInCell.text
-        self.phoneTextField.text = phoneInCell.text
         self.toOrderDetailView()
     }
 }

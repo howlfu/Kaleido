@@ -49,19 +49,13 @@ class SearchCustomsController {
     }
     
     func setDataToDb(name: String, phone: String, birth: String) {
-        
-//        let keyExists = dbData[name] != nil
-//        if (!keyExists) {
-//            dbData[name] = phone
-//        }
+     
         if entitySetter.createCustomer(name: name, birthday: birth, phone: phone) {
-            guard let dbData = dbSearchDataCache else {
-                self.tryGetDataFromDb()
-                return
-            }
-            self.viewModel.customDataModel.value = dbData
+            //renew
+            tryGetDataFromDb(name: name,  phone: phone, birthday: birth)
+        } else {
+            self.tryGetDataFromDb()
         }
-        
     }
     
     func didSelectTimePicker() {
