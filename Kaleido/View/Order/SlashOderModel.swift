@@ -8,5 +8,5 @@
 import Foundation
 class SlashOderModel {
 //    var customDataModel = Observable<[Customer]>(value: [])
-    var pickItemList: [String]?
+    var pickItemList =  Observable<[String]>(value: [])
 }
