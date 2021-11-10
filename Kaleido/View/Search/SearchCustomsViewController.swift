@@ -96,8 +96,9 @@ class SearchCustomsViewController: BaseViewController{
         viewModel.customDataModel.removeObserver()
     }
     
-    func toOrderDetailView() {
-        guard let selectedService = selectedSlashService else {
+    func toOrderDetailView(selectedId: Int32) {
+        viewModel.selectedCustomerId = selectedId
+        guard let _ = selectedSlashService else {
             performSegue(withIdentifier: "toKeratinOrder", sender: self)
             return
         }
@@ -105,7 +106,18 @@ class SearchCustomsViewController: BaseViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        if segue.destination is SlashOrderViewController {
+            let slash = segue.destination as! SlashOrderViewController
+            guard let slashTypeList = selectedSlashService,
+                  let customerId = self.viewModel.selectedCustomerId else {
+                      return
+                  }
+            slash.setOrderInfo(slashTypeList: slashTypeList, cId: customerId)
+        }
+        
+        if segue.destination is KeratinOrderViewController {
+            let _ = segue.destination as! KeratinOrderViewController
+        }
     }
 }
 
@@ -166,7 +178,8 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
             self.datePicker.setDate(birthDate, animated: false)
             self.viewModel.didSelectTimePicker = true
         }
-        self.toOrderDetailView()
+        let selectedId = selectedCustomer.id
+        self.toOrderDetailView(selectedId: selectedId)
     }
 }
 

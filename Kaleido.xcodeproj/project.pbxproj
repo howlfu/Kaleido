@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		635C7AA9273A234E000C3CCA /* SlashOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AA8273A234E000C3CCA /* SlashOrderViewController.swift */; };
+		635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */; };
+		635C7AAD273A446A000C3CCA /* SlashOderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAC273A446A000C3CCA /* SlashOderController.swift */; };
+		635C7AAF273A703D000C3CCA /* SlashOderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAE273A703D000C3CCA /* SlashOderModel.swift */; };
 		63CD4F1F272BD8500085BD4C /* SlashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */; };
 		63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* SlashListType.swift */; };
 		63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */; };
@@ -24,6 +28,7 @@
 		63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6B27351D250085BD4C /* EntitySetHelper.swift */; };
 		63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6D273521450085BD4C /* UserDefaultKey.swift */; };
 		63CD4F702738D0630085BD4C /* EntitySetHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6F2738D0630085BD4C /* EntitySetHelperTest.swift */; };
+		63E7746F273B744A00F197AC /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7746E273B744A00F197AC /* UIColorExt.swift */; };
 		63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7CF2739106E00D4C6A8 /* DateExt.swift */; };
 		63F3B7D3273917C600D4C6A8 /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7D1273917C600D4C6A8 /* Customer+CoreDataClass.swift */; };
 		63F3B7D4273917C600D4C6A8 /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7D2273917C600D4C6A8 /* Customer+CoreDataProperties.swift */; };
@@ -60,6 +65,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		635C7AA8273A234E000C3CCA /* SlashOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashOrderViewController.swift; sourceTree = "<group>"; };
+		635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderViewController.swift; sourceTree = "<group>"; };
+		635C7AAC273A446A000C3CCA /* SlashOderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashOderController.swift; sourceTree = "<group>"; };
+		635C7AAE273A703D000C3CCA /* SlashOderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashOderModel.swift; sourceTree = "<group>"; };
 		63CD4F1E272BD8500085BD4C /* SlashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListViewController.swift; sourceTree = "<group>"; };
 		63CD4F21272BDEDC0085BD4C /* SlashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlashListType.swift; sourceTree = "<group>"; };
 		63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +85,7 @@
 		63CD4F6B27351D250085BD4C /* EntitySetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySetHelper.swift; sourceTree = "<group>"; };
 		63CD4F6D273521450085BD4C /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		63CD4F6F2738D0630085BD4C /* EntitySetHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySetHelperTest.swift; sourceTree = "<group>"; };
+		63E7746E273B744A00F197AC /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		63F3B7CF2739106E00D4C6A8 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		63F3B7D1273917C600D4C6A8 /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63F3B7D2273917C600D4C6A8 /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -166,6 +176,10 @@
 		63CD4F3327312D340085BD4C /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				635C7AA8273A234E000C3CCA /* SlashOrderViewController.swift */,
+				635C7AAC273A446A000C3CCA /* SlashOderController.swift */,
+				635C7AAE273A703D000C3CCA /* SlashOderModel.swift */,
+				635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -234,6 +248,7 @@
 				A1A2B12F272A831900943C9E /* ViewExt.swift */,
 				A120DBDC272693EE009B1C7E /* ButtonExt.swift */,
 				63F3B7CF2739106E00D4C6A8 /* DateExt.swift */,
+				63E7746E273B744A00F197AC /* UIColorExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -452,9 +467,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */,
+				635C7AAD273A446A000C3CCA /* SlashOderController.swift in Sources */,
 				63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */,
 				63CD4F22272BDEDC0085BD4C /* SlashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
+				635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
 				63F3B7D3273917C600D4C6A8 /* Customer+CoreDataClass.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
@@ -463,14 +480,17 @@
 				63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
+				635C7AA9273A234E000C3CCA /* SlashOrderViewController.swift in Sources */,
 				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
 				63CD4F2B2730E2CA0085BD4C /* SearchListTempData.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
 				63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */,
+				63E7746F273B744A00F197AC /* UIColorExt.swift in Sources */,
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
 				63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */,
+				635C7AAF273A703D000C3CCA /* SlashOderModel.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				63CD4F5127336ED80085BD4C /* Order+CoreDataProperties.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,

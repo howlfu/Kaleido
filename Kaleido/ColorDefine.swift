@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum ColorDef: Int {
-    case mainTint = 0xF4EFEF
-    case buttGray = 0x727272
-    case titleRed = 0xCF5E5E
+struct ColorDef {
+    let mainTint: UInt32 = 0xF4EFEF
+    let buttGray: UInt32 = 0x727272
+    let titleRed: UInt32 = 0xCF5E5E
 }

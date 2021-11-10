@@ -14,12 +14,12 @@ class EntityGetHelper {
         crudService = entity
     }
     
-    public func getCustomer(id: Int) -> [Customer]? {
+    public func getCustomer(id: Int32) -> Customer? {
         let result: [Customer] = self.getCustomerByRule(with: "id=\(id)")
-        if result.isEmpty {
+        if result.isEmpty || result.count != 1 {
             return nil
         }
-        return result
+        return result[0]
     }
     
     public func getCustomer(name: String) -> [Customer]? {

@@ -9,5 +9,6 @@ import Foundation
 
 class SearchCustomsModel {
     var customDataModel = Observable<[Customer]>(value: [])
-    var didSelectTimePicker = false
+    var didSelectTimePicker: Bool = false
+    var selectedCustomerId: Int32?
 }

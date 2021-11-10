@@ -10,8 +10,7 @@ import Foundation
 class SearchCustomsController {
     let viewModel: SearchCustomsModel
     let entitySerice = EntityCRUDService()
-    lazy var entityGetter: EntityGetHelper =  EntityGetHelper(entity: entitySerice
-    )
+    lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     lazy var entitySetter: EntitySetHelper = EntitySetHelper(entity: entitySerice, get: entityGetter)
     var dbSearchDataCache:  [Customer]?
     init(
