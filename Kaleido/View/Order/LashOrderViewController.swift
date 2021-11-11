@@ -1,5 +1,5 @@
 //
-//  SlashOrderViewController.swift
+//  LashOrderViewController.swift
 //  Kaleido
 //
 //  Created by Howlfu on 2021/11/9.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-class SlashOrderViewController: BaseViewController, UITextFieldDelegate {
-    var viewModel: SlashOderModel {
+class LashOrderViewController: BaseViewController, UITextFieldDelegate {
+    var viewModel: LashOderModel {
         return controller.viewModel
     }
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameText: UITextField!
-    @IBOutlet weak var numberOfTopSlashText: UITextField!
+    @IBOutlet weak var numberOfToplashText: UITextField!
     @IBOutlet weak var topTypeTextForPicker: UITextField!
     @IBOutlet weak var topSizeTextForPicker: UITextField!
     
-    @IBOutlet weak var numberOfBottSlashText: UITextField!
+    @IBOutlet weak var numberOfBottlashText: UITextField!
     @IBOutlet weak var bottSizeTextForPicker: UITextField!
     @IBOutlet weak var bottCurTextForPicker: UITextField!
     @IBOutlet weak var bottLenTextForPicker: UITextField!
@@ -26,13 +26,13 @@ class SlashOrderViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var newOrderBtn: UIButton!
-    @IBOutlet weak var slashTypeText: UITextView!
+    @IBOutlet weak var lashTypeText: UITextView!
     
     @IBAction func dateDidChange(_ sender: Any) {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
     
-    var controller: SlashOderController = SlashOderController()
+    var controller: LashOderController = LashOderController()
     let typePicker: UIPickerView = UIPickerView()
     
     override func initBinding() {
@@ -72,10 +72,10 @@ class SlashOrderViewController: BaseViewController, UITextFieldDelegate {
         
         newOrderBtn.layer.cornerRadius = BigBtnCornerRadius
         nameText.layer.cornerRadius = textFieldCornerRadius
-        numberOfTopSlashText.layer.cornerRadius = textFieldCornerRadius
+        numberOfToplashText.layer.cornerRadius = textFieldCornerRadius
         topTypeTextForPicker.layer.cornerRadius = textFieldCornerRadius
         topSizeTextForPicker.layer.cornerRadius = textFieldCornerRadius
-        numberOfBottSlashText.layer.cornerRadius = textFieldCornerRadius
+        numberOfBottlashText.layer.cornerRadius = textFieldCornerRadius
         bottSizeTextForPicker.layer.cornerRadius = textFieldCornerRadius
         bottCurTextForPicker.layer.cornerRadius = textFieldCornerRadius
         bottLenTextForPicker.layer.cornerRadius = textFieldCornerRadius
@@ -85,70 +85,70 @@ class SlashOrderViewController: BaseViewController, UITextFieldDelegate {
         //update by in
         let name = controller.getCustomerName()
         nameText.text = name
-        let slashTypeStr = controller.getSlashType()
-        slashTypeText.text = slashTypeStr
+        let lashTypeStr = controller.getLashType()
+        lashTypeText.text = lashTypeStr
         
     }
     
-    public func setOrderInfo(slashTypeList: [SlashListType], cId: Int32) {
-        self.controller.setOrderInfo(slashTypeList: slashTypeList, cId: cId)
+    public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {
+        self.controller.setOrderInfo(lashTypeList: lashTypeList, cId: cId)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if topTypeTextForPicker.isFirstResponder {
-            controller.getSlashTypeFromDb()
+            controller.getLashTypeFromDb()
         } else if topSizeTextForPicker.isFirstResponder {
-            controller.getSlashTopSizeFromDb()
+            controller.getLashTopSizeFromDb()
         } else if bottSizeTextForPicker.isFirstResponder {
-            controller.getSlashBottSizeFromDb()
+            controller.getLashBottSizeFromDb()
         } else if bottCurTextForPicker.isFirstResponder {
-            controller.getSlashBottCurlFromDb()
+            controller.getLashBottCurlFromDb()
         } else if bottLenTextForPicker.isFirstResponder {
-            controller.getSlashBottLenFromDb()
+            controller.getLashBottLenFromDb()
         } else if doerTextForPicker.isFirstResponder {
             controller.getDoerFromDb()
         }
     }
 }
 
-extension SlashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let slashList = self.viewModel.pickItemList.value
-        return slashList.count
+        let lashList = self.viewModel.pickItemList.value
+        return lashList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let slashList = self.viewModel.pickItemList.value
+        let lashList = self.viewModel.pickItemList.value
         if topTypeTextForPicker.isFirstResponder {
-            topTypeTextForPicker.text = slashList[row]
+            topTypeTextForPicker.text = lashList[row]
             topTypeTextForPicker.endEditing(false)
         } else if topSizeTextForPicker.isFirstResponder {
-            topSizeTextForPicker.text = slashList[row]
+            topSizeTextForPicker.text = lashList[row]
             topSizeTextForPicker.endEditing(false)
         } else if bottSizeTextForPicker.isFirstResponder {
-            bottSizeTextForPicker.text = slashList[row]
+            bottSizeTextForPicker.text = lashList[row]
             bottSizeTextForPicker.endEditing(false)
         } else if bottCurTextForPicker.isFirstResponder {
-            bottCurTextForPicker.text = slashList[row]
+            bottCurTextForPicker.text = lashList[row]
             bottCurTextForPicker.endEditing(false)
         } else if bottLenTextForPicker.isFirstResponder {
-            bottLenTextForPicker.text = slashList[row]
+            bottLenTextForPicker.text = lashList[row]
             bottLenTextForPicker.endEditing(false)
         } else if doerTextForPicker.isFirstResponder {
-            doerTextForPicker.text = slashList[row]
+            doerTextForPicker.text = lashList[row]
             doerTextForPicker.endEditing(false)
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
-        let slashList = self.viewModel.pickItemList.value
-        let detailTitle = slashList[row]
+        let lashList = self.viewModel.pickItemList.value
+        let detailTitle = lashList[row]
         pickerLabel.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint, alpha: 1.0)
         pickerLabel.font = UIFont.systemFont(ofSize: 26)
         pickerLabel.textAlignment = NSTextAlignment.center

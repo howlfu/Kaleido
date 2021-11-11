@@ -156,7 +156,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="LGz-KY-qXq"/>
                     <connections>
                         <outlet property="keratinBtn" destination="4cW-CZ-Gxl" id="3o9-Pv-iw5"/>
-                        <outlet property="slashBtn" destination="Gjf-8f-xcO" id="eyA-3W-AXd"/>
+                        <outlet property="lashBtn" destination="Gjf-8f-xcO" id="eyA-3W-AXd"/>
                         <outlet property="titleLabel" destination="YGs-DC-V6y" id="luU-k9-PfH"/>
                         <outlet property="titleView" destination="kco-Sc-GAU" id="MQK-hn-yI2"/>
                     </connections>
@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="1080" y="1529"/>
         </scene>
-        <!--Slash List View Controller-->
+        <!--Lash List View Controller-->
         <scene sceneID="jLC-cm-6mh">
             <objects>
-                <viewController id="Jsb-Pn-sKy" customClass="SlashListViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Jsb-Pn-sKy" customClass="LashListViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QfB-wo-iId">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -307,7 +307,7 @@
                                 <color key="backgroundColor" red="0.95663744210000001" green="0.93724232910000005" blue="0.93725556139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="slashListCell" rowHeight="74" id="MFk-OL-uS3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lashListCell" rowHeight="74" id="MFk-OL-uS3">
                                         <rect key="frame" x="0.0" y="45" width="414" height="74"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MFk-OL-uS3" id="2et-6x-r61">
@@ -597,17 +597,17 @@
                         <outlet property="searchBtn" destination="Cpb-NN-FQS" id="bRN-kn-U9e"/>
                         <outlet property="titleView" destination="KA2-hW-x6j" id="hz3-ag-3ic"/>
                         <segue destination="iRb-Du-MUJ" kind="show" identifier="toKeratinOrder" id="Teh-V8-HVR"/>
-                        <segue destination="jb7-QH-zoe" kind="show" identifier="toSlashOrder" id="0RL-d2-FpA"/>
+                        <segue destination="jb7-QH-zoe" kind="show" identifier="toLashOrder" id="0RL-d2-FpA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lz6-Jz-6rG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3695.652173913044" y="76.630434782608702"/>
         </scene>
-        <!--Slash Order View Controller-->
+        <!--Lash Order View Controller-->
         <scene sceneID="0Pt-8H-3gi">
             <objects>
-                <viewController id="jb7-QH-zoe" customClass="SlashOrderViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jb7-QH-zoe" customClass="LashOrderViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0zb-xV-mb1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1260"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -985,13 +985,13 @@
                         <outlet property="bottSizeTextForPicker" destination="oHe-yF-rf6" id="Hkt-uf-8Mi"/>
                         <outlet property="datePicker" destination="4h6-i2-euV" id="SoI-b9-bYR"/>
                         <outlet property="doerTextForPicker" destination="9Rs-pM-p6W" id="PPn-Za-tP6"/>
+                        <outlet property="lashTypeText" destination="Wg2-6K-kQP" id="Z8h-YF-dN9"/>
                         <outlet property="nameText" destination="Gja-kN-VYU" id="Dmh-5F-yd4"/>
                         <outlet property="newOrderBtn" destination="XOd-nF-Hid" id="YoQ-UA-CHo"/>
                         <outlet property="noteTextField" destination="8I2-Pg-e0S" id="XI4-f6-74e"/>
-                        <outlet property="numberOfBottSlashText" destination="K0u-yg-RAl" id="jlE-m5-JaG"/>
-                        <outlet property="numberOfTopSlashText" destination="S83-jp-5CC" id="JaE-gN-OtL"/>
+                        <outlet property="numberOfBottlashText" destination="K0u-yg-RAl" id="jlE-m5-JaG"/>
+                        <outlet property="numberOfToplashText" destination="S83-jp-5CC" id="JaE-gN-OtL"/>
                         <outlet property="scrollView" destination="BhG-ni-5wS" id="eXx-5a-IVJ"/>
-                        <outlet property="slashTypeText" destination="Wg2-6K-kQP" id="Z8h-YF-dN9"/>
                         <outlet property="titleView" destination="p9S-fL-ujb" id="IOT-ry-VKJ"/>
                         <outlet property="topSizeTextForPicker" destination="Y0Y-wn-g5Y" id="VMf-5V-wW1"/>
                         <outlet property="topTypeTextForPicker" destination="gfq-mH-xxz" id="no3-5k-TZw"/>

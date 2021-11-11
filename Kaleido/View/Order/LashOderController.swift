@@ -1,19 +1,19 @@
 //
-//  SlashOderController.swift
+//  LashOderController.swift
 //  Kaleido
 //
 //  Created by Howlfu on 2021/11/9.
 //
 
 import Foundation
-class SlashOderController {
-    let viewModel: SlashOderModel
-    var slashType: [SlashListType]? = []
+class LashOderController {
+    let viewModel: LashOderModel
+    var lashType: [LashListType]? = []
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     var customerId: Int32? = 0
     init(
-        viewModel: SlashOderModel = SlashOderModel()
+        viewModel: LashOderModel = LashOderModel()
     ) {
         self.viewModel = viewModel
     }
@@ -27,21 +27,21 @@ class SlashOderController {
         return name
     }
     
-    public func getSlashType() -> String {
+    public func getLashType() -> String {
         var retStr = ""
-        guard let slashTypeList = slashType else {
+        guard let lashTypeList = lashType else {
             return retStr
         }
         var prefix = ""
-        for type in slashTypeList  {
+        for type in lashTypeList  {
             retStr += prefix + type.rawValue
             prefix = ", "
         }
         return retStr
     }
     
-    public func setOrderInfo(slashTypeList: [SlashListType], cId: Int32) {
-        self.slashType = slashTypeList
+    public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {
+        self.lashType = lashTypeList
         self.customerId = cId
     }
     
@@ -52,36 +52,36 @@ class SlashOderController {
         return customerInfo
     }
     
-    public func getSlashTypeFromDb(){
+    public func getLashTypeFromDb(){
         self.viewModel.pickItemList.value = ["中間長", "眼尾長", "齊長"]
     }
     
-    public func getSlashTopLenFromDb() {
+    public func getLashTopLenFromDb() {
         // 6,7,8,9,10,11,12,13,14,15, 8-10,9-11,10-12,11-13
         self.viewModel.pickItemList.value = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "8-10", "9-11", "10-12", "11-13"]
     }
     
-    public func getSlashTopCurlFromDb() {
+    public func getLashTopCurlFromDb() {
         // J/B/C/CC/D/U/L+
         self.viewModel.pickItemList.value = ["J", "B", "C", "CC", "D", "U", "L+"]
     }
     
-    public func getSlashTopSizeFromDb() {
+    public func getLashTopSizeFromDb() {
         // 0.07 / 0.1
         self.viewModel.pickItemList.value = ["0.07", "0.08", "0.09", "0.1"]
     }
     
-    public func getSlashBottLenFromDb() {
+    public func getLashBottLenFromDb() {
         // 6,7,8
         self.viewModel.pickItemList.value = ["6", "7", "8"]
     }
     
-    public func getSlashBottCurlFromDb() {
+    public func getLashBottCurlFromDb() {
         // J,B,C
         self.viewModel.pickItemList.value = ["J", "B", "C"]
     }
     
-    public func getSlashBottSizeFromDb() {
+    public func getLashBottSizeFromDb() {
         // J,B,C
         self.viewModel.pickItemList.value = ["0.07", "0.01", "0.15", "0.1扁毛"]
     }
@@ -94,7 +94,7 @@ class SlashOderController {
         
     }
     
-    public func addSlashType() {
+    public func addLashType() {
         
     }
 }

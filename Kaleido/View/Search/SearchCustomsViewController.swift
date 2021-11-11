@@ -22,7 +22,7 @@ class SearchCustomsViewController: BaseViewController{
         return controller.viewModel
     }
     var controller: SearchCustomsController = SearchCustomsController()
-    var selectedSlashService: [SlashListType]?
+    var selectedLashService: [LashListType]?
     
     @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
             view.endEditing(true)
@@ -98,21 +98,21 @@ class SearchCustomsViewController: BaseViewController{
     
     func toOrderDetailView(selectedId: Int32) {
         viewModel.selectedCustomerId = selectedId
-        guard let _ = selectedSlashService else {
+        guard let _ = selectedLashService else {
             performSegue(withIdentifier: "toKeratinOrder", sender: self)
             return
         }
-        performSegue(withIdentifier: "toSlashOrder", sender: self)
+        performSegue(withIdentifier: "toLashOrder", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is SlashOrderViewController {
-            let slash = segue.destination as! SlashOrderViewController
-            guard let slashTypeList = selectedSlashService,
+        if segue.destination is LashOrderViewController {
+            let lash = segue.destination as! LashOrderViewController
+            guard let lashTypeList = selectedLashService,
                   let customerId = self.viewModel.selectedCustomerId else {
                       return
                   }
-            slash.setOrderInfo(slashTypeList: slashTypeList, cId: customerId)
+            lash.setOrderInfo(lashTypeList: lashTypeList, cId: customerId)
         }
         
         if segue.destination is KeratinOrderViewController {

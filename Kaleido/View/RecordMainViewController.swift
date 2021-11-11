@@ -8,7 +8,7 @@
 import UIKit
 
 class RecordMainViewController: BaseViewController{
-    @IBOutlet weak var slashBtn: UIButton!
+    @IBOutlet weak var lashBtn: UIButton!
     @IBOutlet weak var keratinBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleView: UIView!
@@ -18,7 +18,7 @@ class RecordMainViewController: BaseViewController{
     override func initView() {
         super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
-        slashBtn.layer.cornerRadius = BigBtnCornerRadius
+        lashBtn.layer.cornerRadius = BigBtnCornerRadius
         keratinBtn.layer.cornerRadius = BigBtnCornerRadius
     }
 }
