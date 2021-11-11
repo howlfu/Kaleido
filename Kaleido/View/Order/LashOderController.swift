@@ -12,6 +12,7 @@ class LashOderController {
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     var customerId: Int32? = 0
+    var tmpCompNum: Int?
     init(
         viewModel: LashOderModel = LashOderModel()
     ) {
@@ -53,40 +54,56 @@ class LashOderController {
     }
     
     public func getLashTypeFromDb(){
+        self.viewModel.shouldShow2Component = false
         self.viewModel.pickItemList.value = ["中間長", "眼尾長", "齊長"]
     }
     
-    public func getLashTopLenFromDb() {
+    public func getLashTopLenCurlFromDb() {
         // 6,7,8,9,10,11,12,13,14,15, 8-10,9-11,10-12,11-13
-        self.viewModel.pickItemList.value = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "8-10", "9-11", "10-12", "11-13"]
-    }
-    
-    public func getLashTopCurlFromDb() {
         // J/B/C/CC/D/U/L+
+        self.viewModel.shouldShow2Component = true
+        self.tmpCompNum = 2
+        self.viewModel.pickItemList2 = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "8-10", "9-11", "10-12", "11-13"]
         self.viewModel.pickItemList.value = ["J", "B", "C", "CC", "D", "U", "L+"]
     }
     
+    public func setDidSelectBoth(compNum: Int) {
+        self.tmpCompNum = compNum
+    }
+    
+    public func isSelectBoth(compNum: Int) -> Bool{
+        if self.tmpCompNum != 2 && self.tmpCompNum != compNum{
+            return true
+        }
+        return false
+    }
+
     public func getLashTopSizeFromDb() {
         // 0.07 / 0.1
+        self.viewModel.shouldShow2Component = false
         self.viewModel.pickItemList.value = ["0.07", "0.08", "0.09", "0.1"]
     }
     
     public func getLashBottLenFromDb() {
         // 6,7,8
+        self.viewModel.shouldShow2Component = false
         self.viewModel.pickItemList.value = ["6", "7", "8"]
     }
     
     public func getLashBottCurlFromDb() {
         // J,B,C
+        self.viewModel.shouldShow2Component = false
         self.viewModel.pickItemList.value = ["J", "B", "C"]
     }
     
     public func getLashBottSizeFromDb() {
         // J,B,C
+        self.viewModel.shouldShow2Component = false
         self.viewModel.pickItemList.value = ["0.07", "0.01", "0.15", "0.1扁毛"]
     }
     
     public func getDoerFromDb() {
+        self.viewModel.shouldShow2Component = false
         self.viewModel.pickItemList.value = ["Jen", "JaJen"]
     }
     

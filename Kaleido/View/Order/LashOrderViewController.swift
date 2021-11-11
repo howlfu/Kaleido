@@ -47,12 +47,22 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         bottCurTextForPicker.delegate = self
         bottLenTextForPicker.delegate = self
         doerTextForPicker.delegate = self
+        topLashText1.delegate = self
+        topLashText2.delegate = self
+        topLashText3.delegate = self
+        topLashText4.delegate = self
+        topLashText5.delegate = self
         topTypeTextForPicker.inputView = typePicker
         topSizeTextForPicker.inputView = typePicker
         bottSizeTextForPicker.inputView = typePicker
         bottCurTextForPicker.inputView = typePicker
         bottLenTextForPicker.inputView = typePicker
         doerTextForPicker.inputView = typePicker
+        topLashText1.inputView = typePicker
+        topLashText2.inputView = typePicker
+        topLashText3.inputView = typePicker
+        topLashText4.inputView = typePicker
+        topLashText5.inputView = typePicker
         
         typePicker.delegate = self
         typePicker.dataSource = self
@@ -66,6 +76,8 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     
     override func initView() {
         // setup scroll view -- start
+        let statusBarheight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        self.titleView.frame.size.height = self.titleView.frame.height + statusBarheight
         let titleViewH = self.titleView.frame.height
         self.titleView.roundedBottRight(radius: titleViewRadius)
         let contHight = newOrderBtn.frame.origin.y - titleViewH
@@ -86,6 +98,11 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         bottLenTextForPicker.layer.cornerRadius = textFieldCornerRadius
         doerTextForPicker.layer.cornerRadius = textFieldCornerRadius
         noteTextField.layer.cornerRadius = textFieldCornerRadius
+        topLashText1.layer.cornerRadius = textFieldCornerRadius
+        topLashText2.layer.cornerRadius = textFieldCornerRadius
+        topLashText3.layer.cornerRadius = textFieldCornerRadius
+        topLashText4.layer.cornerRadius = textFieldCornerRadius
+        topLashText5.layer.cornerRadius = textFieldCornerRadius
         
         //update by in
         let name = controller.getCustomerName()
@@ -112,6 +129,26 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             controller.getLashBottLenFromDb()
         } else if doerTextForPicker.isFirstResponder {
             controller.getDoerFromDb()
+        } else if topLashText1.isFirstResponder
+        {
+            topLashText1.text = ""
+            controller.getLashTopLenCurlFromDb()
+        } else if topLashText2.isFirstResponder
+        {
+            topLashText2.text = ""
+            controller.getLashTopLenCurlFromDb()
+        }else if topLashText3.isFirstResponder
+        {
+            topLashText3.text = ""
+            controller.getLashTopLenCurlFromDb()
+        }else if topLashText4.isFirstResponder
+        {
+            topLashText4.text = ""
+            controller.getLashTopLenCurlFromDb()
+        }else if topLashText5.isFirstResponder
+        {
+            topLashText5.text = ""
+            controller.getLashTopLenCurlFromDb()
         }
     }
 }
@@ -119,11 +156,20 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
 extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        let isShouldShow2Component = self.viewModel.shouldShow2Component
+        if isShouldShow2Component {
+            return 2
+        }
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let lashList = self.viewModel.pickItemList.value
+        let isShouldShow2Component = self.viewModel.shouldShow2Component
+        if isShouldShow2Component &&  component == 1{
+            let lashList2 = self.viewModel.pickItemList2
+            return lashList2.count
+        }
         return lashList.count
     }
     
@@ -147,12 +193,50 @@ extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         } else if doerTextForPicker.isFirstResponder {
             doerTextForPicker.text = lashList[row]
             doerTextForPicker.endEditing(false)
+        } else if topLashText1.isFirstResponder {
+            didSelectLashTopComp2(textField: topLashText1, row: row, component: component)
+        } else if topLashText2.isFirstResponder {
+            didSelectLashTopComp2(textField: topLashText2, row: row, component: component)
+        } else if topLashText3.isFirstResponder {
+            didSelectLashTopComp2(textField: topLashText3, row: row, component: component)
+        } else if topLashText4.isFirstResponder {
+            didSelectLashTopComp2(textField: topLashText4, row: row, component: component)
+        }else if topLashText5.isFirstResponder {
+            didSelectLashTopComp2(textField: topLashText5, row: row, component: component)
+        }
+    }
+    
+    private func didSelectLashTopComp2(textField: UITextField, row: Int, component: Int) {
+        var tmpStr = ""
+        if !self.controller.isSelectBoth(compNum: component) {
+            self.controller.setDidSelectBoth(compNum: component)
+            if component == 1 {
+                let lashList2 = self.viewModel.pickItemList2
+                tmpStr = lashList2[row]
+                textField.text! = tmpStr
+            } else {
+                tmpStr = self.viewModel.pickItemList.value[row]
+                textField.text! = tmpStr
+            }
+        } else {
+            if component == 1 {
+                let lashList2 = self.viewModel.pickItemList2
+                tmpStr = lashList2[row]
+                textField.text! += tmpStr
+            } else {
+                tmpStr = self.viewModel.pickItemList.value[row]
+                textField.text! = tmpStr + textField.text!
+            }
+            textField.endEditing(false)
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
-        let lashList = self.viewModel.pickItemList.value
+        var lashList = self.viewModel.pickItemList.value
+        if self.viewModel.shouldShow2Component && component == 1{
+            lashList = self.viewModel.pickItemList2
+        }
         let detailTitle = lashList[row]
         pickerLabel.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint, alpha: 1.0)
         pickerLabel.font = UIFont.systemFont(ofSize: 26)
