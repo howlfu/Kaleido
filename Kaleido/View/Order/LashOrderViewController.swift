@@ -28,6 +28,11 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var newOrderBtn: UIButton!
     @IBOutlet weak var lashTypeText: UITextView!
     
+    @IBOutlet weak var topLashText1: UITextField!
+    @IBOutlet weak var topLashText2: UITextField!
+    @IBOutlet weak var topLashText3: UITextField!
+    @IBOutlet weak var topLashText4: UITextField!
+    @IBOutlet weak var topLashText5: UITextField!
     @IBAction func dateDidChange(_ sender: Any) {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
