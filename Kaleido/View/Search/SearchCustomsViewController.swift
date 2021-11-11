@@ -67,7 +67,7 @@ class SearchCustomsViewController: BaseViewController{
         if !self.viewModel.didSelectTimePicker {
             birth = ""
         }
-        if nameData != "" && phoneData != "" {
+        if nameData != "" && phoneData != "" &&  birth != ""{
             controller.setDataToDb(name: nameData, phone: phoneData, birth: birth)
         }
     }
