@@ -6,3 +6,11 @@
 //
 
 import Foundation
+class KeratinOrderController {
+    let viewModel: KeratinOrderModel
+    init(
+        viewModel: KeratinOrderModel = KeratinOrderModel()
+    ) {
+        self.viewModel = viewModel
+    }
+}

@@ -6,3 +6,6 @@
 //
 
 import Foundation
+class KeratinOrderModel {
+    var pickItemList =  Observable<[String]>(value: [])
+}
