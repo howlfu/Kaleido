@@ -8,7 +8,7 @@
 import UIKit
 
 class LashOrderViewController: BaseViewController, UITextFieldDelegate {
-    var viewModel: LashOderModel {
+    var viewModel: LashOrderModel {
         return controller.viewModel
     }
     @IBOutlet weak var titleView: UIView!
@@ -18,6 +18,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var topTypeTextForPicker: UITextField!
     @IBOutlet weak var topSizeTextForPicker: UITextField!
     
+    @IBOutlet weak var datePickerBackground: UIView!
     @IBOutlet weak var numberOfBottlashText: UITextField!
     @IBOutlet weak var bottSizeTextForPicker: UITextField!
     @IBOutlet weak var bottCurTextForPicker: UITextField!
@@ -37,7 +38,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
     
-    var controller: LashOderController = LashOderController()
+    var controller: LashOrderController = LashOrderController()
     let typePicker: UIPickerView = UIPickerView()
     
     override func initBinding() {
@@ -67,6 +68,10 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         typePicker.delegate = self
         typePicker.dataSource = self
         
+        let tabGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
+               tabGesture.numberOfTapsRequired = 1
+               self.view.addGestureRecognizer(tabGesture)
+        
         viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
             DispatchQueue.main.async {
                 self?.typePicker.reloadAllComponents()
@@ -74,21 +79,76 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func tapViewForReturn(_ sender: Any) {
+        if topLashText1.isFirstResponder ||
+            topLashText2.isFirstResponder ||
+            topLashText3.isFirstResponder ||
+            topLashText4.isFirstResponder ||
+            topLashText5.isFirstResponder
+        {
+            let col1Select = self.viewModel.pickItemList.value[typePicker.selectedRow(inComponent: 0)]
+            let col2Select = self.viewModel.pickItemList2[typePicker.selectedRow(inComponent: 1)]
+            if  topLashText1.isFirstResponder {
+                topLashText1.text = col1Select + col2Select
+                topLashText1.endEditing(true)
+            } else if topLashText2.isFirstResponder {
+                topLashText2.text = col1Select + col2Select
+                topLashText2.endEditing(true)
+            } else if topLashText3.isFirstResponder {
+                topLashText3.text = col1Select + col2Select
+                topLashText3.endEditing(true)
+            } else if topLashText4.isFirstResponder {
+                topLashText4.text = col1Select + col2Select
+                topLashText4.endEditing(true)
+            } else if topLashText5.isFirstResponder {
+                topLashText5.text = col1Select + col2Select
+                topLashText5.endEditing(true)
+            }
+        } else {
+            let rowSelect = self.viewModel.pickItemList.value[typePicker.selectedRow(inComponent: 0)]
+            setSingleColSelected(rowSelect: rowSelect)
+        }
+        
+    }
+    
+    private func setSingleColSelected(rowSelect: String)
+    {
+        if topTypeTextForPicker.isFirstResponder {
+            topTypeTextForPicker.text = rowSelect
+            topTypeTextForPicker.endEditing(false)
+        } else if topSizeTextForPicker.isFirstResponder {
+            topSizeTextForPicker.text = rowSelect
+            topSizeTextForPicker.endEditing(false)
+        } else if bottSizeTextForPicker.isFirstResponder {
+            bottSizeTextForPicker.text = rowSelect
+            bottSizeTextForPicker.endEditing(false)
+        } else if bottCurTextForPicker.isFirstResponder {
+            bottCurTextForPicker.text = rowSelect
+            bottCurTextForPicker.endEditing(false)
+        } else if bottLenTextForPicker.isFirstResponder {
+            bottLenTextForPicker.text = rowSelect
+            bottLenTextForPicker.endEditing(false)
+        } else if doerTextForPicker.isFirstResponder {
+            doerTextForPicker.text = rowSelect
+            doerTextForPicker.endEditing(false)
+        }
+    }
     override func initView() {
         // setup scroll view -- start
         let statusBarheight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         self.titleView.frame.size.height = self.titleView.frame.height + statusBarheight
         let titleViewH = self.titleView.frame.height
-        self.titleView.roundedBottRight(radius: titleViewRadius)
         let contHight = newOrderBtn.frame.origin.y - titleViewH
         let scrollViewH = UIScreen.main.bounds.height - titleViewH - self.newOrderBtn.frame.height - 20
         self.scrollView.frame.size.height = scrollViewH
         self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: contHight)
         self.newOrderBtn.frame.origin.y = scrollViewH + titleViewH + 10
         // setup scroll view -- end
-        
+        titleView.roundedBottRight(radius: titleViewRadius)
         newOrderBtn.layer.cornerRadius = BigBtnCornerRadius
         nameText.layer.cornerRadius = textFieldCornerRadius
+        datePickerBackground.layer.cornerRadius = textFieldCornerRadius
+        lashTypeText.layer.cornerRadius = textFieldCornerRadius
         numberOfToplashText.layer.cornerRadius = textFieldCornerRadius
         topTypeTextForPicker.layer.cornerRadius = textFieldCornerRadius
         topSizeTextForPicker.layer.cornerRadius = textFieldCornerRadius
@@ -174,26 +234,7 @@ extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let lashList = self.viewModel.pickItemList.value
-        if topTypeTextForPicker.isFirstResponder {
-            topTypeTextForPicker.text = lashList[row]
-            topTypeTextForPicker.endEditing(false)
-        } else if topSizeTextForPicker.isFirstResponder {
-            topSizeTextForPicker.text = lashList[row]
-            topSizeTextForPicker.endEditing(false)
-        } else if bottSizeTextForPicker.isFirstResponder {
-            bottSizeTextForPicker.text = lashList[row]
-            bottSizeTextForPicker.endEditing(false)
-        } else if bottCurTextForPicker.isFirstResponder {
-            bottCurTextForPicker.text = lashList[row]
-            bottCurTextForPicker.endEditing(false)
-        } else if bottLenTextForPicker.isFirstResponder {
-            bottLenTextForPicker.text = lashList[row]
-            bottLenTextForPicker.endEditing(false)
-        } else if doerTextForPicker.isFirstResponder {
-            doerTextForPicker.text = lashList[row]
-            doerTextForPicker.endEditing(false)
-        } else if topLashText1.isFirstResponder {
+        if topLashText1.isFirstResponder {
             didSelectLashTopComp2(textField: topLashText1, row: row, component: component)
         } else if topLashText2.isFirstResponder {
             didSelectLashTopComp2(textField: topLashText2, row: row, component: component)
@@ -203,6 +244,9 @@ extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource 
             didSelectLashTopComp2(textField: topLashText4, row: row, component: component)
         }else if topLashText5.isFirstResponder {
             didSelectLashTopComp2(textField: topLashText5, row: row, component: component)
+        } else {
+            let lashList = self.viewModel.pickItemList.value
+            setSingleColSelected(rowSelect: lashList[row])
         }
     }
     

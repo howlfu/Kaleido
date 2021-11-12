@@ -6,15 +6,15 @@
 //
 
 import Foundation
-class LashOderController {
-    let viewModel: LashOderModel
+class LashOrderController {
+    let viewModel: LashOrderModel
     var lashType: [LashListType]? = []
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     var customerId: Int32? = 0
     var tmpCompNum: Int?
     init(
-        viewModel: LashOderModel = LashOderModel()
+        viewModel: LashOrderModel = LashOrderModel()
     ) {
         self.viewModel = viewModel
     }
