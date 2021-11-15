@@ -15,7 +15,6 @@ class EntitySetHelper {
         getHelper = get
     }
     
-    
     public func createCustomer(name: String, birthday: String, phone: String) -> Bool{
         if let _ = getHelper.getCustomer(name: name, birthday: birthday, phone: phone) {
             print("Create Customer fail, Exist")
@@ -87,6 +86,41 @@ class EntitySetHelper {
             return sameName.first
         }
         return nil
+    }
+    
+    public func createOrder(uId: Int32, prodId: Int16, storeMoney: Int16, totalPrice: Int16, remainMoney: Int16, doer: String, note:String) -> Bool{
+        
+        guard let entityOfOrder: Order = crudService.addNewToEntity(name: EntityNameDefine.order) else {
+            
+            return false
+        }
+        entityOfOrder.id = getIdFromeDefault(by: UserDefaultKey.orderId)
+        entityOfOrder.user_id = uId
+        entityOfOrder.product_id = prodId
+        entityOfOrder.remain_money = remainMoney
+        entityOfOrder.store_money = storeMoney
+        entityOfOrder.total_price = totalPrice
+        entityOfOrder.pay_method = 0
+        entityOfOrder.doer = doer
+        entityOfOrder.note = note
+        entityOfOrder.created_at = Date()
+        let _ = crudService.saveData()
+        return true
+    }
+    
+    public func updateOrder(by id: Int32, order: Order) -> Bool{
+        guard let getCustomer: Order = getHelper.getOrder(id: id) else {
+            return false
+        }
+        getCustomer.product_id = order.product_id
+        getCustomer.remain_money = order.remain_money
+        getCustomer.store_money = order.store_money
+        getCustomer.total_price = order.total_price
+        getCustomer.pay_method = order.pay_method
+        getCustomer.doer = order.doer
+        getCustomer.note = order.note
+        let _ = crudService.saveData()
+        return true
     }
     
     private func getIdFromeDefault(by keyName: String) -> Int32{

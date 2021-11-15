@@ -11,6 +11,7 @@ class LashOrderController {
     var lashType: [LashListType]? = []
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
+    lazy var entitySetter: EntitySetHelper = EntitySetHelper(entity: entitySerice, get: entityGetter)
     var customerId: Int32? = 0
     var tmpCompNum: Int?
     init(
@@ -111,8 +112,14 @@ class LashOrderController {
         self.viewModel.pickItemList.value = ["Jen", "JaJen"]
     }
     
-    public func setOderToDb() {
-        
+    func setOderToDb(uId: Int32, prodId: Int16, storeMoney: Int16, totalPrice: Int16, remainMoney: Int16, doer: String, note:String) {
+     
+        if entitySetter.createOrder(uId: uId, prodId: prodId, storeMoney: storeMoney, totalPrice: totalPrice, remainMoney: remainMoney, doer: doer, note: note) {
+            //renew
+            
+        } else {
+            
+        }
     }
     
     public func addLashType() {

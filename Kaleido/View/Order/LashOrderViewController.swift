@@ -38,6 +38,11 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
     
+    @IBAction func addNewAct(_ sender: Any) {
+        prsentNormalAlert(msg: "此訂單將會儲存", btn: "確定", viewCTL: self, completion: {
+//            self.controller.setOderToDb(uId: <#T##Int32#>, prodId: <#T##Int16#>, storeMoney: <#T##Int16#>, totalPrice: <#T##Int16#>, remainMoney: <#T##Int16#>, doer: <#T##String#>, note: <#T##String#>)
+        })
+    }
     var controller: LashOrderController = LashOrderController()
     let typePicker: UIPickerView = UIPickerView()
     

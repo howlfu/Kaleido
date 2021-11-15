@@ -85,12 +85,12 @@ class EntityGetHelper {
         return result
     }
     
-    public func getOrders(id: Int) -> [Order]?{
+    public func getOrder(id: Int32) -> Order?{
         let result: [Order] = self.getOrderByRule(with: "id=\(id)")
-        return result
+        return result[0]
     }
     
-    public func getOrders(uId: Int) -> [Order]?{
+    public func getOrders(uId: Int32) -> [Order]?{
         let result: [Order] = self.getOrderByRule(with: "user_id=\(uId)")
         return result
     }

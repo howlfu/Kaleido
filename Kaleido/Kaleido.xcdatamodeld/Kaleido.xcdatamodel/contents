@@ -7,6 +7,12 @@
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="phone_number" attributeType="String"/>
     </entity>
+    <entity name="DiscountRule" representedClassName=".DiscountRule" syncable="YES">
+        <attribute name="discount_add" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="total" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Order" representedClassName=".Order" syncable="YES">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="doer" optional="YES" attributeType="String"/>
@@ -19,8 +25,15 @@
         <attribute name="total_price" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="PayMethod" representedClassName=".PayMethod" syncable="YES">
+        <attribute name="fee" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="Order" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="PayMethod" positionX="-54" positionY="63" width="128" height="74"/>
+        <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="89"/>
     </elements>
 </model>
