@@ -13,4 +13,9 @@ class KeratinOrderController {
     ) {
         self.viewModel = viewModel
     }
+    
+    public func getTypeListFromDb() {
+        // L/M/S/東方L/東方M/東方S/
+        self.viewModel.pickItemList.value = ["L", "M", "S", "東方L", "東方M", "東方S"]
+    }
 }

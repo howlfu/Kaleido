@@ -38,6 +38,9 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
                 self?.typePicker.reloadAllComponents()
             }
         }
+        colorForPicker.delegate = self
+        typePicker.delegate = self
+        typePicker.dataSource = self
     }
     
     override func initView() {
@@ -51,7 +54,34 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         colorTime.layer.cornerRadius = textFieldCornerRadius
         nameText.layer.cornerRadius = textFieldCornerRadius
         datePickerBackground.layer.cornerRadius = textFieldCornerRadius
-        
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if colorForPicker.isFirstResponder {
+            controller.getTypeListFromDb()
+        }
+    }
+    
+}
+
+extension KeratinOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        let lashList = self.viewModel.pickItemList.value
+        return lashList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let lashList = self.viewModel.pickItemList.value
+        let rowSelect = lashList[row]
+         if typeForPicker.isFirstResponder {
+            typeForPicker.text = rowSelect
+            typeForPicker.endEditing(false)
+        }
+    }
+    
     
 }

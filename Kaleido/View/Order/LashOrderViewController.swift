@@ -17,7 +17,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var numberOfToplashText: UITextField!
     @IBOutlet weak var topTypeTextForPicker: UITextField!
     @IBOutlet weak var topSizeTextForPicker: UITextField!
-    
+    @IBOutlet weak var colorTextForPicker: UITextField!
     @IBOutlet weak var datePickerBackground: UIView!
     @IBOutlet weak var numberOfBottlashText: UITextField!
     @IBOutlet weak var bottSizeTextForPicker: UITextField!
@@ -48,6 +48,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         bottCurTextForPicker.delegate = self
         bottLenTextForPicker.delegate = self
         doerTextForPicker.delegate = self
+        colorTextForPicker.delegate = self
         topLashText1.delegate = self
         topLashText2.delegate = self
         topLashText3.delegate = self
@@ -59,6 +60,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         bottCurTextForPicker.inputView = typePicker
         bottLenTextForPicker.inputView = typePicker
         doerTextForPicker.inputView = typePicker
+        colorTextForPicker.inputView = typePicker
         topLashText1.inputView = typePicker
         topLashText2.inputView = typePicker
         topLashText3.inputView = typePicker
@@ -73,8 +75,12 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                self.view.addGestureRecognizer(tabGesture)
         
         viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
+            let isSecondComponent = self!.viewModel.shouldShow2Component
             DispatchQueue.main.async {
                 self?.typePicker.reloadAllComponents()
+                if !isSecondComponent {
+                    self?.typePicker.selectRow(0, inComponent: 0, animated: false)
+                }
             }
         }
     }
@@ -131,6 +137,9 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         } else if doerTextForPicker.isFirstResponder {
             doerTextForPicker.text = rowSelect
             doerTextForPicker.endEditing(false)
+        } else if colorTextForPicker.isFirstResponder {
+            colorTextForPicker.text = rowSelect
+            colorTextForPicker.endEditing(false)
         }
     }
     override func initView() {
@@ -157,6 +166,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         bottCurTextForPicker.layer.cornerRadius = textFieldCornerRadius
         bottLenTextForPicker.layer.cornerRadius = textFieldCornerRadius
         doerTextForPicker.layer.cornerRadius = textFieldCornerRadius
+        colorTextForPicker.layer.cornerRadius = textFieldCornerRadius
         noteTextField.layer.cornerRadius = textFieldCornerRadius
         topLashText1.layer.cornerRadius = textFieldCornerRadius
         topLashText2.layer.cornerRadius = textFieldCornerRadius
@@ -189,7 +199,10 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             controller.getLashBottLenFromDb()
         } else if doerTextForPicker.isFirstResponder {
             controller.getDoerFromDb()
-        } else if topLashText1.isFirstResponder
+        } else if colorTextForPicker.isFirstResponder {
+            controller.getLashColorTypeFromDb()
+        }
+        else if topLashText1.isFirstResponder
         {
             topLashText1.text = ""
             controller.getLashTopLenCurlFromDb()

@@ -77,7 +77,11 @@ class LashOrderController {
         }
         return false
     }
-
+    public func getLashColorTypeFromDb() {
+        self.viewModel.shouldShow2Component = false
+        self.viewModel.pickItemList.value = ["黑色", "棕色", "彩色"]
+    }
+    
     public func getLashTopSizeFromDb() {
         // 0.07 / 0.1
         self.viewModel.shouldShow2Component = false
