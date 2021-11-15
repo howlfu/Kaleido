@@ -118,7 +118,7 @@ class LashOrderController {
         self.viewModel.pickItemList.value = ["Jen", "JaJen"]
     }
     
-    func setOderToDb(uId: Int32, prodId: Int16, storeMoney: Int16, totalPrice: Int16, remainMoney: Int16, doer: String, note:String) {
+    func setOderToDb(uId: Int32, prodId: Int32, storeMoney: Int16, totalPrice: Int16, remainMoney: Int16, doer: String, note:String) {
      
         if entitySetter.createOrder(uId: uId, prodId: prodId, storeMoney: storeMoney, totalPrice: totalPrice, remainMoney: remainMoney, doer: doer, note: note) {
             //renew
