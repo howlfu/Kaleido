@@ -568,6 +568,7 @@
                         <outlet property="softTime" destination="ElB-Qg-29y" id="ip5-s2-JN7"/>
                         <outlet property="titleView" destination="p4o-iK-kfv" id="IvN-hL-oj1"/>
                         <outlet property="typeForPicker" destination="cj4-Ng-3de" id="Uso-tj-Xm7"/>
+                        <segue destination="4w1-O6-4NG" kind="show" identifier="keratinToBillCheck" id="OUK-aI-ZU7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Jn-vC-Rw6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1080,6 +1081,7 @@
                         <outlet property="topLashText5" destination="7u7-iq-ukp" id="jLX-7B-Ji5"/>
                         <outlet property="topSizeTextForPicker" destination="Y0Y-wn-g5Y" id="w9d-aM-suU"/>
                         <outlet property="topTypeTextForPicker" destination="gfq-mH-xxz" id="iNZ-xl-NVS"/>
+                        <segue destination="4w1-O6-4NG" kind="show" identifier="lashToBillCheck" id="mC2-0o-UR6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mjp-O1-Ixi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1148,7 +1150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaG-Ph-Ahy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5785.507246376812" y="171.19565217391306"/>
+            <point key="canvasLocation" x="5755" y="108"/>
         </scene>
         <!--Base Alert View Controller-->
         <scene sceneID="etW-KX-tbo">
@@ -1212,6 +1214,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="OUK-aI-ZU7"/>
         <segue reference="xs0-zO-jpN"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -19,7 +19,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="pay_method" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="product_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="product_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remain_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="store_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="total_price" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -30,10 +30,36 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="ProductKeratin" representedClassName="ProductKeratin" syncable="YES" codeGenerationType="class">
+        <attribute name="color_time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="soft_time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stable_time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ProductLashBott" representedClassName="ProductLashBott" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="length" optional="YES" attributeType="String"/>
+        <attribute name="size" optional="YES" attributeType="String"/>
+        <attribute name="total_quantity" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ProductLashTop" representedClassName="ProductLashTop" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="curl" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="length" optional="YES" attributeType="String"/>
+        <attribute name="size" optional="YES" attributeType="String"/>
+        <attribute name="total_quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="89"/>
         <element name="Order" positionX="-54" positionY="-9" width="128" height="179"/>
         <element name="PayMethod" positionX="-54" positionY="63" width="128" height="74"/>
-        <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="89"/>
+        <element name="ProductLashTop" positionX="-54" positionY="63" width="128" height="134"/>
+        <element name="ProductLashBott" positionX="-45" positionY="72" width="128" height="104"/>
+        <element name="ProductKeratin" positionX="-36" positionY="90" width="128" height="104"/>
     </elements>
 </model>

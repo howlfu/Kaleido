@@ -10,4 +10,5 @@ class LashOrderModel {
     var pickItemList =  Observable<[String]>(value: [])
     var pickItemList2: [String] = []
     var shouldShow2Component = false
+    var orderOfCustomer = Order()
 }

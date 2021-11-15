@@ -45,6 +45,12 @@ class LashOrderController {
     public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {
         self.lashType = lashTypeList
         self.customerId = cId
+        self.viewModel.orderOfCustomer.user_id = cId
+    }
+    
+    public func setOderDoerAndNote(doer: String, note: String) {
+        self.viewModel.orderOfCustomer.doer = doer
+        self.viewModel.orderOfCustomer.note = note
     }
     
     public func getCustomerById(cId: Int32) -> Customer? {
@@ -56,7 +62,7 @@ class LashOrderController {
     
     public func getLashTypeFromDb(){
         self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["中間長", "眼尾長", "齊長"]
+        self.viewModel.pickItemList.value = ["中間長", "眼尾長", "齊長", "多層次"]
     }
     
     public func getLashTopLenCurlFromDb() {
