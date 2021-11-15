@@ -40,7 +40,12 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     
     @IBAction func addNewAct(_ sender: Any) {
         prsentNormalAlert(msg: "此訂單將會儲存", btn: "確定", viewCTL: self, completion: {
-            
+            guard let doerText = self.doerTextForPicker.text,
+                  let noteText = self.noteTextField.text
+            else{
+                return
+            }
+            self.controller.setOderDoerAndNote(doer: doerText, note: noteText)
         })
     }
     var controller: LashOrderController = LashOrderController()
