@@ -88,7 +88,7 @@ class EntitySetHelper {
         return nil
     }
     
-    public func createOrder(uId: Int32, prodId: Int32, storeMoney: Int16, totalPrice: Int16, remainMoney: Int16, doer: String, note:String) -> Bool{
+    public func createOrder(uId: Int32, prodId: Int64, storeMoney: Int16, totalPrice: Int16, remainMoney: Int16, doer: String, note:String) -> Bool{
         
         guard let entityOfOrder: Order = crudService.addNewToEntity(name: EntityNameDefine.order) else {
             
@@ -122,23 +122,52 @@ class EntitySetHelper {
         let _ = crudService.saveData()
         return true
     }
-    
-    public func createProductKeratin(type:String, softTime: Int16, stableTime: Int16, colorTime: Int16) -> Int32? {
-        
-        if let existProduct:ProductKeratin = getHelper.getProductKeratin(type: type, softTime: softTime, stableTime: stableTime, colorTime: colorTime) {
-            return existProduct.id
-        }
-        guard let entityOfKeratin: ProductKeratin = crudService.addNewToEntity(name: EntityNameDefine.prudcutKeratin) else {
+    public func createProductType(refId: Int32, name: String) -> Int64? {
+        guard getHelper.getProductType(refId: refId, name: name) == nil else {
             return nil
         }
-        let savedId = getIdFromeDefault(by: UserDefaultKey.keratinId)
-        entityOfKeratin.id = savedId
-        entityOfKeratin.type = type
-        entityOfKeratin.soft_time = softTime
-        entityOfKeratin.stable_time = stableTime
-        entityOfKeratin.color_time = colorTime
+        let productType = EntityNameDefine.prudcutType
+        guard let productType: ProductType = crudService.addNewToEntity(name: productType) else {
+            return nil
+        }
+        let typeId = getIdFromeDefault64(by: UserDefaultKey.productType)
+        productType.id = typeId
+        productType.ref_id = refId
+        productType.name = name
         let _ = crudService.saveData()
-        return savedId
+        return typeId
+        
+    }
+    
+    public func createProductKeratin(type:String, softTime: Int16, stableTime: Int16, colorTime: Int16) -> Int64? {
+        let productTypeName = EntityNameDefine.prudcutKeratin
+        if let existProduct:ProductKeratin = getHelper.getProductKeratin(type: type, softTime: softTime, stableTime: stableTime, colorTime: colorTime) {
+            guard let prodTypeExist = self.getHelper.getProductType(refId: existProduct.id, name: productTypeName) else {
+                guard let productId: Int64 = self.createProductType(refId: existProduct.id, name: productTypeName) else {
+                    return nil
+                }
+                let _ = crudService.saveData()
+                return productId
+            }
+            return prodTypeExist.id
+        } else {
+            guard let entityOfKeratin: ProductKeratin = crudService.addNewToEntity(name: productTypeName) else {
+                return nil
+            }
+            let savedId = getIdFromeDefault(by: UserDefaultKey.keratinId)
+            entityOfKeratin.id = savedId
+            entityOfKeratin.type = type
+            entityOfKeratin.soft_time = softTime
+            entityOfKeratin.stable_time = stableTime
+            entityOfKeratin.color_time = colorTime
+            
+            guard let productId: Int64 = self.createProductType(refId: savedId, name: productTypeName) else {
+                return nil
+            }
+            let _ = crudService.saveData()
+            return productId
+        }
+        
     }
     
     private func getIdFromeDefault(by keyName: String) -> Int32{
@@ -148,6 +177,20 @@ class EntitySetHelper {
             return 1
         }
         if var intId = Int32(id) {
+            intId += 1
+            UserDefaults.standard.setValue(intId, forKey: keyName)
+            return intId
+        }
+        return 1
+    }
+    
+    private func getIdFromeDefault64(by keyName: String) -> Int64{
+        guard let id = UserDefaults.standard.string(forKey: keyName)
+        else {
+            UserDefaults.standard.setValue(1, forKey: keyName)
+            return 1
+        }
+        if var intId = Int64(id) {
             intId += 1
             UserDefaults.standard.setValue(intId, forKey: keyName)
             return intId

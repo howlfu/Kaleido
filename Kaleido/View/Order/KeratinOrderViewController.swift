@@ -15,7 +15,6 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var noteText: UITextField!
-    @IBOutlet weak var colorForPicker: UITextField!
     @IBOutlet weak var typeForPicker: UITextField!
     @IBOutlet weak var softTime: UITextField!
     @IBOutlet weak var stableTime: UITextField!
@@ -54,14 +53,14 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     }
     
     override func initBinding() {
-        colorForPicker.delegate = self
-        colorForPicker.inputView = typePicker
+        typeForPicker.delegate = self
+        typeForPicker.inputView = typePicker
         viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
             DispatchQueue.main.async {
                 self?.typePicker.reloadAllComponents()
             }
         }
-        colorForPicker.delegate = self
+        
         typePicker.delegate = self
         typePicker.dataSource = self
     }
@@ -70,7 +69,6 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         titleView.roundedBottRight(radius: titleViewRadius)
         newOrderBtn.layer.cornerRadius = BigBtnCornerRadius
         noteText.layer.cornerRadius = textFieldCornerRadius
-        colorForPicker.layer.cornerRadius = textFieldCornerRadius
         typeForPicker.layer.cornerRadius = textFieldCornerRadius
         softTime.layer.cornerRadius = textFieldCornerRadius
         stableTime.layer.cornerRadius = textFieldCornerRadius
@@ -82,7 +80,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if colorForPicker.isFirstResponder {
+        if typeForPicker.isFirstResponder {
             controller.getTypeListFromDb()
         }
     }
@@ -118,5 +116,15 @@ extension KeratinOrderViewController: UIPickerViewDelegate, UIPickerViewDataSour
         }
     }
     
-    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        let lashList = self.viewModel.pickItemList.value
+        let detailTitle = lashList[row]
+        pickerLabel.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint, alpha: 1.0)
+        pickerLabel.font = UIFont.systemFont(ofSize: 26)
+        pickerLabel.textAlignment = NSTextAlignment.center
+        pickerLabel.text = detailTitle
+        pickerView.backgroundColor = .white
+        return pickerLabel
+    }
 }

@@ -24,7 +24,7 @@ class KeratinOrderController: BaseOrderController {
         self.viewModel.pickItemList.value = ["L", "M", "S", "東方L", "東方M", "東方S"]
     }
     
-    public func saveProductOrder(type: String, softTime: String, stableTime: String, colorTime: String) -> Int32? {
+    public func saveProductOrder(type: String, softTime: String, stableTime: String, colorTime: String) -> Int64? {
         let softTimeInt = Int16(softTime) ?? 0
         let stableTimeInt = Int16(stableTime) ?? 0
         let colorTimeInt = Int16(colorTime) ?? 0
@@ -34,7 +34,7 @@ class KeratinOrderController: BaseOrderController {
         return productId
     }
     
-    public func saveOrderKeratin(prodId: Int32, doer: String, note:String, setDate: Date) {
+    public func saveOrderKeratin(prodId: Int64, doer: String, note:String, setDate: Date) {
         self.viewModel.orderOfCustomer.product_id = prodId
         self.viewModel.orderOfCustomer.doer = doer
         self.viewModel.orderOfCustomer.note = note

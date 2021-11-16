@@ -11,4 +11,5 @@ struct UserDefaultKey{
     static let customerId = "customerId"
     static let orderId = "orderId"
     static let keratinId = "keratinId"
+    static let productType = "productType"
 }

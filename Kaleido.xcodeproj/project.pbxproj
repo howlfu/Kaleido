@@ -11,10 +11,12 @@
 		6317345D2742306800435552 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317345C2742306800435552 /* UIViewController.swift */; };
 		635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */; };
 		635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */; };
-		635C7AAD273A446A000C3CCA /* LashOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAC273A446A000C3CCA /* LashOrderController.swift */; };
-		635C7AAF273A703D000C3CCA /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAE273A703D000C3CCA /* LashOrderModel.swift */; };
-		63BDDF6E27424F19007BEBC5 /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDDF6C27424F19007BEBC5 /* Order+CoreDataClass.swift */; };
-		63BDDF6F27424F19007BEBC5 /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDDF6D27424F19007BEBC5 /* Order+CoreDataProperties.swift */; };
+		63B38706274392FF00B4A1E3 /* ProductType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B38704274392FF00B4A1E3 /* ProductType+CoreDataClass.swift */; };
+		63B38707274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B38705274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift */; };
+		63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870827439F6800B4A1E3 /* LashOrderController.swift */; };
+		63B3870B27439F6800B4A1E3 /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870927439F6800B4A1E3 /* LashOrderModel.swift */; };
+		63B3870E27439F9300B4A1E3 /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870C27439F9200B4A1E3 /* Order+CoreDataClass.swift */; };
+		63B3870F27439F9300B4A1E3 /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870D27439F9200B4A1E3 /* Order+CoreDataProperties.swift */; };
 		63CD4F1F272BD8500085BD4C /* LashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* LashListViewController.swift */; };
 		63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* LashListType.swift */; };
 		63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */; };
@@ -81,10 +83,12 @@
 		6317345C2742306800435552 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderViewController.swift; sourceTree = "<group>"; };
 		635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderViewController.swift; sourceTree = "<group>"; };
-		635C7AAC273A446A000C3CCA /* LashOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderController.swift; sourceTree = "<group>"; };
-		635C7AAE273A703D000C3CCA /* LashOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderModel.swift; sourceTree = "<group>"; };
-		63BDDF6C27424F19007BEBC5 /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
-		63BDDF6D27424F19007BEBC5 /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		63B38704274392FF00B4A1E3 /* ProductType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductType+CoreDataClass.swift"; sourceTree = "<group>"; };
+		63B38705274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		63B3870827439F6800B4A1E3 /* LashOrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderController.swift; path = ../../../../../.Trash/LashOrderController.swift; sourceTree = "<group>"; };
+		63B3870927439F6800B4A1E3 /* LashOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderModel.swift; path = ../../../../../.Trash/LashOrderModel.swift; sourceTree = "<group>"; };
+		63B3870C27439F9200B4A1E3 /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
+		63B3870D27439F9200B4A1E3 /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63CD4F1E272BD8500085BD4C /* LashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListViewController.swift; sourceTree = "<group>"; };
 		63CD4F21272BDEDC0085BD4C /* LashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListType.swift; sourceTree = "<group>"; };
 		63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewController.swift; sourceTree = "<group>"; };
@@ -203,8 +207,8 @@
 			children = (
 				63E36724274384D000FCCA77 /* BaseOrderController.swift */,
 				635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */,
-				635C7AAC273A446A000C3CCA /* LashOrderController.swift */,
-				635C7AAE273A703D000C3CCA /* LashOrderModel.swift */,
+				63B3870827439F6800B4A1E3 /* LashOrderController.swift */,
+				63B3870927439F6800B4A1E3 /* LashOrderModel.swift */,
 				635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */,
 				63D88BE5273E04E800665728 /* KeratinOrderController.swift */,
 				63D88BE3273E04B600665728 /* KeratinOrderModel.swift */,
@@ -223,10 +227,12 @@
 		63CD4F38273368220085BD4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63B3870C27439F9200B4A1E3 /* Order+CoreDataClass.swift */,
+				63B3870D27439F9200B4A1E3 /* Order+CoreDataProperties.swift */,
+				63B38704274392FF00B4A1E3 /* ProductType+CoreDataClass.swift */,
+				63B38705274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift */,
 				63E3672027425E8900FCCA77 /* ProductKeratin+CoreDataClass.swift */,
 				63E3672127425E8900FCCA77 /* ProductKeratin+CoreDataProperties.swift */,
-				63BDDF6C27424F19007BEBC5 /* Order+CoreDataClass.swift */,
-				63BDDF6D27424F19007BEBC5 /* Order+CoreDataProperties.swift */,
 				63D88BEF2741FC2100665728 /* DiscountRule+CoreDataClass.swift */,
 				63D88BF02741FC2100665728 /* DiscountRule+CoreDataProperties.swift */,
 				63D88BF12741FC2100665728 /* PayMethod+CoreDataClass.swift */,
@@ -504,21 +510,21 @@
 			files = (
 				63E3672327425E8900FCCA77 /* ProductKeratin+CoreDataProperties.swift in Sources */,
 				63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */,
-				635C7AAD273A446A000C3CCA /* LashOrderController.swift in Sources */,
 				63D88BF42741FC2100665728 /* DiscountRule+CoreDataProperties.swift in Sources */,
+				63B38707274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift in Sources */,
 				63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */,
 				63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
 				63E36725274384D000FCCA77 /* BaseOrderController.swift in Sources */,
-				63BDDF6F27424F19007BEBC5 /* Order+CoreDataProperties.swift in Sources */,
 				6317345B27422F9D00435552 /* BaseAlertViewController.swift in Sources */,
 				635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
+				63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */,
 				63F3B7D3273917C600D4C6A8 /* Customer+CoreDataClass.swift in Sources */,
-				63BDDF6E27424F19007BEBC5 /* Order+CoreDataClass.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
 				63F3B7D4273917C600D4C6A8 /* Customer+CoreDataProperties.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
+				63B3870E27439F9300B4A1E3 /* Order+CoreDataClass.swift in Sources */,
 				63F73FDD27425239007DC0BC /* OrderEntityType.swift in Sources */,
 				63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
@@ -527,17 +533,19 @@
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
 				635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */,
 				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
+				63B38706274392FF00B4A1E3 /* ProductType+CoreDataClass.swift in Sources */,
 				6317345D2742306800435552 /* UIViewController.swift in Sources */,
+				63B3870F27439F9300B4A1E3 /* Order+CoreDataProperties.swift in Sources */,
 				63CD4F2B2730E2CA0085BD4C /* SearchListTempData.swift in Sources */,
 				63D88BE6273E04E800665728 /* KeratinOrderController.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
 				63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */,
 				63E7746F273B744A00F197AC /* UIColorExt.swift in Sources */,
+				63B3870B27439F6800B4A1E3 /* LashOrderModel.swift in Sources */,
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
 				63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */,
-				635C7AAF273A703D000C3CCA /* LashOrderModel.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
 				63D88BF52741FC2100665728 /* PayMethod+CoreDataClass.swift in Sources */,

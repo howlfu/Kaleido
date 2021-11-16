@@ -2,7 +2,7 @@
 //  Order+CoreDataProperties.swift
 //  Kaleido
 //
-//  Created by Howlfu on 2021/11/15.
+//  Created by Howlfu on 2021/11/16.
 //
 //
 
@@ -21,7 +21,7 @@ extension Order {
     @NSManaged public var id: Int32
     @NSManaged public var note: String?
     @NSManaged public var pay_method: Int16
-    @NSManaged public var product_id: Int32
+    @NSManaged public var product_id: Int64
     @NSManaged public var remain_money: Int16
     @NSManaged public var store_money: Int16
     @NSManaged public var total_price: Int16
@@ -30,5 +30,5 @@ extension Order {
 }
 
 extension Order : Identifiable {
-    
+
 }

@@ -105,6 +105,38 @@ class EntityGetHelper {
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     
+    public func getProductType(id: Int64) -> ProductType? {
+        let rule = "id=\(id)"
+        let getProdTypes = self.getProductType(rule: rule)
+        guard  getProdTypes.count == 1 else {
+            return nil
+        }
+        return getProdTypes[0]
+    }
+    
+    public func getProductType(refId: Int32, name: String) -> ProductType? {
+        let rule = "ref_id=\(refId) AND name='\(name)'"
+        let getProdTypes = self.getProductType(rule: rule)
+        guard  getProdTypes.count == 1 else {
+            return nil
+        }
+        return getProdTypes[0]
+    }
+    
+    private func getProductType(rule: String) -> [ProductType]{
+        let EntityName = EntityNameDefine.prudcutType
+        return self.getDataBase(entity: EntityName, rule: rule)
+    }
+    
+//    public func getProductKeratinByProductTypeId(id: Int64) -> ProductKeratin? {
+//        guard let typeDetail = self.getProductType(id: id) else {
+//            return nil
+//        }
+//        let refId = typeDetail.ref_id
+//        let name = typeDetail.name
+//        
+//    }
+    
     public func getProductKeratins()  -> [KeratinOrderModel]{
         let EntityName = EntityNameDefine.prudcutKeratin
         return getEntityAllDataBase(entity: EntityName)

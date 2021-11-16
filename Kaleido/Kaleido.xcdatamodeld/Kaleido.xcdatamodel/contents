@@ -19,7 +19,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="pay_method" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="product_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="product_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remain_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="store_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="total_price" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -53,6 +53,11 @@
         <attribute name="total_quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="ProductType" representedClassName=".ProductType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="ref_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="89"/>
@@ -61,5 +66,6 @@
         <element name="ProductKeratin" positionX="-36" positionY="90" width="128" height="104"/>
         <element name="ProductLashBott" positionX="-45" positionY="72" width="128" height="104"/>
         <element name="ProductLashTop" positionX="-54" positionY="63" width="128" height="134"/>
+        <element name="ProductType" positionX="-45" positionY="72" width="128" height="74"/>
     </elements>
 </model>

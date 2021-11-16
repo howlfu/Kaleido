@@ -12,4 +12,5 @@ struct EntityNameDefine{
     static let prudcutKeratin = "ProductKeratin"
     static let prudcutLashTop = "ProductLashTop"
     static let prudcutLashBott = "ProductLashBott"
+    static let prudcutType = "ProductType"
 }
