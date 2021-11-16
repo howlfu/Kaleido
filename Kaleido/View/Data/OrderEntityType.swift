@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LashOrderEntityType {
+struct OrderEntityType {
     var doer: String
     var note: String
     var pay_method: Int16
@@ -16,4 +16,5 @@ struct LashOrderEntityType {
     var store_money: Int16
     var total_price: Int16
     var user_id: Int32
+    var created_date: Date
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 struct UserDefaultKey{
-  static let customerId = "customerId" //Token
-  static let orderId = "orderId" // acc
+    static let customerId = "customerId"
+    static let orderId = "orderId"
+    static let keratinId = "keratinId"
 }

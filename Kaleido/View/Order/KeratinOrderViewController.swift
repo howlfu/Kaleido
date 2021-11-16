@@ -12,24 +12,47 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     
     @IBOutlet weak var datePickerBackground: UIView!
     
-    @IBOutlet weak var datePicker: UIView!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var noteText: UITextField!
     @IBOutlet weak var colorForPicker: UITextField!
     @IBOutlet weak var typeForPicker: UITextField!
     @IBOutlet weak var softTime: UITextField!
-    @IBOutlet weak var fixTime: UITextField!
+    @IBOutlet weak var stableTime: UITextField!
     @IBOutlet weak var colorTime: UITextField!
     @IBOutlet weak var newOrderBtn: UIButton!
     
     @IBAction func dateDidChange(_ sender: Any) {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
+    @IBAction func addNewAct(_ sender: Any) {
+        prsentNormalAlert(msg: "此訂單將會儲存", btn: "確定", viewCTL: self, completion: {
+            guard let typeText = self.typeForPicker.text,
+                  let softTimeText = self.softTime.text,
+                  let stableTimeText = self.stableTime.text,
+                  let colorTimeText = self.colorTime.text
+            else{
+                return
+            }
+            guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
+                return
+            }
+            let doer = "WenJen"
+            self.controller.saveOrderKeratin(prodId: prodId, doer: doer, note: self.noteText.text ?? "", setDate: self.datePicker.date)
+            self.performSegue(withIdentifier: "keratinToBillCheck", sender: self)
+        })
+        
+    }
     var controller: KeratinOrderController = KeratinOrderController()
     let typePicker: UIPickerView = UIPickerView()
     var viewModel: KeratinOrderModel {
         return controller.viewModel
     }
+    
+    public func setOrderInfo(cId: Int32) {
+        self.controller.setOrderInfo(cId: cId)
+    }
+    
     override func initBinding() {
         colorForPicker.delegate = self
         colorForPicker.inputView = typePicker
@@ -50,10 +73,12 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         colorForPicker.layer.cornerRadius = textFieldCornerRadius
         typeForPicker.layer.cornerRadius = textFieldCornerRadius
         softTime.layer.cornerRadius = textFieldCornerRadius
-        fixTime.layer.cornerRadius = textFieldCornerRadius
+        stableTime.layer.cornerRadius = textFieldCornerRadius
         colorTime.layer.cornerRadius = textFieldCornerRadius
         nameText.layer.cornerRadius = textFieldCornerRadius
         datePickerBackground.layer.cornerRadius = textFieldCornerRadius
+        let name = controller.getCustomerName()
+        nameText.text = name
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -62,6 +87,16 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.destination is LashOrderViewController {
+//            let lash = segue.destination as! LashOrderViewController
+//            guard let lashTypeList = selectedLashService,
+//                  let customerId = self.viewModel.selectedCustomerId else {
+//                      return
+//                  }
+//            lash.setOrderInfo(lashTypeList: lashTypeList, cId: customerId)
+//        }
+    }
 }
 
 extension KeratinOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {

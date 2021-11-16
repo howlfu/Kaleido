@@ -7,6 +7,9 @@
 
 import Foundation
 struct EntityNameDefine{
-    static let customer = "Customer" //Token
-    static let order = "Order" // acc
+    static let customer = "Customer"
+    static let order = "Order"
+    static let prudcutKeratin = "ProductKeratin"
+    static let prudcutLashTop = "ProductLashTop"
+    static let prudcutLashBott = "ProductLashBott"
 }

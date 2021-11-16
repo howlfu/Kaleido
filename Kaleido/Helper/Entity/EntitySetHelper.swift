@@ -123,6 +123,24 @@ class EntitySetHelper {
         return true
     }
     
+    public func createProductKeratin(type:String, softTime: Int16, stableTime: Int16, colorTime: Int16) -> Int32? {
+        
+        if let existProduct:ProductKeratin = getHelper.getProductKeratin(type: type, softTime: softTime, stableTime: stableTime, colorTime: colorTime) {
+            return existProduct.id
+        }
+        guard let entityOfKeratin: ProductKeratin = crudService.addNewToEntity(name: EntityNameDefine.prudcutKeratin) else {
+            return nil
+        }
+        let savedId = getIdFromeDefault(by: UserDefaultKey.keratinId)
+        entityOfKeratin.id = savedId
+        entityOfKeratin.type = type
+        entityOfKeratin.soft_time = softTime
+        entityOfKeratin.stable_time = stableTime
+        entityOfKeratin.color_time = colorTime
+        let _ = crudService.saveData()
+        return savedId
+    }
+    
     private func getIdFromeDefault(by keyName: String) -> Int32{
         guard let id = UserDefaults.standard.string(forKey: keyName)
         else {

@@ -105,6 +105,50 @@ class EntityGetHelper {
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     
+    public func getProductKeratins()  -> [KeratinOrderModel]{
+        let EntityName = EntityNameDefine.prudcutKeratin
+        return getEntityAllDataBase(entity: EntityName)
+    }
+    
+    public func getProductKeratin(id: Int32) -> ProductKeratin?{
+        let rule = "id=\(id)"
+        let retKeratinArr: [ProductKeratin] = getProductKeratin(rule: rule)
+        if retKeratinArr.count != 1 {
+            return nil
+        }
+        return retKeratinArr[0]
+    }
+    
+    public func getProductKeratin(type:String, softTime: Int16, stableTime: Int16, colorTime: Int16) -> ProductKeratin? {
+        var rule: String = ""
+        rule = addPrefAndTagetData(target: type, prefix: "type", rule: rule)
+        rule = addPrefAndTagetData(target: String(softTime), prefix: "soft_time", rule: rule)
+        rule = addPrefAndTagetData(target: String(stableTime), prefix: "stable_time", rule: rule)
+        rule = addPrefAndTagetData(target: String(colorTime), prefix: "color_time", rule: rule)
+        let retKeratinArr: [ProductKeratin] = getProductKeratin(rule: rule)
+        if retKeratinArr.count != 1 {
+            return nil
+        }
+        return retKeratinArr[0]
+    }
+    
+    private func getProductKeratin(rule: String) -> [ProductKeratin]{
+        let EntityName = EntityNameDefine.prudcutKeratin
+        return self.getDataBase(entity: EntityName, rule: rule)
+    }
+    
+    private func addPrefAndTagetData(target: String, prefix: String, rule: String) -> String {
+        var retRule = ""
+        if target != "" {
+            var andPrefix = ""
+            if rule != "" {
+                andPrefix = " AND "
+            }
+            retRule =  rule + andPrefix + "\(prefix)='\(target)'"
+        }
+        return retRule
+    }
+    
     private func getDataBase<T>(entity: String, rule: String) -> [T] {
         let customerEntity = crudService.readData(name: entity, with: rule)
         var retData: [T] = []

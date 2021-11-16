@@ -6,27 +6,15 @@
 //
 
 import Foundation
-class LashOrderController {
+class LashOrderController: BaseOrderController {
     let viewModel: LashOrderModel
     var lashType: [LashListType]? = []
-    let entitySerice = EntityCRUDService()
-    lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
-    lazy var entitySetter: EntitySetHelper = EntitySetHelper(entity: entitySerice, get: entityGetter)
-    var customerId: Int32? = 0
+    
     var tmpCompNum: Int?
     init(
         viewModel: LashOrderModel = LashOrderModel()
     ) {
         self.viewModel = viewModel
-    }
-    
-    public func getCustomerName() -> String{
-        guard
-            let cId = customerId,
-            let customer = entityGetter.getCustomer(id: cId),
-            let name = customer.full_name
-        else { return "" }
-        return name
     }
     
     public func getLashType() -> String {

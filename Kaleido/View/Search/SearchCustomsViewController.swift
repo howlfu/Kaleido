@@ -116,7 +116,11 @@ class SearchCustomsViewController: BaseViewController{
         }
         
         if segue.destination is KeratinOrderViewController {
-            let _ = segue.destination as! KeratinOrderViewController
+            let keratin = segue.destination as! KeratinOrderViewController
+            guard let customerId = self.viewModel.selectedCustomerId else {
+                return
+            }
+            keratin.setOrderInfo(cId: customerId)
         }
     }
 }
