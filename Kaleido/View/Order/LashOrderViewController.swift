@@ -121,6 +121,9 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 topLashText5.endEditing(true)
             }
         } else {
+            guard self.viewModel.pickItemList.value.count > 0 else {
+                return
+            }
             let rowSelect = self.viewModel.pickItemList.value[typePicker.selectedRow(inComponent: 0)]
             setSingleColSelected(rowSelect: rowSelect)
         }

@@ -99,4 +99,8 @@ class EntityCRUDService {
             context.delete(delObj)
         }
     }
+    
+    public func deleteData(entityName: String, id: Int32) -> [NSManagedObject] {
+        return Array(context.deletedObjects)
+    }
 }

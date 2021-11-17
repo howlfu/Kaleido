@@ -148,12 +148,10 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         
         nameText.text = name
         birthText.text = birth
-//        if let brithday = customerDetail.birthday,
-//           let setDate:Date = brithday.toDate()
-//        {
-//            datePicker.setDate(setDate, animated: false)
-//        }
         
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longTapAct(gesture:)))
+        longPress.minimumPressDuration = 1
+        cell.addGestureRecognizer(longPress)
         return cell
     }
     
@@ -169,11 +167,6 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let selectedCell = tableView.cellForRow(at: indexPath) else {
-//            return
-//        }
-//        let nameInCell : UITextField = selectedCell.contentView.viewWithTag(1) as! UITextField
-//        let birthInCell : UITextField = selectedCell.contentView.viewWithTag(2) as! UITextField
         let selectedCustomer: Customer = self.viewModel.customDataModel.value[indexPath.row]
         
         self.nameTextField.text = selectedCustomer.full_name
@@ -184,6 +177,50 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         }
         let selectedId = selectedCustomer.id
         self.toOrderDetailView(selectedId: selectedId)
+    }
+    
+    @IBAction func longTapAct(gesture: UILongPressGestureRecognizer) {
+        let actionBtnViewW = self.view.frame.size.width * 0.95
+        let actionBtnViewH = 50.0
+        let ViewWidth = self.view.frame.size.width
+        let ViewHeight = self.view.frame.size.height
+        let btnCentralX = (ViewWidth - actionBtnViewW) / 2
+        let btnCentralY = ViewHeight * 0.9
+        let actionViewBackground = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        actionViewBackground.backgroundColor = .clear
+        let actionViewBtn = UIView(frame: CGRect(x: btnCentralX, y: btnCentralY, width: actionBtnViewW, height: actionBtnViewH))
+        actionViewBtn.backgroundColor = .gray
+        actionViewBtn.layer.cornerRadius = BigBtnCornerRadius
+        let lableWidth = actionBtnViewW / 5
+        let lableHeigth = actionBtnViewH
+        let lableX = (actionViewBtn.frame.size.width - lableWidth) / 2
+        let lableY = (actionViewBtn.frame.size.height - lableHeigth) / 2
+        let label = UILabel(frame: CGRect(x: lableX, y: lableY, width: lableWidth, height: lableHeigth))
+        label.text = "刪除"
+        label.font = UIFont.systemFont(ofSize: 28)
+        label.textColor = .red
+        label.textAlignment = .center
+        actionViewBtn.addSubview(label)
+        actionViewBackground.addSubview(actionViewBtn)
+        
+        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(tapBackgroundAct(gesture:)))
+        tapBackground.numberOfTapsRequired = 1
+        actionViewBackground.addGestureRecognizer(tapBackground)
+        actionViewBackground.tag = 4
+        self.view.alpha = 0.6
+        UIView.transition(with: self.view, duration: 0.5, options: [.curveEaseInOut], animations: {
+            self.view.addSubview(actionViewBackground)
+        }, completion: nil)
+    }
+    
+    @IBAction func tapBackgroundAct(gesture: UITapGestureRecognizer) {
+        let allSubView = self.view.subviews
+        for subView in allSubView {
+            if subView.tag == 4 {
+                subView.removeFromSuperview()
+            }
+        }
+        self.view.alpha = 1
     }
 }
 
