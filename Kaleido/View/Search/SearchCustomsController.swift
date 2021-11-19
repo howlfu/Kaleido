@@ -12,6 +12,7 @@ class SearchCustomsController {
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     lazy var entitySetter: EntitySetHelper = EntitySetHelper(entity: entitySerice, get: entityGetter)
+    lazy var entityDeleter: EntityDelHelper = EntityDelHelper(entity: entitySerice, get: entityGetter)
     var dbSearchDataCache:  [Customer]?
     init(
         viewModel: SearchCustomsModel = SearchCustomsModel()
@@ -55,6 +56,10 @@ class SearchCustomsController {
         } else {
             self.tryGetDataFromDb()
         }
+    }
+    
+    func delectCustomer(cId: Int32) -> Bool{
+        return entityDeleter.delectCustomer(id: cId)
     }
     
     func didSelectTimePicker() {

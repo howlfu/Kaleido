@@ -23,7 +23,6 @@ class SearchCustomsViewController: BaseViewController{
     }
     var controller: SearchCustomsController = SearchCustomsController()
     var selectedLashService: [LashListType]?
-    
     @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
             view.endEditing(true)
     }
@@ -39,6 +38,10 @@ class SearchCustomsViewController: BaseViewController{
     
     @IBAction func searchAct(_ sender: Any)
     {
+        self.tryCustomerData()
+    }
+    
+    private func tryCustomerData() {
         if nameTextField.hasText || phoneTextField.hasText || self.viewModel.didSelectTimePicker {
             guard
                 let name = nameTextField.text,
@@ -53,8 +56,8 @@ class SearchCustomsViewController: BaseViewController{
         } else {
             controller.tryGetDataFromDb()
         }
-        
     }
+    
     @IBAction func addNewAct(_ sender: Any)
     {
         guard
@@ -155,6 +158,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let allTableCellCount = viewModel.customDataModel.value.count
         return allTableCellCount
@@ -179,41 +183,55 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         self.toOrderDetailView(selectedId: selectedId)
     }
     
-    @IBAction func longTapAct(gesture: UILongPressGestureRecognizer) {
+    private func delectBtnView () -> UIView {
         let actionBtnViewW = self.view.frame.size.width * 0.95
         let actionBtnViewH = 50.0
         let ViewWidth = self.view.frame.size.width
         let ViewHeight = self.view.frame.size.height
         let btnCentralX = (ViewWidth - actionBtnViewW) / 2
         let btnCentralY = ViewHeight * 0.9
-        let actionViewBackground = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        actionViewBackground.backgroundColor = .clear
-        let actionViewBtn = UIView(frame: CGRect(x: btnCentralX, y: btnCentralY, width: actionBtnViewW, height: actionBtnViewH))
-        actionViewBtn.backgroundColor = .gray
-        actionViewBtn.layer.cornerRadius = BigBtnCornerRadius
+        let delectBtnBackground = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        delectBtnBackground.backgroundColor = .clear
+        let delectBtn = UIView(frame: CGRect(x: btnCentralX, y: btnCentralY, width: actionBtnViewW, height: actionBtnViewH))
+        delectBtn.backgroundColor = .gray
+        delectBtn.layer.cornerRadius = BigBtnCornerRadius
         let lableWidth = actionBtnViewW / 5
         let lableHeigth = actionBtnViewH
-        let lableX = (actionViewBtn.frame.size.width - lableWidth) / 2
-        let lableY = (actionViewBtn.frame.size.height - lableHeigth) / 2
+        let lableX = (delectBtn.frame.size.width - lableWidth) / 2
+        let lableY = (delectBtn.frame.size.height - lableHeigth) / 2
         let label = UILabel(frame: CGRect(x: lableX, y: lableY, width: lableWidth, height: lableHeigth))
         label.text = "刪除"
         label.font = UIFont.systemFont(ofSize: 28)
         label.textColor = .red
         label.textAlignment = .center
-        actionViewBtn.addSubview(label)
-        actionViewBackground.addSubview(actionViewBtn)
+        delectBtn.addSubview(label)
+        delectBtnBackground.addSubview(delectBtn)
         
-        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(tapBackgroundAct(gesture:)))
+        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(tapDelectBtnAct(gesture:)))
         tapBackground.numberOfTapsRequired = 1
-        actionViewBackground.addGestureRecognizer(tapBackground)
-        actionViewBackground.tag = 4
+        delectBtnBackground.addGestureRecognizer(tapBackground)
+        delectBtnBackground.tag = 4
+        return delectBtnBackground
+    }
+    
+    @IBAction func longTapAct(gesture: UILongPressGestureRecognizer) {
+        guard let indexPath = customsListTableView.indexPathForRow(at: gesture.location(in: self.customsListTableView)) else {
+            print("Error: indexPath)")
+            return
+        }
+        self.customsListTableView.cellForRow(at: indexPath)!.contentView.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint)
+        let selectedCustomer: Customer = self.viewModel.customDataModel.value[indexPath.row]
+        self.viewModel.selectedCustomerId = selectedCustomer.id
+        
         self.view.alpha = 0.6
+        let delectView = self.delectBtnView()
         UIView.transition(with: self.view, duration: 0.5, options: [.curveEaseInOut], animations: {
-            self.view.addSubview(actionViewBackground)
+            self.view.addSubview(delectView)
         }, completion: nil)
     }
     
-    @IBAction func tapBackgroundAct(gesture: UITapGestureRecognizer) {
+    @IBAction func tapDelectBtnAct(gesture: UITapGestureRecognizer) {
+        //restore view
         let allSubView = self.view.subviews
         for subView in allSubView {
             if subView.tag == 4 {
@@ -221,6 +239,11 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
             }
         }
         self.view.alpha = 1
+        //delect selected
+        guard let cId =  self.viewModel.selectedCustomerId else {return}
+        if controller.delectCustomer(cId: cId) {
+            self.tryCustomerData()
+        }
     }
 }
 
