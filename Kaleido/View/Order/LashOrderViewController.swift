@@ -34,6 +34,8 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var topLashText3: UITextField!
     @IBOutlet weak var topLashText4: UITextField!
     @IBOutlet weak var topLashText5: UITextField!
+    @IBOutlet weak var segmentSwitch: UILabel!
+    @IBOutlet weak var segmentBackground: UIView!
     @IBAction func dateDidChange(_ sender: Any) {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
@@ -80,10 +82,12 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         typePicker.delegate = self
         typePicker.dataSource = self
         
-        let tabGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
-               tabGesture.numberOfTapsRequired = 1
-               self.view.addGestureRecognizer(tabGesture)
-        
+        let tabBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
+       tabBackgroundGesture.numberOfTapsRequired = 1
+       self.view.addGestureRecognizer(tabBackgroundGesture)
+        let tabSegmentView = UITapGestureRecognizer(target: self, action: #selector (tapSegment))
+        tabSegmentView.numberOfTapsRequired = 1
+       self.segmentBackground.addGestureRecognizer(tabSegmentView)
         viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
             let isSecondComponent = self!.viewModel.shouldShow2Component
             DispatchQueue.main.async {
@@ -93,6 +97,35 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 }
             }
         }
+        
+        viewModel.segmentToggleLeft.addObserver(fireNow: false) {[weak self] (isLeft) in
+            var currentLashType: LashPosType
+            var xOffset: CGFloat
+            var switchStr: String
+            if isLeft {
+                xOffset = 0
+                switchStr = "左"
+                self!.viewModel.rightLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
+                currentLashType = self!.viewModel.leftLashData
+                
+            } else {
+                xOffset = self!.segmentBackground.frame.size.width / 2
+                switchStr = "右"
+                self!.viewModel.leftLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
+                currentLashType = self!.viewModel.rightLashData
+            }
+            self!.segmentSwitch.frame.origin.x = xOffset
+            self!.segmentSwitch.text = switchStr
+            self!.topLashText1.text = currentLashType.text1
+            self!.topLashText2.text = currentLashType.text2
+            self!.topLashText3.text = currentLashType.text3
+            self!.topLashText4.text = currentLashType.text4
+            self!.topLashText5.text = currentLashType.text5
+        }
+    }
+    
+    @IBAction func tapSegment(_ sender: Any) {
+        self.controller.toggleSeg()
     }
     
     @IBAction func tapViewForReturn(_ sender: Any) {
@@ -186,13 +219,14 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         topLashText3.layer.cornerRadius = textFieldCornerRadius
         topLashText4.layer.cornerRadius = textFieldCornerRadius
         topLashText5.layer.cornerRadius = textFieldCornerRadius
-        
+        segmentBackground.layer.cornerRadius = textFieldCornerRadius
+        segmentBackground.clipsToBounds = true
         //update by in
         let name = controller.getCustomerName()
         nameText.text = name
         let lashTypeStr = controller.getLashType()
         lashTypeText.text = lashTypeStr
-        
+        self.segmentSwitch.frame.size.width = self.segmentBackground.frame.size.width / 2 + 1
     }
     
     public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {

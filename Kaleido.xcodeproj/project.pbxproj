@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630C8585274CE204001E6ED7 /* LashPosType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C8584274CE204001E6ED7 /* LashPosType.swift */; };
 		6317345B27422F9D00435552 /* BaseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317345A27422F9D00435552 /* BaseAlertViewController.swift */; };
 		6317345D2742306800435552 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317345C2742306800435552 /* UIViewController.swift */; };
 		632214532744E35D003E330D /* SearchCustomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632214522744E35D003E330D /* SearchCustomsCell.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630C8584274CE204001E6ED7 /* LashPosType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashPosType.swift; sourceTree = "<group>"; };
 		6317345A27422F9D00435552 /* BaseAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlertViewController.swift; sourceTree = "<group>"; };
 		6317345C2742306800435552 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		632214522744E35D003E330D /* SearchCustomsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsCell.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				63CD4F21272BDEDC0085BD4C /* LashListType.swift */,
 				63CD4F2A2730E2CA0085BD4C /* SearchListTempData.swift */,
 				63F73FDC27425239007DC0BC /* OrderEntityType.swift */,
+				630C8584274CE204001E6ED7 /* LashPosType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
 				63E36725274384D000FCCA77 /* BaseOrderController.swift in Sources */,
+				630C8585274CE204001E6ED7 /* LashPosType.swift in Sources */,
 				6317345B27422F9D00435552 /* BaseAlertViewController.swift in Sources */,
 				635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,

@@ -774,7 +774,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="4h6-i2-euV">
-                                                <rect key="frame" x="21" y="4" width="156" height="33"/>
+                                                <rect key="frame" x="20" y="4" width="157" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <edgeInsets key="layoutMargins" top="8" left="14" bottom="8" right="8"/>
@@ -1016,12 +1016,12 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-3w-Sr5">
-                                        <rect key="frame" x="38" y="435" width="91" height="47"/>
+                                        <rect key="frame" x="38" y="435" width="90" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="左" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZT-Bh-brL">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="47"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                 <nil key="textColor"/>
@@ -1071,6 +1071,8 @@
                         <outlet property="numberOfBottlashText" destination="K0u-yg-RAl" id="jlE-m5-JaG"/>
                         <outlet property="numberOfToplashText" destination="S83-jp-5CC" id="JaE-gN-OtL"/>
                         <outlet property="scrollView" destination="BhG-ni-5wS" id="eXx-5a-IVJ"/>
+                        <outlet property="segmentBackground" destination="HQ1-3w-Sr5" id="nSz-Cf-NOK"/>
+                        <outlet property="segmentSwitch" destination="QZT-Bh-brL" id="lUI-aK-Gjb"/>
                         <outlet property="titleView" destination="p9S-fL-ujb" id="IOT-ry-VKJ"/>
                         <outlet property="topLashText1" destination="8SE-Mh-yd5" id="tOB-qd-8Oe"/>
                         <outlet property="topLashText2" destination="IbP-ut-3xI" id="y9O-Ue-7jf"/>
