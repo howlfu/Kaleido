@@ -38,10 +38,10 @@ class SearchCustomsViewController: BaseViewController{
     
     @IBAction func searchAct(_ sender: Any)
     {
-        self.tryCustomerData()
+        self.tryGetCustomerData()
     }
     
-    private func tryCustomerData() {
+    private func tryGetCustomerData() {
         if nameTextField.hasText || phoneTextField.hasText || self.viewModel.didSelectTimePicker {
             guard
                 let name = nameTextField.text,
@@ -202,15 +202,19 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         let label = UILabel(frame: CGRect(x: lableX, y: lableY, width: lableWidth, height: lableHeigth))
         label.text = "刪除"
         label.font = UIFont.systemFont(ofSize: 28)
-        label.textColor = .red
+        label.textColor = .systemRed
         label.textAlignment = .center
         delectBtn.addSubview(label)
-        delectBtnBackground.addSubview(delectBtn)
+        let tapDelBtn = UITapGestureRecognizer(target: self, action: #selector(tapDelectBtn(gesture:)))
+        tapDelBtn.numberOfTapsRequired = 1
+        delectBtn.addGestureRecognizer(tapDelBtn)
         
-        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(tapDelectBtnAct(gesture:)))
+        delectBtnBackground.addSubview(delectBtn)
+        delectBtnBackground.tag = 4
+        
+        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(tapDelectBtnBackground(gesture:)))
         tapBackground.numberOfTapsRequired = 1
         delectBtnBackground.addGestureRecognizer(tapBackground)
-        delectBtnBackground.tag = 4
         return delectBtnBackground
     }
     
@@ -230,7 +234,15 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         }, completion: nil)
     }
     
-    @IBAction func tapDelectBtnAct(gesture: UITapGestureRecognizer) {
+    @IBAction func tapDelectBtnBackground(gesture: UITapGestureRecognizer) {
+        restoreViewToNormal()
+    }
+    
+    @IBAction func tapDelectBtn(gesture: UITapGestureRecognizer) {
+        restoreViewToNormal()
+        tryDelectCustomer()
+    }
+    private func restoreViewToNormal() {
         //restore view
         let allSubView = self.view.subviews
         for subView in allSubView {
@@ -239,10 +251,13 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
             }
         }
         self.view.alpha = 1
+    }
+    
+    private func tryDelectCustomer() {
         //delect selected
         guard let cId =  self.viewModel.selectedCustomerId else {return}
         if controller.delectCustomer(cId: cId) {
-            self.tryCustomerData()
+            self.tryGetCustomerData()
         }
     }
 }

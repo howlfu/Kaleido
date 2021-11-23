@@ -19,7 +19,7 @@ class EntityDelHelper {
             return false
         }
         crudService.deleteData(targetObj: targetCustomers)
-        return true
+        return crudService.saveData()
     }
     
 }
