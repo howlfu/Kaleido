@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class MainViewController: UIViewController {
+class MainViewController: BaseViewController {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var showButton: UIButton!
     @IBOutlet weak var storeButton: UIButton!
@@ -27,16 +27,13 @@ class MainViewController: UIViewController {
     
     @IBAction func settingAction(_ sender: Any) {
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initView()
-    }
     
-    private func initView() {
-        recordButton.layer.cornerRadius = 20
-        showButton.layer.cornerRadius = 20
-        storeButton.layer.cornerRadius = 20
-        settingButton.layer.cornerRadius = 20
+    override func initView() {
+        super.initView()
+        recordButton.layer.cornerRadius = BigBtnCornerRadius
+        showButton.layer.cornerRadius = BigBtnCornerRadius
+        storeButton.layer.cornerRadius = BigBtnCornerRadius
+        settingButton.layer.cornerRadius = BigBtnCornerRadius
     }
 
 
