@@ -177,6 +177,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		630C859E274F6372001E6ED7 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				630C85A0274F6392001E6ED7 /* Main */,
+				630C859F274F6383001E6ED7 /* Other */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		630C859F274F6383001E6ED7 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		630C85A0274F6392001E6ED7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		63CD4F1D272BD7BE0085BD4C /* Slash */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +311,7 @@
 		A120DBD72726917E009B1C7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				630C859E274F6372001E6ED7 /* Setting */,
 				A1A2B139272A8A7500943C9E /* Base */,
 				A1A2B131272A84EC00943C9E /* Record */,
 				A120DBD8272691A7009B1C7E /* Main */,
