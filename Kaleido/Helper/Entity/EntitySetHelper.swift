@@ -126,7 +126,7 @@ class EntitySetHelper {
         guard getHelper.getProductType(refId: refId, name: name) == nil else {
             return nil
         }
-        let productType = EntityNameDefine.prudcutType
+        let productType = EntityNameDefine.productType
         guard let productType: ProductType = crudService.addNewToEntity(name: productType) else {
             return nil
         }
@@ -138,18 +138,73 @@ class EntitySetHelper {
         return typeId
         
     }
+    public func createProductLashTop(color: String, size: String, type: String, total_quantity: Int16, left_1: String, left_2: String, left_3: String, left_4: String, left_5: String, right_1: String, right_2: String, right_3: String, right_4: String, right_5: String) -> Int64? {
+        let productTypeName = EntityNameDefine.productLashTop
+        if let existProduct:ProductLashTop = getHelper.getProductTopLash(color: color, size: size, type: type, total_quantity: total_quantity, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5) {
+            guard let getId = checkProductInDb(entityName: productTypeName, prodId: existProduct.id) else {
+                return nil
+            }
+            return getId
+        }else {
+            guard let entityOfLashTop: ProductLashTop = crudService.addNewToEntity(name: productTypeName) else {
+                return nil
+            }
+            let savedId = getIdFromeDefault(by: UserDefaultKey.lashTopId)
+            entityOfLashTop.id = savedId
+            entityOfLashTop.color = color
+            entityOfLashTop.size = size
+            entityOfLashTop.type = type
+            entityOfLashTop.total_quantity = total_quantity
+            entityOfLashTop.left_1 = left_1
+            entityOfLashTop.left_2 = left_2
+            entityOfLashTop.left_3 = left_3
+            entityOfLashTop.left_4 = left_4
+            entityOfLashTop.left_5 = left_5
+            entityOfLashTop.right_1 = right_1
+            entityOfLashTop.right_2 = right_2
+            entityOfLashTop.right_3 = right_3
+            entityOfLashTop.right_4 = right_4
+            entityOfLashTop.right_5 = right_5
+            guard let productId: Int64 = self.createProductType(refId: savedId, name: productTypeName) else {
+                return nil
+            }
+            let _ = crudService.saveData()
+            return productId
+        }
+    }
+    
+    public func createProductLashBott(length: String, size: String, total_quantity: Int16, type: String) -> Int64? {
+        let productTypeName = EntityNameDefine.productLashBott
+        if let existProduct:ProductLashBott = getHelper.getProductBottLash(length: length, size: size, total_quantity: total_quantity, type: type) {
+            guard let getId = checkProductInDb(entityName: productTypeName, prodId: existProduct.id) else {
+                return nil
+            }
+            return getId
+        }else {
+            guard let entityOfLashBott: ProductLashBott = crudService.addNewToEntity(name: productTypeName) else {
+                return nil
+            }
+            let savedId = getIdFromeDefault(by: UserDefaultKey.lashBottId)
+            entityOfLashBott.id = savedId
+            entityOfLashBott.length = length
+            entityOfLashBott.size = size
+            entityOfLashBott.total_quantity = total_quantity
+            entityOfLashBott.type = type
+            guard let productId: Int64 = self.createProductType(refId: savedId, name: productTypeName) else {
+                return nil
+            }
+            let _ = crudService.saveData()
+            return productId
+        }
+    }
     
     public func createProductKeratin(type:String, softTime: Int16, stableTime: Int16, colorTime: Int16) -> Int64? {
-        let productTypeName = EntityNameDefine.prudcutKeratin
+        let productTypeName = EntityNameDefine.productKeratin
         if let existProduct:ProductKeratin = getHelper.getProductKeratin(type: type, softTime: softTime, stableTime: stableTime, colorTime: colorTime) {
-            guard let prodTypeExist = self.getHelper.getProductType(refId: existProduct.id, name: productTypeName) else {
-                guard let productId: Int64 = self.createProductType(refId: existProduct.id, name: productTypeName) else {
-                    return nil
-                }
-                let _ = crudService.saveData()
-                return productId
+            guard let getId = checkProductInDb(entityName: productTypeName, prodId: existProduct.id) else {
+                return nil
             }
-            return prodTypeExist.id
+            return getId
         } else {
             guard let entityOfKeratin: ProductKeratin = crudService.addNewToEntity(name: productTypeName) else {
                 return nil
@@ -168,6 +223,17 @@ class EntitySetHelper {
             return productId
         }
         
+    }
+    
+    private func checkProductInDb(entityName: String, prodId: Int32) -> Int64?{
+        guard let prodTypeExist = self.getHelper.getProductType(refId: prodId, name: entityName) else {
+            guard let productId: Int64 = self.createProductType(refId: prodId, name: entityName) else {
+                return nil
+            }
+            let _ = crudService.saveData()
+            return productId
+        }
+        return prodTypeExist.id
     }
     
     private func getIdFromeDefault(by keyName: String) -> Int32{
