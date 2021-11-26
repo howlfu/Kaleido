@@ -21,6 +21,9 @@
 		632214562747A2B8003E330D /* EntityDelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632214552747A2B8003E330D /* EntityDelHelper.swift */; };
 		635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */; };
 		635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */; };
+		636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F34712750887700444DC9 /* OrderRecordModel.swift */; };
+		636F3474275089FD00444DC9 /* OrderRecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F3473275089FD00444DC9 /* OrderRecordController.swift */; };
+		636F347627508AB100444DC9 /* BaseSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F347527508AB100444DC9 /* BaseSearchController.swift */; };
 		63B38706274392FF00B4A1E3 /* ProductType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B38704274392FF00B4A1E3 /* ProductType+CoreDataClass.swift */; };
 		63B38707274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B38705274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift */; };
 		63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870827439F6800B4A1E3 /* LashOrderController.swift */; };
@@ -103,6 +106,9 @@
 		632214552747A2B8003E330D /* EntityDelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDelHelper.swift; sourceTree = "<group>"; };
 		635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderViewController.swift; sourceTree = "<group>"; };
 		635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderViewController.swift; sourceTree = "<group>"; };
+		636F34712750887700444DC9 /* OrderRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordModel.swift; sourceTree = "<group>"; };
+		636F3473275089FD00444DC9 /* OrderRecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordController.swift; sourceTree = "<group>"; };
+		636F347527508AB100444DC9 /* BaseSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchController.swift; sourceTree = "<group>"; };
 		63B38704274392FF00B4A1E3 /* ProductType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductType+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63B38705274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductType+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63B3870827439F6800B4A1E3 /* LashOrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderController.swift; path = ../../../../../.Trash/LashOrderController.swift; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				630C85A6274F85BB001E6ED7 /* OrderRecordViewController.swift */,
+				636F3473275089FD00444DC9 /* OrderRecordController.swift */,
+				636F34712750887700444DC9 /* OrderRecordModel.swift */,
 			);
 			name = OrderRecord;
 			sourceTree = "<group>";
@@ -380,6 +388,7 @@
 				A1A2B13A272A8A8A00943C9E /* BaseViewController.swift */,
 				63CD4F2E2730E9E40085BD4C /* Observable.swift */,
 				6317345A27422F9D00435552 /* BaseAlertViewController.swift */,
+				636F347527508AB100444DC9 /* BaseSearchController.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -572,6 +581,7 @@
 			files = (
 				63E3672327425E8900FCCA77 /* ProductKeratin+CoreDataProperties.swift in Sources */,
 				63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */,
+				636F347627508AB100444DC9 /* BaseSearchController.swift in Sources */,
 				630C85A4274F7D5E001E6ED7 /* OtherMainViewController.swift in Sources */,
 				63D88BF42741FC2100665728 /* DiscountRule+CoreDataProperties.swift in Sources */,
 				63B38707274392FF00B4A1E3 /* ProductType+CoreDataProperties.swift in Sources */,
@@ -615,6 +625,8 @@
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
+				636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */,
+				636F3474275089FD00444DC9 /* OrderRecordController.swift in Sources */,
 				63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,

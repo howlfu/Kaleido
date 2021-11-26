@@ -53,6 +53,11 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     var controller: LashOrderController = LashOrderController()
     let typePicker: UIPickerView = UIPickerView()
     
+    override func removeBinding() {
+        viewModel.pickItemList.removeObserver()
+        viewModel.segmentToggleLeft.removeObserver()
+    }
+    
     override func initBinding() {
         topTypeTextForPicker.delegate = self
         topSizeTextForPicker.delegate = self

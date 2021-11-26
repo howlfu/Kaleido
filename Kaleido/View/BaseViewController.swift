@@ -10,6 +10,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
     let titleViewRadius: CGFloat = 100.0
     let BigBtnCornerRadius: CGFloat = 20.0
     let textFieldCornerRadius: CGFloat = 10.0
+    var tapTitleView: UITapGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -17,7 +18,6 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        initBinding()
     }
     
     func initView() {
@@ -29,16 +29,22 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     func initBinding() {
-        
+        tapTitleView = UITapGestureRecognizer(target: self, action: #selector (returnToMainView))
+        tapTitleView.numberOfTapsRequired = 1
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         removeBinding()
     }
     
     func removeBinding()
     {
         
+    }
+    
+    @IBAction func returnToMainView(_ sender: Any){
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }
 

@@ -88,6 +88,8 @@ class SearchCustomsViewController: BaseViewController{
     }
     
     override func initBinding() {
+        super.initBinding()
+        self.titleView.addGestureRecognizer(tapTitleView)
         viewModel.customDataModel.addObserver(fireNow: false) {[weak self] (newCustomsData) in
             DispatchQueue.main.async {
                 self?.customsListTableView.reloadData()

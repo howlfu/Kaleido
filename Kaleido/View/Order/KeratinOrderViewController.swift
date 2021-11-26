@@ -78,6 +78,9 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         let name = controller.getCustomerName()
         nameText.text = name
     }
+    override func removeBinding() {
+        viewModel.pickItemList.removeObserver()
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if typeForPicker.isFirstResponder {
