@@ -12,7 +12,6 @@ struct OrderEntityType {
     var note: String
     var pay_method: Int16
     var product_id: Int64
-    var remain_money: Int16
     var store_money: Int16
     var total_price: Int16
     var user_id: Int32

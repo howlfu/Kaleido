@@ -118,6 +118,10 @@ class SearchCustomsViewController: BaseViewController{
                       return
                   }
             lash.setOrderInfo(lashTypeList: lashTypeList, cId: customerId)
+            if let allSelectedItems = selectedLashService {
+                let bottLashSelected: Bool = allSelectedItems.contains(.bottLash) || allSelectedItems.contains(.topAndBott)
+                lash.setLastBottEnable(isEnable: bottLashSelected)
+            }
         }
         
         if segue.destination is KeratinOrderViewController {

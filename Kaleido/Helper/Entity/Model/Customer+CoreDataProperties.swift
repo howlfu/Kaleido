@@ -2,7 +2,7 @@
 //  Customer+CoreDataProperties.swift
 //  Kaleido
 //
-//  Created by Howlfu on 2021/11/8.
+//  Created by Howlfu on 2021/11/29.
 //
 //
 
@@ -21,6 +21,7 @@ extension Customer {
     @NSManaged public var full_name: String?
     @NSManaged public var id: Int32
     @NSManaged public var phone_number: String?
+    @NSManaged public var remain_money: Int16
 
 }
 

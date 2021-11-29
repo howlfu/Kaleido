@@ -6,6 +6,7 @@
         <attribute name="full_name" attributeType="String"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="phone_number" attributeType="String"/>
+        <attribute name="remain_money" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="DiscountRule" representedClassName=".DiscountRule" syncable="YES">
         <attribute name="discount_add" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -20,7 +21,6 @@
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="pay_method" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="product_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="remain_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="store_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="total_price" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -67,9 +67,9 @@
         <attribute name="ref_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Customer" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Customer" positionX="-63" positionY="-18" width="128" height="119"/>
         <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="89"/>
-        <element name="Order" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="Order" positionX="-54" positionY="-9" width="128" height="164"/>
         <element name="PayMethod" positionX="-54" positionY="63" width="128" height="74"/>
         <element name="ProductKeratin" positionX="-36" positionY="90" width="128" height="104"/>
         <element name="ProductLashBott" positionX="-45" positionY="72" width="128" height="104"/>

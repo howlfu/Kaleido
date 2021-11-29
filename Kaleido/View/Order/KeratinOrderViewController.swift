@@ -89,14 +89,10 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.destination is LashOrderViewController {
-//            let lash = segue.destination as! LashOrderViewController
-//            guard let lashTypeList = selectedLashService,
-//                  let customerId = self.viewModel.selectedCustomerId else {
-//                      return
-//                  }
-//            lash.setOrderInfo(lashTypeList: lashTypeList, cId: customerId)
-//        }
+        if segue.destination is BillCheckViewController {
+            let billVC = segue.destination as! BillCheckViewController
+            billVC.setOrderData(detail: self.viewModel.orderOfCustomer)
+        }
     }
 }
 

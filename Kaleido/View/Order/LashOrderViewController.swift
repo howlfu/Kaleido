@@ -47,7 +47,11 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             else{
                 return
             }
-            self.controller.setOderDoerAndNote(doer: doerText, note: noteText)
+//            guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
+//                return
+//            }
+            self.controller.setOderLash(doer: doerText, note: noteText)
+            self.performSegue(withIdentifier: "lashToBillCheck", sender: self)
         })
     }
     var controller: LashOrderController = LashOrderController()
@@ -109,15 +113,15 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             var switchStr: String
             if isLeft {
                 xOffset = 0
-                switchStr = "左"
-                self!.viewModel.rightLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
-                currentLashType = self!.viewModel.leftLashData
-                
-            } else {
-                xOffset = self!.segmentBackground.frame.size.width / 2
                 switchStr = "右"
                 self!.viewModel.leftLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
                 currentLashType = self!.viewModel.rightLashData
+                
+            } else {
+                xOffset = self!.segmentBackground.frame.size.width / 2
+                switchStr = "左"
+                self!.viewModel.rightLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
+                currentLashType = self!.viewModel.leftLashData
             }
             self!.segmentSwitch.frame.origin.x = xOffset
             self!.segmentSwitch.text = switchStr
@@ -238,6 +242,10 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         self.controller.setOrderInfo(lashTypeList: lashTypeList, cId: cId)
     }
     
+    public func setLastBottEnable(isEnable: Bool) {
+        self.controller.setIsLashBott(isEnable: isEnable)
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if topTypeTextForPicker.isFirstResponder {
             controller.getLashTypeFromDb()
@@ -274,6 +282,13 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         {
             topLashText5.text = ""
             controller.getLashTopLenCurlFromDb()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is BillCheckViewController {
+            let billVC = segue.destination as! BillCheckViewController
+            billVC.setOrderData(detail: self.viewModel.orderOfCustomer)
         }
     }
 }

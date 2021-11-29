@@ -29,6 +29,7 @@ class EntitySetHelper {
         entityOfCustomer.birthday = birthday
         entityOfCustomer.full_name = name
         entityOfCustomer.phone_number = phone
+        entityOfCustomer.remain_money = 0
         entityOfCustomer.created_at = Date()
         let _ = crudService.saveData()
         return true
@@ -88,7 +89,7 @@ class EntitySetHelper {
         return nil
     }
     
-    public func createOrder(uId: Int32, prodId: Int64, storeMoney: Int16, totalPrice: Int16, remainMoney: Int16, doer: String, note:String) -> Bool{
+    public func createOrder(uId: Int32, prodId: Int64, storeMoney: Int16, totalPrice: Int16, doer: String, note:String) -> Bool{
         
         guard let entityOfOrder: Order = crudService.addNewToEntity(name: EntityNameDefine.order) else {
             
@@ -97,7 +98,6 @@ class EntitySetHelper {
         entityOfOrder.id = getIdFromeDefault(by: UserDefaultKey.orderId)
         entityOfOrder.user_id = uId
         entityOfOrder.product_id = prodId
-        entityOfOrder.remain_money = remainMoney
         entityOfOrder.store_money = storeMoney
         entityOfOrder.total_price = totalPrice
         entityOfOrder.pay_method = 0
@@ -113,7 +113,6 @@ class EntitySetHelper {
             return false
         }
         getCustomer.product_id = order.product_id
-        getCustomer.remain_money = order.remain_money
         getCustomer.store_money = order.store_money
         getCustomer.total_price = order.total_price
         getCustomer.pay_method = order.pay_method
