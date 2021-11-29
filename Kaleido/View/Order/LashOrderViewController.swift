@@ -47,13 +47,44 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             else{
                 return
             }
-//            guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
-//                return
-//            }
+            self.tryAddLashToDb()
+            
             self.controller.setOderLash(doer: doerText, note: noteText)
             self.performSegue(withIdentifier: "lashToBillCheck", sender: self)
         })
     }
+    
+    private func traddLashToDb() {
+        guard let colorText = self.colorTextForPicker.text,
+              let sizeText = self.topSizeTextForPicker.text,
+              let selectedTypeText = self.lashTypeText.text,
+              let quantityStr = self.numberOfToplashText.text
+        else {
+            return
+        }
+        let left_1 = self.viewModel.leftLashData.text1
+        let left_2 = self.viewModel.leftLashData.text2
+        let left_3 = self.viewModel.leftLashData.text3
+        let left_4 = self.viewModel.leftLashData.text4
+        let left_5 = self.viewModel.leftLashData.text5
+        let right_1 = self.viewModel.rightLashData.text1
+        let right_2 = self.viewModel.rightLashData.text2
+        let right_3 = self.viewModel.rightLashData.text3
+        let right_4 = self.viewModel.rightLashData.text4
+        let right_5 = self.viewModel.rightLashData.text5
+        let quantityInt = Int16(quantityStr) ?? 0
+        guard let prodId = self.controller.saveProductTop(color: colorText, size: sizeText, type: selectedTypeText, total_quantity: quantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5) else {
+            return
+        }
+        if self.viewModel.isLashBottEnable {
+            self.tryAddBottLash()
+        }
+    }
+    
+    private func tryAddBottLash() {
+        
+    }
+    
     var controller: LashOrderController = LashOrderController()
     let typePicker: UIPickerView = UIPickerView()
     
@@ -242,8 +273,8 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         self.controller.setOrderInfo(lashTypeList: lashTypeList, cId: cId)
     }
     
-    public func setLastBottEnable(isEnable: Bool) {
-        self.controller.setIsLashBott(isEnable: isEnable)
+    public func setLastEnable(isTopEnable: Bool, isBottEnable: Bool) {
+        self.controller.setLastEnable(isTopEnable: isTopEnable, isBottEnable: isBottEnable)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
