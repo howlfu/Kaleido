@@ -11,6 +11,9 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     var viewModel: LashOrderModel {
         return controller.viewModel
     }
+    var controller: LashOrderController = LashOrderController()
+    let typePicker: UIPickerView = UIPickerView()
+    
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameText: UITextField!
@@ -41,52 +44,137 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func addNewAct(_ sender: Any) {
+        self.addBorderToTop(color: .clear, isClear: true)
+        self.addBorderToBott(color: .clear, isClear: true)
         prsentNormalAlert(msg: "此訂單將會儲存", btn: "確定", viewCTL: self, completion: {
             guard let doerText = self.doerTextForPicker.text,
                   let noteText = self.noteTextField.text
             else{
                 return
             }
-            self.tryAddLashToDb()
-            
-            self.controller.setOderLash(doer: doerText, note: noteText)
+            guard let prodId = self.tryAddLashToDb() else {
+                return
+            }
+            self.controller.setOderLash(prodId: prodId, doer: doerText, note: noteText, setDate: self.datePicker.date)
             self.performSegue(withIdentifier: "lashToBillCheck", sender: self)
         })
     }
     
-    private func traddLashToDb() {
-        guard let colorText = self.colorTextForPicker.text,
-              let sizeText = self.topSizeTextForPicker.text,
-              let selectedTypeText = self.lashTypeText.text,
-              let quantityStr = self.numberOfToplashText.text
-        else {
-            return
-        }
-        let left_1 = self.viewModel.leftLashData.text1
-        let left_2 = self.viewModel.leftLashData.text2
-        let left_3 = self.viewModel.leftLashData.text3
-        let left_4 = self.viewModel.leftLashData.text4
-        let left_5 = self.viewModel.leftLashData.text5
-        let right_1 = self.viewModel.rightLashData.text1
-        let right_2 = self.viewModel.rightLashData.text2
-        let right_3 = self.viewModel.rightLashData.text3
-        let right_4 = self.viewModel.rightLashData.text4
-        let right_5 = self.viewModel.rightLashData.text5
-        let quantityInt = Int16(quantityStr) ?? 0
-        guard let prodId = self.controller.saveProductTop(color: colorText, size: sizeText, type: selectedTypeText, total_quantity: quantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5) else {
-            return
-        }
-        if self.viewModel.isLashBottEnable {
-            self.tryAddBottLash()
+    private func tryAddLashToDb() -> Int64? {
+        self.storeLash5TextsToCache()
+        if self.viewModel.isLashTopEnable {
+            guard let topColor = self.colorTextForPicker.text,
+                  let topSize = self.topSizeTextForPicker.text,
+                  let topType = self.topTypeTextForPicker.text,
+                  let topQuantityStr = self.numberOfToplashText.text
+            else {
+                return nil
+            }
+            if topColor == "" || topSize == "" || topType == "" || topQuantityStr == "" {
+                self.addBorderToTop(color: UIColor.red, isClear: false)
+                return nil
+            }
+            let left_1 = self.viewModel.leftLashData.text1
+            let left_2 = self.viewModel.leftLashData.text2
+            let left_3 = self.viewModel.leftLashData.text3
+            let left_4 = self.viewModel.leftLashData.text4
+            let left_5 = self.viewModel.leftLashData.text5
+            let right_1 = self.viewModel.rightLashData.text1
+            let right_2 = self.viewModel.rightLashData.text2
+            let right_3 = self.viewModel.rightLashData.text3
+            let right_4 = self.viewModel.rightLashData.text4
+            let right_5 = self.viewModel.rightLashData.text5
+            let topQuantityInt = Int16(topQuantityStr) ?? 0
+            if self.viewModel.isLashBottEnable {
+                guard let bottSize = self.bottSizeTextForPicker.text,
+                      let bottLen = self.bottLenTextForPicker.text,
+                      let bottCurl = self.bottCurTextForPicker.text,
+                      let bottQuantityStr = self.numberOfBottlashText.text
+                else {
+                    return nil
+                }
+                if bottSize == "" || bottLen == "" || bottCurl == "" || bottQuantityStr == "" {
+                    self.addBorderToBott(color: UIColor.red, isClear: false)
+                    return nil
+                }
+                let bottQuantityInt = Int16(bottQuantityStr) ?? 0
+                guard let prodId = self.controller.saveProductTopBott(top_color: topColor, top_size: topSize, top_type: topType, top_total_quantity: topQuantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5, bott_length: bottLen, bott_size: bottSize, bott_total_quantity: bottQuantityInt, bott_curl: bottCurl) else {
+                    return nil
+                }
+                return prodId
+            } else {
+                guard let prodId = self.controller.saveProductTop(color: topColor, size: topSize, type: topType, total_quantity: topQuantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5) else {
+                    return nil
+                }
+                return prodId
+            }
+        } else {
+            if self.viewModel.isLashBottEnable {
+                guard let bottSize = self.bottSizeTextForPicker.text,
+                      let bottLen = self.bottLenTextForPicker.text,
+                      let bottCurl = self.bottCurTextForPicker.text,
+                      let bottQuantityStr = self.numberOfBottlashText.text
+                else {
+                    return nil
+                }
+                if bottSize == "" || bottLen == "" || bottCurl == "" || bottQuantityStr == "" {
+                    self.addBorderToBott(color: UIColor.red, isClear: false)
+                    return nil
+                }
+                let bottQuantityInt = Int16(bottQuantityStr) ?? 0
+                guard let prodId = self.controller.saveProductBott(length: bottLen, size: bottSize, total_quantity: bottQuantityInt, curl: bottCurl) else {
+                    return nil
+                }
+                return prodId
+            } else {
+                return nil
+            }
         }
     }
     
-    private func tryAddBottLash() {
-        
+    private func storeLash5TextsToCache() {
+        if self.viewModel.switchStr == "右" {
+            self.viewModel.rightLashData = LashPosType(text1: self.topLashText1.text!, text2: self.topLashText2.text!, text3: self.topLashText3.text!, text4: self.topLashText4.text!, text5: self.topLashText5.text!)
+        } else {
+            self.viewModel.leftLashData = LashPosType(text1: self.topLashText1.text!, text2: self.topLashText2.text!, text3: self.topLashText3.text!, text4: self.topLashText4.text!, text5: self.topLashText5.text!)
+        }
     }
     
-    var controller: LashOrderController = LashOrderController()
-    let typePicker: UIPickerView = UIPickerView()
+    private func addBorderToTop(color: UIColor, isClear: Bool) {
+        if isClear {
+            self.topSizeTextForPicker.layer.borderWidth = 0
+            self.topTypeTextForPicker.layer.borderWidth = 0
+            self.colorTextForPicker.layer.borderWidth = 0
+            self.numberOfToplashText.layer.borderWidth = 0
+        } else {
+                self.topSizeTextForPicker.layer.borderWidth = 1
+                self.topTypeTextForPicker.layer.borderWidth = 1
+                self.colorTextForPicker.layer.borderWidth = 1
+                self.numberOfToplashText.layer.borderWidth = 1
+        }
+        self.topSizeTextForPicker.layer.borderColor = color.cgColor
+        self.topTypeTextForPicker.layer.borderColor = color.cgColor
+        self.colorTextForPicker.layer.borderColor = color.cgColor
+        self.numberOfToplashText.layer.borderColor = color.cgColor
+    }
+    
+    private func addBorderToBott(color: UIColor, isClear: Bool) {
+        if isClear {
+            self.bottCurTextForPicker.layer.borderWidth = 0
+            self.bottLenTextForPicker.layer.borderWidth = 0
+            self.bottSizeTextForPicker.layer.borderWidth = 0
+            self.numberOfBottlashText.layer.borderWidth = 0
+        } else {
+                self.bottCurTextForPicker.layer.borderWidth = 1
+                self.bottLenTextForPicker.layer.borderWidth = 1
+                self.bottSizeTextForPicker.layer.borderWidth = 1
+                self.numberOfBottlashText.layer.borderWidth = 1
+        }
+        self.bottCurTextForPicker.layer.borderColor = color.cgColor
+        self.bottLenTextForPicker.layer.borderColor = color.cgColor
+        self.bottSizeTextForPicker.layer.borderColor = color.cgColor
+        self.numberOfBottlashText.layer.borderColor = color.cgColor
+    }
     
     override func removeBinding() {
         viewModel.pickItemList.removeObserver()
@@ -139,28 +227,27 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         }
         
         viewModel.segmentToggleLeft.addObserver(fireNow: false) {[weak self] (isLeft) in
-            var currentLashType: LashPosType
+            var currentLashData: LashPosType
             var xOffset: CGFloat
-            var switchStr: String
             if isLeft {
-                xOffset = 0
-                switchStr = "右"
+                xOffset = self!.segmentBackground.frame.size.width / 2
+                self!.viewModel.switchStr = "右"
                 self!.viewModel.leftLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
-                currentLashType = self!.viewModel.rightLashData
+                currentLashData = self!.viewModel.rightLashData
                 
             } else {
-                xOffset = self!.segmentBackground.frame.size.width / 2
-                switchStr = "左"
+                xOffset = 0
+                self!.viewModel.switchStr = "左"
                 self!.viewModel.rightLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
-                currentLashType = self!.viewModel.leftLashData
+                currentLashData = self!.viewModel.leftLashData
             }
             self!.segmentSwitch.frame.origin.x = xOffset
-            self!.segmentSwitch.text = switchStr
-            self!.topLashText1.text = currentLashType.text1
-            self!.topLashText2.text = currentLashType.text2
-            self!.topLashText3.text = currentLashType.text3
-            self!.topLashText4.text = currentLashType.text4
-            self!.topLashText5.text = currentLashType.text5
+            self!.segmentSwitch.text = self!.viewModel.switchStr
+            self!.topLashText1.text = currentLashData.text1
+            self!.topLashText2.text = currentLashData.text2
+            self!.topLashText3.text = currentLashData.text3
+            self!.topLashText4.text = currentLashData.text4
+            self!.topLashText5.text = currentLashData.text5
         }
     }
     

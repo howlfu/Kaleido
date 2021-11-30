@@ -2,7 +2,7 @@
 //  ProductType+CoreDataProperties.swift
 //  Kaleido
 //
-//  Created by Howlfu on 2021/11/16.
+//  Created by Howlfu on 2021/11/30.
 //
 //
 
@@ -18,7 +18,8 @@ extension ProductType {
 
     @NSManaged public var id: Int64
     @NSManaged public var name: String?
-    @NSManaged public var ref_id: Int32
+    @NSManaged public var ref_id_1: Int32
+    @NSManaged public var ref_id_2: Int32
 
 }
 

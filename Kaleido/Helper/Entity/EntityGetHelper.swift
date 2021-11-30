@@ -63,7 +63,9 @@ class EntityGetHelper {
         }
         addPrefAndTagetData(target: birthday, prefix: "birthday")
         addPrefAndTagetData(target: phone, prefix: "phone_number")
-        
+        guard rule != "" else {
+            return nil
+        }
         result = self.getCustomerByRule(with: rule)
         if result.isEmpty {
             return nil
@@ -115,7 +117,16 @@ class EntityGetHelper {
     }
     
     public func getProductType(refId: Int32, name: String) -> ProductType? {
-        let rule = "ref_id=\(refId) AND name='\(name)'"
+        let rule = "ref_id_1=\(refId) AND name='\(name)'"
+        let getProdTypes = self.getProductType(rule: rule)
+        guard  getProdTypes.count == 1 else {
+            return nil
+        }
+        return getProdTypes[0]
+    }
+    
+    public func getProductType(refId1: Int32, refId2: Int32, name: String) -> ProductType? {
+        let rule = "ref_id_1=\(refId1) AND ref_id_2=\(refId2) AND name='\(name)'"
         let getProdTypes = self.getProductType(rule: rule)
         guard  getProdTypes.count == 1 else {
             return nil
@@ -157,6 +168,9 @@ class EntityGetHelper {
         rule = addPrefAndTagetData(target: String(softTime), prefix: "soft_time", rule: rule)
         rule = addPrefAndTagetData(target: String(stableTime), prefix: "stable_time", rule: rule)
         rule = addPrefAndTagetData(target: String(colorTime), prefix: "color_time", rule: rule)
+        guard rule != "" else {
+            return nil
+        }
         let retKeratinArr: [ProductKeratin] = getProductKeratin(rule: rule)
         if retKeratinArr.count != 1 {
             return nil
@@ -183,12 +197,15 @@ class EntityGetHelper {
         return retBottLashArr[0]
     }
     
-    public func getProductBottLash(length: String, size: String, total_quantity: Int16, type: String) -> ProductLashBott? {
+    public func getProductBottLash(length: String, size: String, total_quantity: Int16, curl: String) -> ProductLashBott? {
         var rule: String = ""
         rule = addPrefAndTagetData(target: length, prefix: "length", rule: rule)
-        rule = addPrefAndTagetData(target: size, prefix: "size", rule: rule)
+        rule = addPrefAndTagetData(target: size, prefix: "bott_size", rule: rule)
         rule = addPrefAndTagetData(target: String(total_quantity), prefix: "total_quantity", rule: rule)
-        rule = addPrefAndTagetData(target: type, prefix: "type", rule: rule)
+        rule = addPrefAndTagetData(target: curl, prefix: "curl", rule: rule)
+        guard rule != "" else {
+            return nil
+        }
         let retLashBottArr: [ProductLashBott] = getProductLashBott(rule: rule)
         if retLashBottArr.count != 1 {
             return nil
@@ -217,7 +234,7 @@ class EntityGetHelper {
     public func getProductTopLash(color: String, size: String, type: String, total_quantity: Int16, left_1: String, left_2: String, left_3: String, left_4: String, left_5: String, right_1: String, right_2: String, right_3: String, right_4: String, right_5: String) -> ProductLashTop? {
         var rule: String = ""
         rule = addPrefAndTagetData(target: color, prefix: "color", rule: rule)
-        rule = addPrefAndTagetData(target: size, prefix: "size", rule: rule)
+        rule = addPrefAndTagetData(target: size, prefix: "top_size", rule: rule)
         rule = addPrefAndTagetData(target: String(total_quantity), prefix: "total_quantity", rule: rule)
         rule = addPrefAndTagetData(target: type, prefix: "type", rule: rule)
         rule = addPrefAndTagetData(target: left_1, prefix: "left_1", rule: rule)
@@ -230,6 +247,9 @@ class EntityGetHelper {
         rule = addPrefAndTagetData(target: right_3, prefix: "right_3", rule: rule)
         rule = addPrefAndTagetData(target: right_4, prefix: "right_4", rule: rule)
         rule = addPrefAndTagetData(target: right_5, prefix: "right_5", rule: rule)
+        guard rule != "" else {
+            return nil
+        }
         let retLashTopArr: [ProductLashTop] = getProductLashTop(rule: rule)
         if retLashTopArr.count != 1 {
             return nil
@@ -250,6 +270,9 @@ class EntityGetHelper {
                 andPrefix = " AND "
             }
             retRule =  rule + andPrefix + "\(prefix)='\(target)'"
+        } else {
+            return rule
+            
         }
         return retRule
     }

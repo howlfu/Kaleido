@@ -38,11 +38,11 @@
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="ProductLashBott" representedClassName=".ProductLashBott" syncable="YES">
+        <attribute name="bott_size" optional="YES" attributeType="String"/>
+        <attribute name="curl" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="length" optional="YES" attributeType="String"/>
-        <attribute name="size" optional="YES" attributeType="String"/>
         <attribute name="total_quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="ProductLashTop" representedClassName=".ProductLashTop" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String"/>
@@ -57,14 +57,15 @@
         <attribute name="right_3" optional="YES" attributeType="String"/>
         <attribute name="right_4" optional="YES" attributeType="String"/>
         <attribute name="right_5" optional="YES" attributeType="String"/>
-        <attribute name="size" optional="YES" attributeType="String"/>
+        <attribute name="top_size" optional="YES" attributeType="String"/>
         <attribute name="total_quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="ProductType" representedClassName=".ProductType" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="ref_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ref_id_1" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ref_id_2" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
     </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="119"/>
@@ -74,6 +75,6 @@
         <element name="ProductKeratin" positionX="-36" positionY="90" width="128" height="104"/>
         <element name="ProductLashBott" positionX="-45" positionY="72" width="128" height="104"/>
         <element name="ProductLashTop" positionX="-54" positionY="63" width="128" height="254"/>
-        <element name="ProductType" positionX="-45" positionY="72" width="128" height="74"/>
+        <element name="ProductType" positionX="-45" positionY="72" width="128" height="89"/>
     </elements>
 </model>

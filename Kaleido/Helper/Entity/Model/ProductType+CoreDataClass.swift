@@ -2,7 +2,7 @@
 //  ProductType+CoreDataClass.swift
 //  Kaleido
 //
-//  Created by Howlfu on 2021/11/16.
+//  Created by Howlfu on 2021/11/30.
 //
 //
 

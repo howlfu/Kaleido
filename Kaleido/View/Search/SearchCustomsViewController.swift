@@ -119,9 +119,9 @@ class SearchCustomsViewController: BaseViewController{
                   }
             lash.setOrderInfo(lashTypeList: lashTypeList, cId: customerId)
             if let allSelectedItems = selectedLashService {
-//                let topLashSelected: Bool = allSelectedItems.contains(.topAndBott) || allSelectedItems.contains(.topLash) || allSelectedItems.contains(.addTopLash)
+                let topLashSelected: Bool = allSelectedItems.contains(.topAndBott) || allSelectedItems.contains(.topLash) || allSelectedItems.contains(.addTopLash)
                 let bottLashSelected: Bool = allSelectedItems.contains(.bottLash) || allSelectedItems.contains(.topAndBott)
-                lash.setLastEnable(isTopEnable: true, isBottEnable: bottLashSelected)
+                lash.setLastEnable(isTopEnable: topLashSelected, isBottEnable: bottLashSelected)
             }
         }
         

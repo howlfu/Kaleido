@@ -34,6 +34,7 @@ class BillCheckViewController: BaseViewController {
     }
     
     public func setOrderData(detail: OrderEntityType) {
+        print("")
         controller.setOrderDetail(detail: detail)
     }
     
