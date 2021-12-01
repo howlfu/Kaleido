@@ -13,4 +13,6 @@ struct EntityNameDefine{
     static let productLashTop = "ProductLashTop"
     static let productLashBott = "ProductLashBott"
     static let productType = "ProductType"
+    static let discountRule = "DiscountRule"
+    static let customerDiscount = "CustomerDiscount"
 }

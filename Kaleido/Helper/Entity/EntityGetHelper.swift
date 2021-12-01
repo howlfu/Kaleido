@@ -261,9 +261,81 @@ class EntityGetHelper {
         let EntityName = EntityNameDefine.productLashTop
         return self.getDataBase(entity: EntityName, rule: rule)
     }
+    public func getDiscountRule(id: Int16) -> DiscountRule?{
+        let rule = "id=\(id)"
+        let retDisRule: [DiscountRule] = getDiscountRule(rule: rule)
+        if retDisRule.count != 1 {
+            return nil
+        }
+        return retDisRule[0]
+    }
+    public func getDiscountRule(name: String) -> DiscountRule?{
+        let rule = "name='\(name)'"
+        let retDisRule: [DiscountRule] = getDiscountRule(rule: rule)
+        if retDisRule.count != 1 {
+            return nil
+        }
+        return retDisRule[0]
+    }
     
-    private func getCustomer(rule: String) -> [ProductLashTop]{
-        let EntityName = EntityNameDefine.productLashTop
+    public func getDiscountRule(name: String, total: Int16, ratio: Double, add: Int16) -> DiscountRule?{
+        var rule: String = ""
+        rule = addPrefAndTagetData(target: name, prefix: "name", rule: rule)
+        rule = addPrefAndTagetData(target: String(total), prefix: "total", rule: rule)
+        rule = addPrefAndTagetData(target: String(add), prefix: "discount_add", rule: rule)
+        rule = addPrefAndTagetData(target: String(ratio), prefix: "ratio", rule: rule)
+        
+        guard rule != "" else {
+            return nil
+        }
+        let retLashTopArr: [DiscountRule] = getDiscountRule(rule: rule)
+        if retLashTopArr.count != 1 {
+            return nil
+        }
+        return retLashTopArr[0]
+    }
+    
+    private func getDiscountRule(rule: String) -> [DiscountRule]{
+        let EntityName = EntityNameDefine.discountRule
+        return self.getDataBase(entity: EntityName, rule: rule)
+    }
+    
+    public func getCustomerDiscount(id: Int64) -> CustomerDiscount?{
+        let rule = "id='\(id)'"
+        let retCustDisc: [CustomerDiscount] = getCustomerDiscount(rule: rule)
+        if retCustDisc.count != 1 {
+            return nil
+        }
+        return retCustDisc[0]
+    }
+    
+    public func getCustomerDiscount(uId: Int32) -> CustomerDiscount?{
+        let rule = "user_id='\(uId)'"
+        let retCustDisc: [CustomerDiscount] = getCustomerDiscount(rule: rule)
+        if retCustDisc.count != 1 {
+            return nil
+        }
+        return retCustDisc[0]
+    }
+    
+    public func getCustomerDiscount(id: Int64, uId: Int32, ruleId: Int16) -> CustomerDiscount?{
+        var rule: String = ""
+        rule = addPrefAndTagetData(target: String(id), prefix: "id", rule: rule)
+        rule = addPrefAndTagetData(target: String(uId), prefix: "user_id", rule: rule)
+        rule = addPrefAndTagetData(target: String(ruleId), prefix: "rule_id", rule: rule)
+        
+        guard rule != "" else {
+            return nil
+        }
+        let retCustDiscArr: [CustomerDiscount] = getCustomerDiscount(rule: rule)
+        if retCustDiscArr.count != 1 {
+            return nil
+        }
+        return retCustDiscArr[0]
+    }
+    
+    private func getCustomerDiscount(rule: String) -> [CustomerDiscount]{
+        let EntityName = EntityNameDefine.customerDiscount
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     

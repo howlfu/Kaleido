@@ -8,7 +8,7 @@
         <attribute name="phone_number" attributeType="String"/>
         <attribute name="remain_money" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Customer_discount" representedClassName="Customer_discount" syncable="YES" codeGenerationType="class">
+    <entity name="CustomerDiscount" representedClassName=".Customer_discount" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remain_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rule_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -18,6 +18,7 @@
         <attribute name="discount_add" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="ratio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="total" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Order" representedClassName=".Order" syncable="YES">
@@ -77,13 +78,13 @@
     </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="119"/>
-        <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="89"/>
+        <element name="CustomerDiscount" positionX="-45" positionY="135" width="128" height="89"/>
+        <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="104"/>
         <element name="Order" positionX="-54" positionY="-9" width="128" height="194"/>
         <element name="PayMethod" positionX="-54" positionY="63" width="128" height="74"/>
         <element name="ProductKeratin" positionX="-36" positionY="90" width="128" height="104"/>
         <element name="ProductLashBott" positionX="-45" positionY="72" width="128" height="104"/>
         <element name="ProductLashTop" positionX="-54" positionY="63" width="128" height="254"/>
         <element name="ProductType" positionX="-45" positionY="72" width="128" height="89"/>
-        <element name="Customer_discount" positionX="-45" positionY="135" width="128" height="89"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  DiscountRule+CoreDataProperties.swift
 //  Kaleido
 //
-//  Created by Howlfu on 2021/11/15.
+//  Created by Howlfu on 2021/12/1.
 //
 //
 
@@ -16,10 +16,11 @@ extension DiscountRule {
         return NSFetchRequest<DiscountRule>(entityName: "DiscountRule")
     }
 
+    @NSManaged public var discount_add: Int16
     @NSManaged public var id: Int16
     @NSManaged public var name: String?
     @NSManaged public var total: Int16
-    @NSManaged public var discount_add: Int16
+    @NSManaged public var ratio: Double
 
 }
 
