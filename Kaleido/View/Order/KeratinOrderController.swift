@@ -34,10 +34,11 @@ class KeratinOrderController: BaseOrderController {
         return productId
     }
     
-    public func saveOrderKeratin(prodId: Int64, doer: String, note:String, setDate: Date) {
+    public func saveOrderKeratin(prodId: Int64, doer: String, note:String, setDate: Date, services: String) {
         self.viewModel.orderOfCustomer.product_id = prodId
         self.viewModel.orderOfCustomer.doer = doer
         self.viewModel.orderOfCustomer.note = note
         self.viewModel.orderOfCustomer.created_date = setDate
+        self.viewModel.orderOfCustomer.services = services
     }
 }

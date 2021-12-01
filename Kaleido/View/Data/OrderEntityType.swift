@@ -16,4 +16,5 @@ struct OrderEntityType {
     var total_price: Int16
     var user_id: Int32
     var created_date: Date
+    var services: String
 }

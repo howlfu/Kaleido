@@ -37,7 +37,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
                 return
             }
             let doer = "WenJen"
-            self.controller.saveOrderKeratin(prodId: prodId, doer: doer, note: self.noteText.text ?? "", setDate: self.datePicker.date)
+            self.controller.saveOrderKeratin(prodId: prodId, doer: doer, note: self.noteText.text ?? "", setDate: self.datePicker.date, services: "角蛋白")
             self.performSegue(withIdentifier: "keratinToBillCheck", sender: self)
         })
         

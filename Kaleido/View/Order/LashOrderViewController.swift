@@ -55,7 +55,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             guard let prodId = self.tryAddLashToDb() else {
                 return
             }
-            self.controller.setOderLash(prodId: prodId, doer: doerText, note: noteText, setDate: self.datePicker.date)
+            self.controller.setOderLash(prodId: prodId, doer: doerText, note: noteText, setDate: self.datePicker.date, services: self.lashTypeText.text)
             self.performSegue(withIdentifier: "lashToBillCheck", sender: self)
         })
     }

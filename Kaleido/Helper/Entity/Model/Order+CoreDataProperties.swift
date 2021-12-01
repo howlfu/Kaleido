@@ -2,7 +2,7 @@
 //  Order+CoreDataProperties.swift
 //  Kaleido
 //
-//  Created by Howlfu on 2021/11/29.
+//  Created by Howlfu on 2021/12/1.
 //
 //
 
@@ -25,6 +25,7 @@ extension Order {
     @NSManaged public var store_money: Int16
     @NSManaged public var total_price: Int16
     @NSManaged public var user_id: Int32
+    @NSManaged public var service_content: String?
 
 }
 
