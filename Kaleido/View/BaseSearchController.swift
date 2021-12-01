@@ -19,7 +19,6 @@ class BaseSearchController {
     }
     
     func getCustomerFromDb() -> [Customer] {
-//        dbSearchDataCache = testSearchData
         guard let allCustomer: [Customer] = entityGetter.getAllCustomerEntitys(rows: 5) else {
             return []
         }
@@ -27,7 +26,6 @@ class BaseSearchController {
     }
     
     func getCustomerFromDb(name: String, phone: String, birthday: String) -> [Customer] {
-//        dbSearchDataCache = testSearchData
         guard let allCustomer: [Customer] = entityGetter.getCustomer(name: name, birthday: birthday, phone: phone) else {
             return []
         }
@@ -49,7 +47,6 @@ class BaseSearchController {
     }
     
     func getOrders(by customerId: Int32) -> [Order] {
-//        dbSearchDataCache = testSearchData
         guard let allOrders: [Order] = entityGetter.getOrders(uId: customerId) else {
             return []
         }

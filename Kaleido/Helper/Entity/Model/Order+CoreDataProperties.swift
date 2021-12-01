@@ -26,6 +26,7 @@ extension Order {
     @NSManaged public var total_price: Int16
     @NSManaged public var user_id: Int32
     @NSManaged public var service_content: String?
+    @NSManaged public var income: Int16
 
 }
 

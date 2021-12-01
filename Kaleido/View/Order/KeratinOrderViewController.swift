@@ -25,7 +25,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
     @IBAction func addNewAct(_ sender: Any) {
-        prsentNormalAlert(msg: "此訂單將會儲存", btn: "確定", viewCTL: self, completion: {
+        prsentNormalAlert(msg: "產生訂單", btn: "確定", viewCTL: self, completion: {
             guard let typeText = self.typeForPicker.text,
                   let softTimeText = self.softTime.text,
                   let stableTimeText = self.stableTime.text,

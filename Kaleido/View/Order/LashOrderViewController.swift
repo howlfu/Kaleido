@@ -46,7 +46,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func addNewAct(_ sender: Any) {
         self.addBorderToTop(color: .clear, isClear: true)
         self.addBorderToBott(color: .clear, isClear: true)
-        prsentNormalAlert(msg: "此訂單將會儲存", btn: "確定", viewCTL: self, completion: {
+        prsentNormalAlert(msg: "產生訂單", btn: "確定", viewCTL: self, completion: {
             guard let doerText = self.doerTextForPicker.text,
                   let noteText = self.noteTextField.text
             else{

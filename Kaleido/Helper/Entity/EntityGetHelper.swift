@@ -262,6 +262,11 @@ class EntityGetHelper {
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     
+    private func getCustomer(rule: String) -> [ProductLashTop]{
+        let EntityName = EntityNameDefine.productLashTop
+        return self.getDataBase(entity: EntityName, rule: rule)
+    }
+    
     private func addPrefAndTagetData(target: String, prefix: String, rule: String) -> String {
         var retRule = ""
         if target != "" {

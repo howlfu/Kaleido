@@ -15,3 +15,15 @@ let testSearchData = [
     "金小姐": "1988年12月10日",
     "李小姐": "1988年5月1日",
 ]
+
+let testPayMethod = [
+    "LinePay": 2.31,
+    "街口": 2.5,
+    "信用卡": 3
+]
+
+let testStoreRule = [
+    3000: 300,
+    6000: 800,
+    10000: 2000
+]
