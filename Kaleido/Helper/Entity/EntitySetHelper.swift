@@ -125,12 +125,58 @@ class EntitySetHelper {
         let _ = crudService.saveData()
         return true
     }
+    
+    public func createDiscountRule(name: String, total: Int16, ratio: Double, add: Int16) -> Int16? {
+
+        let entityDiscRule = EntityNameDefine.discountRule
+        guard let custDisc: DiscountRule = crudService.addNewToEntity(name: entityDiscRule) else {
+            return nil
+        }
+        let typeId = getIdFromeDefault16(by: UserDefaultKey.discountRule)
+        custDisc.id = typeId
+        custDisc.name = name
+        custDisc.total = total
+        custDisc.ratio = ratio
+
+        let _ = crudService.saveData()
+        return typeId
+    }
+
+    public func createCustomerDiscount(uId: Int32, ruleId: Int16) -> Int64? {
+
+        let entityCustDisc = EntityNameDefine.customerDiscount
+        guard let custDisc: CustomerDiscount = crudService.addNewToEntity(name: entityCustDisc) else {
+            return nil
+        }
+        let typeId = getIdFromeDefault64(by: UserDefaultKey.customerDiscount)
+        custDisc.id = typeId
+        custDisc.user_id = uId
+        custDisc.rule_id = ruleId
+        if let discRule = getHelper.getDiscountRule(id: ruleId) {
+            custDisc.remain_money = discRule.total + discRule.discount_add
+        }
+        let _ = crudService.saveData()
+        return typeId
+    }
+    
+    public func updateCustomerDiscount(id: Int64, remain: Int16) -> Bool {
+        guard let custDisc: CustomerDiscount = getHelper.getCustomerDiscount(id: id) else {
+            return false
+        }
+        //update other when get uniq customer
+        custDisc.remain_money = remain
+        if !crudService.saveData(){
+            return false
+        }
+        return true
+    }
+    
     public func createProductType(refId: Int32, name: String) -> Int64? {
         guard getHelper.getProductType(refId: refId, name: name) == nil else {
             return nil
         }
-        let productType = EntityNameDefine.productType
-        guard let productType: ProductType = crudService.addNewToEntity(name: productType) else {
+        let entityName = EntityNameDefine.productType
+        guard let productType: ProductType = crudService.addNewToEntity(name: entityName) else {
             return nil
         }
         let typeId = getIdFromeDefault64(by: UserDefaultKey.productType)
@@ -158,6 +204,7 @@ class EntitySetHelper {
         let _ = crudService.saveData()
         return typeId
     }
+    
     public func createProductLashTopBott(top_color: String, top_size: String, top_type: String, top_total_quantity: Int16, left_1: String, left_2: String, left_3: String, left_4: String, left_5: String, right_1: String, right_2: String, right_3: String, right_4: String, right_5: String, bott_length: String, bott_size: String, bott_total_quantity: Int16, bott_curl: String) -> Int64? {
         let productTypeName = EntityNameDefine.productLashTop + "_" + EntityNameDefine.productLashBott
         if let existProduct1:ProductLashTop = getHelper.getProductTopLash(color: top_color, size: top_size, type: top_type, total_quantity: top_total_quantity, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5), let existProduct2:ProductLashBott = getHelper.getProductBottLash(length: bott_length, size: bott_size, total_quantity: bott_total_quantity, curl: bott_curl) {
@@ -331,6 +378,20 @@ class EntitySetHelper {
             return 1
         }
         if var intId = Int32(id) {
+            intId += 1
+            UserDefaults.standard.setValue(intId, forKey: keyName)
+            return intId
+        }
+        return 1
+    }
+    
+    private func getIdFromeDefault16(by keyName: String) -> Int16{
+        guard let id = UserDefaults.standard.string(forKey: keyName)
+        else {
+            UserDefaults.standard.setValue(1, forKey: keyName)
+            return 1
+        }
+        if var intId = Int16(id) {
             intId += 1
             UserDefaults.standard.setValue(intId, forKey: keyName)
             return intId

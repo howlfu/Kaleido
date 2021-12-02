@@ -14,5 +14,7 @@ struct UserDefaultKey{
     static let lashTopId = "lashTopId"
     static let lashBottId = "lashBottId"
     static let productType = "productType"
+    static let customerDiscount = "customerDiscount"
+    static let discountRule = "discountRule"
     
 }
