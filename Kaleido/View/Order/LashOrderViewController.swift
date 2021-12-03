@@ -179,6 +179,20 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     override func removeBinding() {
         viewModel.pickItemList.removeObserver()
         viewModel.segmentToggleLeft.removeObserver()
+        typePicker.delegate = nil
+        typePicker.dataSource = nil
+        topTypeTextForPicker.delegate = nil
+        topSizeTextForPicker.delegate = nil
+        bottSizeTextForPicker.delegate = nil
+        bottCurTextForPicker.delegate = nil
+        bottLenTextForPicker.delegate = nil
+        doerTextForPicker.delegate = nil
+        colorTextForPicker.delegate = nil
+        topLashText1.delegate = nil
+        topLashText2.delegate = nil
+        topLashText3.delegate = nil
+        topLashText4.delegate = nil
+        topLashText5.delegate = nil
     }
     
     override func initBinding() {

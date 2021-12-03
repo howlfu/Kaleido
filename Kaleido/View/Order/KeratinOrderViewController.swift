@@ -80,6 +80,9 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     }
     override func removeBinding() {
         viewModel.pickItemList.removeObserver()
+        typeForPicker.delegate = nil
+        typePicker.delegate = nil
+        typePicker.dataSource = nil
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

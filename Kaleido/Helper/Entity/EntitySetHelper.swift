@@ -141,6 +141,20 @@ class EntitySetHelper {
         let _ = crudService.saveData()
         return typeId
     }
+    
+    public func updateDiscountRule(id: Int16, name: String, total: Int16, ratio: Double, add: Int16) -> Bool {
+        guard let discRule: DiscountRule = getHelper.getDiscountRule(id: id) else {
+            return false
+        }
+        discRule.name = name
+        discRule.total = total
+        discRule.ratio = ratio
+        discRule.discount_add = add
+        if !crudService.saveData(){
+            return false
+        }
+        return true
+    }
 
     public func createCustomerDiscount(uId: Int32, ruleId: Int16) -> Int64? {
 

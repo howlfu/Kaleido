@@ -15,30 +15,31 @@ class BillCheckViewController: BaseViewController {
     @IBOutlet weak var totalRemainText: UITextField!
     @IBOutlet weak var payMethodTableView: UITableView!
     @IBOutlet weak var signViewLabel: UILabel!
-    @IBOutlet weak var signView: UIView!
     @IBOutlet weak var checkBtn: UIButton!
-    @IBAction func checkBtnAct(_ sender: Any) {
-        guard
-            let add: Int16 = Int16(self.savedText.text!),
-            let price: Int16 = Int16(self.priceText.text!),
-            let remain: Int16 = Int16(self.remainText.text!) else {
-                return
-            }
-        var priceRatio = 1.0
-        if let selectedPayMethod = self.lastSelectionInex {
-            let selectedIndex = payMethodArr.index(payMethodArr.startIndex, offsetBy: selectedPayMethod.row)
-            priceRatio = payMethodArr.values[selectedIndex]
-        }
-        let remainMoney = controller.getCalcResult(price: self.savedText.text!, remain: self.remainText.text!, add: self.savedText.text!, ratio: priceRatio)
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
+            view.endEditing(true)
+    }
+    @IBAction func saveBtnAct(_ sender: Any) {
         
+    }
+    @IBAction func checkBtnAct(_ sender: Any) {
+        var priceRatio = 1.0
+        if let selectedPayMethod = self.viewModel.lastSelectionInex, let methodArr = self.viewModel.payMethodArr {
+            let selectedIndex = methodArr.index(methodArr.startIndex, offsetBy: selectedPayMethod.row)
+            priceRatio = methodArr.values[selectedIndex]
+        }
+        let addMoney = controller.checkAddMoney(money: self.savedText.text!)
+        let remainMoney = controller.getCalcResult(price: self.priceText.text!, remain: self.remainText.text!, add: addMoney, ratio: priceRatio)
+        totalRemainText.text = String(remainMoney)
+        saveBtn.isHidden = false
     }
     var controller: BillCheckController = BillCheckController()
     var viewModel: BillCheckModel {
         return controller.viewModel
     }
     let aCellHightOfViewRadio = 2
-    lazy var payMethodArr: [String: Double] = self.controller.getPayMethod()
-    var lastSelectionInex: IndexPath?
+    let typePicker: UIPickerView = UIPickerView()
     override func initView() {
         super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
@@ -47,12 +48,19 @@ class BillCheckViewController: BaseViewController {
         savedText.layer.cornerRadius = textFieldCornerRadius
         totalRemainText.layer.cornerRadius = textFieldCornerRadius
         checkBtn.layer.cornerRadius = BigBtnCornerRadius
-        
+        saveBtn.layer.cornerRadius = BigBtnCornerRadius
+        saveBtn.isHidden = true
         guard let orderTmp = self.viewModel.orderOfCustomer,
               let customerDetail = self.controller.getCustomer(id: orderTmp.user_id)
         else {return}
         let customerMoney = customerDetail.remain_money
         remainText.text = String(customerMoney)
+    }
+    
+    override func initBinding() {
+        savedText.inputView = self.typePicker
+        typePicker.delegate = self
+        typePicker.dataSource = self
     }
     
     public func setOrderData(detail: OrderEntityType) {
@@ -69,7 +77,10 @@ extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.payMethodArr.count
+        guard let methodArr = self.viewModel.payMethodArr else {
+            return 0
+        }
+        return methodArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,11 +89,14 @@ extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
         let lblTitle : UILabel = cell.contentView.viewWithTag(2) as! UILabel
         let statusBG : UIImageView = cell.contentView.viewWithTag(3) as! UIImageView
         let backgroundView : UIView = cell.contentView.viewWithTag(4)!
+        guard let methodArr = self.viewModel.payMethodArr else {
+            return cell
+        }
         statusIcon.frame.origin.y = (backgroundView.frame.height - statusIcon.frame.size.height) / 2
         statusBG.frame.origin.y = (backgroundView.frame.height - statusBG.frame.size.height) / 2
         lblTitle.frame.origin.y = (backgroundView.frame.height - lblTitle.frame.size.height) / 2
-        let textIndex = self.payMethodArr.index(self.payMethodArr.startIndex, offsetBy: indexPath.row)
-        lblTitle.text = self.payMethodArr.keys[textIndex]
+        let textIndex = methodArr.index(methodArr.startIndex, offsetBy: indexPath.row)
+        lblTitle.text = methodArr.keys[textIndex]
         cell.contentView.frame.size.width = (cell.contentView.frame.size.width * 2) / 3
         cell.contentView.frame.size.height = (cell.contentView.frame.size.height * 2) / 3
         backgroundView.layer.cornerRadius = BigBtnCornerRadius
@@ -105,8 +119,8 @@ extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
             return
         }
         let statusIcon : UIImageView = selectedCell.contentView.viewWithTag(1) as! UIImageView
-        guard let lastInex = lastSelectionInex else {
-            lastSelectionInex = currentIndex
+        guard let lastInex = self.viewModel.lastSelectionInex else {
+            self.viewModel.lastSelectionInex = currentIndex
             statusIcon.image = UIImage(named: "Checked")
             return
         }
@@ -114,7 +128,7 @@ extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
         if lastInex == currentIndex {
             // clear the same selected
             statusIcon.image =  nil
-            lastSelectionInex = nil
+            self.viewModel.lastSelectionInex = nil
         } else {
             statusIcon.image = UIImage(named: "Checked")
             // clear selected before
@@ -123,8 +137,46 @@ extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
             }
             let lastStatusIcon : UIImageView = lastCell.contentView.viewWithTag(1) as! UIImageView
             lastStatusIcon.image = nil
-            lastSelectionInex = currentIndex
+            self.viewModel.lastSelectionInex = currentIndex
         }
        
     }
+}
+
+extension BillCheckViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        guard let discountRules = self.viewModel.discountRule else {
+            return 0
+        }
+        return discountRules.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard let discountRules = self.viewModel.discountRule else {
+            return
+        }
+        self.savedText.text = String(discountRules[row].total)
+        self.savedText.endEditing(true)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        guard let discountRules = self.viewModel.discountRule else {
+            return pickerLabel
+        }
+        let detailTitle = String(discountRules[row].total)
+        pickerLabel.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint, alpha: 1.0)
+        pickerLabel.font = UIFont.systemFont(ofSize: 26)
+        pickerLabel.textAlignment = NSTextAlignment.center
+        pickerLabel.text = detailTitle
+        pickerView.backgroundColor = .white
+        return pickerLabel
+    }
+    
+    
 }

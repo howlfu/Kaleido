@@ -18,6 +18,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        initBinding()
     }
     
     func initView() {

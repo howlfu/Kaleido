@@ -34,6 +34,8 @@
 		63AA685927576B6500BD929B /* Customer_discount+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA685727576B6500BD929B /* Customer_discount+CoreDataProperties.swift */; };
 		63AA685C27576C2A00BD929B /* DiscountRule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA685A27576C2A00BD929B /* DiscountRule+CoreDataClass.swift */; };
 		63AA685D27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */; };
+		63ADE6C62759B447002D1D6E /* DefaultDbDataChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6C52759B447002D1D6E /* DefaultDbDataChecker.swift */; };
+		63ADE6C82759C536002D1D6E /* DiscountRuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */; };
 		63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870827439F6800B4A1E3 /* LashOrderController.swift */; };
 		63B3870B27439F6800B4A1E3 /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870927439F6800B4A1E3 /* LashOrderModel.swift */; };
 		63CA9CAC2754760E00051F7A /* BillCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */; };
@@ -42,7 +44,6 @@
 		63CD4F1F272BD8500085BD4C /* LashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* LashListViewController.swift */; };
 		63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* LashListType.swift */; };
 		63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */; };
-		63CD4F2B2730E2CA0085BD4C /* TestTempData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2A2730E2CA0085BD4C /* TestTempData.swift */; };
 		63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */; };
 		63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2E2730E9E40085BD4C /* Observable.swift */; };
 		63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */; };
@@ -124,6 +125,8 @@
 		63AA685727576B6500BD929B /* Customer_discount+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Customer_discount+CoreDataProperties.swift"; path = "../../../../Customer_discount+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63AA685A27576C2A00BD929B /* DiscountRule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscountRule+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscountRule+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		63ADE6C52759B447002D1D6E /* DefaultDbDataChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDbDataChecker.swift; sourceTree = "<group>"; };
+		63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountRuleType.swift; sourceTree = "<group>"; };
 		63B3870827439F6800B4A1E3 /* LashOrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderController.swift; path = ../../../../../.Trash/LashOrderController.swift; sourceTree = "<group>"; };
 		63B3870927439F6800B4A1E3 /* LashOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderModel.swift; path = ../../../../../.Trash/LashOrderModel.swift; sourceTree = "<group>"; };
 		63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckViewController.swift; sourceTree = "<group>"; };
@@ -132,7 +135,6 @@
 		63CD4F1E272BD8500085BD4C /* LashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListViewController.swift; sourceTree = "<group>"; };
 		63CD4F21272BDEDC0085BD4C /* LashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListType.swift; sourceTree = "<group>"; };
 		63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewController.swift; sourceTree = "<group>"; };
-		63CD4F2A2730E2CA0085BD4C /* TestTempData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTempData.swift; sourceTree = "<group>"; };
 		63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsController.swift; sourceTree = "<group>"; };
 		63CD4F2E2730E9E40085BD4C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsModel.swift; sourceTree = "<group>"; };
@@ -261,9 +263,9 @@
 			isa = PBXGroup;
 			children = (
 				63CD4F21272BDEDC0085BD4C /* LashListType.swift */,
-				63CD4F2A2730E2CA0085BD4C /* TestTempData.swift */,
 				63F73FDC27425239007DC0BC /* OrderEntityType.swift */,
 				630C8584274CE204001E6ED7 /* LashPosType.swift */,
+				63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				63CD4F3927336A9D0085BD4C /* Entity */,
+				63ADE6C52759B447002D1D6E /* DefaultDbDataChecker.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -616,7 +619,9 @@
 				63E36725274384D000FCCA77 /* BaseOrderController.swift in Sources */,
 				630C8585274CE204001E6ED7 /* LashPosType.swift in Sources */,
 				6317345B27422F9D00435552 /* BaseAlertViewController.swift in Sources */,
+				63ADE6C82759C536002D1D6E /* DiscountRuleType.swift in Sources */,
 				635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */,
+				63ADE6C62759B447002D1D6E /* DefaultDbDataChecker.swift in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
 				63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */,
 				63CA9CAC2754760E00051F7A /* BillCheckViewController.swift in Sources */,
@@ -640,7 +645,6 @@
 				637EA9D6275612F800C1DBE1 /* ProductLashBott+CoreDataClass.swift in Sources */,
 				63AA685C27576C2A00BD929B /* DiscountRule+CoreDataClass.swift in Sources */,
 				6317345D2742306800435552 /* UIViewController.swift in Sources */,
-				63CD4F2B2730E2CA0085BD4C /* TestTempData.swift in Sources */,
 				63D88BE6273E04E800665728 /* KeratinOrderController.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
 				630C85A2274F7B5C001E6ED7 /* SettingMainViewController.swift in Sources */,

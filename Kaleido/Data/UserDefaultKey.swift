@@ -8,6 +8,7 @@
 import Foundation
 
 struct UserDefaultKey{
+    //entity
     static let customerId = "customerId"
     static let orderId = "orderId"
     static let keratinId = "keratinId"
@@ -16,5 +17,6 @@ struct UserDefaultKey{
     static let productType = "productType"
     static let customerDiscount = "customerDiscount"
     static let discountRule = "discountRule"
-    
+    //other
+    static let storeRule = "storeRule"
 }

@@ -8,4 +8,7 @@
 import Foundation
 class BillCheckModel {
     var orderOfCustomer: OrderEntityType?
+    var payMethodArr: [String: Double]?
+    var lastSelectionInex: IndexPath?
+    var discountRule : [DiscountRule]?
 }

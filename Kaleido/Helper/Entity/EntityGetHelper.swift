@@ -261,6 +261,11 @@ class EntityGetHelper {
         let EntityName = EntityNameDefine.productLashTop
         return self.getDataBase(entity: EntityName, rule: rule)
     }
+    public func getDiscountRuleAll() -> [DiscountRule]{
+        let EntityName = EntityNameDefine.discountRule
+        return getEntityAllDataBase(entity: EntityName)
+    }
+    
     public func getDiscountRule(id: Int16) -> DiscountRule?{
         let rule = "id=\(id)"
         let retDisRule: [DiscountRule] = getDiscountRule(rule: rule)
@@ -309,13 +314,10 @@ class EntityGetHelper {
         return retCustDisc[0]
     }
     
-    public func getCustomerDiscount(uId: Int32) -> CustomerDiscount?{
+    public func getCustomerDiscount(uId: Int32) -> [CustomerDiscount]?{
         let rule = "user_id='\(uId)'"
         let retCustDisc: [CustomerDiscount] = getCustomerDiscount(rule: rule)
-        if retCustDisc.count != 1 {
-            return nil
-        }
-        return retCustDisc[0]
+        return retCustDisc
     }
     
     public func getCustomerDiscount(id: Int64, uId: Int32, ruleId: Int16) -> CustomerDiscount?{
