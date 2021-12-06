@@ -12,6 +12,7 @@ class BillCheckViewController: BaseViewController {
     @IBOutlet weak var priceText: UITextField!
     @IBOutlet weak var remainText: UITextField!
     @IBOutlet weak var savedText: UITextField!
+    @IBOutlet weak var needPayMoney: UITextField!
     @IBOutlet weak var totalRemainText: UITextField!
     @IBOutlet weak var payMethodTableView: UITableView!
     @IBOutlet weak var signViewLabel: UILabel!
@@ -21,19 +22,29 @@ class BillCheckViewController: BaseViewController {
             view.endEditing(true)
     }
     @IBAction func saveBtnAct(_ sender: Any) {
-        
+
+        let _ = controller.getCalcResult(price: self.priceText.text!, shouldSave: true)
+        let remainStoredMoney = controller.getCurrentRemainMoney()
+        controller.saveRemainMoneyToCustomer(remain: remainStoredMoney)
+        let profit = controller.getProfit()
+        prsentNormalAlert(msg: "本次收益：\(profit)", btn: "確定", viewCTL: self, completion: {
+            self.navigationController?.popToRootViewController(animated: false)
+        })
     }
     @IBAction func checkBtnAct(_ sender: Any) {
-        var priceRatio = 1.0
-        if let selectedPayMethod = self.viewModel.lastSelectionInex, let methodArr = self.viewModel.payMethodArr {
-            let selectedIndex = methodArr.index(methodArr.startIndex, offsetBy: selectedPayMethod.row)
-            priceRatio = methodArr.values[selectedIndex]
+        self.priceText.layer.borderWidth = 0
+        guard let priceText = self.priceText.text, priceText != "" else {
+            self.priceText.layer.borderWidth = 1.0
+            self.priceText.layer.borderColor = UIColor.red.cgColor
+            return
         }
-        let addMoney = controller.checkAddMoney(money: self.savedText.text!)
-        let remainMoney = controller.getCalcResult(price: self.priceText.text!, remain: self.remainText.text!, add: addMoney, ratio: priceRatio)
-        totalRemainText.text = String(remainMoney)
+        let needPay = controller.getCalcResult(price: priceText, shouldSave: false)
+        let remainStoredMoney = controller.getCurrentRemainMoney(price: priceText)
+        needPayMoney.text = String(needPay)
+        totalRemainText.text = String(remainStoredMoney)
         saveBtn.isHidden = false
     }
+    
     var controller: BillCheckController = BillCheckController()
     var viewModel: BillCheckModel {
         return controller.viewModel
@@ -61,6 +72,17 @@ class BillCheckViewController: BaseViewController {
         savedText.inputView = self.typePicker
         typePicker.delegate = self
         typePicker.dataSource = self
+        let tabBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
+        tabBackgroundGesture.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(tabBackgroundGesture)
+    }
+    
+    @IBAction func tapViewForReturn(_ sender: Any) {
+        if savedText.isFirstResponder {
+            self.viewModel.selectedDiscountRuleId = nil
+            self.savedText.text = ""
+            self.savedText.endEditing(true)
+        }
     }
     
     public func setOrderData(detail: OrderEntityType) {
@@ -96,7 +118,7 @@ extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
         statusBG.frame.origin.y = (backgroundView.frame.height - statusBG.frame.size.height) / 2
         lblTitle.frame.origin.y = (backgroundView.frame.height - lblTitle.frame.size.height) / 2
         let textIndex = methodArr.index(methodArr.startIndex, offsetBy: indexPath.row)
-        lblTitle.text = methodArr.keys[textIndex]
+        lblTitle.text = methodArr.map{$0.key}[textIndex]
         cell.contentView.frame.size.width = (cell.contentView.frame.size.width * 2) / 3
         cell.contentView.frame.size.height = (cell.contentView.frame.size.height * 2) / 3
         backgroundView.layer.cornerRadius = BigBtnCornerRadius
@@ -160,7 +182,9 @@ extension BillCheckViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         guard let discountRules = self.viewModel.discountRule else {
             return
         }
-        self.savedText.text = String(discountRules[row].total)
+        let ruleSelected = discountRules[row]
+        self.savedText.text = String(ruleSelected.total)
+        self.viewModel.selectedDiscountRuleId = ruleSelected.id
         self.savedText.endEditing(true)
     }
     

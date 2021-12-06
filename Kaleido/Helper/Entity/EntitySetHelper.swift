@@ -35,6 +35,17 @@ class EntitySetHelper {
         return true
     }
     
+    public func updateCustomer(id: Int32, remain: Int16) -> Bool{
+        guard let getCustomer: Customer = getHelper.getCustomer(id: id) else {
+            return false
+        }
+        getCustomer.remain_money = remain
+        if !crudService.saveData(){
+            return false
+        }
+        return true
+    }
+    
     public func updateCustomer(name: String, birthday: String, phone: String) -> Bool{
         guard let getCustomer: Customer = tryGetUniqCostomer(name: name, birthday: birthday, phone: phone) else {
             return false
@@ -166,6 +177,7 @@ class EntitySetHelper {
         custDisc.id = typeId
         custDisc.user_id = uId
         custDisc.rule_id = ruleId
+        custDisc.create_at = Date()
         if let discRule = getHelper.getDiscountRule(id: ruleId) {
             custDisc.remain_money = discRule.total + discRule.discount_add
         }

@@ -320,6 +320,18 @@ class EntityGetHelper {
         return retCustDisc
     }
     
+    public func getCustomerDiscount(withMoneyLeft uId: Int32) -> [CustomerDiscount] {
+        let rule = "user_id='\(uId)'"
+        let tmpGetCustomerDiscounts: [CustomerDiscount] = getCustomerDiscount(rule: rule)
+        var retCustDisc: [CustomerDiscount] = []
+        for discount in tmpGetCustomerDiscounts {
+            if discount.remain_money > 0 {
+                retCustDisc.append(discount)
+            }
+        }
+        return retCustDisc
+    }
+    
     public func getCustomerDiscount(id: Int64, uId: Int32, ruleId: Int16) -> CustomerDiscount?{
         var rule: String = ""
         rule = addPrefAndTagetData(target: String(id), prefix: "id", rule: rule)

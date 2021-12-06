@@ -8,7 +8,8 @@
         <attribute name="phone_number" attributeType="String"/>
         <attribute name="remain_money" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="CustomerDiscount" representedClassName=".Customer_discount" syncable="YES">
+    <entity name="CustomerDiscount" representedClassName=".CustomerDiscount" syncable="YES">
+        <attribute name="create_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remain_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rule_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -78,7 +79,7 @@
     </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="119"/>
-        <element name="CustomerDiscount" positionX="-45" positionY="135" width="128" height="89"/>
+        <element name="CustomerDiscount" positionX="-45" positionY="135" width="128" height="104"/>
         <element name="DiscountRule" positionX="-45" positionY="72" width="128" height="104"/>
         <element name="Order" positionX="-54" positionY="-9" width="128" height="194"/>
         <element name="PayMethod" positionX="-54" positionY="63" width="128" height="74"/>
