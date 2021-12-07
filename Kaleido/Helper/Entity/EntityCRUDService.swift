@@ -11,6 +11,7 @@ import CoreData
 class EntityCRUDService {
     // get entity container context viewContext is main thread context
     let persistentContainer: NSPersistentContainer!
+    var requestOffset = 0
     lazy var context: NSManagedObjectContext = {
         //back ground context
     //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
@@ -40,6 +41,7 @@ class EntityCRUDService {
     }
     
     public func readData<T: NSManagedObject>(name: String, with rule: String, limit: Int = 0) -> [T]{
+        self.requestOffset = 0
         var array:[T] = []
         let request = NSFetchRequest<T>(entityName: name)
         let predicate = NSPredicate(format: rule)
@@ -47,6 +49,28 @@ class EntityCRUDService {
         if limit > 0 {
             request.fetchLimit = limit
         }
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        do {
+            let results = try context.fetch(request)
+            for result in results {
+                array.append(result)
+            }
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+        return array
+    }
+    
+    public func readDataNext<T: NSManagedObject>(name: String, with rule: String, limit: Int = 0) -> [T]{
+        self.requestOffset += limit
+        var array:[T] = []
+        let request = NSFetchRequest<T>(entityName: name)
+        let predicate = NSPredicate(format: rule)
+        request.predicate = predicate
+        if limit > 0 {
+            request.fetchLimit = limit
+        }
+        request.fetchOffset = self.requestOffset
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         do {
             let results = try context.fetch(request)

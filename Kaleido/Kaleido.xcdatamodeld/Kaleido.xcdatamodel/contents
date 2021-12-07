@@ -28,7 +28,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="income" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
-        <attribute name="pay_method" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pay_method" optional="YES" attributeType="String"/>
         <attribute name="product_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="service_content" optional="YES" attributeType="String"/>
         <attribute name="store_money" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

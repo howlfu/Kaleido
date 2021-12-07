@@ -23,11 +23,20 @@ class BillCheckViewController: BaseViewController {
     }
     @IBAction func saveBtnAct(_ sender: Any) {
 
-        let _ = controller.getCalcResult(price: self.priceText.text!, shouldSave: true)
+        let price = controller.getCalcResult(price: self.priceText.text!, shouldSave: true)
         let remainStoredMoney = controller.getCurrentRemainMoney()
         controller.saveRemainMoneyToCustomer(remain: remainStoredMoney)
         let profit = controller.getProfit()
         prsentNormalAlert(msg: "本次收益：\(profit)", btn: "確定", viewCTL: self, completion: {
+            guard var savedOrderTmp = self.viewModel.orderOfCustomer else {
+                print("Temporary order data not exist")
+                return
+            }
+            savedOrderTmp.income = profit
+            savedOrderTmp.pay_method = self.controller.getPayMethodName()
+            savedOrderTmp.store_money = remainStoredMoney
+            savedOrderTmp.total_price = Int16(self.priceText.text!) ?? 0
+            self.controller.setOrderToDb(detail: savedOrderTmp)
             self.navigationController?.popToRootViewController(animated: false)
         })
     }

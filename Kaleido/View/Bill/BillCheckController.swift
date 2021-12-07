@@ -24,11 +24,24 @@ class BillCheckController {
     }
     
     public func setOrderDetail(detail: OrderEntityType) {
-        viewModel.orderOfCustomer = detail
+        self.setOrderDetail(detail: detail)
+    }
+    
+    public func setOrderToDb(detail: OrderEntityType) {
+        let _ = entitySetter.createOrder(uId: detail.user_id, prodId: detail.product_id, services: detail.services, storeMoney: detail.store_money, totalPrice: detail.total_price, income: detail.income, doer: detail.doer, note: detail.note, payMethod: detail.pay_method)
     }
     
     public func getPayMethod() -> [String : Double] {
         return defaultDbChecker.checkPayMethod()
+    }
+    
+     public func getPayMethodName() -> String{
+        var methodName: String = ""
+        if let selectedPayMethod = viewModel.lastSelectionInex, let methodArr = viewModel.payMethodArr {
+            let selectedIndex = methodArr.index(methodArr.startIndex, offsetBy: selectedPayMethod.row)
+            methodName = methodArr.map{$0.key}[selectedIndex]
+        }
+        return methodName
     }
     
     private func getPayMethodRatio () -> Double{

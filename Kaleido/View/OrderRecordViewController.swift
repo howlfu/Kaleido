@@ -41,6 +41,7 @@ class OrderRecordViewController: BaseViewController {
             }
             controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
         }
+        controller.getCustomerFromDb()
     }
     
     override func initView() {
@@ -95,7 +96,7 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
         guard let createDate = order.created_at else {
             return cell
         }
-        let nameText : UITextField = cell.contentView.viewWithTag(1) as! UITextField
+        let nameText : UILabel = cell.contentView.viewWithTag(1) as! UILabel
         nameText.text = createDate.toYearMonthDayStr()
         return cell
     }
