@@ -31,7 +31,7 @@ class BillCheckController {
         return defaultDbChecker.checkPayMethod()
     }
     
-    public func getPayMethodRatio () -> Double{
+    private func getPayMethodRatio () -> Double{
         var methodRatio: Double = 1.0
         if let selectedPayMethod = viewModel.lastSelectionInex, let methodArr = viewModel.payMethodArr {
             let selectedIndex = methodArr.index(methodArr.startIndex, offsetBy: selectedPayMethod.row)
@@ -40,7 +40,11 @@ class BillCheckController {
         return methodRatio
     }
     
-    public func getProfit() {
+    public func getProfit() -> Int16{
+        guard let retProfit = self.viewModel.currentProfit else {
+            return 0
+        }
+        return retProfit
     }
     
     public func getStoreRule() -> [DiscountRule] {
@@ -63,6 +67,13 @@ class BillCheckController {
         return entitySetter.createCustomerDiscount(uId: orderTmp.user_id, ruleId: ruleId)
     }
     
+    public func getDiscountRuleRatio(ruleId: Int16) -> Double{
+        guard let ruleDetail = entityGetter.getDiscountRule(id: ruleId) else {
+            return 0
+        }
+        return ruleDetail.ratio
+    }
+    
     public func getDiscountRuleValue(ruleId: Int16) -> Int16{
         guard let ruleDetail = entityGetter.getDiscountRule(id: ruleId) else {
             return 0
@@ -70,7 +81,9 @@ class BillCheckController {
         let retActualMoney: Int16 = ruleDetail.total + ruleDetail.discount_add
         return retActualMoney
     }
+    
     public func getCalcResult(price: String, shouldSave: Bool) -> Int16{
+        var profit:Int16 = 0
         guard
             var price: Int16 = Int16(price),
             let orderTmp = self.viewModel.orderOfCustomer
@@ -86,12 +99,15 @@ class BillCheckController {
             var souldDoneCal = false
             for customerDiscount in allSDiscountOfCustomer {
                 var saveBackMoney: Int16 = 0
+                let storeRuleRatio = self.getDiscountRuleRatio(ruleId: customerDiscount.rule_id)
                 if (customerDiscount.remain_money > price) {
                     souldDoneCal = true
                     saveBackMoney = customerDiscount.remain_money - price
+                    profit += Int16(Double(price) * storeRuleRatio)
                     price = 0
                 } else {
                     price = price - customerDiscount.remain_money
+                    profit += Int16(Double(customerDiscount.remain_money) * storeRuleRatio)
                     saveBackMoney = 0
                 }
                 if shouldSave {
@@ -114,6 +130,9 @@ class BillCheckController {
                 }
             }
         }
+        let methodRatio = self.getPayMethodRatio()
+        let pricePayByMethod = Int16(Double(price) * methodRatio)
+        self.viewModel.currentProfit = profit + price - pricePayByMethod
         return price
     }
     

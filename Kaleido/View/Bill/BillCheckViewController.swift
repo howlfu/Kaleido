@@ -74,6 +74,7 @@ class BillCheckViewController: BaseViewController {
         typePicker.dataSource = self
         let tabBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
         tabBackgroundGesture.numberOfTapsRequired = 1
+        tabBackgroundGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tabBackgroundGesture)
     }
     

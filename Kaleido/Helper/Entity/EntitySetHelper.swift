@@ -148,7 +148,7 @@ class EntitySetHelper {
         custDisc.name = name
         custDisc.total = total
         custDisc.ratio = ratio
-
+        custDisc.discount_add = add
         let _ = crudService.saveData()
         return typeId
     }
