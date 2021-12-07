@@ -20,7 +20,7 @@ func prsentNormalAlert(msg: String, btn: String, viewCTL: UIViewController, comp
 }
 
 
-class BaseAlertViewController: UIViewController {
+class BaseAlertViewController: UIViewController, UIGestureRecognizerDelegate {
     //self.dismiss(animated: true, completion: nil)
     @IBAction func btnAction(_ sender: Any) {
         dismiss(animated: false, completion: doneCallBack)
@@ -46,11 +46,23 @@ class BaseAlertViewController: UIViewController {
         alertBackground.layer.borderColor = UIColor.black.cgColor
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector (tabBackground))
         tabGesture.numberOfTapsRequired = 1
+        tabGesture.delegate = self
         self.viewBackground.isUserInteractionEnabled = true
         self.viewBackground.addGestureRecognizer(tabGesture)
     }
+    
     func setUpDetail(msg: String, btn: String) {
         self.msgTextStr = msg
         self.btnTitleStr = btn
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let tapOnViewRecog = touch.view else {
+            return false
+        }
+        if tapOnViewRecog.isDescendant(of: self.alertBackground) {
+            return false
+        }
+        return true
     }
 }
