@@ -41,7 +41,6 @@ class OrderRecordViewController: BaseViewController {
             }
             controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
         }
-        controller.getCustomerFromDb()
     }
     
     override func initView() {
@@ -62,10 +61,27 @@ class OrderRecordViewController: BaseViewController {
                 self?.orderListTableView.reloadData()
             }
         }
+        viewModel.customerData.addObserver(fireNow: false) {[weak self] (customer) in
+            self?.nameText.text = customer.full_name
+            self?.numberText.text = customer.phone_number
+            if let birthStr = customer.birthday, let birthDate = birthStr.toDate() {
+                self?.datePicker.setDate(birthDate, animated: false)
+                self?.viewModel.didSelectTimePicker = true
+            }
+        }
     }
     
     override func removeBinding() {
         viewModel.customerOders.removeObserver()
+    }
+    
+    @IBAction func timeChanged(_ sender: UIDatePicker) {
+        if Calendar.current.isDateInToday(sender.date) {
+            self.viewModel.didSelectTimePicker = false
+        } else {
+            self.viewModel.didSelectTimePicker = true
+        }
+        presentedViewController?.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -98,10 +114,16 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
         }
         let nameText : UILabel = cell.contentView.viewWithTag(1) as! UILabel
         nameText.text = createDate.toYearMonthDayStr()
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        doubleTap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(doubleTap)
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().titleRed)
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+    @IBAction func handleDoubleTap(_ sender: Any){
+        print("double click")
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 class OrderRecordModel {
     var customerOders = Observable<[Order]>(value: [])
+    var customerData = Observable<Customer>(value: Customer())
     var didSelectTimePicker: Bool = false
     var selectedCustomerId: Int32?
     

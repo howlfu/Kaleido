@@ -19,7 +19,9 @@ class OrderRecordController: BaseSearchController {
         guard customerDetail.count == 1 else {
             return
         }
-        let cId = customerDetail[0].id
+        let customerData = customerDetail[0]
+        self.viewModel.customerData.value = customerData
+        let cId = customerData.id
         let orders = self.getOrders(by: cId)
         self.viewModel.customerOders.value = orders
     }
