@@ -14,7 +14,7 @@ class OrderRecordController: BaseSearchController {
         self.viewModel = viewModel
     }
     
-    func tryGetDataFromDb(name: String, phone: String, birthday: String) {
+    public func tryGetDataFromDb(name: String, phone: String, birthday: String) {
         let customerDetail = self.getCustomerFromDb(name: name, phone: phone, birthday: birthday)
         guard customerDetail.count == 1 else {
             return
@@ -26,7 +26,13 @@ class OrderRecordController: BaseSearchController {
         self.viewModel.customerOders.value = orders
     }
     
-    func didSelectTimePicker() {
+    public func didSelectTimePicker() {
         self.viewModel.didSelectTimePicker = true
+    }
+    
+    public func deleteOrderFromDb(id: Int32) -> Bool {
+        let isDone = entityDeleter.deleteOrder(id: id)
+        self.viewModel.didDeleteOrder.value = isDone
+        return isDone
     }
 }

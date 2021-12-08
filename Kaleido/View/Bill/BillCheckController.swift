@@ -24,7 +24,7 @@ class BillCheckController {
     }
     
     public func setOrderDetail(detail: OrderEntityType) {
-        self.setOrderDetail(detail: detail)
+        self.viewModel.orderOfCustomer = detail
     }
     
     public func setOrderToDb(detail: OrderEntityType) {

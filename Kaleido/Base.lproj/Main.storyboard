@@ -1662,7 +1662,6 @@
                     <connections>
                         <outlet property="dateBackground" destination="o8n-mE-NOn" id="r5t-sr-6Li"/>
                         <outlet property="datePicker" destination="w8K-hz-TzD" id="vNh-2Q-hhU"/>
-                        <outlet property="dateTableView" destination="fuZ-in-nBx" id="hZX-go-f7D"/>
                         <outlet property="deleteBtn" destination="nvZ-w6-WSW" id="5Th-23-uAS"/>
                         <outlet property="nameText" destination="ePk-8v-AQa" id="cpx-Wf-7PH"/>
                         <outlet property="numberText" destination="PkW-wo-ka2" id="LNK-ZH-U7R"/>

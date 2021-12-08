@@ -43,7 +43,7 @@ class BaseSearchController {
     }
     
     func delectCustomer(cId: Int32) -> Bool{
-        return entityDeleter.delectCustomer(id: cId)
+        return entityDeleter.deleteCustomer(id: cId)
     }
     
     func getOrders(by customerId: Int32) -> [Order] {

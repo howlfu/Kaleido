@@ -14,7 +14,7 @@ class EntityDelHelper {
         getHelper = get
     }
     
-    public func delectCustomer(id: Int32) -> Bool{
+    public func deleteCustomer(id: Int32) -> Bool{
         guard let target = self.getHelper.getCustomer(id: id) else {
             return false
         }
@@ -22,7 +22,15 @@ class EntityDelHelper {
         return crudService.saveData()
     }
     
-    public func delectCustomerDiscount(id: Int64) -> Bool{
+    public func deleteOrder(id: Int32) -> Bool{
+        guard let target = self.getHelper.getOrder(id: id) else {
+            return false
+        }
+        crudService.deleteData(targetObj: target)
+        return crudService.saveData()
+    }
+    
+    public func deleteCustomerDiscount(id: Int64) -> Bool{
         guard let target = self.getHelper.getCustomerDiscount(id: id) else {
             return false
         }
@@ -30,7 +38,7 @@ class EntityDelHelper {
         return crudService.saveData()
     }
     
-    public func delectDiscountRule(id: Int16) -> Bool{
+    public func deleteDiscountRule(id: Int16) -> Bool{
         guard let target = self.getHelper.getDiscountRule(id: id) else {
             return false
         }

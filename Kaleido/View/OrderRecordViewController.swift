@@ -12,7 +12,6 @@ class OrderRecordViewController: BaseViewController {
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateBackground: UIView!
-    @IBOutlet weak var dateTableView: UITableView!
     @IBOutlet weak var numberText: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var deleteBtn: UIButton!
@@ -23,6 +22,14 @@ class OrderRecordViewController: BaseViewController {
     }
     
     @IBAction func deleteAct(_ sender: Any) {
+        guard let indexPath = self.orderListTableView.indexPathForSelectedRow else {
+            return
+        }
+        let foundOrders = viewModel.customerOders.value
+        let index = indexPath.row
+        let order = foundOrders[index]
+        let delOrderId = order.id
+        let _ = controller.deleteOrderFromDb(id: delOrderId)
     }
     var controller: OrderRecordController = OrderRecordController()
     var viewModel: OrderRecordModel {
@@ -67,6 +74,12 @@ class OrderRecordViewController: BaseViewController {
             if let birthStr = customer.birthday, let birthDate = birthStr.toDate() {
                 self?.datePicker.setDate(birthDate, animated: false)
                 self?.viewModel.didSelectTimePicker = true
+            }
+        }
+        
+        viewModel.didDeleteOrder.addObserver(fireNow: false)  {[weak self] (isDone) in
+            if isDone {
+                self?.tryGetCustomerData()
             }
         }
     }
@@ -116,7 +129,7 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
         nameText.text = createDate.toYearMonthDayStr()
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         doubleTap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(doubleTap)
+        cell.addGestureRecognizer(doubleTap)
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().titleRed)
         cell.selectedBackgroundView = backgroundView
