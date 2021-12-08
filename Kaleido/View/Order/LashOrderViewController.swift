@@ -193,6 +193,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         topLashText3.delegate = nil
         topLashText4.delegate = nil
         topLashText5.delegate = nil
+        
     }
     
     override func initBinding() {
@@ -224,6 +225,9 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         typePicker.delegate = self
         typePicker.dataSource = self
         
+        if self.viewModel.orderOfCustomer.product_id > 0{
+            self.controller.doDemoUpdate()
+        }
         let tabBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
        tabBackgroundGesture.numberOfTapsRequired = 1
        self.view.addGestureRecognizer(tabBackgroundGesture)
@@ -263,6 +267,68 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             self!.topLashText4.text = currentLashData.text4
             self!.topLashText5.text = currentLashData.text5
         }
+        
+        viewModel.demoOnly.addObserver(fireNow: false) {[weak self] (isDemo) in
+            if isDemo {
+                guard
+                    let orderForDemo = self?.viewModel.orderOfCustomer,
+                    let prodType = self?.controller.getProductData(id: orderForDemo.product_id)
+                else {
+                    return
+                }
+                //customer
+                self?.controller.customerId = orderForDemo.user_id
+                self?.nameText.text = self?.controller.getCustomerName()
+                self?.datePicker.date =  orderForDemo.created_date
+                //order
+                self?.lashTypeText.text = orderForDemo.services
+                self?.doerTextForPicker.text = orderForDemo.doer
+                self?.noteTextField.text = orderForDemo.note
+                //product
+                switch prodType.name {
+                case EntityNameDefine.productLashTop + "_" + EntityNameDefine.productLashBott:
+                    if let topData = self?.controller.getProductLashTop(id: prodType.ref_id_1) {
+                        self?.setTopData(data: topData)
+                    }
+                    if let bottData = self?.controller.getProductLashBott(id: prodType.ref_id_2) {
+                        self?.setBottData(data: bottData)
+                    }
+                case EntityNameDefine.productLashTop:
+                    if let topData = self?.controller.getProductLashTop(id: prodType.ref_id_1) {
+                        self?.setTopData(data: topData)
+                    }
+                case EntityNameDefine.productLashBott:
+                    if let bottData = self?.controller.getProductLashBott(id: prodType.ref_id_2) {
+                        self?.setBottData(data: bottData)
+                    }
+                default:
+                    print("Product type name incorrect")
+                }
+            }
+        }
+    }
+    
+    private func setTopData(data: ProductLashTop) {
+        colorTextForPicker.text = data.color
+        numberOfToplashText.text = String(data.total_quantity)
+        topTypeTextForPicker.text = data.type
+        topSizeTextForPicker.text = data.top_size
+        
+        self.viewModel.leftLashData = LashPosType(text1: data.left_1 ?? "", text2: data.left_2 ?? "", text3: data.left_3 ?? "", text4: data.left_4 ?? "", text5: data.left_5 ?? "")
+        self.viewModel.rightLashData = LashPosType(text1: data.right_1 ?? "", text2: data.right_2 ?? "", text3: data.right_3 ?? "", text4: data.right_4 ?? "", text5: data.right_5 ?? "")
+        let currentLashData = self.viewModel.leftLashData
+        self.topLashText1.text = currentLashData.text1
+        self.topLashText2.text = currentLashData.text2
+        self.topLashText3.text = currentLashData.text3
+        self.topLashText4.text = currentLashData.text4
+        self.topLashText5.text = currentLashData.text5
+    }
+    
+    private func setBottData(data: ProductLashBott) {
+        numberOfBottlashText.text = String(data.total_quantity)
+        bottCurTextForPicker.text = data.curl
+        bottLenTextForPicker.text = data.length
+        bottSizeTextForPicker.text = data.bott_size
     }
     
     @IBAction func tapSegment(_ sender: Any) {
@@ -372,6 +438,10 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     
     public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {
         self.controller.setOrderInfo(lashTypeList: lashTypeList, cId: cId)
+    }
+    
+    public func setOrderInfoForDemo(data: Order) {
+        self.controller.setOrderForDemo(data: data)
     }
     
     public func setLastEnable(isTopEnable: Bool, isBottEnable: Bool) {

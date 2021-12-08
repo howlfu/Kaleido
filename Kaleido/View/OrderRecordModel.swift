@@ -10,6 +10,7 @@ class OrderRecordModel {
     var customerOders = Observable<[Order]>(value: [])
     var customerData = Observable<Customer>(value: Customer())
     var didDeleteOrder = Observable<Bool>(value: false)
+    var toDemoOrder: Order?
     var didSelectTimePicker: Bool = false
     var selectedCustomerId: Int32?
     

@@ -15,6 +15,7 @@
 		6317345D2742306800435552 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317345C2742306800435552 /* UIViewController.swift */; };
 		632214532744E35D003E330D /* SearchCustomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632214522744E35D003E330D /* SearchCustomsCell.swift */; };
 		632214562747A2B8003E330D /* EntityDelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632214552747A2B8003E330D /* EntityDelHelper.swift */; };
+		634EB9CD276096D300A53917 /* LashViewAllType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9CC276096D300A53917 /* LashViewAllType.swift */; };
 		635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */; };
 		635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */; };
 		636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F34712750887700444DC9 /* OrderRecordModel.swift */; };
@@ -106,6 +107,7 @@
 		6317345C2742306800435552 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		632214522744E35D003E330D /* SearchCustomsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsCell.swift; sourceTree = "<group>"; };
 		632214552747A2B8003E330D /* EntityDelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDelHelper.swift; sourceTree = "<group>"; };
+		634EB9CC276096D300A53917 /* LashViewAllType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashViewAllType.swift; sourceTree = "<group>"; };
 		635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderViewController.swift; sourceTree = "<group>"; };
 		635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderViewController.swift; sourceTree = "<group>"; };
 		636F34712750887700444DC9 /* OrderRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordModel.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				63F73FDC27425239007DC0BC /* OrderEntityType.swift */,
 				630C8584274CE204001E6ED7 /* LashPosType.swift */,
 				63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */,
+				634EB9CC276096D300A53917 /* LashViewAllType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */,
 				637EA9C92754A18700C1DBE1 /* Customer+CoreDataProperties.swift in Sources */,
 				636F347627508AB100444DC9 /* BaseSearchController.swift in Sources */,
+				634EB9CD276096D300A53917 /* LashViewAllType.swift in Sources */,
 				637EA9D7275612F800C1DBE1 /* ProductLashBott+CoreDataProperties.swift in Sources */,
 				630C85A4274F7D5E001E6ED7 /* OtherMainViewController.swift in Sources */,
 				63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */,

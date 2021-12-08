@@ -96,6 +96,13 @@ class OrderRecordViewController: BaseViewController {
         }
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is LashOrderViewController {
+            let lashOrderVC = segue.destination as! LashOrderViewController
+            lashOrderVC.setOrderInfoForDemo(data: self.viewModel.toDemoOrder ?? Order())
+        }
+    }
 }
 
 
@@ -137,6 +144,19 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     @IBAction func handleDoubleTap(_ sender: Any){
-        print("double click")
+        let foundOrders = viewModel.customerOders.value
+        guard let index = self.orderListTableView.indexPathForSelectedRow else {
+            return
+        }
+        let order = foundOrders[index.row]
+        print(order.service_content)
+        let isKeratin = order.service_content == ""
+        self.viewModel.toDemoOrder = order
+        if isKeratin {
+            performSegue(withIdentifier: "toShowKeratinOrder", sender: self)
+        } else {
+            performSegue(withIdentifier: "toShowLashOrder", sender: self)
+        }
+        
     }
 }
