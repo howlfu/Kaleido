@@ -25,22 +25,34 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
     @IBAction func addNewAct(_ sender: Any) {
-        prsentNormalAlert(msg: "產生訂單", btn: "確定", viewCTL: self, completion: {
-            guard let typeText = self.typeForPicker.text,
-                  let softTimeText = self.softTime.text,
-                  let stableTimeText = self.stableTime.text,
-                  let colorTimeText = self.colorTime.text
-            else{
-                return
-            }
-            guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
-                return
-            }
-            let doer = "WenJen"
-            self.controller.saveOrderKeratin(prodId: prodId, doer: doer, note: self.noteText.text ?? "", setDate: self.datePicker.date, services: "角蛋白")
-            self.performSegue(withIdentifier: "keratinToBillCheck", sender: self)
-        })
+        guard let typeText = self.typeForPicker.text,
+              let softTimeText = self.softTime.text,
+              let stableTimeText = self.stableTime.text,
+              let colorTimeText = self.colorTime.text
+        else{
+            return
+        }
+        if viewModel.demoOnly.value {
+            prsentNormalAlert(msg: "修改訂單", btn: "確定", viewCTL: self, completion: {
         
+                guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
+                    return
+                }
+                var tmpOrder = self.viewModel.orderOfCustomer
+                tmpOrder.created_date = self.datePicker.date
+                tmpOrder.product_id = prodId
+                self.controller.updateOrderToDb(order: tmpOrder)
+            })
+        } else {
+            prsentNormalAlert(msg: "產生訂單", btn: "確定", viewCTL: self, completion: {
+                guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
+                    return
+                }
+                let doer = "WenJen"
+                self.controller.saveOrderKeratin(prodId: prodId, doer: doer, note: self.noteText.text ?? "", setDate: self.datePicker.date, services: "角蛋白")
+                self.performSegue(withIdentifier: "keratinToBillCheck", sender: self)
+            })
+        }
     }
     var controller: KeratinOrderController = KeratinOrderController()
     let typePicker: UIPickerView = UIPickerView()
@@ -52,12 +64,48 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         self.controller.setOrderInfo(cId: cId)
     }
     
+    public func setOrderInfoForDemo(data: Order) {
+        self.controller.setOrderForDemo(data: data)
+    }
+    
     override func initBinding() {
         typeForPicker.delegate = self
         typeForPicker.inputView = typePicker
+        
+        if self.viewModel.orderOfCustomer.product_id > 0{
+            self.controller.doDemoUpdate()
+        }
+        
         viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
             DispatchQueue.main.async {
                 self?.typePicker.reloadAllComponents()
+            }
+        }
+        
+        viewModel.demoOnly.addObserver(fireNow: false) {[weak self] (isDemo) in
+            if isDemo {
+                guard
+                    let orderForDemo = self?.viewModel.orderOfCustomer,
+                    let prodType = self?.controller.getProductData(id: orderForDemo.product_id)
+                else {
+                    return
+                }
+                //customer
+                self?.controller.customerId = orderForDemo.user_id
+                self?.nameText.text = self?.controller.getCustomerName()
+                self?.datePicker.date =  orderForDemo.created_date
+                //order
+                self?.noteText.text = orderForDemo.note + "，金額：\(orderForDemo.total_price)"
+                if prodType.name == EntityNameDefine.productKeratin {
+                    guard let keratinData = self?.controller.getKeratinOrder(id: prodType.ref_id_1) else {
+                        return
+                    }
+                    self?.typeForPicker.text = keratinData.type
+                    self?.softTime.text = String(keratinData.soft_time)
+                    self?.colorTime.text = String(keratinData.color_time)
+                    self?.stableTime.text = String(keratinData.stable_time)
+                }
+                self?.newOrderBtn.setTitle("更新", for: .normal)
             }
         }
         

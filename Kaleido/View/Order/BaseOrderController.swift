@@ -20,4 +20,12 @@ class BaseOrderController {
         else { return "" }
         return name
     }
+    
+    public func getProductData(id: Int64) -> ProductType? {
+        return entityGetter.getProductType(id: id)
+    }
+    
+    public func updateOrderToDb(order: OrderEntityType) {
+        let _ = entitySetter.updateOrder(by: order.id, order: order)
+    }
 }

@@ -77,6 +77,13 @@
         <attribute name="ref_id_1" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="ref_id_2" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
     </entity>
+    <entity name="StoreMoney" representedClassName="StoreMoney" syncable="YES" codeGenerationType="class">
+        <attribute name="cash" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="remain" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="store" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="119"/>
         <element name="CustomerDiscount" positionX="-45" positionY="135" width="128" height="104"/>
@@ -87,5 +94,6 @@
         <element name="ProductLashBott" positionX="-45" positionY="72" width="128" height="104"/>
         <element name="ProductLashTop" positionX="-54" positionY="63" width="128" height="254"/>
         <element name="ProductType" positionX="-45" positionY="72" width="128" height="89"/>
+        <element name="StoreMoney" positionX="-45" positionY="135" width="128" height="104"/>
     </elements>
 </model>

@@ -41,4 +41,25 @@ class KeratinOrderController: BaseOrderController {
         self.viewModel.orderOfCustomer.created_date = setDate
         self.viewModel.orderOfCustomer.services = services
     }
+    
+    public func setOrderForDemo(data: Order) {
+        self.viewModel.orderOfCustomer.id = data.id
+        self.viewModel.orderOfCustomer.doer = data.doer ?? ""
+        self.viewModel.orderOfCustomer.note = data.note ?? ""
+        self.viewModel.orderOfCustomer.product_id = data.product_id
+        self.viewModel.orderOfCustomer.store_money = data.store_money
+        self.viewModel.orderOfCustomer.total_price = data.total_price
+        self.viewModel.orderOfCustomer.income = data.income
+        self.viewModel.orderOfCustomer.user_id = data.user_id
+        self.viewModel.orderOfCustomer.services = data.service_content ?? ""
+        self.viewModel.orderOfCustomer.created_date = data.created_at ?? Date()
+    }
+    
+    public func getKeratinOrder(id: Int32) -> ProductKeratin? {
+        return entityGetter.getProductKeratin(id: id)
+    }
+    
+    public func doDemoUpdate() {
+        self.viewModel.demoOnly.value = true
+    }
 }

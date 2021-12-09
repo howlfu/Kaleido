@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+
+
 class OrderRecordViewController: BaseViewController {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var nameText: UITextField!
@@ -102,6 +104,11 @@ class OrderRecordViewController: BaseViewController {
             let lashOrderVC = segue.destination as! LashOrderViewController
             lashOrderVC.setOrderInfoForDemo(data: self.viewModel.toDemoOrder ?? Order())
         }
+        
+        if segue.destination is KeratinOrderViewController {
+            let keratinOrderVC = segue.destination as! KeratinOrderViewController
+            keratinOrderVC.setOrderInfoForDemo(data: self.viewModel.toDemoOrder ?? Order())
+        }
     }
 }
 
@@ -144,19 +151,22 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     @IBAction func handleDoubleTap(_ sender: Any){
-        let foundOrders = viewModel.customerOders.value
-        guard let index = self.orderListTableView.indexPathForSelectedRow else {
-            return
+        switch  self.viewModel.btnDestination {
+        case .order, .none:
+            let foundOrders = viewModel.customerOders.value
+            guard let index = self.orderListTableView.indexPathForSelectedRow else {
+                return
+            }
+            let order = foundOrders[index.row]
+            let isKeratin = order.service_content == "角蛋白"
+            self.viewModel.toDemoOrder = order
+            if isKeratin {
+                performSegue(withIdentifier: "toShowKeratinOrder", sender: self)
+            } else {
+                performSegue(withIdentifier: "toShowLashOrder", sender: self)
+            }
+        case .store:
+            print("")
         }
-        let order = foundOrders[index.row]
-        print(order.service_content)
-        let isKeratin = order.service_content == ""
-        self.viewModel.toDemoOrder = order
-        if isKeratin {
-            performSegue(withIdentifier: "toShowKeratinOrder", sender: self)
-        } else {
-            performSegue(withIdentifier: "toShowLashOrder", sender: self)
-        }
-        
     }
 }

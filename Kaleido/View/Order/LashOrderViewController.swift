@@ -49,7 +49,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 var tmpOrder = self.viewModel.orderOfCustomer
                 tmpOrder.created_date = self.datePicker.date
                 tmpOrder.doer = self.doerTextForPicker.text ?? tmpOrder.doer
-                tmpOrder.note = self.noteTextField.text ?? tmpOrder.note
+//                tmpOrder.note = self.noteTextField.text ?? tmpOrder.note
                 let getProdId = self.tryAddLashToDb() ?? tmpOrder.product_id
                 tmpOrder.product_id = getProdId
                 self.controller.updateOrderToDb(order: tmpOrder)
@@ -301,7 +301,13 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 //order
                 self?.lashTypeText.text = allServicesStr
                 self?.doerTextForPicker.text = orderForDemo.doer
-                self?.noteTextField.text = orderForDemo.note
+                var noteText = ""
+                if orderForDemo.note == "" {
+                    noteText = "金額：\(orderForDemo.total_price)"
+                } else {
+                    noteText = orderForDemo.note + "，金額：\(orderForDemo.total_price)"
+                }
+                self?.noteTextField.text = noteText
                 //product
                 switch prodType.name {
                 case EntityNameDefine.productLashTop + "_" + EntityNameDefine.productLashBott:

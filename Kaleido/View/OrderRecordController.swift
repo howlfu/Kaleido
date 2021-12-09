@@ -6,12 +6,24 @@
 //
 
 import Foundation
+
+enum OrderRecordView {
+    case order
+    case store
+}
+
 class OrderRecordController: BaseSearchController {
     let viewModel: OrderRecordModel
     init(
         viewModel: OrderRecordModel = OrderRecordModel()
     ) {
         self.viewModel = viewModel
+    }
+    
+    var setNextDest: OrderRecordView? {
+        didSet {
+            self.viewModel.btnDestination = self.setNextDest
+        }
     }
     
     public func tryGetDataFromDb(name: String, phone: String, birthday: String) {

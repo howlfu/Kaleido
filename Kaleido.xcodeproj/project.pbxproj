@@ -16,6 +16,7 @@
 		632214532744E35D003E330D /* SearchCustomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632214522744E35D003E330D /* SearchCustomsCell.swift */; };
 		632214562747A2B8003E330D /* EntityDelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632214552747A2B8003E330D /* EntityDelHelper.swift */; };
 		634EB9CD276096D300A53917 /* LashViewAllType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9CC276096D300A53917 /* LashViewAllType.swift */; };
+		634EB9CF2761D96B00A53917 /* StoreRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9CE2761D96B00A53917 /* StoreRecordViewController.swift */; };
 		635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */; };
 		635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */; };
 		636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F34712750887700444DC9 /* OrderRecordModel.swift */; };
@@ -108,6 +109,7 @@
 		632214522744E35D003E330D /* SearchCustomsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsCell.swift; sourceTree = "<group>"; };
 		632214552747A2B8003E330D /* EntityDelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDelHelper.swift; sourceTree = "<group>"; };
 		634EB9CC276096D300A53917 /* LashViewAllType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashViewAllType.swift; sourceTree = "<group>"; };
+		634EB9CE2761D96B00A53917 /* StoreRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRecordViewController.swift; sourceTree = "<group>"; };
 		635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderViewController.swift; sourceTree = "<group>"; };
 		635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderViewController.swift; sourceTree = "<group>"; };
 		636F34712750887700444DC9 /* OrderRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordModel.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				630C85A6274F85BB001E6ED7 /* OrderRecordViewController.swift */,
 				636F3473275089FD00444DC9 /* OrderRecordController.swift */,
 				636F34712750887700444DC9 /* OrderRecordModel.swift */,
+				634EB9CE2761D96B00A53917 /* StoreRecordViewController.swift */,
 			);
 			name = OrderRecord;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				63B3870B27439F6800B4A1E3 /* LashOrderModel.swift in Sources */,
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
+				634EB9CF2761D96B00A53917 /* StoreRecordViewController.swift in Sources */,
 				637EA9C82754A18700C1DBE1 /* Customer+CoreDataClass.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
 				636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */,
