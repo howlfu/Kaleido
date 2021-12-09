@@ -15,4 +15,5 @@ struct EntityNameDefine{
     static let productType = "ProductType"
     static let discountRule = "DiscountRule"
     static let customerDiscount = "CustomerDiscount"
+    static let storeMoneyForOrder = "StoreMoney"
 }

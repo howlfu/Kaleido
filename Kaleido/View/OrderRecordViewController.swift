@@ -37,6 +37,9 @@ class OrderRecordViewController: BaseViewController {
     var viewModel: OrderRecordModel {
         return controller.viewModel
     }
+    public func setNextDest(viewType: OrderRecordView) {
+        self.viewModel.btnDestination = viewType
+    }
     private func tryGetCustomerData() {
         if nameText.hasText || numberText.hasText || self.viewModel.didSelectTimePicker {
             guard
@@ -166,6 +169,7 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
                 performSegue(withIdentifier: "toShowLashOrder", sender: self)
             }
         case .store:
+            performSegue(withIdentifier: "toShowStoreDetail", sender: self)
             print("")
         }
     }

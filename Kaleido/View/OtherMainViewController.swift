@@ -20,6 +20,15 @@ class OtherMainViewController: BaseViewController {
     @IBOutlet weak var storedBackground: UIView!
     @IBOutlet weak var orderListBtn: UIButton!
     @IBOutlet weak var orderListBackground: UIView!
+    var nextViewBtnDest: OrderRecordView?
+    @IBAction func orderRecordBtnAct(_ sender: Any) {
+        nextViewBtnDest = .order
+        performSegue(withIdentifier: "toOderRecordView", sender: self)
+    }
+    @IBAction func storeListBtnAct(_ sender: Any) {
+        nextViewBtnDest = .store
+        performSegue(withIdentifier: "toOderRecordView", sender: self)
+    }
     override func initView() {
         titleView.roundedBottRight(radius: titleViewRadius)
         lashDoerBtn.layer.cornerRadius = BigBtnCornerRadius
@@ -42,5 +51,15 @@ class OtherMainViewController: BaseViewController {
         orderListBtn.layer.borderColor = UIColor.black.cgColor
         orderListBtn.layer.borderWidth = 1
         orderListBackground.layer.cornerRadius = BigBtnCornerRadius
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is OrderRecordViewController {
+            let lashRecordVC = segue.destination as! OrderRecordViewController
+            guard let dest = self.nextViewBtnDest else {
+                return
+            }
+            lashRecordVC.setNextDest(viewType: dest)
+        }
     }
 }
