@@ -121,18 +121,19 @@ class EntitySetHelper {
         return true
     }
     
-    public func updateOrder(by id: Int32, order: Order) -> Bool{
+    public func updateOrder(by id: Int32, order: OrderEntityType) -> Bool{
         guard let getCustomer: Order = getHelper.getOrder(id: id) else {
             return false
         }
         getCustomer.product_id = order.product_id
-        getCustomer.service_content = order.service_content
+        getCustomer.service_content = order.services
         getCustomer.store_money = order.store_money
         getCustomer.total_price = order.total_price
         getCustomer.pay_method = order.pay_method
         getCustomer.income = order.income
         getCustomer.doer = order.doer
         getCustomer.note = order.note
+        getCustomer.created_at = order.created_date
         let _ = crudService.saveData()
         return true
     }

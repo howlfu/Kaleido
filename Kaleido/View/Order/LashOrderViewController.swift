@@ -47,6 +47,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         if viewModel.demoOnly.value {
             prsentNormalAlert(msg: "修改訂單", btn: "確定", viewCTL: self, completion: {
                 var tmpOrder = self.viewModel.orderOfCustomer
+                tmpOrder.created_date = self.datePicker.date
                 tmpOrder.doer = self.doerTextForPicker.text ?? tmpOrder.doer
                 tmpOrder.note = self.noteTextField.text ?? tmpOrder.note
                 let getProdId = self.tryAddLashToDb() ?? tmpOrder.product_id
