@@ -8,6 +8,7 @@
 import Foundation
 
 enum LashListType: String, CaseIterable {
+    case prefix = ", "
     case topLash = "上睫毛"
     case bottLash = "下睫毛"
     case addTopLash = "補上睫"

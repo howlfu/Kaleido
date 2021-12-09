@@ -100,7 +100,7 @@ class EntitySetHelper {
         return nil
     }
     
-    public func createOrder(uId: Int32, prodId: Int64, services: String, storeMoney: Int16, totalPrice: Int16, income: Int16, doer: String, note:String, payMethod: String) -> Bool{
+    public func createOrder(uId: Int32, prodId: Int64, services: String, storeMoney: Int16, totalPrice: Int16, income: Int16, doer: String, note:String, payMethod: String, date: Date) -> Bool{
         
         guard let entityOfOrder: Order = crudService.addNewToEntity(name: EntityNameDefine.order) else {
             
@@ -116,7 +116,7 @@ class EntitySetHelper {
         entityOfOrder.pay_method = ""
         entityOfOrder.doer = doer
         entityOfOrder.note = note
-        entityOfOrder.created_at = Date()
+        entityOfOrder.created_at = date
         let _ = crudService.saveData()
         return true
     }

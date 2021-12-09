@@ -28,7 +28,7 @@ class BillCheckController {
     }
     
     public func setOrderToDb(detail: OrderEntityType) {
-        let _ = entitySetter.createOrder(uId: detail.user_id, prodId: detail.product_id, services: detail.services, storeMoney: detail.store_money, totalPrice: detail.total_price, income: detail.income, doer: detail.doer, note: detail.note, payMethod: detail.pay_method)
+        let _ = entitySetter.createOrder(uId: detail.user_id, prodId: detail.product_id, services: detail.services, storeMoney: detail.store_money, totalPrice: detail.total_price, income: detail.income, doer: detail.doer, note: detail.note, payMethod: detail.pay_method, date: detail.created_date)
     }
     
     public func getPayMethod() -> [String : Double] {

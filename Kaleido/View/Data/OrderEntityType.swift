@@ -8,6 +8,7 @@
 import Foundation
 
 struct OrderEntityType {
+    var id: Int32
     var doer: String
     var note: String
     var pay_method: String

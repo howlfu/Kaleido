@@ -44,20 +44,31 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func addNewAct(_ sender: Any) {
-        self.addBorderToTop(color: .clear, isClear: true)
-        self.addBorderToBott(color: .clear, isClear: true)
-        prsentNormalAlert(msg: "產生訂單", btn: "確定", viewCTL: self, completion: {
-            guard let doerText = self.doerTextForPicker.text,
-                  let noteText = self.noteTextField.text
-            else{
-                return
-            }
-            guard let prodId = self.tryAddLashToDb() else {
-                return
-            }
-            self.controller.setOderLash(prodId: prodId, doer: doerText, note: noteText, setDate: self.datePicker.date, services: self.lashTypeText.text)
-            self.performSegue(withIdentifier: "lashToBillCheck", sender: self)
-        })
+        if viewModel.demoOnly.value {
+            prsentNormalAlert(msg: "修改訂單", btn: "確定", viewCTL: self, completion: {
+                var tmpOrder = self.viewModel.orderOfCustomer
+                tmpOrder.doer = self.doerTextForPicker.text ?? tmpOrder.doer
+                tmpOrder.note = self.noteTextField.text ?? tmpOrder.note
+                let getProdId = self.tryAddLashToDb() ?? tmpOrder.product_id
+                tmpOrder.product_id = getProdId
+                self.controller.updateOrderToDb(order: tmpOrder)
+            })
+        }else {
+            self.addBorderToTop(color: .clear, isClear: true)
+            self.addBorderToBott(color: .clear, isClear: true)
+            prsentNormalAlert(msg: "產生訂單", btn: "確定", viewCTL: self, completion: {
+                guard let doerText = self.doerTextForPicker.text,
+                      let noteText = self.noteTextField.text
+                else{
+                    return
+                }
+                guard let prodId = self.tryAddLashToDb() else {
+                    return
+                }
+                self.controller.setOderLash(prodId: prodId, doer: doerText, note: noteText, setDate: self.datePicker.date, services: self.lashTypeText.text)
+                self.performSegue(withIdentifier: "lashToBillCheck", sender: self)
+            })
+        }
     }
     
     private func tryAddLashToDb() -> Int64? {
@@ -276,12 +287,18 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 else {
                     return
                 }
+                //
+                let allServicesStr = orderForDemo.services
+                let allServices = allServicesStr.components(separatedBy: LashListType.prefix.rawValue)
+                let topLashSelected: Bool = allServices.contains(LashListType.topAndBott.rawValue) || allServices.contains(LashListType.topLash.rawValue) || allServices.contains(LashListType.addTopLash.rawValue)
+                let bottLashSelected: Bool = allServices.contains(LashListType.bottLash.rawValue) || allServices.contains(LashListType.topAndBott.rawValue)
+                self?.controller.setLastEnable(isTopEnable: topLashSelected, isBottEnable: bottLashSelected)
                 //customer
                 self?.controller.customerId = orderForDemo.user_id
                 self?.nameText.text = self?.controller.getCustomerName()
                 self?.datePicker.date =  orderForDemo.created_date
                 //order
-                self?.lashTypeText.text = orderForDemo.services
+                self?.lashTypeText.text = allServicesStr
                 self?.doerTextForPicker.text = orderForDemo.doer
                 self?.noteTextField.text = orderForDemo.note
                 //product
@@ -304,6 +321,8 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 default:
                     print("Product type name incorrect")
                 }
+                //btn
+                self?.newOrderBtn.setTitle("更新", for: .normal)
             }
         }
     }
@@ -431,6 +450,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         //update by in
         let name = controller.getCustomerName()
         nameText.text = name
+        nameText.isUserInteractionEnabled = false
         let lashTypeStr = controller.getLashType()
         lashTypeText.text = lashTypeStr
         self.segmentSwitch.frame.size.width = self.segmentBackground.frame.size.width / 2 + 1
