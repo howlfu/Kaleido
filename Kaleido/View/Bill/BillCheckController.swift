@@ -28,7 +28,7 @@ class BillCheckController {
     }
     
     public func setOrderToDb(detail: OrderEntityType) {
-        let _ = entitySetter.createOrder(uId: detail.user_id, prodId: detail.product_id, services: detail.services, storeMoney: detail.store_money, totalPrice: detail.total_price, income: detail.income, doer: detail.doer, note: detail.note, payMethod: detail.pay_method, date: detail.created_date)
+        let orderId = entitySetter.createOrder(uId: detail.user_id, prodId: detail.product_id, services: detail.services, storeMoney: detail.store_money, totalPrice: detail.total_price, income: detail.income, doer: detail.doer, note: detail.note, payMethod: detail.pay_method, date: detail.created_date)
     }
     
     public func getPayMethod() -> [String : Double] {
@@ -45,7 +45,7 @@ class BillCheckController {
     }
     
     private func getPayMethodRatio () -> Double{
-        var methodRatio: Double = 1.0
+        var methodRatio: Double = 0
         if let selectedPayMethod = viewModel.lastSelectionInex, let methodArr = viewModel.payMethodArr {
             let selectedIndex = methodArr.index(methodArr.startIndex, offsetBy: selectedPayMethod.row)
             methodRatio = methodArr.map{$0.value}[selectedIndex]
@@ -75,19 +75,19 @@ class BillCheckController {
         return retArr
     }
     
-    public func storeCustomerDiscountRuleToDb(ruleId: Int16) -> Int64? {
+    private func storeCustomerDiscountRuleToDb(ruleId: Int16) -> Int64? {
         guard let orderTmp = self.viewModel.orderOfCustomer else {return nil}
         return entitySetter.createCustomerDiscount(uId: orderTmp.user_id, ruleId: ruleId)
     }
     
-    public func getDiscountRuleRatio(ruleId: Int16) -> Double{
+    private func getDiscountRuleRatio(ruleId: Int16) -> Double{
         guard let ruleDetail = entityGetter.getDiscountRule(id: ruleId) else {
             return 0
         }
         return ruleDetail.ratio
     }
     
-    public func getDiscountRuleValue(ruleId: Int16) -> Int16{
+    private func getDiscountRuleValue(ruleId: Int16) -> Int16{
         guard let ruleDetail = entityGetter.getDiscountRule(id: ruleId) else {
             return 0
         }
@@ -104,8 +104,8 @@ class BillCheckController {
                 return 0
             }
         let cId = orderTmp.user_id
-        if let selectedRule = self.viewModel.selectedDiscountRuleId, shouldSave{
-            let _ = storeCustomerDiscountRuleToDb( ruleId: selectedRule)
+        if let selectedRule = self.viewModel.selectedDiscountRuleId{
+            let _ = storeCustomerDiscountRuleToDb(ruleId: selectedRule)
         }
         let allSDiscountOfCustomer = entityGetter.getCustomerDiscount(withMoneyLeft: cId)
         if allSDiscountOfCustomer.count > 0 {

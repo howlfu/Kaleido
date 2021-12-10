@@ -24,14 +24,16 @@ class BillCheckViewController: BaseViewController {
     @IBAction func saveBtnAct(_ sender: Any) {
 
         let price = controller.getCalcResult(price: self.priceText.text!, shouldSave: true)
-        let remainStoredMoney = controller.getCurrentRemainMoney()
-        controller.saveRemainMoneyToCustomer(remain: remainStoredMoney)
         let profit = controller.getProfit()
         prsentNormalAlert(msg: "本次收益：\(profit)", btn: "確定", viewCTL: self, completion: {
             guard var savedOrderTmp = self.viewModel.orderOfCustomer else {
                 print("Temporary order data not exist")
                 return
             }
+            //save customer.remain_money
+            let remainStoredMoney = self.controller.getCurrentRemainMoney()
+            self.controller.saveRemainMoneyToCustomer(remain: remainStoredMoney)
+            
             savedOrderTmp.income = profit
             savedOrderTmp.pay_method = self.controller.getPayMethodName()
             savedOrderTmp.store_money = remainStoredMoney
@@ -60,6 +62,14 @@ class BillCheckViewController: BaseViewController {
     }
     let aCellHightOfViewRadio = 2
     let typePicker: UIPickerView = UIPickerView()
+    override func removeBinding() {
+        typePicker.delegate = nil
+        typePicker.dataSource = nil
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("")
+    }
     override func initView() {
         super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)

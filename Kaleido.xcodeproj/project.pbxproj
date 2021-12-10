@@ -17,8 +17,9 @@
 		632214562747A2B8003E330D /* EntityDelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632214552747A2B8003E330D /* EntityDelHelper.swift */; };
 		634EB9CD276096D300A53917 /* LashViewAllType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9CC276096D300A53917 /* LashViewAllType.swift */; };
 		634EB9CF2761D96B00A53917 /* StoreRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9CE2761D96B00A53917 /* StoreRecordViewController.swift */; };
-		634EB9D22762063100A53917 /* StoreMoney+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9D02762063100A53917 /* StoreMoney+CoreDataClass.swift */; };
-		634EB9D32762063100A53917 /* StoreMoney+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9D12762063100A53917 /* StoreMoney+CoreDataProperties.swift */; };
+		634EB9D52762F5C800A53917 /* StoreRecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9D42762F5C800A53917 /* StoreRecordController.swift */; };
+		634EB9DC2763563500A53917 /* CustomerDiscount+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9DA2763563500A53917 /* CustomerDiscount+CoreDataClass.swift */; };
+		634EB9DD2763563500A53917 /* CustomerDiscount+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EB9DB2763563500A53917 /* CustomerDiscount+CoreDataProperties.swift */; };
 		635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */; };
 		635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */; };
 		636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F34712750887700444DC9 /* OrderRecordModel.swift */; };
@@ -36,8 +37,6 @@
 		63AA685D27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */; };
 		63ADE6C62759B447002D1D6E /* DefaultDbDataChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6C52759B447002D1D6E /* DefaultDbDataChecker.swift */; };
 		63ADE6C82759C536002D1D6E /* DiscountRuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */; };
-		63ADE6CF275A1103002D1D6E /* CustomerDiscount+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6CD275A1103002D1D6E /* CustomerDiscount+CoreDataClass.swift */; };
-		63ADE6D0275A1103002D1D6E /* CustomerDiscount+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6CE275A1103002D1D6E /* CustomerDiscount+CoreDataProperties.swift */; };
 		63ADE6D3275F3759002D1D6E /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6D1275F3759002D1D6E /* Order+CoreDataClass.swift */; };
 		63ADE6D4275F3759002D1D6E /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6D2275F3759002D1D6E /* Order+CoreDataProperties.swift */; };
 		63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870827439F6800B4A1E3 /* LashOrderController.swift */; };
@@ -112,8 +111,9 @@
 		632214552747A2B8003E330D /* EntityDelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDelHelper.swift; sourceTree = "<group>"; };
 		634EB9CC276096D300A53917 /* LashViewAllType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashViewAllType.swift; sourceTree = "<group>"; };
 		634EB9CE2761D96B00A53917 /* StoreRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRecordViewController.swift; sourceTree = "<group>"; };
-		634EB9D02762063100A53917 /* StoreMoney+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreMoney+CoreDataClass.swift"; sourceTree = "<group>"; };
-		634EB9D12762063100A53917 /* StoreMoney+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreMoney+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		634EB9D42762F5C800A53917 /* StoreRecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRecordController.swift; sourceTree = "<group>"; };
+		634EB9DA2763563500A53917 /* CustomerDiscount+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerDiscount+CoreDataClass.swift"; sourceTree = "<group>"; };
+		634EB9DB2763563500A53917 /* CustomerDiscount+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerDiscount+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderViewController.swift; sourceTree = "<group>"; };
 		635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderViewController.swift; sourceTree = "<group>"; };
 		636F34712750887700444DC9 /* OrderRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordModel.swift; sourceTree = "<group>"; };
@@ -131,8 +131,6 @@
 		63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscountRule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63ADE6C52759B447002D1D6E /* DefaultDbDataChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDbDataChecker.swift; sourceTree = "<group>"; };
 		63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountRuleType.swift; sourceTree = "<group>"; };
-		63ADE6CD275A1103002D1D6E /* CustomerDiscount+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerDiscount+CoreDataClass.swift"; sourceTree = "<group>"; };
-		63ADE6CE275A1103002D1D6E /* CustomerDiscount+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerDiscount+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63ADE6D1275F3759002D1D6E /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63ADE6D2275F3759002D1D6E /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63B3870827439F6800B4A1E3 /* LashOrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderController.swift; path = ../../../../../.Trash/LashOrderController.swift; sourceTree = "<group>"; };
@@ -242,6 +240,7 @@
 				636F3473275089FD00444DC9 /* OrderRecordController.swift */,
 				636F34712750887700444DC9 /* OrderRecordModel.swift */,
 				634EB9CE2761D96B00A53917 /* StoreRecordViewController.swift */,
+				634EB9D42762F5C800A53917 /* StoreRecordController.swift */,
 			);
 			name = OrderRecord;
 			sourceTree = "<group>";
@@ -302,7 +301,6 @@
 		63CD4F3327312D340085BD4C /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				63E36724274384D000FCCA77 /* BaseOrderController.swift */,
 				635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */,
 				63B3870827439F6800B4A1E3 /* LashOrderController.swift */,
 				63B3870927439F6800B4A1E3 /* LashOrderModel.swift */,
@@ -325,12 +323,10 @@
 		63CD4F38273368220085BD4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				634EB9D02762063100A53917 /* StoreMoney+CoreDataClass.swift */,
-				634EB9D12762063100A53917 /* StoreMoney+CoreDataProperties.swift */,
+				634EB9DA2763563500A53917 /* CustomerDiscount+CoreDataClass.swift */,
+				634EB9DB2763563500A53917 /* CustomerDiscount+CoreDataProperties.swift */,
 				63ADE6D1275F3759002D1D6E /* Order+CoreDataClass.swift */,
 				63ADE6D2275F3759002D1D6E /* Order+CoreDataProperties.swift */,
-				63ADE6CD275A1103002D1D6E /* CustomerDiscount+CoreDataClass.swift */,
-				63ADE6CE275A1103002D1D6E /* CustomerDiscount+CoreDataProperties.swift */,
 				63AA685A27576C2A00BD929B /* DiscountRule+CoreDataClass.swift */,
 				63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */,
 				637EA9D2275612F800C1DBE1 /* ProductLashBott+CoreDataClass.swift */,
@@ -427,6 +423,7 @@
 				63CD4F2E2730E9E40085BD4C /* Observable.swift */,
 				6317345A27422F9D00435552 /* BaseAlertViewController.swift */,
 				636F347527508AB100444DC9 /* BaseSearchController.swift */,
+				63E36724274384D000FCCA77 /* BaseOrderController.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -635,6 +632,7 @@
 				635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */,
 				63ADE6C62759B447002D1D6E /* DefaultDbDataChecker.swift in Sources */,
 				63ADE6D4275F3759002D1D6E /* Order+CoreDataProperties.swift in Sources */,
+				634EB9DD2763563500A53917 /* CustomerDiscount+CoreDataProperties.swift in Sources */,
 				63ADE6D3275F3759002D1D6E /* Order+CoreDataClass.swift in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
 				63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */,
@@ -643,16 +641,15 @@
 				637EA9CD2755B5B700C1DBE1 /* ProductType+CoreDataProperties.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
 				637EA9D8275612F800C1DBE1 /* ProductLashTop+CoreDataClass.swift in Sources */,
-				634EB9D32762063100A53917 /* StoreMoney+CoreDataProperties.swift in Sources */,
 				63F73FDD27425239007DC0BC /* OrderEntityType.swift in Sources */,
 				63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */,
-				63ADE6CF275A1103002D1D6E /* CustomerDiscount+CoreDataClass.swift in Sources */,
 				63CA9CB0275482D400051F7A /* BillCheckModel.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
 				63D88BF62741FC2100665728 /* PayMethod+CoreDataProperties.swift in Sources */,
 				63D88BE4273E04B600665728 /* KeratinOrderModel.swift in Sources */,
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
 				635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */,
+				634EB9DC2763563500A53917 /* CustomerDiscount+CoreDataClass.swift in Sources */,
 				632214562747A2B8003E330D /* EntityDelHelper.swift in Sources */,
 				A1A2B133272A852E00943C9E /* RecordMainViewController.swift in Sources */,
 				637EA9D6275612F800C1DBE1 /* ProductLashBott+CoreDataClass.swift in Sources */,
@@ -668,6 +665,7 @@
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				634EB9CF2761D96B00A53917 /* StoreRecordViewController.swift in Sources */,
+				634EB9D52762F5C800A53917 /* StoreRecordController.swift in Sources */,
 				637EA9C82754A18700C1DBE1 /* Customer+CoreDataClass.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
 				636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */,
@@ -677,9 +675,7 @@
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
 				63D88BF52741FC2100665728 /* PayMethod+CoreDataClass.swift in Sources */,
-				634EB9D22762063100A53917 /* StoreMoney+CoreDataClass.swift in Sources */,
 				637EA9D9275612F800C1DBE1 /* ProductLashTop+CoreDataProperties.swift in Sources */,
-				63ADE6D0275A1103002D1D6E /* CustomerDiscount+CoreDataProperties.swift in Sources */,
 				63AA685D27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift in Sources */,
 				63E3672227425E8900FCCA77 /* ProductKeratin+CoreDataClass.swift in Sources */,
 				63CD4F672734E04B0085BD4C /* EntityNameDefine.swift in Sources */,

@@ -290,7 +290,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 }
                 //
                 let allServicesStr = orderForDemo.services
-                let allServices = allServicesStr.components(separatedBy: LashListType.prefix.rawValue)
+                let allServices = allServicesStr.components(separatedBy: LashListTypePrefix)
                 let topLashSelected: Bool = allServices.contains(LashListType.topAndBott.rawValue) || allServices.contains(LashListType.topLash.rawValue) || allServices.contains(LashListType.addTopLash.rawValue)
                 let bottLashSelected: Bool = allServices.contains(LashListType.bottLash.rawValue) || allServices.contains(LashListType.topAndBott.rawValue)
                 self?.controller.setLastEnable(isTopEnable: topLashSelected, isBottEnable: bottLashSelected)

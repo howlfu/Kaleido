@@ -51,7 +51,7 @@ class OrderRecordViewController: BaseViewController {
             if !self.viewModel.didSelectTimePicker {
                 birth = ""
             }
-            controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
+            controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth, getType: self.viewModel.btnDestination)
         }
     }
     
@@ -112,6 +112,11 @@ class OrderRecordViewController: BaseViewController {
             let keratinOrderVC = segue.destination as! KeratinOrderViewController
             keratinOrderVC.setOrderInfoForDemo(data: self.viewModel.toDemoOrder ?? Order())
         }
+        
+        if segue.destination is StoreRecordViewController {
+            let storeRecordVC = segue.destination as! StoreRecordViewController
+            storeRecordVC.setOrderInfo(data: self.viewModel.toDemoOrder ?? Order())
+        }
     }
 }
 
@@ -154,15 +159,15 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     @IBAction func handleDoubleTap(_ sender: Any){
+        let foundOrders = viewModel.customerOders.value
+        guard let index = self.orderListTableView.indexPathForSelectedRow else {
+            return
+        }
+        let order = foundOrders[index.row]
+        let isKeratin = order.service_content == "角蛋白"
+        self.viewModel.toDemoOrder = order
         switch  self.viewModel.btnDestination {
         case .order, .none:
-            let foundOrders = viewModel.customerOders.value
-            guard let index = self.orderListTableView.indexPathForSelectedRow else {
-                return
-            }
-            let order = foundOrders[index.row]
-            let isKeratin = order.service_content == "角蛋白"
-            self.viewModel.toDemoOrder = order
             if isKeratin {
                 performSegue(withIdentifier: "toShowKeratinOrder", sender: self)
             } else {
@@ -170,7 +175,6 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
             }
         case .store:
             performSegue(withIdentifier: "toShowStoreDetail", sender: self)
-            print("")
         }
     }
 }
