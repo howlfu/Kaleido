@@ -318,6 +318,15 @@ class EntityGetHelper {
         return retCustDisc[0]
     }
     
+    public func getCustomerDiscount(orderId: Int32) -> CustomerDiscount?{
+        let rule = "order_id='\(orderId)'"
+        let retCustDisc: [CustomerDiscount] = getCustomerDiscount(rule: rule)
+        if retCustDisc.count != 1 {
+            return nil
+        }
+        return retCustDisc[0]
+    }
+    
     public func getCustomerDiscount(uId: Int32) -> [CustomerDiscount]?{
         let rule = "user_id='\(uId)'"
         let retCustDisc: [CustomerDiscount] = getCustomerDiscount(rule: rule)

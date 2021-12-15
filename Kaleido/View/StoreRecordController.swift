@@ -18,6 +18,14 @@ class StoreRecordController {
         return entityGetter.getCustomer(id: orderData.user_id)
     }
     
+    public func getCustomDiscountRule(orderId: Int32) -> CustomerDiscount? {
+        return entityGetter.getCustomerDiscount(orderId: orderId)
+    }
+    
+    public func getDiscountRule(ruleId: Int16) -> DiscountRule? {
+        return entityGetter.getDiscountRule(id: ruleId)
+    }
+    
     public func getOrderData() -> Order? {
         return orderData
     }

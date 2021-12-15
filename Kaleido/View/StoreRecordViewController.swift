@@ -24,18 +24,19 @@ class StoreRecordViewController: BaseViewController {
         priceText.layer.cornerRadius = BigBtnCornerRadius
         storeMoney.layer.cornerRadius = BigBtnCornerRadius
         payMethod.layer.cornerRadius = BigBtnCornerRadius
-        guard let orderData = self.controller.getOrderData(), let customerData = self.controller.getCustomerData() else {
+        guard let orderData = self.controller.getOrderData(),
+              let customerData = self.controller.getCustomerData(),
+              let custDiscountRule = self.controller.getCustomDiscountRule(orderId: orderData.id),
+              let ruleDetail = self.controller.getDiscountRule(ruleId: custDiscountRule.rule_id)
+        else {
             return
         }
         
-        guard let customerData = self.controller.getCustomerData() else {
-            return
-        }
         self.nameText.text = customerData.full_name
         if let orderDate = orderData.created_at {
             self.datePicker.setDate(orderDate, animated: true)
         }
-        self.storeMoney.text = String(orderData.store_money)
+        self.storeMoney.text = String(ruleDetail.total)
         self.priceText.text = String(orderData.total_price)
         self.payMethod.text = orderData.pay_method
         
