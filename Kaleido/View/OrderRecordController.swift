@@ -51,13 +51,12 @@ class OrderRecordController: BaseSearchController {
         }
         var retOrderArr:[Order] = []
         for storeRecord in allStoreRecords {
-            let ruleId = storeRecord.rule_id
+            let orderId = storeRecord.order_id
+            if let orderDetail = entityGetter.getOrder(id: orderId) {
+                retOrderArr.append(orderDetail)
+            }
         }
-       
-//        for order in allOrder {
-//            if order.store_money > 0
-//        }
-        return []
+        return retOrderArr
         
     }
     

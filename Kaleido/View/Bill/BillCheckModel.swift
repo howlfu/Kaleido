@@ -13,4 +13,5 @@ class BillCheckModel {
     var discountRule : [DiscountRule]?
     var selectedDiscountRuleId : Int16?
     var currentProfit : Int16?
+    var customerDiscountId: Int64?
 }

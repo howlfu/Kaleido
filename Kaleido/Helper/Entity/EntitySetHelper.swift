@@ -199,6 +199,18 @@ class EntitySetHelper {
         return true
     }
     
+    public func updateCustomerDiscount(id: Int64, orderId: Int32) -> Bool {
+        guard let custDisc: CustomerDiscount = getHelper.getCustomerDiscount(id: id) else {
+            return false
+        }
+        //update other when get uniq customer
+        custDisc.order_id = orderId
+        if !crudService.saveData(){
+            return false
+        }
+        return true
+    }
+    
     public func createProductType(refId: Int32, name: String) -> Int64? {
         guard getHelper.getProductType(refId: refId, name: name) == nil else {
             return nil

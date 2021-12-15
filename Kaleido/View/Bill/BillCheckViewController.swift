@@ -38,7 +38,10 @@ class BillCheckViewController: BaseViewController {
             savedOrderTmp.pay_method = self.controller.getPayMethodName()
             savedOrderTmp.store_money = remainStoredMoney
             savedOrderTmp.total_price = Int16(self.priceText.text!) ?? 0
-            self.controller.setOrderToDb(detail: savedOrderTmp)
+            let orderId = self.controller.setOrderToDb(detail: savedOrderTmp)
+            if let custDiscount = self.viewModel.customerDiscountId {
+                self.controller.updateCustomerDiscount(id: custDiscount, orderId: orderId)
+            }
             self.navigationController?.popToRootViewController(animated: false)
         })
     }

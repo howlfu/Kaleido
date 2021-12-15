@@ -27,8 +27,9 @@ class BillCheckController {
         self.viewModel.orderOfCustomer = detail
     }
     
-    public func setOrderToDb(detail: OrderEntityType) {
+    public func setOrderToDb(detail: OrderEntityType) -> Int32{
         let orderId = entitySetter.createOrder(uId: detail.user_id, prodId: detail.product_id, services: detail.services, storeMoney: detail.store_money, totalPrice: detail.total_price, income: detail.income, doer: detail.doer, note: detail.note, payMethod: detail.pay_method, date: detail.created_date)
+        return orderId
     }
     
     public func getPayMethod() -> [String : Double] {
@@ -75,6 +76,10 @@ class BillCheckController {
         return retArr
     }
     
+    public func updateCustomerDiscount(id: Int64, orderId: Int32) {
+        let _ = entitySetter.updateCustomerDiscount(id: id, orderId: orderId)
+    }
+    
     private func storeCustomerDiscountRuleToDb(ruleId: Int16) -> Int64? {
         guard let orderTmp = self.viewModel.orderOfCustomer else {return nil}
         return entitySetter.createCustomerDiscount(uId: orderTmp.user_id, ruleId: ruleId)
@@ -104,8 +109,8 @@ class BillCheckController {
                 return 0
             }
         let cId = orderTmp.user_id
-        if let selectedRule = self.viewModel.selectedDiscountRuleId{
-            let _ = storeCustomerDiscountRuleToDb(ruleId: selectedRule)
+        if let selectedRule = self.viewModel.selectedDiscountRuleId, shouldSave{
+            self.viewModel.customerDiscountId = storeCustomerDiscountRuleToDb(ruleId: selectedRule)
         }
         let allSDiscountOfCustomer = entityGetter.getCustomerDiscount(withMoneyLeft: cId)
         if allSDiscountOfCustomer.count > 0 {
