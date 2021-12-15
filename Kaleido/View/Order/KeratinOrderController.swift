@@ -60,6 +60,6 @@ class KeratinOrderController: BaseOrderController {
     }
     
     public func doDemoUpdate() {
-        self.viewModel.demoOnly.value = true
+        self.viewModel.demoOnly = true
     }
 }

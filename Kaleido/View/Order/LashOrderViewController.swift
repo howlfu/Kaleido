@@ -44,7 +44,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func addNewAct(_ sender: Any) {
-        if viewModel.demoOnly.value {
+        if viewModel.demoOnly {
             prsentNormalAlert(msg: "修改訂單", btn: "確定", viewCTL: self, completion: {
                 var tmpOrder = self.viewModel.orderOfCustomer
                 tmpOrder.created_date = self.datePicker.date
@@ -237,9 +237,6 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         typePicker.delegate = self
         typePicker.dataSource = self
         
-        if self.viewModel.orderOfCustomer.product_id > 0{
-            self.controller.doDemoUpdate()
-        }
         let tabBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
        tabBackgroundGesture.numberOfTapsRequired = 1
        self.view.addGestureRecognizer(tabBackgroundGesture)
@@ -278,59 +275,6 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             self!.topLashText3.text = currentLashData.text3
             self!.topLashText4.text = currentLashData.text4
             self!.topLashText5.text = currentLashData.text5
-        }
-        
-        viewModel.demoOnly.addObserver(fireNow: false) {[weak self] (isDemo) in
-            if isDemo {
-                guard
-                    let orderForDemo = self?.viewModel.orderOfCustomer,
-                    let prodType = self?.controller.getProductData(id: orderForDemo.product_id)
-                else {
-                    return
-                }
-                //
-                let allServicesStr = orderForDemo.services
-                let allServices = allServicesStr.components(separatedBy: LashListTypePrefix)
-                let topLashSelected: Bool = allServices.contains(LashListType.topAndBott.rawValue) || allServices.contains(LashListType.topLash.rawValue) || allServices.contains(LashListType.addTopLash.rawValue)
-                let bottLashSelected: Bool = allServices.contains(LashListType.bottLash.rawValue) || allServices.contains(LashListType.topAndBott.rawValue)
-                self?.controller.setLastEnable(isTopEnable: topLashSelected, isBottEnable: bottLashSelected)
-                //customer
-                self?.controller.customerId = orderForDemo.user_id
-                self?.nameText.text = self?.controller.getCustomerName()
-                self?.datePicker.date =  orderForDemo.created_date
-                //order
-                self?.lashTypeText.text = allServicesStr
-                self?.doerTextForPicker.text = orderForDemo.doer
-                var noteText = ""
-                if orderForDemo.note == "" {
-                    noteText = "金額：\(orderForDemo.total_price)"
-                } else {
-                    noteText = orderForDemo.note + "，金額：\(orderForDemo.total_price)"
-                }
-                self?.noteTextField.text = noteText
-                //product
-                switch prodType.name {
-                case EntityNameDefine.productLashTop + "_" + EntityNameDefine.productLashBott:
-                    if let topData = self?.controller.getProductLashTop(id: prodType.ref_id_1) {
-                        self?.setTopData(data: topData)
-                    }
-                    if let bottData = self?.controller.getProductLashBott(id: prodType.ref_id_2) {
-                        self?.setBottData(data: bottData)
-                    }
-                case EntityNameDefine.productLashTop:
-                    if let topData = self?.controller.getProductLashTop(id: prodType.ref_id_1) {
-                        self?.setTopData(data: topData)
-                    }
-                case EntityNameDefine.productLashBott:
-                    if let bottData = self?.controller.getProductLashBott(id: prodType.ref_id_2) {
-                        self?.setBottData(data: bottData)
-                    }
-                default:
-                    print("Product type name incorrect")
-                }
-                //btn
-                self?.newOrderBtn.setTitle("更新", for: .normal)
-            }
         }
     }
     
@@ -461,6 +405,59 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         let lashTypeStr = controller.getLashType()
         lashTypeText.text = lashTypeStr
         self.segmentSwitch.frame.size.width = self.segmentBackground.frame.size.width / 2 + 1
+        if viewModel.demoOnly {
+            demoInit()
+        }
+    }
+    
+    func demoInit() {
+        let orderForDemo = self.viewModel.orderOfCustomer
+        guard let prodType = self.controller.getProductData(id: orderForDemo.product_id)
+        else {
+            return
+        }
+        //
+        let allServicesStr = orderForDemo.services
+        let allServices = allServicesStr.components(separatedBy: LashListTypePrefix)
+        let topLashSelected: Bool = allServices.contains(LashListType.topAndBott.rawValue) || allServices.contains(LashListType.topLash.rawValue) || allServices.contains(LashListType.addTopLash.rawValue)
+        let bottLashSelected: Bool = allServices.contains(LashListType.bottLash.rawValue) || allServices.contains(LashListType.topAndBott.rawValue)
+        self.controller.setLastEnable(isTopEnable: topLashSelected, isBottEnable: bottLashSelected)
+        //customer
+        self.controller.customerId = orderForDemo.user_id
+        self.nameText.text = self.controller.getCustomerName()
+        self.datePicker.date =  orderForDemo.created_date
+        //order
+        self.lashTypeText.text = allServicesStr
+        self.doerTextForPicker.text = orderForDemo.doer
+        var noteText = ""
+        if orderForDemo.note == "" {
+            noteText = "金額：\(orderForDemo.total_price)"
+        } else {
+            noteText = orderForDemo.note + "，金額：\(orderForDemo.total_price)"
+        }
+        self.noteTextField.text = noteText
+        //product
+        switch prodType.name {
+        case EntityNameDefine.productLashTop + "_" + EntityNameDefine.productLashBott:
+            if let topData = self.controller.getProductLashTop(id: prodType.ref_id_1) {
+                self.setTopData(data: topData)
+            }
+            if let bottData = self.controller.getProductLashBott(id: prodType.ref_id_2) {
+                self.setBottData(data: bottData)
+            }
+        case EntityNameDefine.productLashTop:
+            if let topData = self.controller.getProductLashTop(id: prodType.ref_id_1) {
+                self.setTopData(data: topData)
+            }
+        case EntityNameDefine.productLashBott:
+            if let bottData = self.controller.getProductLashBott(id: prodType.ref_id_2) {
+                self.setBottData(data: bottData)
+            }
+        default:
+            print("Product type name incorrect")
+        }
+        //btn
+        self.newOrderBtn.setTitle("更新", for: .normal)
     }
     
     public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {
@@ -468,6 +465,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     public func setOrderInfoForDemo(data: Order) {
+        self.controller.doDemoUpdate()
         self.controller.setOrderForDemo(data: data)
     }
     

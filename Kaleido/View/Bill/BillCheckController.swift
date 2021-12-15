@@ -11,6 +11,7 @@ class BillCheckController {
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     lazy var entitySetter: EntitySetHelper = EntitySetHelper(entity: entitySerice, get: entityGetter)
+    lazy var entityDeleter: EntityDelHelper = EntityDelHelper(entity: entitySerice, get: entityGetter)
     let defaultDbChecker = DefaultDbDataChecker()
     init(
         viewModel: BillCheckModel = BillCheckModel()
@@ -85,6 +86,13 @@ class BillCheckController {
         return entitySetter.createCustomerDiscount(uId: orderTmp.user_id, ruleId: ruleId)
     }
     
+    private func removeCustomerDiscountFromDb(id: Int64) {
+        guard let target = entityGetter.getCustomerDiscount(id: id) else {
+            return
+        }
+        entityDeleter.deleteCustomerDiscount(id: target.id)
+    }
+    
     private func getDiscountRuleRatio(ruleId: Int16) -> Double{
         guard let ruleDetail = entityGetter.getDiscountRule(id: ruleId) else {
             return 0
@@ -109,7 +117,7 @@ class BillCheckController {
                 return 0
             }
         let cId = orderTmp.user_id
-        if let selectedRule = self.viewModel.selectedDiscountRuleId, shouldSave{
+        if let selectedRule = self.viewModel.selectedDiscountRuleId {
             self.viewModel.customerDiscountId = storeCustomerDiscountRuleToDb(ruleId: selectedRule)
         }
         let allSDiscountOfCustomer = entityGetter.getCustomerDiscount(withMoneyLeft: cId)
@@ -128,24 +136,27 @@ class BillCheckController {
                     profit += Int16(Double(customerDiscount.remain_money) * storeRuleRatio)
                     saveBackMoney = 0
                 }
-                if shouldSave {
-                    let _ = entitySetter.updateCustomerDiscount(id: customerDiscount.id, remain: saveBackMoney)
-                }
+                let _ = entitySetter.updateCustomerDiscount(id: customerDiscount.id, remain: saveBackMoney)
                 if souldDoneCal {
                     break
                 }
             }
         }
         
-        if price > 0 && !shouldSave{
-            if let selectedRule = self.viewModel.selectedDiscountRuleId {
-                let storeMoneyThisTime = self.getDiscountRuleValue(ruleId: selectedRule)
-                if storeMoneyThisTime > price {
-                    let _ = storeMoneyThisTime - price
-                    price = 0
-                } else {
-                    price = price - storeMoneyThisTime
-                }
+//        if price > 0 && !shouldSave{
+//            if let selectedRule = self.viewModel.selectedDiscountRuleId {
+//                let storeMoneyThisTime = self.getDiscountRuleValue(ruleId: selectedRule)
+//                if storeMoneyThisTime > price {
+//                    let _ = storeMoneyThisTime - price
+//                    price = 0
+//                } else {
+//                    price = price - storeMoneyThisTime
+//                }
+//            }
+//        }
+        if !shouldSave {
+            if let deleteId = self.viewModel.customerDiscountId {
+                removeCustomerDiscountFromDb(id: deleteId)
             }
         }
         let methodRatio = self.getPayMethodRatio()

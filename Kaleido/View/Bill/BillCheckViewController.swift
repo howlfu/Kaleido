@@ -22,10 +22,9 @@ class BillCheckViewController: BaseViewController {
             view.endEditing(true)
     }
     @IBAction func saveBtnAct(_ sender: Any) {
-
-        let price = controller.getCalcResult(price: self.priceText.text!, shouldSave: true)
         let profit = controller.getProfit()
         prsentNormalAlert(msg: "本次收益：\(profit)", btn: "確定", viewCTL: self, completion: {
+            _ = self.controller.getCalcResult(price: self.priceText.text!, shouldSave: true)
             guard var savedOrderTmp = self.viewModel.orderOfCustomer else {
                 print("Temporary order data not exist")
                 return

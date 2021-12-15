@@ -32,7 +32,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         else{
             return
         }
-        if viewModel.demoOnly.value {
+        if viewModel.demoOnly {
             prsentNormalAlert(msg: "修改訂單", btn: "確定", viewCTL: self, completion: {
         
                 guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
@@ -65,6 +65,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     }
     
     public func setOrderInfoForDemo(data: Order) {
+        self.controller.doDemoUpdate()
         self.controller.setOrderForDemo(data: data)
     }
     
@@ -72,40 +73,9 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         typeForPicker.delegate = self
         typeForPicker.inputView = typePicker
         
-        if self.viewModel.orderOfCustomer.product_id > 0{
-            self.controller.doDemoUpdate()
-        }
-        
         viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
             DispatchQueue.main.async {
                 self?.typePicker.reloadAllComponents()
-            }
-        }
-        
-        viewModel.demoOnly.addObserver(fireNow: false) {[weak self] (isDemo) in
-            if isDemo {
-                guard
-                    let orderForDemo = self?.viewModel.orderOfCustomer,
-                    let prodType = self?.controller.getProductData(id: orderForDemo.product_id)
-                else {
-                    return
-                }
-                //customer
-                self?.controller.customerId = orderForDemo.user_id
-                self?.nameText.text = self?.controller.getCustomerName()
-                self?.datePicker.date =  orderForDemo.created_date
-                //order
-                self?.noteText.text = orderForDemo.note + "，金額：\(orderForDemo.total_price)"
-                if prodType.name == EntityNameDefine.productKeratin {
-                    guard let keratinData = self?.controller.getKeratinOrder(id: prodType.ref_id_1) else {
-                        return
-                    }
-                    self?.typeForPicker.text = keratinData.type
-                    self?.softTime.text = String(keratinData.soft_time)
-                    self?.colorTime.text = String(keratinData.color_time)
-                    self?.stableTime.text = String(keratinData.stable_time)
-                }
-                self?.newOrderBtn.setTitle("更新", for: .normal)
             }
         }
         
@@ -125,12 +95,39 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         datePickerBackground.layer.cornerRadius = textFieldCornerRadius
         let name = controller.getCustomerName()
         nameText.text = name
+        if self.viewModel.demoOnly {
+            demoInit()
+        }
     }
     override func removeBinding() {
         viewModel.pickItemList.removeObserver()
         typeForPicker.delegate = nil
         typePicker.delegate = nil
         typePicker.dataSource = nil
+    }
+    
+    func demoInit() {
+        let orderForDemo = self.viewModel.orderOfCustomer
+        guard let prodType = self.controller.getProductData(id: orderForDemo.product_id)
+        else {
+            return
+        }
+        //customer
+        self.controller.customerId = orderForDemo.user_id
+        self.nameText.text = self.controller.getCustomerName()
+        self.datePicker.date =  orderForDemo.created_date
+        //order
+        self.noteText.text = orderForDemo.note + "，金額：\(orderForDemo.total_price)"
+        if prodType.name == EntityNameDefine.productKeratin {
+            guard let keratinData = self.controller.getKeratinOrder(id: prodType.ref_id_1) else {
+                return
+            }
+            self.typeForPicker.text = keratinData.type
+            self.softTime.text = String(keratinData.soft_time)
+            self.colorTime.text = String(keratinData.color_time)
+            self.stableTime.text = String(keratinData.stable_time)
+        }
+        self.newOrderBtn.setTitle("更新", for: .normal)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
