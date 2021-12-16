@@ -47,7 +47,36 @@ class BindingViewController: BaseViewController {
                 return
             }
         }
-        
+        let tapAdd = UITapGestureRecognizer(target: self, action: #selector(handleTapAdd))
+        tapAdd.numberOfTapsRequired = 1
+        addIcon.addGestureRecognizer(tapAdd)
+    }
+    
+    @objc func handleTapAdd(_ gesture:UITapGestureRecognizer){
+        let keyVal = self.keyData.text!
+        let valVal = self.valueData.text!
+        if let showType: otherViewBtnDestType = self.viewModel.segueFromOtherViewType {
+            switch showType {
+            case .discount:
+                guard let total = Int16(keyVal), let add = Int16(valVal) else {
+                    return
+                }
+                controller.addDiscountRule(name: String(keyVal), total: total, addData: add)
+                self.controller.initDiscountTableList()
+            case .payMethod:
+                guard keyVal != "",
+                      valVal != "" else{
+                          return
+                      }
+                guard let percentage = Double(valVal) else {
+                    return
+                }
+                controller.addPayMethod(name: keyVal, percentage: percentage)
+                self.controller.initPayMethodTableList()
+            default:
+                print("")
+            }
+        }
     }
     
     override func initView() {
