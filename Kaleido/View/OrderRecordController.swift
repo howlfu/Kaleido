@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum OrderRecordView {
-    case order
-    case store
-}
-
 class OrderRecordController: BaseSearchController {
     let viewModel: OrderRecordModel
     init(
@@ -20,14 +15,14 @@ class OrderRecordController: BaseSearchController {
         self.viewModel = viewModel
     }
     
-    var setNextDest: OrderRecordView? {
+    var setNextDest: otherViewBtnDestType? {
         didSet {
             self.viewModel.btnDestination = self.setNextDest
         }
 
     }
     
-    public func tryGetDataFromDb(name: String, phone: String, birthday: String, getType: OrderRecordView?) {
+    public func tryGetDataFromDb(name: String, phone: String, birthday: String, getType: otherViewBtnDestType?) {
         let customerDetail = self.getCustomerFromDb(name: name, phone: phone, birthday: birthday)
         guard customerDetail.count == 1 else {
             return
@@ -42,6 +37,8 @@ class OrderRecordController: BaseSearchController {
         case .store:
             let orders = self.getStoreMoneyOrder(cId: cId)
             self.viewModel.customerOders.value = orders
+        default:
+            return
         }
     }
     

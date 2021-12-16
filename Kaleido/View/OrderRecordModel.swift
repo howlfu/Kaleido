@@ -13,5 +13,5 @@ class OrderRecordModel {
     var toDemoOrder: Order?
     var didSelectTimePicker: Bool = false
     var selectedCustomerId: Int32?
-    var btnDestination: OrderRecordView?
+    var btnDestination: otherViewBtnDestType?
 }

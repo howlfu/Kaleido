@@ -37,7 +37,7 @@ class OrderRecordViewController: BaseViewController {
     var viewModel: OrderRecordModel {
         return controller.viewModel
     }
-    public func setNextDest(viewType: OrderRecordView) {
+    public func setNextDest(viewType: otherViewBtnDestType) {
         self.viewModel.btnDestination = viewType
     }
     private func tryGetCustomerData() {
@@ -175,6 +175,8 @@ extension OrderRecordViewController: UITableViewDataSource, UITableViewDelegate 
             }
         case .store:
             performSegue(withIdentifier: "toShowStoreDetail", sender: self)
+        default:
+            return
         }
     }
 }

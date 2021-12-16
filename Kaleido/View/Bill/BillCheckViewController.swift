@@ -90,6 +90,7 @@ class BillCheckViewController: BaseViewController {
     }
     
     override func initBinding() {
+        super.initBinding()
         savedText.inputView = self.typePicker
         typePicker.delegate = self
         typePicker.dataSource = self

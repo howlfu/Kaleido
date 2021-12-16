@@ -6,6 +6,14 @@
 //
 
 import UIKit
+
+enum otherViewBtnDestType {
+    case order
+    case store
+    case payMethod
+    case discount
+}
+
 class OtherMainViewController: BaseViewController {
     
     @IBOutlet weak var titleView: UIView!
@@ -20,7 +28,7 @@ class OtherMainViewController: BaseViewController {
     @IBOutlet weak var storedBackground: UIView!
     @IBOutlet weak var orderListBtn: UIButton!
     @IBOutlet weak var orderListBackground: UIView!
-    var nextViewBtnDest: OrderRecordView?
+    var nextViewBtnDest: otherViewBtnDestType?
     @IBAction func orderRecordBtnAct(_ sender: Any) {
         nextViewBtnDest = .order
         performSegue(withIdentifier: "toOderRecordView", sender: self)
@@ -29,7 +37,16 @@ class OtherMainViewController: BaseViewController {
         nextViewBtnDest = .store
         performSegue(withIdentifier: "toOderRecordView", sender: self)
     }
+    @IBAction func discountBindingAct(_ sender: Any) {
+        nextViewBtnDest = .discount
+        performSegue(withIdentifier: "toBindingView", sender: self)
+    }
+    @IBAction func payMethodBindingAct(_ sender: Any) {
+        nextViewBtnDest = .payMethod
+        performSegue(withIdentifier: "toBindingView", sender: self)
+    }
     override func initView() {
+        super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
         lashDoerBtn.layer.cornerRadius = BigBtnCornerRadius
         lashDoerBtn.layer.borderColor = UIColor.black.cgColor
@@ -54,12 +71,15 @@ class OtherMainViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dest = self.nextViewBtnDest else {
+            return
+        }
         if segue.destination is OrderRecordViewController {
             let lashRecordVC = segue.destination as! OrderRecordViewController
-            guard let dest = self.nextViewBtnDest else {
-                return
-            }
             lashRecordVC.setNextDest(viewType: dest)
+        } else if segue.destination is BindingViewController {
+            let bindingVC = segue.destination as! BindingViewController
+            bindingVC.setObjectType(typeData: dest)
         }
     }
 }

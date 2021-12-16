@@ -140,7 +140,9 @@ class EntitySetHelper {
     }
     
     public func createDiscountRule(name: String, total: Int16, ratio: Double, add: Int16) -> Int16? {
-
+        guard getHelper.getDiscountRule(name: name, total: total, add: add) == nil else {
+            return nil
+        }
         let entityDiscRule = EntityNameDefine.discountRule
         guard let custDisc: DiscountRule = crudService.addNewToEntity(name: entityDiscRule) else {
             return nil

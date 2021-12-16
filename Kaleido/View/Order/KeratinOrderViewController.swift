@@ -70,6 +70,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     }
     
     override func initBinding() {
+        super.initBinding()
         typeForPicker.delegate = self
         typeForPicker.inputView = typePicker
         
@@ -84,6 +85,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     }
     
     override func initView() {
+        super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
         newOrderBtn.layer.cornerRadius = BigBtnCornerRadius
         noteText.layer.cornerRadius = textFieldCornerRadius

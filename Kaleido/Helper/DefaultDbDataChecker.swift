@@ -30,6 +30,13 @@ class DefaultDbDataChecker {
         return allRule
     }
     
+    public func updateDiscountRule(name: String, total: Int16, add: Int16) {
+        var tmpPayMethod = checkDiscountRule()
+        let ratio = Double(total / (total + add))
+        let _ = entitySetter.createDiscountRule(name: name, total: total, ratio: ratio, add: add
+        )
+    }
+    
     public func checkPayMethod() -> Dictionary<String, Double> {
         let defaultPayMethodRule = [
             "LinePay": 0.0231,
@@ -37,7 +44,7 @@ class DefaultDbDataChecker {
             "信用卡": 0.03
         ]
         let defaultKey = UserDefaultKey.storeRule
-        guard let payMethodRule = UserDefaults.standard.value(forKey: defaultKey) as? Dictionary<String, Double> else {
+        guard let payMethodRule = UserDefaults.standard.value(forKey: defaultKey) as? Dictionary<String, Double>, !payMethodRule.isEmpty else {
             UserDefaults.standard.set(defaultPayMethodRule, forKey: defaultKey)
             return defaultPayMethodRule
         }
@@ -48,6 +55,13 @@ class DefaultDbDataChecker {
         let defaultKey = UserDefaultKey.storeRule
         var tmpPayMethod = checkPayMethod()
         tmpPayMethod[key] = val
+        UserDefaults.standard.set(tmpPayMethod, forKey: defaultKey)
+    }
+    
+    public func deletePayMethod(keyValue: String){
+        let defaultKey = UserDefaultKey.storeRule
+        var tmpPayMethod = checkPayMethod()
+        tmpPayMethod.removeValue(forKey: keyValue)
         UserDefaults.standard.set(tmpPayMethod, forKey: defaultKey)
     }
 }

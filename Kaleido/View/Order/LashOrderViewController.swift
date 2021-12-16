@@ -209,6 +209,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     override func initBinding() {
+        super.initBinding()
         topTypeTextForPicker.delegate = self
         topSizeTextForPicker.delegate = self
         bottSizeTextForPicker.delegate = self
@@ -367,6 +368,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     override func initView() {
         // setup scroll view -- start
+        super.initView()
         let statusBarheight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         self.titleView.frame.size.height = self.titleView.frame.height + statusBarheight
         let titleViewH = self.titleView.frame.height

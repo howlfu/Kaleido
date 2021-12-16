@@ -287,12 +287,12 @@ class EntityGetHelper {
         return retDisRule[0]
     }
     
-    public func getDiscountRule(name: String, total: Int16, ratio: Double, add: Int16) -> DiscountRule?{
+    public func getDiscountRule(name: String, total: Int16, add: Int16) -> DiscountRule?{
         var rule: String = ""
         rule = addPrefAndTagetData(target: name, prefix: "name", rule: rule)
         rule = addPrefAndTagetData(target: String(total), prefix: "total", rule: rule)
         rule = addPrefAndTagetData(target: String(add), prefix: "discount_add", rule: rule)
-        rule = addPrefAndTagetData(target: String(ratio), prefix: "ratio", rule: rule)
+//        rule = addPrefAndTagetData(target: String(ratio), prefix: "ratio", rule: rule)
         
         guard rule != "" else {
             return nil
