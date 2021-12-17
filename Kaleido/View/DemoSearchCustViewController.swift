@@ -16,7 +16,7 @@ class DemoSearchCustViewController: BaseViewController{
     @IBOutlet weak var searchBtn: UIButton!
     
     @IBOutlet weak var birthBackground: UIView!
-    @IBOutlet weak var customsListTableView: UITableView!
+    @IBOutlet weak var orderListTableView: UITableView!
     var viewModel: DemoSearchCustModel {
         return controller.viewModel
     }
@@ -40,7 +40,7 @@ class DemoSearchCustViewController: BaseViewController{
     }
     
     private func tryGetCustomerData() {
-        if nameTextField.hasText || phoneTextField.hasText || self.viewModel.didSelectTimePicker {
+        if nameTextField.hasText || nameTextField.hasText || self.viewModel.didSelectTimePicker {
             guard
                 let name = nameTextField.text,
                 let phone = phoneTextField.text else {
@@ -51,25 +51,6 @@ class DemoSearchCustViewController: BaseViewController{
                 birth = ""
             }
             controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
-        } else {
-            controller.tryGetDataFromDb()
-        }
-    }
-    
-    @IBAction func addNewAct(_ sender: Any)
-    {
-        guard
-            let nameData = nameTextField.text,
-            let phoneData = phoneTextField.text
-        else{
-             return
-        }
-        var birth = datePicker.date.toYearMonthDayStr()
-        if !self.viewModel.didSelectTimePicker {
-            birth = ""
-        }
-        if nameData != "" && phoneData != "" &&  birth != ""{
-            controller.setDataToDb(name: nameData, phone: phoneData, birth: birth)
         }
     }
     
@@ -81,21 +62,29 @@ class DemoSearchCustViewController: BaseViewController{
         nameTextField.layer.cornerRadius = textFieldCornerRadius
         phoneTextField.layer.cornerRadius = textFieldCornerRadius
         birthBackground.layer.cornerRadius = textFieldCornerRadius
-        customsListTableView.separatorStyle = .none
+        orderListTableView.separatorStyle = .none
     }
     
     override func initBinding() {
         super.initBinding()
         self.titleView.addGestureRecognizer(tapTitleView)
-        viewModel.customDataModel.addObserver(fireNow: false) {[weak self] (newCustomsData) in
+        viewModel.customerOders.addObserver(fireNow: false) {[weak self] (newCustomsData) in
             DispatchQueue.main.async {
-                self?.customsListTableView.reloadData()
+                self?.orderListTableView.reloadData()
+            }
+        }
+        viewModel.customerData.addObserver(fireNow: false) {[weak self] (customer) in
+            self?.nameTextField.text = customer.full_name
+            self?.phoneTextField.text = customer.phone_number
+            if let birthStr = customer.birthday, let birthDate = birthStr.toDate() {
+                self?.datePicker.setDate(birthDate, animated: false)
+                self?.viewModel.didSelectTimePicker = true
             }
         }
     }
     
     override func removeBinding() {
-        viewModel.customDataModel.removeObserver()
+        viewModel.customerData.removeObserver()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -114,49 +103,54 @@ extension DemoSearchCustViewController: UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.customsListTableView.delegate = self
-        self.customsListTableView.dataSource = self
+        self.orderListTableView.delegate = self
+        self.orderListTableView.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "demoCustomsListCell", for: indexPath)
-        let nameText : UITextField = cell.contentView.viewWithTag(1) as! UITextField
-        let birthText : UITextField = cell.contentView.viewWithTag(2) as! UITextField
-        let foundCustoms = viewModel.customDataModel.value
-//        let index = foundCustoms.index(foundCustoms.startIndex, offsetBy: indexPath.row)
+        let foundOrders = viewModel.customerOders.value
         let index = indexPath.row
-        
-        let customerDetail = foundCustoms[index]
-        let name = customerDetail.full_name
-        let birth = customerDetail.birthday
-        
-        nameText.text = name
-        birthText.text = birth
+        let order = foundOrders[index]
+        guard let createDate = order.created_at else {
+            return cell
+        }
+        let nameText : UILabel = cell.contentView.viewWithTag(1) as! UILabel
+        nameText.text = createDate.toYearMonthDayStr()
+        //點兩下
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleDoubleTap))
+        doubleTap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(doubleTap)
+        //預設cell backtground color 選成deftault才能控制selectedBackground
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().titleRed)
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
     
+    @IBAction func handleDoubleTap(_ sender: Any){
+        performSegue(withIdentifier: "toDemoMainView", sender: self)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let allTableCellCount = viewModel.customDataModel.value.count
+        let allTableCellCount = viewModel.customerOders.value.count
         return allTableCellCount
     }
     //UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let aCellHightOfViewRadio = 8
-        let cellHight = customsListTableView.frame.height / CGFloat(aCellHightOfViewRadio)
+        let cellHight = orderListTableView.frame.height / CGFloat(aCellHightOfViewRadio)
         return cellHight
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCustomer: Customer = self.viewModel.customDataModel.value[indexPath.row]
-        
+        let selectedCustomer: Customer = self.viewModel.customerData.value
         self.nameTextField.text = selectedCustomer.full_name
         self.phoneTextField.text = selectedCustomer.phone_number
         if let birthStr = selectedCustomer.birthday, let birthDate = birthStr.toDate() {
             self.datePicker.setDate(birthDate, animated: false)
             self.viewModel.didSelectTimePicker = true
         }
-        performSegue(withIdentifier: "toDemoMainView", sender: self)
     }
 }
 

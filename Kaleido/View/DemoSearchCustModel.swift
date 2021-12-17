@@ -7,7 +7,8 @@
 
 import Foundation
 class DemoSearchCustModel {
-    var customDataModel = Observable<[Customer]>(value: [])
+    var customerOders = Observable<[Order]>(value: [])
+    var customerData = Observable<Customer>(value: Customer())
     var didSelectTimePicker: Bool = false
     var selectedCustomerId: Int32?
 }
