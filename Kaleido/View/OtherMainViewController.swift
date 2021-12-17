@@ -70,6 +70,10 @@ class OtherMainViewController: BaseViewController {
         orderListBackground.layer.cornerRadius = BigBtnCornerRadius
     }
     
+    override func initBinding() {
+        self.titleView.addGestureRecognizer(tapTitleView)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let dest = self.nextViewBtnDest else {
             return

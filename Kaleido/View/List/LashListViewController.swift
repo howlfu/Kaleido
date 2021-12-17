@@ -20,6 +20,9 @@ class LashListViewController: BaseViewController{
         listTableView.separatorStyle = .none
         toNextViewBtn.isHidden = true
     }
+    override func initBinding() {
+        self.titleView.addGestureRecognizer(tapTitleView)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is SearchCustomsViewController {

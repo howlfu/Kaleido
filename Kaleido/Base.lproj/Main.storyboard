@@ -289,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="1929" y="847"/>
         </scene>
-        <!--View Controller-->
+        <!--Demo Select Main View Controller-->
         <scene sceneID="bDD-TJ-vkI">
             <objects>
-                <viewController id="UKE-g3-py3" sceneMemberID="viewController">
+                <viewController id="UKE-g3-py3" customClass="DemoSelectMainViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8pB-oQ-pdP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -316,6 +316,9 @@
                         <color key="backgroundColor" red="0.95663744210000001" green="0.93724232910000005" blue="0.93725556139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="kht-X1-XGE"/>
+                    <connections>
+                        <outlet property="titleView" destination="1y1-Mg-sqI" id="IS2-SF-z9R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPN-6m-CKU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

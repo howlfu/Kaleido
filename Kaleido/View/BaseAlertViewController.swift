@@ -8,13 +8,14 @@
 import Foundation
 import UIKit
 
-func prsentNormalAlert(msg: String, btn: String, viewCTL: UIViewController, completion: (() -> Void)? = nil) {
+func prsentNormalAlert(msg: String, btn: String, viewCTL: UIViewController, completion: (() -> Void)? = nil, cancellation: (() -> Void)? = nil) {
     let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     if let generalVC = mainStoryboard.instantiateViewController(withIdentifier: "baseAlert") as? BaseAlertViewController
     {
         generalVC.setUpDetail(msg: msg, btn: btn)
         generalVC.modalPresentationStyle = .overFullScreen
         generalVC.doneCallBack = completion
+        generalVC.cancelCallBack = cancellation
         viewCTL.present(generalVC, animated: false, pushing: false)
     }
 }
@@ -27,7 +28,7 @@ class BaseAlertViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func tabBackground(_ sender: Any) {
-        dismiss(animated: false, completion: nil)
+        dismiss(animated: false, completion: cancelCallBack)
     }
     @IBOutlet weak var alertBackground: UIView!
     @IBOutlet var viewBackground: UIView!
@@ -36,6 +37,7 @@ class BaseAlertViewController: UIViewController, UIGestureRecognizerDelegate {
     var msgTextStr:String = ""
     var btnTitleStr:String = ""
     var doneCallBack: (() -> Void)? = nil
+    var cancelCallBack: (() -> Void)? = nil
     override func viewDidLoad() {
         msgTextField.text = msgTextStr
         btnTextField.setTitle(btnTitleStr, for: .normal)

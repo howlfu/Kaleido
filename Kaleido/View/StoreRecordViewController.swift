@@ -42,6 +42,10 @@ class StoreRecordViewController: BaseViewController {
         
     }
     
+    override func initBinding() {
+        self.titleView.addGestureRecognizer(tapTitleView)
+    }
+    
     public func setOrderInfo(data: Order) {
         self.controller.setOrderInfo(data: data)
     }

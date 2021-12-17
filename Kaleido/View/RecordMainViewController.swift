@@ -21,4 +21,7 @@ class RecordMainViewController: BaseViewController{
         lashBtn.layer.cornerRadius = BigBtnCornerRadius
         keratinBtn.layer.cornerRadius = BigBtnCornerRadius
     }
+    override func initBinding() {
+        self.titleView.addGestureRecognizer(tapTitleView)
+    }
 }

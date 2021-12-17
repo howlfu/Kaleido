@@ -71,6 +71,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     
     override func initBinding() {
         super.initBinding()
+        self.titleView.addGestureRecognizer(tapTitleView)
         typeForPicker.delegate = self
         typeForPicker.inputView = typePicker
         

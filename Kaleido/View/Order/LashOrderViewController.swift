@@ -210,6 +210,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     
     override func initBinding() {
         super.initBinding()
+        self.titleView.addGestureRecognizer(tapTitleView)
         topTypeTextForPicker.delegate = self
         topSizeTextForPicker.delegate = self
         bottSizeTextForPicker.delegate = self
