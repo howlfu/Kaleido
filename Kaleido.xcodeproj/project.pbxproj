@@ -69,6 +69,9 @@
 		63E3672327425E8900FCCA77 /* ProductKeratin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3672127425E8900FCCA77 /* ProductKeratin+CoreDataProperties.swift */; };
 		63E36725274384D000FCCA77 /* BaseOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E36724274384D000FCCA77 /* BaseOrderController.swift */; };
 		63E7746F273B744A00F197AC /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7746E273B744A00F197AC /* UIColorExt.swift */; };
+		63E99F7E276C27970025CE97 /* DemoSearchCustViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F7D276C27970025CE97 /* DemoSearchCustViewController.swift */; };
+		63E99F80276C27DF0025CE97 /* DemoSearchCustController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F7F276C27DF0025CE97 /* DemoSearchCustController.swift */; };
+		63E99F82276C280D0025CE97 /* DemoSearchCustModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F81276C280D0025CE97 /* DemoSearchCustModel.swift */; };
 		63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7CF2739106E00D4C6A8 /* DateExt.swift */; };
 		63F73FDD27425239007DC0BC /* OrderEntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F73FDC27425239007DC0BC /* OrderEntityType.swift */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
@@ -165,6 +168,9 @@
 		63E3672127425E8900FCCA77 /* ProductKeratin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductKeratin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63E36724274384D000FCCA77 /* BaseOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOrderController.swift; sourceTree = "<group>"; };
 		63E7746E273B744A00F197AC /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		63E99F7D276C27970025CE97 /* DemoSearchCustViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSearchCustViewController.swift; sourceTree = "<group>"; };
+		63E99F7F276C27DF0025CE97 /* DemoSearchCustController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSearchCustController.swift; sourceTree = "<group>"; };
+		63E99F81276C280D0025CE97 /* DemoSearchCustModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSearchCustModel.swift; sourceTree = "<group>"; };
 		63F3B7CF2739106E00D4C6A8 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		63F73FDC27425239007DC0BC /* OrderEntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEntityType.swift; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
@@ -384,9 +390,28 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		63E99F7B276C26D50025CE97 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				63E99F7C276C27400025CE97 /* Search */,
+			);
+			name = Demo;
+			sourceTree = "<group>";
+		};
+		63E99F7C276C27400025CE97 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				63E99F7D276C27970025CE97 /* DemoSearchCustViewController.swift */,
+				63E99F7F276C27DF0025CE97 /* DemoSearchCustController.swift */,
+				63E99F81276C280D0025CE97 /* DemoSearchCustModel.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		A120DBD72726917E009B1C7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				63E99F7B276C26D50025CE97 /* Demo */,
 				630C859E274F6372001E6ED7 /* Setting */,
 				A1A2B139272A8A7500943C9E /* Base */,
 				A1A2B131272A84EC00943C9E /* Record */,
@@ -650,6 +675,7 @@
 				63ADE6C82759C536002D1D6E /* DiscountRuleType.swift in Sources */,
 				635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */,
 				63ADE6C62759B447002D1D6E /* DefaultDbDataChecker.swift in Sources */,
+				63E99F7E276C27970025CE97 /* DemoSearchCustViewController.swift in Sources */,
 				63ADE6D4275F3759002D1D6E /* Order+CoreDataProperties.swift in Sources */,
 				638A005C276896EE0055E73B /* CustomerDiscount+CoreDataProperties.swift in Sources */,
 				638A0061276ADF240055E73B /* BindingViewModel.swift in Sources */,
@@ -685,11 +711,13 @@
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				634EB9CF2761D96B00A53917 /* StoreRecordViewController.swift in Sources */,
+				63E99F80276C27DF0025CE97 /* DemoSearchCustController.swift in Sources */,
 				634EB9D52762F5C800A53917 /* StoreRecordController.swift in Sources */,
 				637EA9C82754A18700C1DBE1 /* Customer+CoreDataClass.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
 				636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */,
 				636F3474275089FD00444DC9 /* OrderRecordController.swift in Sources */,
+				63E99F82276C280D0025CE97 /* DemoSearchCustModel.swift in Sources */,
 				63CA9CAE275482AE00051F7A /* BillCheckController.swift in Sources */,
 				63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,

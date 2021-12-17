@@ -90,7 +90,7 @@ class BillCheckController {
         guard let target = entityGetter.getCustomerDiscount(id: id) else {
             return
         }
-        entityDeleter.deleteCustomerDiscount(id: target.id)
+        _ = entityDeleter.deleteCustomerDiscount(id: target.id)
     }
     
     private func getDiscountRuleRatio(ruleId: Int16) -> Double{
