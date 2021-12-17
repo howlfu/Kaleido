@@ -10,8 +10,36 @@ import Photos
 import UIKit
 class DemoSelectMainViewController: BaseViewController {
     @IBOutlet weak var titleView: UIView!
+    @IBOutlet weak var OrderDetail: UITextView!
+    @IBOutlet weak var bindingBtn: UIButton!
+    @IBOutlet weak var demoBtn: UIButton!
+    @IBOutlet weak var favorite: UIButton!
+    @IBAction func bindingAct(_ sender: Any) {
+    }
+    @IBAction func demoAct(_ sender: Any) {
+    }
+    @IBAction func favoriteAct(_ sender: Any) {
+    }
+    var controller: DemoSelectMainController = DemoSelectMainController()
+    
     override func initView() {
         super.initView()
+        titleView.roundedBottRight(radius: titleViewRadius)
+        bindingBtn.layer.cornerRadius = BigBtnCornerRadius
+        demoBtn.layer.cornerRadius = BigBtnCornerRadius
+        favorite.layer.cornerRadius = BigBtnCornerRadius
+        let orderDetail = controller.getOrderData()
+        let orderStr = controller.getOrderInforStr(data: orderDetail)
+        OrderDetail.text = String(orderStr.dropLast(2))
+    }
+    
+    override func initBinding() {
+        super.initBinding()
+        self.tryGetPhotoAuth()
+        self.titleView.addGestureRecognizer(tapTitleView)
+    }
+    
+    func tryGetPhotoAuth() {
         PHPhotoLibrary.requestAuthorization({
             (curStatus) in
             switch curStatus {
@@ -34,11 +62,6 @@ class DemoSelectMainViewController: BaseViewController {
          })
     }
     
-    override func initBinding() {
-        super.initBinding()
-        self.titleView.addGestureRecognizer(tapTitleView)
-    }
-    
     func toGetUserAuthInSettings() {
         prsentNormalAlert(msg: "需要您同意使用照片", btn: "確定", viewCTL: self, completion: {
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString)
@@ -53,5 +76,9 @@ class DemoSelectMainViewController: BaseViewController {
         }, cancellation: {
             self.returnToMainView(self)
         })
+    }
+    
+    public func setOrderInfo(data: Order) {
+        self.controller.setOrderInfo(data: data)
     }
 }

@@ -88,12 +88,14 @@ class DemoSearchCustViewController: BaseViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is KeratinOrderViewController {
-            let keratin = segue.destination as! KeratinOrderViewController
-            guard let customerId = self.viewModel.selectedCustomerId else {
-                return
+        if segue.destination is DemoSelectMainViewController {
+            let demoMainVC = segue.destination as! DemoSelectMainViewController
+            guard let index = self.orderListTableView.indexPathForSelectedRow
+            else {
+                    return
             }
-            keratin.setOrderInfo(cId: customerId)
+            let selectedOrder = self.viewModel.customerOders.value[index.row]
+            demoMainVC.setOrderInfo(data: selectedOrder)
         }
     }
 }

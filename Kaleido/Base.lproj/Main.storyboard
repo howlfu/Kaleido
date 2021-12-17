@@ -295,7 +295,7 @@
                 <viewController id="UKE-g3-py3" customClass="DemoSelectMainViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8pB-oQ-pdP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1y1-Mg-sqI">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -311,18 +311,63 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aI-2r-TAq">
+                                <rect key="frame" x="82" y="429" width="249" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4470651746" green="0.44704735280000002" blue="0.44705945250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="綁定"/>
+                                <connections>
+                                    <action selector="bindingAct:" destination="UKE-g3-py3" eventType="touchUpInside" id="cDI-jH-Gnb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qO-01-5pM">
+                                <rect key="frame" x="82" y="532" width="249" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4470651746" green="0.44704735280000002" blue="0.44705945250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="展示"/>
+                                <connections>
+                                    <action selector="demoAct:" destination="UKE-g3-py3" eventType="touchUpInside" id="S7X-oZ-ZJh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aZ-Aw-amy">
+                                <rect key="frame" x="82" y="636" width="249" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4470651746" green="0.44704735280000002" blue="0.44705945250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="最愛"/>
+                                <connections>
+                                    <action selector="favoriteAct:" destination="UKE-g3-py3" eventType="touchUpInside" id="AVF-qR-cEO"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t4l-YA-tmk">
+                                <rect key="frame" x="32" y="107" width="350" height="277"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="m0E-Wq-6tx"/>
                         <color key="backgroundColor" red="0.95663744210000001" green="0.93724232910000005" blue="0.93725556139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="kht-X1-XGE"/>
                     <connections>
+                        <outlet property="OrderDetail" destination="t4l-YA-tmk" id="9sv-ql-Ehu"/>
+                        <outlet property="bindingBtn" destination="9aI-2r-TAq" id="GZI-wb-pfP"/>
+                        <outlet property="demoBtn" destination="5qO-01-5pM" id="KRY-Tf-ed0"/>
+                        <outlet property="favorite" destination="7aZ-Aw-amy" id="vBC-TZ-ClR"/>
                         <outlet property="titleView" destination="1y1-Mg-sqI" id="IS2-SF-z9R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPN-6m-CKU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="1571"/>
+            <point key="canvasLocation" x="2853.6231884057975" y="1570.9239130434785"/>
         </scene>
         <!--Lash List View Controller-->
         <scene sceneID="jLC-cm-6mh">
@@ -1947,7 +1992,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="搜尋紀錄" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igu-P2-Zik">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="展示搜尋" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igu-P2-Zik">
                                         <rect key="frame" x="127" y="33" width="159" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -2103,7 +2148,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="OUK-aI-ZU7"/>
         <segue reference="0Q0-v2-Fhl"/>
-        <segue reference="dNm-2m-kLA"/>
+        <segue reference="xs0-zO-jpN"/>
         <segue reference="bei-PY-URk"/>
     </inferredMetricsTieBreakers>
     <resources>
