@@ -366,6 +366,50 @@ class EntityGetHelper {
         return self.getDataBase(entity: EntityName, rule: rule)
     }
     
+    public func getPhotoBind(id: Int32) -> PhotoBind? {
+        let rule = "id='\(id)'"
+        let retCustDisc: [PhotoBind] = getPhotoBind(rule: rule)
+        if retCustDisc.count != 1 {
+            return nil
+        }
+        return retCustDisc[0]
+    }
+    
+    public func getPhotoBind(orderId: Int32) -> [PhotoBind]?{
+        let rule = "order_id='\(orderId)'"
+        let retCustDisc: [PhotoBind] = getPhotoBind(rule: rule)
+        return retCustDisc
+    }
+    
+    public func getPhotoBind(uId: Int32) -> [PhotoBind]?{
+        let rule = "user_id='\(uId)'"
+        let retCustDisc: [PhotoBind] = getPhotoBind(rule: rule)
+        return retCustDisc
+    }
+    
+    public func getPhotoBind(uId: Int32, orderId: Int32, path: String) -> PhotoBind?{
+        var rule: String = ""
+        rule = addPrefAndTagetData(target: String(uId), prefix: "user_id", rule: rule)
+        rule = addPrefAndTagetData(target: String(orderId), prefix: "order_id", rule: rule)
+        rule = addPrefAndTagetData(target: path, prefix: "path", rule: rule)
+        
+        guard rule != "" else {
+            return nil
+        }
+        let retCustDiscArr: [PhotoBind] = getPhotoBind(rule: rule)
+        if retCustDiscArr.count != 1 {
+            return nil
+        }
+        return retCustDiscArr[0]
+    }
+    
+    private func getPhotoBind(rule: String) -> [PhotoBind]{
+        let EntityName = EntityNameDefine.photoBind
+        return self.getDataBase(entity: EntityName, rule: rule)
+    }
+    
+    //common function
+    
     private func addPrefAndTagetData(target: String, prefix: String, rule: String) -> String {
         var retRule = ""
         if target != "" {

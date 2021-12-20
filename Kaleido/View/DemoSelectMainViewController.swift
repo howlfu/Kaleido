@@ -81,4 +81,11 @@ class DemoSelectMainViewController: BaseViewController {
     public func setOrderInfo(data: Order) {
         self.controller.setOrderInfo(data: data)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is DemoBindingViewController {
+            let demoMainVC = segue.destination as! DemoBindingViewController
+           
+        }
+    }
 }

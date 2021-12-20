@@ -17,6 +17,7 @@ struct UserDefaultKey{
     static let productType = "productType"
     static let customerDiscount = "customerDiscount"
     static let discountRule = "discountRule"
+    static let photoBind = "photoBind"
     //other
     static let storeRule = "storeRule"
 }

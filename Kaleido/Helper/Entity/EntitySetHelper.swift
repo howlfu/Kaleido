@@ -391,6 +391,38 @@ class EntitySetHelper {
         
     }
     
+    public func createPhotoBind(cId: Int32, orderId: Int32, path:String) -> Int32? {
+        
+        guard getHelper.getPhotoBind(uId: cId, orderId: orderId, path: path) == nil else {
+            return nil
+        }
+        let photoBind = EntityNameDefine.photoBind
+        guard let photoBind: PhotoBind = crudService.addNewToEntity(name: photoBind) else {
+            return nil
+        }
+        let pbId = getIdFromeDefault(by: UserDefaultKey.photoBind)
+        photoBind.id = pbId
+        photoBind.user_id = cId
+        photoBind.order_id = orderId
+        photoBind.path = path
+        photoBind.is_favorite = false
+        photoBind.create_at = Date()
+        let _ = crudService.saveData()
+        return pbId
+    }
+    
+    public func updatePhotoBind(id: Int32, path: String) -> Bool {
+        guard let photoBind: PhotoBind = getHelper.getPhotoBind(id: id) else {
+            return false
+        }
+        //update other when get uniq customer
+        photoBind.path = path
+        if !crudService.saveData(){
+            return false
+        }
+        return true
+    }
+    
     private func checkProductInDb(entityName: String, prodId: Int32) -> Int64?{
         guard let prodTypeExist = self.getHelper.getProductType(refId: prodId, name: entityName) else {
             guard let productId: Int64 = self.createProductType(refId: prodId, name: entityName) else {

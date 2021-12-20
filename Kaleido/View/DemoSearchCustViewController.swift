@@ -40,7 +40,7 @@ class DemoSearchCustViewController: BaseViewController{
     }
     
     private func tryGetCustomerData() {
-        if nameTextField.hasText || nameTextField.hasText || self.viewModel.didSelectTimePicker {
+        if nameTextField.hasText || phoneTextField.hasText || self.viewModel.didSelectTimePicker {
             guard
                 let name = nameTextField.text,
                 let phone = phoneTextField.text else {
