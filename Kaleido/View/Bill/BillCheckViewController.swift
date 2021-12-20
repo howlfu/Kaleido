@@ -90,8 +90,8 @@ class BillCheckViewController: BaseViewController {
     }
     
     override func initBinding() {
-        self.titleView.addGestureRecognizer(tapTitleView)
         super.initBinding()
+        self.titleView.addGestureRecognizer(tapTitleView)
         savedText.inputView = self.typePicker
         typePicker.delegate = self
         typePicker.dataSource = self

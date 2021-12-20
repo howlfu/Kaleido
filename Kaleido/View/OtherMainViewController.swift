@@ -71,6 +71,7 @@ class OtherMainViewController: BaseViewController {
     }
     
     override func initBinding() {
+        super.initBinding()
         self.titleView.addGestureRecognizer(tapTitleView)
     }
     

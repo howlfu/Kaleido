@@ -21,6 +21,7 @@ class LashListViewController: BaseViewController{
         toNextViewBtn.isHidden = true
     }
     override func initBinding() {
+        super.initBinding()
         self.titleView.addGestureRecognizer(tapTitleView)
     }
     

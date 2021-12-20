@@ -26,13 +26,15 @@ class DemoSelectMainController {
         }
         let uId = orderDetail.user_id
         let pId = orderDetail.product_id
+        let note = orderDetail.note ?? ""
+        let doer = orderDetail.doer ?? ""
         let customer = entityGetter.getCustomer(id: uId)
         let product = entityGetter.getProductType(id: pId)
         if let customer = customer {
             retStr += customer.full_name ?? ""
             retStr += ", "
             retStr += customer.birthday ?? ""
-            retStr += "\n\n"
+            retStr += "\n"
         }
         if let prodType = product {
             switch prodType.name {
@@ -48,13 +50,14 @@ class DemoSelectMainController {
                     retStr += self.setTopData(data: topData)
                 }
             case EntityNameDefine.productLashBott:
-                if let bottData = self.getProductLashBott(id: prodType.ref_id_2) {
+                if let bottData = self.getProductLashBott(id: prodType.ref_id_1) {
                     retStr += self.setBottData(data: bottData)
                 }
             default:
                 print("Product type name incorrect")
             }
         }
+        retStr += "\n備註：\(note), \(doer), "
         
         return retStr
     }
@@ -72,6 +75,40 @@ class DemoSelectMainController {
         }
         if data.total_quantity != 0 {
             retStr += String(data.total_quantity) + "根, "
+        }
+        var tmpRetStr = ""
+        if let left1 = data.left_1, left1 != "" {
+            tmpRetStr += "左1: \(left1), "
+        }
+        if let left2 = data.left_2, left2 != ""  {
+            tmpRetStr += "左2: \(left2), "
+        }
+        if let left3 = data.left_3, left3 != "" {
+            tmpRetStr += "左3: \(left3), "
+        }
+        if let left4 = data.left_4, left4 != "" {
+            tmpRetStr += "左4: \(left4), "
+        }
+        if let left5 = data.left_5, left5 != "" {
+            tmpRetStr += "左5: \(left5), "
+        }
+        if let right1 = data.right_1, right1 != "" {
+            tmpRetStr += "右1: \(right1), "
+        }
+        if let right2 = data.right_2, right2 != ""{
+            tmpRetStr += "右2: \(right2), "
+        }
+        if let right3 = data.right_3, right3 != ""{
+            tmpRetStr += "右3: \(right3), "
+        }
+        if let right4 = data.right_4, right4 != ""{
+            tmpRetStr += "右4: \(right4), "
+        }
+        if let right5 = data.right_5, right5 != "" {
+            tmpRetStr += "右5: \(right5), "
+        }
+        if tmpRetStr != "" {
+            retStr += "\n\(tmpRetStr)"
         }
         return retStr
     }
