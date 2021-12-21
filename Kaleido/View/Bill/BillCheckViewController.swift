@@ -106,6 +106,8 @@ class BillCheckViewController: BaseViewController {
             self.viewModel.selectedDiscountRuleId = nil
             self.savedText.text = ""
             self.savedText.endEditing(true)
+        } else if priceText.isFirstResponder {
+            self.priceText.endEditing(true)
         }
     }
     

@@ -33,10 +33,16 @@ class OrderRecordViewController: BaseViewController {
         let delOrderId = order.id
         let _ = controller.deleteOrderFromDb(id: delOrderId)
     }
+    
+    @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
+            view.endEditing(true)
+    }
+    
     var controller: OrderRecordController = OrderRecordController()
     var viewModel: OrderRecordModel {
         return controller.viewModel
     }
+    
     public func setNextDest(viewType: otherViewBtnDestType) {
         self.viewModel.btnDestination = viewType
     }

@@ -42,6 +42,9 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func dateDidChange(_ sender: Any) {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
+    @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
+            view.endEditing(true)
+    }
     
     @IBAction func addNewAct(_ sender: Any) {
         if viewModel.demoOnly {
@@ -332,7 +335,14 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 topLashText5.text = col1Select + col2Select
                 topLashText5.endEditing(true)
             }
-        } else {
+        } else if numberOfToplashText.isFirstResponder {
+            numberOfToplashText.endEditing(true)
+        } else if numberOfBottlashText.isFirstResponder {
+            numberOfBottlashText.endEditing(true)
+        } else if noteTextField.isFirstResponder {
+            noteTextField.endEditing(true)
+        }
+        else {
             guard self.viewModel.pickItemList.value.count > 0 else {
                 return
             }

@@ -20,7 +20,9 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     @IBOutlet weak var stableTime: UITextField!
     @IBOutlet weak var colorTime: UITextField!
     @IBOutlet weak var newOrderBtn: UIButton!
-    
+    @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
+            view.endEditing(true)
+    }
     @IBAction func dateDidChange(_ sender: Any) {
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
@@ -81,8 +83,24 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
             }
         }
         
+        let tabBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
+       tabBackgroundGesture.numberOfTapsRequired = 1
+       self.view.addGestureRecognizer(tabBackgroundGesture)
+        
         typePicker.delegate = self
         typePicker.dataSource = self
+    }
+    
+    @IBAction func tapViewForReturn(_ sender: Any) {
+        if softTime.isFirstResponder {
+            softTime.endEditing(true)
+        } else if stableTime.isFirstResponder {
+            stableTime.endEditing(true)
+        } else if colorTime.isFirstResponder {
+            colorTime.endEditing(true)
+        } else if noteText.isFirstResponder {
+            noteText.endEditing(true)
+        }
     }
     
     override func initView() {

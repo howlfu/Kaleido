@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DemoSearchCustViewController: BaseViewController{
+class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var titleView: UIView!
     //props
@@ -81,6 +81,8 @@ class DemoSearchCustViewController: BaseViewController{
                 self?.viewModel.didSelectTimePicker = true
             }
         }
+        nameTextField.delegate = self
+        phoneTextField.delegate = self
     }
     
     override func removeBinding() {
@@ -97,6 +99,10 @@ class DemoSearchCustViewController: BaseViewController{
             let selectedOrder = self.viewModel.customerOders.value[index.row]
             demoMainVC.setOrderInfo(data: selectedOrder)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
     }
 }
 

@@ -21,6 +21,7 @@ class DemoBindingViewController: BaseViewController {
     var viewModel: DemoBindingModel {
         return controller.viewModel
     }
+    let imageZoomIn = UIImageView()
     
     override func initView() {
         super.initView()
@@ -75,7 +76,7 @@ class DemoBindingViewController: BaseViewController {
     }
 }
 
-extension DemoBindingViewController: UITableViewDelegate, UITableViewDataSource {
+extension DemoBindingViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.imageSelected.value.count
     }
@@ -93,39 +94,75 @@ extension DemoBindingViewController: UITableViewDelegate, UITableViewDataSource 
         let cellImage = foundImages[index]
         let imageItem : UIImageView = cell.contentView.viewWithTag(1) as! UIImageView
         imageItem.image = cellImage
-        let toPhotoViewTap = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressAct))
-        toPhotoViewTap.minimumPressDuration = 1
-        cell.addGestureRecognizer(toPhotoViewTap)
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressAct))
+        longPress.minimumPressDuration = 1
+        cell.addGestureRecognizer(longPress)
         return cell
     }
     
-    @IBAction func longPressAct(gesture: UITapGestureRecognizer) {
-        let presentVC = UIViewController()
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .gray
-        backgroundView.alpha = 0.6
-        let imageZoomIn = UIImageView()
-        let imageW = backgroundView.frame.size.width
-        let imageH = backgroundView.frame.size.height * 2 / 3
-        let imageX = photoSelectTableView.frame.origin.x
-        let imageY = photoSelectTableView.frame.origin.y
-        guard let indexPath = photoSelectTableView.indexPathForRow(at: gesture.location(in: self.photoSelectTableView)) else {
-            print("Error: indexPath)")
-            return
+    @IBAction func longPressAct(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .ended {
+            let backgroundView = UIScrollView()
+            backgroundView.delegate = self
+            backgroundView.minimumZoomScale = 1.0
+            backgroundView.maximumZoomScale = 10.0
+            backgroundView.frame = CGRect(origin: UIScreen.main.bounds.origin, size:  UIScreen.main.bounds.size)
+            backgroundView.backgroundColor = .gray.withAlphaComponent(0.6)
+            let imageW = backgroundView.frame.size.width
+            let imageH = backgroundView.frame.size.height * 2 / 3
+            let imageX =  backgroundView.frame.origin.x
+            let imageY = (backgroundView.frame.size.height - imageH) / 2
+            guard let indexPath = photoSelectTableView.indexPathForRow(at: gesture.location(in: self.photoSelectTableView)) else {
+                print("Error: indexPath)")
+                return
+            }
+            if let cell = self.photoSelectTableView.cellForRow(at: indexPath), let cellImage = cell.contentView.viewWithTag(1) as? UIImageView{
+                imageZoomIn.frame = CGRect(x: imageX, y: imageY, width: imageW, height: imageH)
+                imageZoomIn.image = cellImage.image
+                backgroundView.addSubview(imageZoomIn)
+            }
+            let topBackground = UITapGestureRecognizer(target: self, action: #selector(self.tapBackForReturn))
+            topBackground.numberOfTapsRequired = 1
+            backgroundView.addGestureRecognizer(topBackground)
+    
+            backgroundView.tag = 100
+            self.view.addSubview(backgroundView)
         }
-        if let cell = self.photoSelectTableView.cellForRow(at: indexPath), let cellImage = cell.contentView.viewWithTag(1) as? UIImageView{
-            imageZoomIn.frame = CGRect(x: imageX, y: imageY, width: imageW, height: imageH)
-            imageZoomIn.image = cellImage.image
-            backgroundView.addSubview(imageZoomIn)
-        }
-        let topBackground = UITapGestureRecognizer(target: self, action: #selector(self.tapBackForReturn))
-        topBackground.numberOfTapsRequired = 1
-        backgroundView.addGestureRecognizer(topBackground)
-        presentVC.view.addSubview(backgroundView)
-        self.present(presentVC, animated: false, completion: nil)
+        
+//        let backgroundView = UIView()
+//        backgroundView.frame = CGRect(origin: UIScreen.main.bounds.origin, size:  UIScreen.main.bounds.size)
+//        backgroundView.backgroundColor = .gray.withAlphaComponent(0.6)
+//        let imageZoomIn = UIImageView()
+//        let imageW = backgroundView.frame.size.width
+//        let imageH = backgroundView.frame.size.height * 2 / 3
+//        let imageX = photoSelectTableView.frame.origin.x
+//        let imageY = photoSelectTableView.frame.origin.y
+//        guard let indexPath = photoSelectTableView.indexPathForRow(at: gesture.location(in: self.photoSelectTableView)) else {
+//            print("Error: indexPath)")
+//            return
+//        }
+//        if let cell = self.photoSelectTableView.cellForRow(at: indexPath), let cellImage = cell.contentView.viewWithTag(1) as? UIImageView{
+//            imageZoomIn.frame = CGRect(x: imageX, y: imageY, width: imageW, height: imageH)
+//            imageZoomIn.image = cellImage.image
+//            backgroundView.addSubview(imageZoomIn)
+//        }
+//        let topBackground = UITapGestureRecognizer(target: self, action: #selector(self.tapBackForReturn))
+//        topBackground.numberOfTapsRequired = 1
+//        backgroundView.addGestureRecognizer(topBackground)
+//        backgroundView.tag = 100
+//        self.view.addSubview(backgroundView)
+//        presentVC.view.addSubview(backgroundView)
+//        self.present(presentVC, animated: false, completion: nil)
     }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+            return imageZoomIn
+    }
+    
     @IBAction func tapBackForReturn(gesture: UITapGestureRecognizer) {
-        dismiss(animated: false, completion: nil)
+        if let viewWithTag = self.view.viewWithTag(100) {
+            viewWithTag.removeFromSuperview()
+        }
     }
 }
 

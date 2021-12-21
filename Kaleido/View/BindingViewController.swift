@@ -17,7 +17,9 @@ class BindingViewController: BaseViewController {
     @IBOutlet weak var valueData: UITextField!
     @IBOutlet weak var addIcon: UIImageView!
     @IBOutlet weak var bindingListTableView: UITableView!
-    
+    @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
+            view.endEditing(true)
+    }
     var controller: BindingController = BindingController()
     var viewModel: BindingViewModel {
         return controller.viewModel
