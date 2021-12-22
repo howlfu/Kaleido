@@ -15,6 +15,9 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
     
+    @IBOutlet weak var demoBtn: UIButton!
+    @IBOutlet weak var favorite: UIButton!
+    
     @IBOutlet weak var birthBackground: UIView!
     @IBOutlet weak var orderListTableView: UITableView!
     var viewModel: DemoSearchCustModel {
@@ -37,6 +40,10 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func searchAct(_ sender: Any)
     {
         self.tryGetCustomerData()
+    }
+    @IBAction func demoAct(_ sender: Any) {
+    }
+    @IBAction func favoriteAct(_ sender: Any) {
     }
     
     private func tryGetCustomerData() {
@@ -62,6 +69,8 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
         nameTextField.layer.cornerRadius = textFieldCornerRadius
         phoneTextField.layer.cornerRadius = textFieldCornerRadius
         birthBackground.layer.cornerRadius = textFieldCornerRadius
+        demoBtn.layer.cornerRadius = BigBtnCornerRadius
+        favorite.layer.cornerRadius = BigBtnCornerRadius
         orderListTableView.separatorStyle = .none
     }
     

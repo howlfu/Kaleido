@@ -13,4 +13,12 @@ class DemoBindingController: BaseSearchController {
     ) {
         self.viewModel = viewModel
     }
+    
+    public func getOrderData() -> Order? {
+        return self.viewModel.orderData
+    }
+    
+    public func setOrderInfo(data: Order) {
+        self.viewModel.orderData = data
+    }
 }

@@ -34,7 +34,6 @@ class DemoSelectMainController {
             retStr += customer.full_name ?? ""
             retStr += ", "
             retStr += customer.birthday ?? ""
-            retStr += "\n"
         }
         if let prodType = product {
             switch prodType.name {
@@ -63,7 +62,7 @@ class DemoSelectMainController {
     }
     
     public func setTopData(data: ProductLashTop) -> String {
-        var retStr = "上睫毛：\n"
+        var retStr = "\n上睫毛：\n"
         if let topType = data.type {
             retStr += topType + ", "
         }
@@ -114,7 +113,7 @@ class DemoSelectMainController {
     }
     
     public func setBottData(data: ProductLashBott) -> String {
-        var retStr = "下睫毛：\n"
+        var retStr = "\n下睫毛：\n"
         if let bottCurl = data.curl {
             retStr += bottCurl + ", "
         }

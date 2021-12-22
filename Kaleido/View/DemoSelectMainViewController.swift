@@ -12,22 +12,15 @@ class DemoSelectMainViewController: BaseViewController {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var OrderDetail: UITextView!
     @IBOutlet weak var bindingBtn: UIButton!
-    @IBOutlet weak var demoBtn: UIButton!
-    @IBOutlet weak var favorite: UIButton!
     @IBAction func bindingAct(_ sender: Any) {
     }
-    @IBAction func demoAct(_ sender: Any) {
-    }
-    @IBAction func favoriteAct(_ sender: Any) {
-    }
+    
     var controller: DemoSelectMainController = DemoSelectMainController()
     
     override func initView() {
         super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
         bindingBtn.layer.cornerRadius = BigBtnCornerRadius
-        demoBtn.layer.cornerRadius = BigBtnCornerRadius
-        favorite.layer.cornerRadius = BigBtnCornerRadius
         let orderDetail = controller.getOrderData()
         let orderStr = controller.getOrderInforStr(data: orderDetail)
         OrderDetail.text = String(orderStr.dropLast(2))
@@ -85,7 +78,10 @@ class DemoSelectMainViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is DemoBindingViewController {
             let demoMainVC = segue.destination as! DemoBindingViewController
-           
+            guard let orderDetail = controller.getOrderData() else {
+                return
+            }
+            demoMainVC.setSelectedOrder(data: orderDetail)
         }
     }
 }

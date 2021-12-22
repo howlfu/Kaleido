@@ -7,5 +7,6 @@
 
 import UIKit
 class DemoBindingModel {
-    var imageSelected = Observable<[UIImage]>(value: [])
+    var pathSelected = Observable<[String]>(value: [])
+    var orderData: Order?
 }
