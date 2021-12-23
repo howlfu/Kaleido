@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630B7D2A277427BF0006FABD /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B7D29277427BF0006FABD /* UIImage.swift */; };
 		630C8585274CE204001E6ED7 /* LashPosType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C8584274CE204001E6ED7 /* LashPosType.swift */; };
 		630C85A2274F7B5C001E6ED7 /* SettingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C85A1274F7B5C001E6ED7 /* SettingMainViewController.swift */; };
 		630C85A4274F7D5E001E6ED7 /* OtherMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C85A3274F7D5E001E6ED7 /* OtherMainViewController.swift */; };
@@ -114,6 +115,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630B7D29277427BF0006FABD /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		630C8584274CE204001E6ED7 /* LashPosType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashPosType.swift; sourceTree = "<group>"; };
 		630C85A1274F7B5C001E6ED7 /* SettingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainViewController.swift; sourceTree = "<group>"; };
 		630C85A3274F7D5E001E6ED7 /* OtherMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMainViewController.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				63F3B7CF2739106E00D4C6A8 /* DateExt.swift */,
 				63E7746E273B744A00F197AC /* UIColorExt.swift */,
 				6317345C2742306800435552 /* UIViewController.swift */,
+				630B7D29277427BF0006FABD /* UIImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				637EA9CD2755B5B700C1DBE1 /* ProductType+CoreDataProperties.swift in Sources */,
 				A120DBDD272693EE009B1C7E /* ButtonExt.swift in Sources */,
 				637EA9D8275612F800C1DBE1 /* ProductLashTop+CoreDataClass.swift in Sources */,
+				630B7D2A277427BF0006FABD /* UIImage.swift in Sources */,
 				63F73FDD27425239007DC0BC /* OrderEntityType.swift in Sources */,
 				63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */,
 				63CA9CB0275482D400051F7A /* BillCheckModel.swift in Sources */,
