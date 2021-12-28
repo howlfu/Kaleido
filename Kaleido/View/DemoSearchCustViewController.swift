@@ -108,6 +108,13 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
             let selectedOrder = self.viewModel.customerOders.value[index.row]
             demoMainVC.setOrderInfo(data: selectedOrder)
         }
+        
+        if segue.destination is DemoShowAllPhotoViewController {
+            let showPhotoVC = segue.destination as! DemoShowAllPhotoViewController
+            if let cId = self.viewModel.selectedCustomerId {
+                showPhotoVC.setSelectedCustomerId(data: cId)
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

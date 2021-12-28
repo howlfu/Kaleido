@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 class DemoBindingController {
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)

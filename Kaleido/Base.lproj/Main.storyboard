@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1l4-qM-lHI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1l4-qM-lHI">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -860,7 +860,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="4h6-i2-euV">
-                                                <rect key="frame" x="13" y="4" width="161" height="33"/>
+                                                <rect key="frame" x="10" y="4" width="161" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <edgeInsets key="layoutMargins" top="8" left="14" bottom="8" right="8"/>
@@ -1115,7 +1115,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="左" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZT-Bh-brL">
-                                                <rect key="frame" x="0.0" y="0.0" width="37" height="47"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="34" height="47"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
@@ -2098,7 +2098,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aZ-Aw-amy">
-                                <rect key="frame" x="269" y="633" width="92" height="45"/>
+                                <rect key="frame" x="269" y="632" width="92" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.4470651746" green="0.44704735280000002" blue="0.44705945250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -2109,7 +2109,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qO-01-5pM">
-                                <rect key="frame" x="161" y="633" width="92" height="45"/>
+                                <rect key="frame" x="161" y="632" width="92" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.4470651746" green="0.44704735280000002" blue="0.44705945250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -2117,6 +2117,7 @@
                                 <state key="normal" title="展示"/>
                                 <connections>
                                     <action selector="demoAct:" destination="BI3-YZ-7CG" eventType="touchUpInside" id="qvy-5K-afm"/>
+                                    <segue destination="Jpg-Zj-V1w" kind="show" identifier="toDemoAllPhoto" id="sYL-gj-00T"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2236,12 +2237,12 @@
             </objects>
             <point key="canvasLocation" x="3786.9565217391309" y="1570.9239130434785"/>
         </scene>
-        <!--View Controller-->
+        <!--Demo Show All Photo View Controller-->
         <scene sceneID="Tqs-yA-7kX">
             <objects>
-                <viewController id="Jpg-Zj-V1w" sceneMemberID="viewController">
+                <viewController id="Jpg-Zj-V1w" customClass="DemoShowAllPhotoViewController" customModule="Kaleido" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ID0-fK-16N">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GYU-LP-65M">
@@ -2258,15 +2259,44 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JuW-do-YVG">
+                                <rect key="frame" x="0.0" y="81" width="414" height="655"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="demoAllImageCell" rowHeight="187" id="Ixu-PE-hRI">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="187"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ixu-PE-hRI" id="ovT-Fl-KgL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="187"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zbd-ZA-tB0">
+                                                    <rect key="frame" x="20" y="-10" width="291" height="197"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dislike" translatesAutoresizingMaskIntoConstraints="NO" id="Oyt-ta-RzZ">
+                                                    <rect key="frame" x="334" y="64" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wbp-RU-E0L"/>
                         <color key="backgroundColor" red="0.95663744210000001" green="0.93724232910000005" blue="0.93725556139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="zIr-9j-YsH"/>
+                    <connections>
+                        <outlet property="showPhotoTableView" destination="JuW-do-YVG" id="3lT-AW-EFy"/>
+                        <outlet property="titleView" destination="GYU-LP-65M" id="bCU-sg-KGt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgB-WC-awH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4683" y="1571"/>
+            <point key="canvasLocation" x="4682.608695652174" y="1570.9239130434785"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5oD-pR-R7B">
@@ -2302,6 +2332,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="29w-6n-5Ej"/>
         <segue reference="hFH-hQ-bib"/>
         <segue reference="mC2-0o-UR6"/>
         <segue reference="0RL-d2-FpA"/>
@@ -2317,6 +2348,7 @@
         <image name="Show" width="21.333333969116211" height="21.333333969116211"/>
         <image name="Store" width="21.333333969116211" height="21.333333969116211"/>
         <image name="add-icon" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="dislike" width="16" height="16"/>
         <image name="eyelash-top" width="170.66667175292969" height="170.66667175292969"/>
         <image name="remove-icon" width="20" height="20"/>
         <image name="squareshape" catalog="system" width="128" height="114"/>

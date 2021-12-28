@@ -39,6 +39,7 @@
 		638A0063276AE1F10055E73B /* BindingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A0062276AE1F10055E73B /* BindingController.swift */; };
 		63AA685C27576C2A00BD929B /* DiscountRule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA685A27576C2A00BD929B /* DiscountRule+CoreDataClass.swift */; };
 		63AA685D27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */; };
+		63ABF1E32775533F007E420B /* DemoShowAllPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ABF1E22775533F007E420B /* DemoShowAllPhotoViewController.swift */; };
 		63ADE6C62759B447002D1D6E /* DefaultDbDataChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6C52759B447002D1D6E /* DefaultDbDataChecker.swift */; };
 		63ADE6C82759C536002D1D6E /* DiscountRuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */; };
 		63ADE6D3275F3759002D1D6E /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6D1275F3759002D1D6E /* Order+CoreDataClass.swift */; };
@@ -80,6 +81,8 @@
 		63E99F92277054270025CE97 /* DemoBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F91277054270025CE97 /* DemoBindingModel.swift */; };
 		63E99F95277060DB0025CE97 /* PhotoBind+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F93277060DB0025CE97 /* PhotoBind+CoreDataClass.swift */; };
 		63E99F96277060DB0025CE97 /* PhotoBind+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F94277060DB0025CE97 /* PhotoBind+CoreDataProperties.swift */; };
+		63F346B4277AA0DB008FCFDE /* DemoShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F346B3277AA0DB008FCFDE /* DemoShowController.swift */; };
+		63F346B6277AA0E7008FCFDE /* DemoShowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F346B5277AA0E7008FCFDE /* DemoShowModel.swift */; };
 		63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7CF2739106E00D4C6A8 /* DateExt.swift */; };
 		63F73FDD27425239007DC0BC /* OrderEntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F73FDC27425239007DC0BC /* OrderEntityType.swift */; };
 		A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120DBD527268EE9009B1C7E /* ColorDefine.swift */; };
@@ -147,6 +150,7 @@
 		638A0062276AE1F10055E73B /* BindingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingController.swift; sourceTree = "<group>"; };
 		63AA685A27576C2A00BD929B /* DiscountRule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscountRule+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscountRule+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		63ABF1E22775533F007E420B /* DemoShowAllPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoShowAllPhotoViewController.swift; sourceTree = "<group>"; };
 		63ADE6C52759B447002D1D6E /* DefaultDbDataChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDbDataChecker.swift; sourceTree = "<group>"; };
 		63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountRuleType.swift; sourceTree = "<group>"; };
 		63ADE6D1275F3759002D1D6E /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 		63E99F91277054270025CE97 /* DemoBindingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingModel.swift; sourceTree = "<group>"; };
 		63E99F93277060DB0025CE97 /* PhotoBind+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoBind+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63E99F94277060DB0025CE97 /* PhotoBind+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoBind+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		63F346B3277AA0DB008FCFDE /* DemoShowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoShowController.swift; sourceTree = "<group>"; };
+		63F346B5277AA0E7008FCFDE /* DemoShowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoShowModel.swift; sourceTree = "<group>"; };
 		63F3B7CF2739106E00D4C6A8 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		63F73FDC27425239007DC0BC /* OrderEntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEntityType.swift; sourceTree = "<group>"; };
 		A120DBD527268EE9009B1C7E /* ColorDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorDefine.swift; path = ../ColorDefine.swift; sourceTree = "<group>"; };
@@ -282,6 +288,16 @@
 				638A0060276ADF240055E73B /* BindingViewModel.swift */,
 			);
 			name = Binding;
+			sourceTree = "<group>";
+		};
+		63ABF1E12775519C007E420B /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				63ABF1E22775533F007E420B /* DemoShowAllPhotoViewController.swift */,
+				63F346B3277AA0DB008FCFDE /* DemoShowController.swift */,
+				63F346B5277AA0E7008FCFDE /* DemoShowModel.swift */,
+			);
+			name = Show;
 			sourceTree = "<group>";
 		};
 		63CA9CAA275475E300051F7A /* Bill */ = {
@@ -399,6 +415,7 @@
 		63E99F7B276C26D50025CE97 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				63ABF1E12775519C007E420B /* Show */,
 				63E99F8C2770263C0025CE97 /* Bind */,
 				63E99F83276C61C70025CE97 /* Select */,
 				63E99F7C276C27400025CE97 /* Search */,
@@ -729,6 +746,8 @@
 				63D88BF62741FC2100665728 /* PayMethod+CoreDataProperties.swift in Sources */,
 				63D88BE4273E04B600665728 /* KeratinOrderModel.swift in Sources */,
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
+				63F346B4277AA0DB008FCFDE /* DemoShowController.swift in Sources */,
+				63ABF1E32775533F007E420B /* DemoShowAllPhotoViewController.swift in Sources */,
 				635C7AA9273A234E000C3CCA /* LashOrderViewController.swift in Sources */,
 				638A005B276896EE0055E73B /* CustomerDiscount+CoreDataClass.swift in Sources */,
 				632214562747A2B8003E330D /* EntityDelHelper.swift in Sources */,
@@ -759,6 +778,7 @@
 				63E99F82276C280D0025CE97 /* DemoSearchCustModel.swift in Sources */,
 				63E99F92277054270025CE97 /* DemoBindingModel.swift in Sources */,
 				63CA9CAE275482AE00051F7A /* BillCheckController.swift in Sources */,
+				63F346B6277AA0E7008FCFDE /* DemoShowModel.swift in Sources */,
 				63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
@@ -946,11 +966,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9GNZ9RRBN;
 				INFOPLIST_FILE = Kaleido/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -968,11 +989,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9GNZ9RRBN;
 				INFOPLIST_FILE = Kaleido/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

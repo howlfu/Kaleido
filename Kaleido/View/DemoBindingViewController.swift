@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import UIKit
 import Photos
 import PhotosUI
-import UIKit
 class DemoBindingViewController: BaseViewController {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var orderCreateDayText: UITextField!
@@ -45,7 +45,7 @@ class DemoBindingViewController: BaseViewController {
         self.photoSelectTableView.delegate = self
         self.photoSelectTableView.dataSource = self
         self.titleView.addGestureRecognizer(tapTitleView)
-        checkPhotoAuth()
+        self.checkPhotoAuth(_self: self)
         let toPhotoViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         toPhotoViewTap.numberOfTapsRequired = 1
         photoSelectTableView.addGestureRecognizer(toPhotoViewTap)
@@ -70,7 +70,8 @@ class DemoBindingViewController: BaseViewController {
         }
         self.controller.getImageFromDb(orderId: orderData.id)
     }
-    func checkPhotoAuth() {
+    
+    public func checkPhotoAuth(_self: UIViewController) {
         let status:PHAuthorizationStatus?
         if #available(iOS 14, *) {
             status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
@@ -78,12 +79,12 @@ class DemoBindingViewController: BaseViewController {
             status = PHPhotoLibrary.authorizationStatus()
         }
         if status == .denied {
-            toGetUserAuthInSettings()
+            toGetUserAuthInSettings(_self: _self)
         }
     }
     
-    func toGetUserAuthInSettings() {
-        prsentNormalAlert(msg: "需要您同意使用照片", btn: "確定", viewCTL: self, completion: {
+    public func toGetUserAuthInSettings(_self: UIViewController) {
+        prsentNormalAlert(msg: "需要您同意使用照片", btn: "確定", viewCTL: _self, completion: {
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString)
             else {
                 return
@@ -97,6 +98,7 @@ class DemoBindingViewController: BaseViewController {
             self.returnToMainView(self)
         })
     }
+    
 }
 
 extension DemoBindingViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
