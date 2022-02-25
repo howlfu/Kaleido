@@ -44,8 +44,8 @@
 		63ADE6C82759C536002D1D6E /* DiscountRuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */; };
 		63ADE6D3275F3759002D1D6E /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6D1275F3759002D1D6E /* Order+CoreDataClass.swift */; };
 		63ADE6D4275F3759002D1D6E /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6D2275F3759002D1D6E /* Order+CoreDataProperties.swift */; };
-		63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870827439F6800B4A1E3 /* LashOrderController.swift */; };
-		63B3870B27439F6800B4A1E3 /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3870927439F6800B4A1E3 /* LashOrderModel.swift */; };
+		63B527E927C768C100F51D7C /* LashOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527E827C768C000F51D7C /* LashOrderController.swift */; };
+		63B527EB27C768CB00F51D7C /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527EA27C768CB00F51D7C /* LashOrderModel.swift */; };
 		63CA9CAC2754760E00051F7A /* BillCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */; };
 		63CA9CAE275482AE00051F7A /* BillCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAD275482AE00051F7A /* BillCheckController.swift */; };
 		63CA9CB0275482D400051F7A /* BillCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAF275482D400051F7A /* BillCheckModel.swift */; };
@@ -155,8 +155,8 @@
 		63ADE6C72759C536002D1D6E /* DiscountRuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountRuleType.swift; sourceTree = "<group>"; };
 		63ADE6D1275F3759002D1D6E /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63ADE6D2275F3759002D1D6E /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		63B3870827439F6800B4A1E3 /* LashOrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderController.swift; path = ../../../../../.Trash/LashOrderController.swift; sourceTree = "<group>"; };
-		63B3870927439F6800B4A1E3 /* LashOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LashOrderModel.swift; path = ../../../../../.Trash/LashOrderModel.swift; sourceTree = "<group>"; };
+		63B527E827C768C000F51D7C /* LashOrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LashOrderController.swift; sourceTree = "<group>"; };
+		63B527EA27C768CB00F51D7C /* LashOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LashOrderModel.swift; sourceTree = "<group>"; };
 		63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckViewController.swift; sourceTree = "<group>"; };
 		63CA9CAD275482AE00051F7A /* BillCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckController.swift; sourceTree = "<group>"; };
 		63CA9CAF275482D400051F7A /* BillCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckModel.swift; sourceTree = "<group>"; };
@@ -344,9 +344,9 @@
 		63CD4F3327312D340085BD4C /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				63B527EA27C768CB00F51D7C /* LashOrderModel.swift */,
+				63B527E827C768C000F51D7C /* LashOrderController.swift */,
 				635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */,
-				63B3870827439F6800B4A1E3 /* LashOrderController.swift */,
-				63B3870927439F6800B4A1E3 /* LashOrderModel.swift */,
 				635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */,
 				63D88BE5273E04E800665728 /* KeratinOrderController.swift */,
 				63D88BE3273E04B600665728 /* KeratinOrderModel.swift */,
@@ -724,6 +724,7 @@
 				638A005F2769DA470055E73B /* BindingViewController.swift in Sources */,
 				63ADE6C82759C536002D1D6E /* DiscountRuleType.swift in Sources */,
 				635C7AAB273A23CD000C3CCA /* KeratinOrderViewController.swift in Sources */,
+				63B527E927C768C100F51D7C /* LashOrderController.swift in Sources */,
 				63ADE6C62759B447002D1D6E /* DefaultDbDataChecker.swift in Sources */,
 				63E99F7E276C27970025CE97 /* DemoSearchCustViewController.swift in Sources */,
 				63ADE6D4275F3759002D1D6E /* Order+CoreDataProperties.swift in Sources */,
@@ -732,7 +733,6 @@
 				63ADE6D3275F3759002D1D6E /* Order+CoreDataClass.swift in Sources */,
 				63E99F85276C63970025CE97 /* DemoSelectMainViewController.swift in Sources */,
 				A1ADDDEB26E1F8E6000EBE9A /* AppDelegate.swift in Sources */,
-				63B3870A27439F6800B4A1E3 /* LashOrderController.swift in Sources */,
 				63CA9CAC2754760E00051F7A /* BillCheckViewController.swift in Sources */,
 				A120DBD627268EE9009B1C7E /* ColorDefine.swift in Sources */,
 				637EA9CD2755B5B700C1DBE1 /* ProductType+CoreDataProperties.swift in Sources */,
@@ -762,7 +762,6 @@
 				63E99F902770540F0025CE97 /* DemoBindingController.swift in Sources */,
 				63E7746F273B744A00F197AC /* UIColorExt.swift in Sources */,
 				630C85A7274F85BB001E6ED7 /* OrderRecordViewController.swift in Sources */,
-				63B3870B27439F6800B4A1E3 /* LashOrderModel.swift in Sources */,
 				63E99F8E277027770025CE97 /* DemoBindingViewController.swift in Sources */,
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
 				63E99F87276C75640025CE97 /* DemoSelectMainController.swift in Sources */,
@@ -772,6 +771,7 @@
 				63E99F95277060DB0025CE97 /* PhotoBind+CoreDataClass.swift in Sources */,
 				634EB9D52762F5C800A53917 /* StoreRecordController.swift in Sources */,
 				637EA9C82754A18700C1DBE1 /* Customer+CoreDataClass.swift in Sources */,
+				63B527EB27C768CB00F51D7C /* LashOrderModel.swift in Sources */,
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
 				636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */,
 				636F3474275089FD00444DC9 /* OrderRecordController.swift in Sources */,

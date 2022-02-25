@@ -26,6 +26,6 @@ class BaseOrderController {
     }
     
     public func updateOrderToDb(order: OrderEntityType) {
-        let _ = entitySetter.updateOrder(by: order.id, order: order)
+            let _ = entitySetter.updateOrder(by: order.id, order: order)
     }
 }
