@@ -52,7 +52,7 @@
 		63CD4F1F272BD8500085BD4C /* LashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* LashListViewController.swift */; };
 		63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* LashListType.swift */; };
 		63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */; };
-		63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */; };
+		63CD4F2D2730E38D0085BD4C /* SearchCustomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2C2730E38D0085BD4C /* SearchCustomsViewModel.swift */; };
 		63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F2E2730E9E40085BD4C /* Observable.swift */; };
 		63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */; };
 		63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F362733681A0085BD4C /* EntityGetHelper.swift */; };
@@ -163,7 +163,7 @@
 		63CD4F1E272BD8500085BD4C /* LashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListViewController.swift; sourceTree = "<group>"; };
 		63CD4F21272BDEDC0085BD4C /* LashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListType.swift; sourceTree = "<group>"; };
 		63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewController.swift; sourceTree = "<group>"; };
-		63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsController.swift; sourceTree = "<group>"; };
+		63CD4F2C2730E38D0085BD4C /* SearchCustomsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewModel.swift; sourceTree = "<group>"; };
 		63CD4F2E2730E9E40085BD4C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsModel.swift; sourceTree = "<group>"; };
 		63CD4F362733681A0085BD4C /* EntityGetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityGetHelper.swift; sourceTree = "<group>"; };
@@ -335,7 +335,7 @@
 			children = (
 				63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */,
 				632214522744E35D003E330D /* SearchCustomsCell.swift */,
-				63CD4F2C2730E38D0085BD4C /* SearchCustomsController.swift */,
+				63CD4F2C2730E38D0085BD4C /* SearchCustomsViewModel.swift */,
 				63CD4F302730EA510085BD4C /* SearchCustomsModel.swift */,
 			);
 			path = Search;
@@ -707,7 +707,7 @@
 			files = (
 				63E3672327425E8900FCCA77 /* ProductKeratin+CoreDataProperties.swift in Sources */,
 				637EA9CC2755B5B700C1DBE1 /* ProductType+CoreDataClass.swift in Sources */,
-				63CD4F2D2730E38D0085BD4C /* SearchCustomsController.swift in Sources */,
+				63CD4F2D2730E38D0085BD4C /* SearchCustomsViewModel.swift in Sources */,
 				637EA9C92754A18700C1DBE1 /* Customer+CoreDataProperties.swift in Sources */,
 				636F347627508AB100444DC9 /* BaseSearchController.swift in Sources */,
 				634EB9CD276096D300A53917 /* LashViewAllType.swift in Sources */,

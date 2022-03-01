@@ -7,8 +7,8 @@
 
 import Foundation
 
-class SearchCustomsModel {
-    var customDataModel = Observable<[Customer]>(value: [])
-    var didSelectTimePicker: Bool = false
-    var selectedCustomerId: Int32?
+struct setToDBInfo {
+    let name: String
+    let phone: String
+    let birth: String
 }

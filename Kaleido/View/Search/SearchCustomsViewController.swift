@@ -18,10 +18,7 @@ class SearchCustomsViewController: BaseViewController{
     
     @IBOutlet weak var birthBackground: UIView!
     @IBOutlet weak var customsListTableView: UITableView!
-    var viewModel: SearchCustomsModel {
-        return controller.viewModel
-    }
-    var controller: SearchCustomsController = SearchCustomsController()
+    var viewModel: SearchCustomsViewModel = SearchCustomsViewModel()
     var selectedLashService: [LashListType]?
     @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
             view.endEditing(true)
@@ -52,9 +49,9 @@ class SearchCustomsViewController: BaseViewController{
             if !self.viewModel.didSelectTimePicker {
                 birth = ""
             }
-            controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
+            viewModel.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
         } else {
-            controller.tryGetDataFromDb()
+            viewModel.tryGetDataFromDb()
         }
     }
     
@@ -71,7 +68,7 @@ class SearchCustomsViewController: BaseViewController{
             birth = ""
         }
         if nameData != "" && phoneData != "" &&  birth != ""{
-            controller.setDataToDb(name: nameData, phone: phoneData, birth: birth)
+            viewModel.setDataToDb = setToDBInfo(name: nameData, phone: phoneData, birth: birth)
         }
     }
     
@@ -90,15 +87,11 @@ class SearchCustomsViewController: BaseViewController{
     override func initBinding() {
         super.initBinding()
         self.titleView.addGestureRecognizer(tapTitleView)
-        viewModel.customDataModel.addObserver(fireNow: false) {[weak self] (newCustomsData) in
+        viewModel.setDataToDbClosure = {  [weak self] () in
             DispatchQueue.main.async {
                 self?.customsListTableView.reloadData()
             }
         }
-    }
-    
-    override func removeBinding() {
-        viewModel.customDataModel.removeObserver()
     }
     
     func toOrderDetailView(selectedId: Int32) {
@@ -148,7 +141,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "customsListCell", for: indexPath)
         let nameText : UITextField = cell.contentView.viewWithTag(1) as! UITextField
         let birthText : UITextField = cell.contentView.viewWithTag(2) as! UITextField
-        let foundCustoms = viewModel.customDataModel.value
+        let foundCustoms = viewModel.gCellViewData()
 //        let index = foundCustoms.index(foundCustoms.startIndex, offsetBy: indexPath.row)
         let index = indexPath.row
         
@@ -167,7 +160,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let allTableCellCount = viewModel.customDataModel.value.count
+        let allTableCellCount = viewModel.gCellViewData().count
         return allTableCellCount
     }
     //UITableViewDelegate
@@ -178,7 +171,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCustomer: Customer = self.viewModel.customDataModel.value[indexPath.row]
+        let selectedCustomer: Customer = self.viewModel.gCellViewData()[indexPath.row]
         
         self.nameTextField.text = selectedCustomer.full_name
         self.phoneTextField.text = selectedCustomer.phone_number
@@ -231,7 +224,8 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
             return
         }
         self.customsListTableView.cellForRow(at: indexPath)!.contentView.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint)
-        let selectedCustomer: Customer = self.viewModel.customDataModel.value[indexPath.row]
+        let foundCustoms = viewModel.gCellViewData()
+        let selectedCustomer: Customer = foundCustoms[indexPath.row]
         self.viewModel.selectedCustomerId = selectedCustomer.id
         
         self.view.alpha = 0.6
@@ -263,7 +257,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
     private func tryDelectCustomer() {
         //delect selected
         guard let cId =  self.viewModel.selectedCustomerId else {return}
-        if controller.delectCustomer(cId: cId) {
+        if self.viewModel.delectCustomer(cId: cId) {
             self.tryGetCustomerData()
         }
     }
