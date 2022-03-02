@@ -45,6 +45,7 @@
 		63ADE6D4275F3759002D1D6E /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ADE6D2275F3759002D1D6E /* Order+CoreDataProperties.swift */; };
 		63B527E927C768C100F51D7C /* LashOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527E827C768C000F51D7C /* LashOrderViewModel.swift */; };
 		63B527EB27C768CB00F51D7C /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527EA27C768CB00F51D7C /* LashOrderModel.swift */; };
+		63B527F027CF1D0600F51D7C /* LashOrderVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */; };
 		63CA9CAC2754760E00051F7A /* BillCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */; };
 		63CA9CAE275482AE00051F7A /* BillCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAD275482AE00051F7A /* BillCheckController.swift */; };
 		63CA9CB0275482D400051F7A /* BillCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAF275482D400051F7A /* BillCheckModel.swift */; };
@@ -155,6 +156,7 @@
 		63ADE6D2275F3759002D1D6E /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63B527E827C768C000F51D7C /* LashOrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LashOrderViewModel.swift; sourceTree = "<group>"; };
 		63B527EA27C768CB00F51D7C /* LashOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LashOrderModel.swift; sourceTree = "<group>"; };
+		63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderVMTest.swift; sourceTree = "<group>"; };
 		63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckViewController.swift; sourceTree = "<group>"; };
 		63CA9CAD275482AE00051F7A /* BillCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckController.swift; sourceTree = "<group>"; };
 		63CA9CAF275482D400051F7A /* BillCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckModel.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		63B527EE27CF1BAE00F51D7C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				63CD4F592733C1B10085BD4C /* CoreDataCRUDTest.swift in Sources */,
 				63CD4F5A2733D3EF0085BD4C /* Kaleido.xcdatamodeld in Sources */,
 				63CD4F702738D0630085BD4C /* EntitySetHelperTest.swift in Sources */,
+				63B527F027CF1D0600F51D7C /* LashOrderVMTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

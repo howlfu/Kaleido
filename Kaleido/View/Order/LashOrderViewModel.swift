@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreMedia
 class LashOrderViewModel: BaseOrderController {
     
     var pickItemList2: [String] = []
@@ -92,7 +91,7 @@ class LashOrderViewModel: BaseOrderController {
     public func getLashTopLenCurlFromDb() {
         // 6,7,8,9,10,11,12,13,14,15, 8-10,9-11,10-12,11-13
         // J/B/C/CC/D/U/L+
-        self.tmpCompNum = 2
+        self.tmpCompNum = 2 //default 2
         self.pickItemList2 = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "8-10", "9-11", "10-12", "11-13"]
         self.pickItemList = ["J", "B", "C", "CC", "D", "U", "L+"]
     }
@@ -187,6 +186,7 @@ class LashOrderViewModel: BaseOrderController {
         self.orderOfCustomer.user_id = data.user_id
         self.orderOfCustomer.services = data.service_content ?? ""
         self.orderOfCustomer.created_date = data.created_at ?? Date()
+        //set top or bott flag
         let serviceList = getLashList(servicesStr: self.orderOfCustomer.services)
         self.setTopBottLashService(services: serviceList)
     }
