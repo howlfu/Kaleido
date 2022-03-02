@@ -8,11 +8,14 @@
 import UIKit
 
 class LashOrderViewController: BaseViewController, UITextFieldDelegate {
-    var viewModel: LashOrderModel {
-        return controller.viewModel
-    }
-    var controller: LashOrderController = LashOrderController()
+    var viewModel: LashOrderViewModel = LashOrderViewModel()
     let typePicker: UIPickerView = UIPickerView()
+    
+    var shouldShow2Component = false
+    var demoOnly: Bool = false
+    var switchStr: String = ""
+    var leftLashData: LashPosType = LashPosType(text1: "", text2: "", text3: "", text4: "", text5: "")
+    var rightLashData: LashPosType = LashPosType(text1: "", text2: "", text3: "", text4: "", text5: "")
     
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -47,7 +50,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func addNewAct(_ sender: Any) {
-        if viewModel.demoOnly {
+        if self.demoOnly {
             prsentNormalAlert(msg: "修改訂單", btn: "確定", viewCTL: self, completion: {
                 var tmpOrder = self.viewModel.orderOfCustomer
                 tmpOrder.created_date = self.datePicker.date
@@ -55,7 +58,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
 //                tmpOrder.note = self.noteTextField.text ?? tmpOrder.note
                 let getProdId = self.tryAddLashToDb() ?? tmpOrder.product_id
                 tmpOrder.product_id = getProdId
-                self.controller.updateOrderToDb(order: tmpOrder)
+                self.viewModel.updateOrderToDb(order: tmpOrder)
             })
         }else {
             self.addBorderToTop(color: .clear, isClear: true)
@@ -69,7 +72,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 guard let prodId = self.tryAddLashToDb() else {
                     return
                 }
-                self.controller.setOderLash(prodId: prodId, doer: doerText, note: noteText, setDate: self.datePicker.date, services: self.lashTypeText.text)
+                self.viewModel.setOderLash(prodId: prodId, doer: doerText, note: noteText, setDate: self.datePicker.date, services: self.lashTypeText.text)
                 self.performSegue(withIdentifier: "lashToBillCheck", sender: self)
             })
         }
@@ -89,16 +92,16 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                 self.addBorderToTop(color: UIColor.red, isClear: false)
                 return nil
             }
-            let left_1 = self.viewModel.leftLashData.text1
-            let left_2 = self.viewModel.leftLashData.text2
-            let left_3 = self.viewModel.leftLashData.text3
-            let left_4 = self.viewModel.leftLashData.text4
-            let left_5 = self.viewModel.leftLashData.text5
-            let right_1 = self.viewModel.rightLashData.text1
-            let right_2 = self.viewModel.rightLashData.text2
-            let right_3 = self.viewModel.rightLashData.text3
-            let right_4 = self.viewModel.rightLashData.text4
-            let right_5 = self.viewModel.rightLashData.text5
+            let left_1 = self.leftLashData.text1
+            let left_2 = self.leftLashData.text2
+            let left_3 = self.leftLashData.text3
+            let left_4 = self.leftLashData.text4
+            let left_5 = self.leftLashData.text5
+            let right_1 = self.rightLashData.text1
+            let right_2 = self.rightLashData.text2
+            let right_3 = self.rightLashData.text3
+            let right_4 = self.rightLashData.text4
+            let right_5 = self.rightLashData.text5
             let topQuantityInt = Int16(topQuantityStr) ?? 0
             if self.viewModel.isLashBottEnable {
                 guard let bottSize = self.bottSizeTextForPicker.text,
@@ -113,12 +116,12 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                     return nil
                 }
                 let bottQuantityInt = Int16(bottQuantityStr) ?? 0
-                guard let prodId = self.controller.saveProductTopBott(top_color: topColor, top_size: topSize, top_type: topType, top_total_quantity: topQuantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5, bott_length: bottLen, bott_size: bottSize, bott_total_quantity: bottQuantityInt, bott_curl: bottCurl) else {
+                guard let prodId = self.viewModel.saveProductTopBott(top_color: topColor, top_size: topSize, top_type: topType, top_total_quantity: topQuantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5, bott_length: bottLen, bott_size: bottSize, bott_total_quantity: bottQuantityInt, bott_curl: bottCurl) else {
                     return nil
                 }
                 return prodId
             } else {
-                guard let prodId = self.controller.saveProductTop(color: topColor, size: topSize, type: topType, total_quantity: topQuantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5) else {
+                guard let prodId = self.viewModel.saveProductTop(color: topColor, size: topSize, type: topType, total_quantity: topQuantityInt, left_1: left_1, left_2: left_2, left_3: left_3, left_4: left_4, left_5: left_5, right_1: right_1, right_2: right_2, right_3: right_3, right_4: right_4, right_5: right_5) else {
                     return nil
                 }
                 return prodId
@@ -137,7 +140,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
                     return nil
                 }
                 let bottQuantityInt = Int16(bottQuantityStr) ?? 0
-                guard let prodId = self.controller.saveProductBott(length: bottLen, size: bottSize, total_quantity: bottQuantityInt, curl: bottCurl) else {
+                guard let prodId = self.viewModel.saveProductBott(length: bottLen, size: bottSize, total_quantity: bottQuantityInt, curl: bottCurl) else {
                     return nil
                 }
                 return prodId
@@ -148,10 +151,10 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     private func storeLash5TextsToCache() {
-        if self.viewModel.switchStr == "右" {
-            self.viewModel.rightLashData = LashPosType(text1: self.topLashText1.text!, text2: self.topLashText2.text!, text3: self.topLashText3.text!, text4: self.topLashText4.text!, text5: self.topLashText5.text!)
+        if self.switchStr == "右" {
+            self.rightLashData = LashPosType(text1: self.topLashText1.text!, text2: self.topLashText2.text!, text3: self.topLashText3.text!, text4: self.topLashText4.text!, text5: self.topLashText5.text!)
         } else {
-            self.viewModel.leftLashData = LashPosType(text1: self.topLashText1.text!, text2: self.topLashText2.text!, text3: self.topLashText3.text!, text4: self.topLashText4.text!, text5: self.topLashText5.text!)
+            self.leftLashData = LashPosType(text1: self.topLashText1.text!, text2: self.topLashText2.text!, text3: self.topLashText3.text!, text4: self.topLashText4.text!, text5: self.topLashText5.text!)
         }
     }
     
@@ -192,8 +195,6 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     override func removeBinding() {
-        viewModel.pickItemList.removeObserver()
-        viewModel.segmentToggleLeft.removeObserver()
         typePicker.delegate = nil
         typePicker.dataSource = nil
         topTypeTextForPicker.delegate = nil
@@ -243,13 +244,19 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         typePicker.dataSource = self
         
         let tabBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector (tapViewForReturn))
-       tabBackgroundGesture.numberOfTapsRequired = 1
-       self.view.addGestureRecognizer(tabBackgroundGesture)
+        tabBackgroundGesture.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(tabBackgroundGesture)
         let tabSegmentView = UITapGestureRecognizer(target: self, action: #selector (tapSegment))
         tabSegmentView.numberOfTapsRequired = 1
-       self.segmentBackground.addGestureRecognizer(tabSegmentView)
-        viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
-            let isSecondComponent = self!.viewModel.shouldShow2Component
+        self.segmentBackground.addGestureRecognizer(tabSegmentView)
+        viewModel.notEndEdingClosure = { textField in
+            guard let textField = textField as? UITextField else{
+                 return
+            }
+            textField.endEditing(false)
+        }
+        viewModel.pickItemListClosure = {[weak self] in
+            let isSecondComponent = self!.shouldShow2Component
             DispatchQueue.main.async {
                 self?.typePicker.reloadAllComponents()
                 if !isSecondComponent {
@@ -258,23 +265,23 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             }
         }
         
-        viewModel.segmentToggleLeft.addObserver(fireNow: false) {[weak self] (isLeft) in
+        viewModel.segmentToggleLeftClosure = {[weak self] (isLeft) in
             var currentLashData: LashPosType
             var xOffset: CGFloat
             if isLeft {
                 xOffset = self!.segmentBackground.frame.size.width / 2
-                self!.viewModel.switchStr = "右"
-                self!.viewModel.leftLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
-                currentLashData = self!.viewModel.rightLashData
+                self!.switchStr = "右"
+                self!.leftLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
+                currentLashData = self!.rightLashData
                 
             } else {
                 xOffset = 0
-                self!.viewModel.switchStr = "左"
-                self!.viewModel.rightLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
-                currentLashData = self!.viewModel.leftLashData
+                self!.switchStr = "左"
+                self!.rightLashData = LashPosType(text1: self!.topLashText1.text!, text2: self!.topLashText2.text!, text3: self!.topLashText3.text!, text4: self!.topLashText4.text!, text5: self!.topLashText5.text!)
+                currentLashData = self!.leftLashData
             }
             self!.segmentSwitch.frame.origin.x = xOffset
-            self!.segmentSwitch.text = self!.viewModel.switchStr
+            self!.segmentSwitch.text = self!.switchStr
             self!.topLashText1.text = currentLashData.text1
             self!.topLashText2.text = currentLashData.text2
             self!.topLashText3.text = currentLashData.text3
@@ -289,9 +296,9 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         topTypeTextForPicker.text = data.type
         topSizeTextForPicker.text = data.top_size
         
-        self.viewModel.leftLashData = LashPosType(text1: data.left_1 ?? "", text2: data.left_2 ?? "", text3: data.left_3 ?? "", text4: data.left_4 ?? "", text5: data.left_5 ?? "")
-        self.viewModel.rightLashData = LashPosType(text1: data.right_1 ?? "", text2: data.right_2 ?? "", text3: data.right_3 ?? "", text4: data.right_4 ?? "", text5: data.right_5 ?? "")
-        let currentLashData = self.viewModel.leftLashData
+        self.leftLashData = LashPosType(text1: data.left_1 ?? "", text2: data.left_2 ?? "", text3: data.left_3 ?? "", text4: data.left_4 ?? "", text5: data.left_5 ?? "")
+        self.rightLashData = LashPosType(text1: data.right_1 ?? "", text2: data.right_2 ?? "", text3: data.right_3 ?? "", text4: data.right_4 ?? "", text5: data.right_5 ?? "")
+        let currentLashData = self.leftLashData
         self.topLashText1.text = currentLashData.text1
         self.topLashText2.text = currentLashData.text2
         self.topLashText3.text = currentLashData.text3
@@ -307,7 +314,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func tapSegment(_ sender: Any) {
-        self.controller.toggleSeg()
+        self.viewModel.toggleSeg()
     }
     
     @IBAction func tapViewForReturn(_ sender: Any) {
@@ -317,7 +324,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             topLashText4.isFirstResponder ||
             topLashText5.isFirstResponder
         {
-            let col1Select = self.viewModel.pickItemList.value[typePicker.selectedRow(inComponent: 0)]
+            let col1Select = self.viewModel.pickItemList[typePicker.selectedRow(inComponent: 0)]
             let col2Select = self.viewModel.pickItemList2[typePicker.selectedRow(inComponent: 1)]
             if  topLashText1.isFirstResponder {
                 topLashText1.text = col1Select + col2Select
@@ -343,10 +350,10 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
             noteTextField.endEditing(true)
         }
         else {
-            guard self.viewModel.pickItemList.value.count > 0 else {
+            guard self.viewModel.pickItemList.count > 0 else {
                 return
             }
-            let rowSelect = self.viewModel.pickItemList.value[typePicker.selectedRow(inComponent: 0)]
+            let rowSelect = self.viewModel.pickItemList[typePicker.selectedRow(inComponent: 0)]
             setSingleColSelected(rowSelect: rowSelect)
         }
         
@@ -412,20 +419,20 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         segmentBackground.layer.cornerRadius = textFieldCornerRadius
         segmentBackground.clipsToBounds = true
         //update by in
-        let name = controller.getCustomerName()
+        let name = viewModel.getCustomerName()
         nameText.text = name
         nameText.isUserInteractionEnabled = false
-        let lashTypeStr = controller.getLashType()
+        let lashTypeStr = viewModel.getLashType()
         lashTypeText.text = lashTypeStr
         self.segmentSwitch.frame.size.width = self.segmentBackground.frame.size.width / 2 + 1
-        if viewModel.demoOnly {
+        if self.demoOnly {
             demoInit()
         }
     }
     
     func demoInit() {
         let orderForDemo = self.viewModel.orderOfCustomer
-        guard let prodType = self.controller.getProductData(id: orderForDemo.product_id)
+        guard let prodType = self.viewModel.getProductData(id: orderForDemo.product_id)
         else {
             return
         }
@@ -434,10 +441,10 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         let allServices = allServicesStr.components(separatedBy: LashListTypePrefix)
         let topLashSelected: Bool = allServices.contains(LashListType.topAndBott.rawValue) || allServices.contains(LashListType.topLash.rawValue) || allServices.contains(LashListType.addTopLash.rawValue)
         let bottLashSelected: Bool = allServices.contains(LashListType.bottLash.rawValue) || allServices.contains(LashListType.topAndBott.rawValue)
-        self.controller.setLastEnable(isTopEnable: topLashSelected, isBottEnable: bottLashSelected)
+        self.viewModel.setLastEnable(isTopEnable: topLashSelected, isBottEnable: bottLashSelected)
         //customer
-        self.controller.customerId = orderForDemo.user_id
-        self.nameText.text = self.controller.getCustomerName()
+        self.viewModel.customerId = orderForDemo.user_id
+        self.nameText.text = self.viewModel.getCustomerName()
         self.datePicker.date =  orderForDemo.created_date
         //order
         self.lashTypeText.text = allServicesStr
@@ -452,18 +459,18 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
         //product
         switch prodType.name {
         case EntityNameDefine.productLashTop + "_" + EntityNameDefine.productLashBott:
-            if let topData = self.controller.getProductLashTop(id: prodType.ref_id_1) {
+            if let topData = self.viewModel.getProductLashTop(id: prodType.ref_id_1) {
                 self.setTopData(data: topData)
             }
-            if let bottData = self.controller.getProductLashBott(id: prodType.ref_id_2) {
+            if let bottData = self.viewModel.getProductLashBott(id: prodType.ref_id_2) {
                 self.setBottData(data: bottData)
             }
         case EntityNameDefine.productLashTop:
-            if let topData = self.controller.getProductLashTop(id: prodType.ref_id_1) {
+            if let topData = self.viewModel.getProductLashTop(id: prodType.ref_id_1) {
                 self.setTopData(data: topData)
             }
         case EntityNameDefine.productLashBott:
-            if let bottData = self.controller.getProductLashBott(id: prodType.ref_id_2) {
+            if let bottData = self.viewModel.getProductLashBott(id: prodType.ref_id_2) {
                 self.setBottData(data: bottData)
             }
         default:
@@ -474,54 +481,66 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {
-        self.controller.setOrderInfo(lashTypeList: lashTypeList, cId: cId)
+        self.viewModel.setOrderInfo(lashTypeList: lashTypeList, cId: cId)
     }
     
     public func setOrderInfoForDemo(data: Order) {
-        self.controller.doDemoUpdate()
-        self.controller.setOrderForDemo(data: data)
+        self.demoOnly = true
+        self.viewModel.setOrderForDemo(data: data)
     }
     
     public func setLastEnable(isTopEnable: Bool, isBottEnable: Bool) {
-        self.controller.setLastEnable(isTopEnable: isTopEnable, isBottEnable: isBottEnable)
+        self.viewModel.setLastEnable(isTopEnable: isTopEnable, isBottEnable: isBottEnable)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if topTypeTextForPicker.isFirstResponder {
-            controller.getLashTypeFromDb()
+            shouldShow2Component = false
+            viewModel.getLashTypeFromDb()
         } else if topSizeTextForPicker.isFirstResponder {
-            controller.getLashTopSizeFromDb()
+            shouldShow2Component = false
+            viewModel.getLashTopSizeFromDb()
         } else if bottSizeTextForPicker.isFirstResponder {
-            controller.getLashBottSizeFromDb()
+            shouldShow2Component = false
+            viewModel.getLashBottSizeFromDb()
         } else if bottCurTextForPicker.isFirstResponder {
-            controller.getLashBottCurlFromDb()
+            shouldShow2Component = false
+            viewModel.getLashBottCurlFromDb()
         } else if bottLenTextForPicker.isFirstResponder {
-            controller.getLashBottLenFromDb()
+            shouldShow2Component = false
+            viewModel.getLashBottLenFromDb()
         } else if doerTextForPicker.isFirstResponder {
-            controller.getDoerFromDb()
+            shouldShow2Component = false
+            viewModel.getDoerFromDb()
         } else if colorTextForPicker.isFirstResponder {
-            controller.getLashColorTypeFromDb()
+            shouldShow2Component = false
+            viewModel.getLashColorTypeFromDb()
         }
         else if topLashText1.isFirstResponder
         {
             topLashText1.text = ""
-            controller.getLashTopLenCurlFromDb()
+            shouldShow2Component = true
+            viewModel.getLashTopLenCurlFromDb()
         } else if topLashText2.isFirstResponder
         {
+            shouldShow2Component = true
             topLashText2.text = ""
-            controller.getLashTopLenCurlFromDb()
+            viewModel.getLashTopLenCurlFromDb()
         }else if topLashText3.isFirstResponder
         {
+            shouldShow2Component = true
             topLashText3.text = ""
-            controller.getLashTopLenCurlFromDb()
+            viewModel.getLashTopLenCurlFromDb()
         }else if topLashText4.isFirstResponder
         {
+            shouldShow2Component = true
             topLashText4.text = ""
-            controller.getLashTopLenCurlFromDb()
+            viewModel.getLashTopLenCurlFromDb()
         }else if topLashText5.isFirstResponder
         {
+            shouldShow2Component = true
             topLashText5.text = ""
-            controller.getLashTopLenCurlFromDb()
+            viewModel.getLashTopLenCurlFromDb()
         }
     }
     
@@ -536,7 +555,7 @@ class LashOrderViewController: BaseViewController, UITextFieldDelegate {
 extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        let isShouldShow2Component = self.viewModel.shouldShow2Component
+        let isShouldShow2Component = self.shouldShow2Component
         if isShouldShow2Component {
             return 2
         }
@@ -544,8 +563,8 @@ extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let lashList = self.viewModel.pickItemList.value
-        let isShouldShow2Component = self.viewModel.shouldShow2Component
+        let lashList = self.viewModel.pickItemList
+        let isShouldShow2Component = self.shouldShow2Component
         if isShouldShow2Component &&  component == 1{
             let lashList2 = self.viewModel.pickItemList2
             return lashList2.count
@@ -565,40 +584,20 @@ extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         }else if topLashText5.isFirstResponder {
             didSelectLashTopComp2(textField: topLashText5, row: row, component: component)
         } else {
-            let lashList = self.viewModel.pickItemList.value
+            let lashList = self.viewModel.pickItemList
             setSingleColSelected(rowSelect: lashList[row])
         }
     }
     
     private func didSelectLashTopComp2(textField: UITextField, row: Int, component: Int) {
-        var tmpStr = ""
-        if !self.controller.isSelectBoth(compNum: component) {
-            self.controller.setDidSelectBoth(compNum: component)
-            if component == 1 {
-                let lashList2 = self.viewModel.pickItemList2
-                tmpStr = lashList2[row]
-                textField.text! = tmpStr
-            } else {
-                tmpStr = self.viewModel.pickItemList.value[row]
-                textField.text! = tmpStr
-            }
-        } else {
-            if component == 1 {
-                let lashList2 = self.viewModel.pickItemList2
-                tmpStr = lashList2[row]
-                textField.text! += tmpStr
-            } else {
-                tmpStr = self.viewModel.pickItemList.value[row]
-                textField.text! = tmpStr + textField.text!
-            }
-            textField.endEditing(false)
+            let tmpStr = self.viewModel.getSelectStr(row: row, component: component, exitStr: textField.text!, target: textField)
+            textField.text! = tmpStr
         }
-    }
-    
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
-        var lashList = self.viewModel.pickItemList.value
-        if self.viewModel.shouldShow2Component && component == 1{
+        var lashList = self.viewModel.pickItemList
+        if self.shouldShow2Component && component == 1{
             lashList = self.viewModel.pickItemList2
         }
         let detailTitle = lashList[row]
@@ -609,8 +608,6 @@ extension LashOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         pickerView.backgroundColor = .white
         return pickerLabel
     }
-    
-    
 }
 
 

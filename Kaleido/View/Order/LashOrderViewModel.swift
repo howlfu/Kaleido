@@ -6,17 +6,32 @@
 //
 
 import Foundation
-class LashOrderController: BaseOrderController {
-    let viewModel: LashOrderModel
-    var lashType: [LashListType]? = []
+import CoreMedia
+class LashOrderViewModel: BaseOrderController {
     
+    var pickItemList2: [String] = []
+    var orderOfCustomer = OrderEntityType(id: 0, doer: "", note: "", pay_method: "", product_id: 0, store_money: 0, total_price: 0, income: 0, user_id: 0, created_date: Date(), services: "")
+    var isLashTopEnable:Bool = false
+    var isLashBottEnable:Bool = false
+
+    var lashType: [LashListType]? = []
     var tmpCompNum: Int?
-    init(
-        viewModel: LashOrderModel = LashOrderModel()
-    ) {
-        self.viewModel = viewModel
+    
+    var pickItemListClosure: (() -> ())?
+    var segmentToggleLeftClosure: ((Bool) -> ())?
+    var notEndEdingClosure: ((Any) -> ())?
+    
+    var pickItemList: [String] = [] {
+        didSet{
+            pickItemListClosure?()
+        }
     }
     
+    var segmentToggleLeft: Bool = false {
+        didSet{
+            segmentToggleLeftClosure?(segmentToggleLeft)
+        }
+    }
     public func getLashType() -> String {
         var retStr = ""
         guard let lashTypeList = lashType else {
@@ -33,7 +48,7 @@ class LashOrderController: BaseOrderController {
     public func setOrderInfo(lashTypeList: [LashListType], cId: Int32) {
         self.lashType = lashTypeList
         self.customerId = cId
-        self.viewModel.orderOfCustomer.user_id = cId
+        self.orderOfCustomer.user_id = cId
         self.setTopBottLashService(services: lashTypeList)
     }
     
@@ -41,9 +56,9 @@ class LashOrderController: BaseOrderController {
         for service in services {
             switch service {
             case .topLash, .addTopLash, .topAndBott, .removeRestart:
-                self.viewModel.isLashTopEnable = true
+                self.isLashTopEnable = true
             case .bottLash:
-                self.viewModel.isLashBottEnable = true
+                self.isLashBottEnable = true
             default:
                 print("other service only")
 //            case .removeOnly:
@@ -59,8 +74,8 @@ class LashOrderController: BaseOrderController {
     }
     
     public func setOderDoerAndNote(doer: String, note: String) {
-        self.viewModel.orderOfCustomer.doer = doer
-        self.viewModel.orderOfCustomer.note = note
+        self.orderOfCustomer.doer = doer
+        self.orderOfCustomer.note = note
     }
     
     public func getCustomerById(cId: Int32) -> Customer? {
@@ -71,17 +86,15 @@ class LashOrderController: BaseOrderController {
     }
     
     public func getLashTypeFromDb(){
-        self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["中間長", "眼尾長", "齊長", "多層次"]
+        self.pickItemList = ["中間長", "眼尾長", "齊長", "多層次"]
     }
     
     public func getLashTopLenCurlFromDb() {
         // 6,7,8,9,10,11,12,13,14,15, 8-10,9-11,10-12,11-13
         // J/B/C/CC/D/U/L+
-        self.viewModel.shouldShow2Component = true
         self.tmpCompNum = 2
-        self.viewModel.pickItemList2 = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "8-10", "9-11", "10-12", "11-13"]
-        self.viewModel.pickItemList.value = ["J", "B", "C", "CC", "D", "U", "L+"]
+        self.pickItemList2 = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "8-10", "9-11", "10-12", "11-13"]
+        self.pickItemList = ["J", "B", "C", "CC", "D", "U", "L+"]
     }
     
     public func setDidSelectBoth(compNum: Int) {
@@ -95,45 +108,39 @@ class LashOrderController: BaseOrderController {
         return false
     }
     public func getLashColorTypeFromDb() {
-        self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["黑色", "棕色", "彩色"]
+        self.pickItemList = ["黑色", "棕色", "彩色"]
     }
     
     public func getLashTopSizeFromDb() {
         // 0.07 / 0.1
-        self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["0.07", "0.08", "0.09", "0.1"]
+        self.pickItemList = ["0.07", "0.08", "0.09", "0.1"]
     }
     
     public func getLashBottLenFromDb() {
         // 6,7,8
-        self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["6", "7", "8"]
+        self.pickItemList = ["6", "7", "8"]
     }
     
     public func getLashBottCurlFromDb() {
         // J,B,C
-        self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["J", "B", "C"]
+        self.pickItemList = ["J", "B", "C"]
     }
     
     public func getLashBottSizeFromDb() {
         // J,B,C
-        self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["0.07", "0.01", "0.15", "0.1扁毛"]
+        self.pickItemList = ["0.07", "0.01", "0.15", "0.1扁毛"]
     }
     
     public func getDoerFromDb() {
-        self.viewModel.shouldShow2Component = false
-        self.viewModel.pickItemList.value = ["Jen", "JaJen"]
+        self.pickItemList = ["Jen", "JaJen"]
     }
     
     public func setOderLash(prodId: Int64, doer: String, note: String, setDate: Date, services: String) {
-        self.viewModel.orderOfCustomer.product_id = prodId
-        self.viewModel.orderOfCustomer.doer = doer
-        self.viewModel.orderOfCustomer.note = note
-        self.viewModel.orderOfCustomer.created_date = setDate
-        self.viewModel.orderOfCustomer.services = services
+        self.orderOfCustomer.product_id = prodId
+        self.orderOfCustomer.doer = doer
+        self.orderOfCustomer.note = note
+        self.orderOfCustomer.created_date = setDate
+        self.orderOfCustomer.services = services
     }
     
     public func setLastEnable(isTopEnable: Bool, isBottEnable: Bool) {
@@ -141,7 +148,7 @@ class LashOrderController: BaseOrderController {
     }
     
     public func toggleSeg() {
-        self.viewModel.segmentToggleLeft.value = !self.viewModel.segmentToggleLeft.value
+        self.segmentToggleLeft = !self.segmentToggleLeft
     }
     
     public func saveProductTopBott(top_color: String, top_size: String, top_type: String, top_total_quantity: Int16, left_1: String, left_2: String, left_3: String, left_4: String, left_5: String, right_1: String, right_2: String, right_3: String, right_4: String, right_5: String, bott_length: String, bott_size: String, bott_total_quantity: Int16, bott_curl: String) -> Int64? {
@@ -170,17 +177,17 @@ class LashOrderController: BaseOrderController {
     }
     
     public func setOrderForDemo(data: Order) {
-        self.viewModel.orderOfCustomer.id = data.id
-        self.viewModel.orderOfCustomer.doer = data.doer ?? ""
-        self.viewModel.orderOfCustomer.note = data.note ?? ""
-        self.viewModel.orderOfCustomer.product_id = data.product_id
-        self.viewModel.orderOfCustomer.store_money = data.store_money
-        self.viewModel.orderOfCustomer.total_price = data.total_price
-        self.viewModel.orderOfCustomer.income = data.income
-        self.viewModel.orderOfCustomer.user_id = data.user_id
-        self.viewModel.orderOfCustomer.services = data.service_content ?? ""
-        self.viewModel.orderOfCustomer.created_date = data.created_at ?? Date()
-        let serviceList = getLashList(servicesStr: self.viewModel.orderOfCustomer.services)
+        self.orderOfCustomer.id = data.id
+        self.orderOfCustomer.doer = data.doer ?? ""
+        self.orderOfCustomer.note = data.note ?? ""
+        self.orderOfCustomer.product_id = data.product_id
+        self.orderOfCustomer.store_money = data.store_money
+        self.orderOfCustomer.total_price = data.total_price
+        self.orderOfCustomer.income = data.income
+        self.orderOfCustomer.user_id = data.user_id
+        self.orderOfCustomer.services = data.service_content ?? ""
+        self.orderOfCustomer.created_date = data.created_at ?? Date()
+        let serviceList = getLashList(servicesStr: self.orderOfCustomer.services)
         self.setTopBottLashService(services: serviceList)
     }
     
@@ -224,7 +231,27 @@ class LashOrderController: BaseOrderController {
         
     }
     
-    public func doDemoUpdate() {
-        self.viewModel.demoOnly = true
+    public func getSelectStr(row: Int, component: Int, exitStr: String, target: Any) -> String{
+        var tmpStr: String = ""
+        if !self.isSelectBoth(compNum: component) {
+            self.setDidSelectBoth(compNum: component)
+            if component == 1 {
+                let lashList2 = self.pickItemList2
+                tmpStr = lashList2[row]
+            } else {
+                tmpStr = self.pickItemList[row]
+            }
+        } else {
+            if component == 1 {
+                let lashList2 = self.pickItemList2
+                tmpStr = lashList2[row]
+                tmpStr = exitStr + tmpStr
+            } else {
+                tmpStr = self.pickItemList[row]
+                tmpStr = tmpStr + exitStr
+            }
+            self.notEndEdingClosure!(target)
+        }
+        return tmpStr
     }
 }
