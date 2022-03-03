@@ -14,34 +14,12 @@ class LashOrderVMTest: XCTestCase {
     override func setUp() {
         super.setUp()
         sut = LashOrderViewModel()
-        sut.segmentToggleLeftClosure = { [weak self] isLeft in
-            self!.closuerSegmentToggleLeft(isLeft: isLeft)
-        }
-        sut.notEndEdingClosure = { [weak self] textField in
-            self!.closuerNotEndEding(target: textField)
-        }
-        
-        sut.pickItemListClosure = { [weak self] in
-            self!.closuerPickItemList()
-        }
     }
     
     override func tearDown() {
         super.tearDown()
         sut.isLashTopEnable = false
         sut.isLashBottEnable = false
-    }
-    
-    private func closuerSegmentToggleLeft(isLeft: Bool) {
-        
-    }
-    
-    private func closuerNotEndEding(target: Any) {
-//        stopEditExp?.fulfill()
-    }
-    
-    private func closuerPickItemList() {
-        
     }
     
     //Test cases
@@ -90,6 +68,7 @@ class LashOrderVMTest: XCTestCase {
     func testGetSelectStr() throws {
         sut.tmpCompNum = 2
         sut.getLashTopLenCurlFromDb()
+
         let retStr1 = sut.getSelectStr(row: 1, component: 0, exitStr: "123", target: "")
         XCTAssertEqual("B", retStr1)
         let retStr2 = sut.getSelectStr(row: 1, component: 1, exitStr: retStr1, target: "")
@@ -97,8 +76,47 @@ class LashOrderVMTest: XCTestCase {
         sut.tmpCompNum = 2
         let retStr3 = sut.getSelectStr(row: 1, component: 1, exitStr: "123", target: "")
         XCTAssertEqual("7", retStr3)
+        
+        let expectation = expectation(description: "Test end edit closure")
+        sut.notEndEdingClosure = { textField in
+            XCTAssertTrue(true)
+            expectation.fulfill()
+        }
         let retStr4 = sut.getSelectStr(row: 1, component: 0, exitStr: retStr3, target: "")
         XCTAssertEqual("B7", retStr4)
+        waitForExpectations(timeout: 1) { error in
+          if let error = error {
+            XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+          }
+        }
+    }
+    
+    func testToggleLeft() throws{
+        let expectation1 = expectation(description: "Test first toggle")
+        sut.segmentToggleLeftClosure = { isLeft in
+            XCTAssertTrue(isLeft)
+            expectation1.fulfill()
+        }
+        sut.toggleSeg()
+        waitForExpectations(timeout: 1) { error in
+          if let error = error {
+            XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+          }
+        }
+    }
+    
+    func testReloadPicker() throws {
+        let expectation1 = expectation(description: "Test reload picker")
+        sut.pickItemListClosure = {
+            XCTAssertTrue(true)
+            expectation1.fulfill()
+        }
+        sut.getLashTypeFromDb()
+        waitForExpectations(timeout: 1) { error in
+          if let error = error {
+            XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+          }
+        }
     }
     
 }

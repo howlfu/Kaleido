@@ -250,7 +250,7 @@ class LashOrderViewModel: BaseOrderController {
                 tmpStr = self.pickItemList[row]
                 tmpStr = tmpStr + exitStr
             }
-            self.notEndEdingClosure!(target)
+            self.notEndEdingClosure?(target)
         }
         return tmpStr
     }
