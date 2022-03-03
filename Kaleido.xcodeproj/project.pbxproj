@@ -63,8 +63,7 @@
 		63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6B27351D250085BD4C /* EntitySetHelper.swift */; };
 		63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6D273521450085BD4C /* UserDefaultKey.swift */; };
 		63CD4F702738D0630085BD4C /* EntitySetHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F6F2738D0630085BD4C /* EntitySetHelperTest.swift */; };
-		63D88BE4273E04B600665728 /* KeratinOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D88BE3273E04B600665728 /* KeratinOrderModel.swift */; };
-		63D88BE6273E04E800665728 /* KeratinOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D88BE5273E04E800665728 /* KeratinOrderController.swift */; };
+		63D88BE6273E04E800665728 /* KeratinOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D88BE5273E04E800665728 /* KeratinOrderViewModel.swift */; };
 		63D88BF52741FC2100665728 /* PayMethod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D88BF12741FC2100665728 /* PayMethod+CoreDataClass.swift */; };
 		63D88BF62741FC2100665728 /* PayMethod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D88BF22741FC2100665728 /* PayMethod+CoreDataProperties.swift */; };
 		63E3672227425E8900FCCA77 /* ProductKeratin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3672027425E8900FCCA77 /* ProductKeratin+CoreDataClass.swift */; };
@@ -173,8 +172,7 @@
 		63CD4F6B27351D250085BD4C /* EntitySetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySetHelper.swift; sourceTree = "<group>"; };
 		63CD4F6D273521450085BD4C /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		63CD4F6F2738D0630085BD4C /* EntitySetHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitySetHelperTest.swift; sourceTree = "<group>"; };
-		63D88BE3273E04B600665728 /* KeratinOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderModel.swift; sourceTree = "<group>"; };
-		63D88BE5273E04E800665728 /* KeratinOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderController.swift; sourceTree = "<group>"; };
+		63D88BE5273E04E800665728 /* KeratinOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeratinOrderViewModel.swift; sourceTree = "<group>"; };
 		63D88BF12741FC2100665728 /* PayMethod+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PayMethod+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63D88BF22741FC2100665728 /* PayMethod+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PayMethod+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63E3672027425E8900FCCA77 /* ProductKeratin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductKeratin+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -355,8 +353,7 @@
 				63B527E827C768C000F51D7C /* LashOrderViewModel.swift */,
 				635C7AA8273A234E000C3CCA /* LashOrderViewController.swift */,
 				635C7AAA273A23CD000C3CCA /* KeratinOrderViewController.swift */,
-				63D88BE5273E04E800665728 /* KeratinOrderController.swift */,
-				63D88BE3273E04B600665728 /* KeratinOrderModel.swift */,
+				63D88BE5273E04E800665728 /* KeratinOrderViewModel.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -751,7 +748,6 @@
 				63CA9CB0275482D400051F7A /* BillCheckModel.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
 				63D88BF62741FC2100665728 /* PayMethod+CoreDataProperties.swift in Sources */,
-				63D88BE4273E04B600665728 /* KeratinOrderModel.swift in Sources */,
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
 				63F346B4277AA0DB008FCFDE /* DemoShowController.swift in Sources */,
 				63ABF1E32775533F007E420B /* DemoShowAllPhotoViewController.swift in Sources */,
@@ -762,7 +758,7 @@
 				637EA9D6275612F800C1DBE1 /* ProductLashBott+CoreDataClass.swift in Sources */,
 				63AA685C27576C2A00BD929B /* DiscountRule+CoreDataClass.swift in Sources */,
 				6317345D2742306800435552 /* UIViewController.swift in Sources */,
-				63D88BE6273E04E800665728 /* KeratinOrderController.swift in Sources */,
+				63D88BE6273E04E800665728 /* KeratinOrderViewModel.swift in Sources */,
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
 				630C85A2274F7B5C001E6ED7 /* SettingMainViewController.swift in Sources */,
 				63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */,

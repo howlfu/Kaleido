@@ -9,9 +9,7 @@ import UIKit
 
 class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     @IBOutlet weak var titleView: UIView!
-    
     @IBOutlet weak var datePickerBackground: UIView!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var noteText: UITextField!
@@ -34,41 +32,39 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         else{
             return
         }
-        if viewModel.demoOnly {
+        if self.demoOnly {
             prsentNormalAlert(msg: "修改訂單", btn: "確定", viewCTL: self, completion: {
         
-                guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
+                guard let prodId = self.viewModel.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
                     return
                 }
                 var tmpOrder = self.viewModel.orderOfCustomer
                 tmpOrder.created_date = self.datePicker.date
                 tmpOrder.product_id = prodId
-                self.controller.updateOrderToDb(order: tmpOrder)
+                self.viewModel.updateOrderToDb(order: tmpOrder)
             })
         } else {
             prsentNormalAlert(msg: "產生訂單", btn: "確定", viewCTL: self, completion: {
-                guard let prodId = self.controller.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
+                guard let prodId = self.viewModel.saveProductOrder(type: typeText, softTime: softTimeText, stableTime: stableTimeText, colorTime: colorTimeText) else {
                     return
                 }
                 let doer = "WenJen"
-                self.controller.saveOrderKeratin(prodId: prodId, doer: doer, note: self.noteText.text ?? "", setDate: self.datePicker.date, services: "角蛋白")
+                self.viewModel.saveOrderKeratin(prodId: prodId, doer: doer, note: self.noteText.text ?? "", setDate: self.datePicker.date, services: "角蛋白")
                 self.performSegue(withIdentifier: "keratinToBillCheck", sender: self)
             })
         }
     }
-    var controller: KeratinOrderController = KeratinOrderController()
+    var viewModel: KeratinOrderViewModel = KeratinOrderViewModel()
     let typePicker: UIPickerView = UIPickerView()
-    var viewModel: KeratinOrderModel {
-        return controller.viewModel
-    }
+    var demoOnly: Bool = false
     
     public func setOrderInfo(cId: Int32) {
-        self.controller.setOrderInfo(cId: cId)
+        self.viewModel.setOrderInfo(cId: cId)
     }
     
     public func setOrderInfoForDemo(data: Order) {
-        self.controller.doDemoUpdate()
-        self.controller.setOrderForDemo(data: data)
+        self.demoOnly = true
+        self.viewModel.setOrderForDemo(data: data)
     }
     
     override func initBinding() {
@@ -77,7 +73,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         typeForPicker.delegate = self
         typeForPicker.inputView = typePicker
         
-        viewModel.pickItemList.addObserver(fireNow: false) {[weak self] (newListData) in
+        viewModel.pickItemListClosure = {[weak self] (newListData) in
             DispatchQueue.main.async {
                 self?.typePicker.reloadAllComponents()
             }
@@ -114,14 +110,13 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
         colorTime.layer.cornerRadius = textFieldCornerRadius
         nameText.layer.cornerRadius = textFieldCornerRadius
         datePickerBackground.layer.cornerRadius = textFieldCornerRadius
-        let name = controller.getCustomerName()
+        let name = viewModel.getCustomerName()
         nameText.text = name
-        if self.viewModel.demoOnly {
+        if self.demoOnly {
             demoInit()
         }
     }
     override func removeBinding() {
-        viewModel.pickItemList.removeObserver()
         typeForPicker.delegate = nil
         typePicker.delegate = nil
         typePicker.dataSource = nil
@@ -129,18 +124,18 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     
     func demoInit() {
         let orderForDemo = self.viewModel.orderOfCustomer
-        guard let prodType = self.controller.getProductData(id: orderForDemo.product_id)
+        guard let prodType = self.viewModel.getProductData(id: orderForDemo.product_id)
         else {
             return
         }
         //customer
-        self.controller.customerId = orderForDemo.user_id
-        self.nameText.text = self.controller.getCustomerName()
+        self.viewModel.customerId = orderForDemo.user_id
+        self.nameText.text = self.viewModel.getCustomerName()
         self.datePicker.date =  orderForDemo.created_date
         //order
         self.noteText.text = orderForDemo.note + "，金額：\(orderForDemo.total_price)"
         if prodType.name == EntityNameDefine.productKeratin {
-            guard let keratinData = self.controller.getKeratinOrder(id: prodType.ref_id_1) else {
+            guard let keratinData = self.viewModel.getKeratinOrder(id: prodType.ref_id_1) else {
                 return
             }
             self.typeForPicker.text = keratinData.type
@@ -153,7 +148,7 @@ class KeratinOrderViewController: BaseViewController, UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if typeForPicker.isFirstResponder {
-            controller.getTypeListFromDb()
+            viewModel.getTypeListFromDb()
         }
     }
     
@@ -171,12 +166,12 @@ extension KeratinOrderViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let lashList = self.viewModel.pickItemList.value
+        let lashList = self.viewModel.pickItemList
         return lashList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let lashList = self.viewModel.pickItemList.value
+        let lashList = self.viewModel.pickItemList
         let rowSelect = lashList[row]
          if typeForPicker.isFirstResponder {
             typeForPicker.text = rowSelect
@@ -186,7 +181,7 @@ extension KeratinOrderViewController: UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
-        let lashList = self.viewModel.pickItemList.value
+        let lashList = self.viewModel.pickItemList
         let detailTitle = lashList[row]
         pickerLabel.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint, alpha: 1.0)
         pickerLabel.font = UIFont.systemFont(ofSize: 26)
