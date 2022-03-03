@@ -20,15 +20,18 @@ class SearchCustomsViewController: BaseViewController{
     @IBOutlet weak var customsListTableView: UITableView!
     var viewModel: SearchCustomsViewModel = SearchCustomsViewModel()
     var selectedLashService: [LashListType]?
+    var didSelectTimePicker: Bool = false
+    var selectedCustomerId: Int32?
+    
     @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
             view.endEditing(true)
     }
     
     @IBAction func timeChanged(_ sender: UIDatePicker) {
         if Calendar.current.isDateInToday(sender.date) {
-            self.viewModel.didSelectTimePicker = false
+            self.didSelectTimePicker = false
         } else {
-            self.viewModel.didSelectTimePicker = true
+            self.didSelectTimePicker = true
         }
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
@@ -39,14 +42,14 @@ class SearchCustomsViewController: BaseViewController{
     }
     
     private func tryGetCustomerData() {
-        if nameTextField.hasText || phoneTextField.hasText || self.viewModel.didSelectTimePicker {
+        if nameTextField.hasText || phoneTextField.hasText || self.didSelectTimePicker {
             guard
                 let name = nameTextField.text,
                 let phone = phoneTextField.text else {
                     return
                 }
             var birth = datePicker.date.toYearMonthDayStr()
-            if !self.viewModel.didSelectTimePicker {
+            if !self.didSelectTimePicker {
                 birth = ""
             }
             viewModel.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
@@ -64,7 +67,7 @@ class SearchCustomsViewController: BaseViewController{
              return
         }
         var birth = datePicker.date.toYearMonthDayStr()
-        if !self.viewModel.didSelectTimePicker {
+        if !self.didSelectTimePicker {
             birth = ""
         }
         if nameData != "" && phoneData != "" &&  birth != ""{
@@ -95,7 +98,7 @@ class SearchCustomsViewController: BaseViewController{
     }
     
     func toOrderDetailView(selectedId: Int32) {
-        viewModel.selectedCustomerId = selectedId
+        self.selectedCustomerId = selectedId
         guard let _ = selectedLashService else {
             performSegue(withIdentifier: "toKeratinOrder", sender: self)
             return
@@ -107,7 +110,7 @@ class SearchCustomsViewController: BaseViewController{
         if segue.destination is LashOrderViewController {
             let lash = segue.destination as! LashOrderViewController
             guard let lashTypeList = selectedLashService,
-                  let customerId = self.viewModel.selectedCustomerId else {
+                  let customerId = self.selectedCustomerId else {
                       return
                   }
             lash.setOrderInfo(lashTypeList: lashTypeList, cId: customerId)
@@ -120,7 +123,7 @@ class SearchCustomsViewController: BaseViewController{
         
         if segue.destination is KeratinOrderViewController {
             let keratin = segue.destination as! KeratinOrderViewController
-            guard let customerId = self.viewModel.selectedCustomerId else {
+            guard let customerId = self.selectedCustomerId else {
                 return
             }
             keratin.setOrderInfo(cId: customerId)
@@ -177,7 +180,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         self.phoneTextField.text = selectedCustomer.phone_number
         if let birthStr = selectedCustomer.birthday, let birthDate = birthStr.toDate() {
             self.datePicker.setDate(birthDate, animated: false)
-            self.viewModel.didSelectTimePicker = true
+            self.didSelectTimePicker = true
         }
         let selectedId = selectedCustomer.id
         self.toOrderDetailView(selectedId: selectedId)
@@ -226,7 +229,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
         self.customsListTableView.cellForRow(at: indexPath)!.contentView.backgroundColor = UIColor.fromHexColor(rgbValue: ColorDef().mainTint)
         let foundCustoms = viewModel.gCellViewData()
         let selectedCustomer: Customer = foundCustoms[indexPath.row]
-        self.viewModel.selectedCustomerId = selectedCustomer.id
+        self.selectedCustomerId = selectedCustomer.id
         
         self.view.alpha = 0.6
         let delectView = self.delectBtnView()
@@ -256,7 +259,7 @@ extension SearchCustomsViewController: UITableViewDataSource, UITableViewDelegat
     
     private func tryDelectCustomer() {
         //delect selected
-        guard let cId =  self.viewModel.selectedCustomerId else {return}
+        guard let cId =  self.selectedCustomerId else {return}
         if self.viewModel.delectCustomer(cId: cId) {
             self.tryGetCustomerData()
         }

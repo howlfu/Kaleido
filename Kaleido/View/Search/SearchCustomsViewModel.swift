@@ -17,9 +17,7 @@ class SearchCustomsViewModel: BaseSearchController {
             self.setDataToDbDetail()
         }
     }
-    
-    var didSelectTimePicker: Bool = false
-    var selectedCustomerId: Int32?
+
     //return value
     var cellViewData: [Customer]?
     
