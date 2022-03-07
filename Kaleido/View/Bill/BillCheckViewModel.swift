@@ -6,26 +6,32 @@
 //
 
 import Foundation
-class BillCheckController {
-    let viewModel: BillCheckModel
+class BillCheckViewModel {
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     lazy var entitySetter: EntitySetHelper = EntitySetHelper(entity: entitySerice, get: entityGetter)
     lazy var entityDeleter: EntityDelHelper = EntityDelHelper(entity: entitySerice, get: entityGetter)
     let defaultDbChecker = DefaultDbDataChecker()
-    init(
-        viewModel: BillCheckModel = BillCheckModel()
+    
+    var orderOfCustomer: OrderEntityType?
+    var payMethodArr: Array<(key: String, value: Double)>?
+    var lastSelectionInex: IndexPath?
+    var discountRule : [DiscountRule]?
+    var selectedDiscountRuleId : Int16?
+    var currentProfit : Int16?
+    var customerDiscountId: Int64?
+    var updateCalculateClosure: ((billCheckInfo) -> ())?
+    public func start(
     ) {
-        self.viewModel = viewModel
-        self.viewModel.payMethodArr = self.getPayMethod().sorted{
+        self.payMethodArr = self.getPayMethod().sorted{
             firstArr, sencondArr in
             return firstArr.value < sencondArr.value
         }
-        self.viewModel.discountRule = self.getStoreRule()
+        self.discountRule = self.getStoreRule()
     }
     
     public func setOrderDetail(detail: OrderEntityType) {
-        self.viewModel.orderOfCustomer = detail
+        self.orderOfCustomer = detail
     }
     
     public func setOrderToDb(detail: OrderEntityType) -> Int32{
@@ -39,7 +45,7 @@ class BillCheckController {
     
      public func getPayMethodName() -> String{
         var methodName: String = ""
-        if let selectedPayMethod = viewModel.lastSelectionInex, let methodArr = viewModel.payMethodArr {
+        if let selectedPayMethod = self.lastSelectionInex, let methodArr = self.payMethodArr {
             let selectedIndex = methodArr.index(methodArr.startIndex, offsetBy: selectedPayMethod.row)
             methodName = methodArr.map{$0.key}[selectedIndex]
         }
@@ -48,7 +54,7 @@ class BillCheckController {
     
     private func getPayMethodRatio () -> Double{
         var methodRatio: Double = 0
-        if let selectedPayMethod = viewModel.lastSelectionInex, let methodArr = viewModel.payMethodArr {
+        if let selectedPayMethod = self.lastSelectionInex, let methodArr = self.payMethodArr {
             let selectedIndex = methodArr.index(methodArr.startIndex, offsetBy: selectedPayMethod.row)
             methodRatio = methodArr.map{$0.value}[selectedIndex]
         }
@@ -56,7 +62,7 @@ class BillCheckController {
     }
     
     public func getProfit() -> Int16{
-        guard let retProfit = self.viewModel.currentProfit else {
+        guard let retProfit = self.currentProfit else {
             return 0
         }
         return retProfit
@@ -82,7 +88,7 @@ class BillCheckController {
     }
     
     private func storeCustomerDiscountRuleToDb(ruleId: Int16) -> Int64? {
-        guard let orderTmp = self.viewModel.orderOfCustomer else {return nil}
+        guard let orderTmp = self.orderOfCustomer else {return nil}
         return entitySetter.createCustomerDiscount(uId: orderTmp.user_id, ruleId: ruleId)
     }
     
@@ -108,19 +114,44 @@ class BillCheckController {
         return retActualMoney
     }
     
-    public func getCalcResult(price: String, shouldSave: Bool) -> Int16{
+    public func handleCheckBtn(price: String, shouldSave: Bool) {
+        let needPay = self.getCalcResult(price: price, shouldSave: shouldSave)
+        let remainMoney = self.getCurrentRemainMoney(price: price)
+        self.updateCalculateClosure?(billCheckInfo(needPay: needPay, remainStoredMoney: remainMoney))
+    }
+    
+    public func handleSaveBtn(price: String, shouldSave: Bool) {
+        let needPay  = self.getCalcResult(price: price, shouldSave: shouldSave)
+        let remainMoney = self.getCurrentRemainMoney()
+        guard var savedOrderTmp = self.orderOfCustomer else {
+            print("Temporary order data not exist")
+            return
+        }
+        let profit = self.getProfit()
+        savedOrderTmp.income = profit
+        savedOrderTmp.pay_method = self.getPayMethodName()
+        savedOrderTmp.store_money = remainMoney
+        savedOrderTmp.total_price = Int16(price) ?? 0
+        let orderId = self.setOrderToDb(detail: savedOrderTmp)
+        if let custDiscount = self.customerDiscountId {
+            self.updateCustomerDiscount(id: custDiscount, orderId: orderId)
+        }
+        self.saveRemainMoneyToCustomer(remain: remainMoney)
+    }
+    
+    func getCalcResult(price: String, shouldSave: Bool) -> Int16{
         var profit:Int16 = 0
         guard
             var price: Int16 = Int16(price),
-            let orderTmp = self.viewModel.orderOfCustomer
+            let orderTmp = self.orderOfCustomer
         else {
                 return 0
             }
         let cId = orderTmp.user_id
-        if let selectedRule = self.viewModel.selectedDiscountRuleId {
-            self.viewModel.customerDiscountId = storeCustomerDiscountRuleToDb(ruleId: selectedRule)
+        if let selectedRule = self.selectedDiscountRuleId {
+            self.customerDiscountId = self.storeCustomerDiscountRuleToDb(ruleId: selectedRule)
         }
-        let allSDiscountOfCustomer = entityGetter.getCustomerDiscount(withMoneyLeft: cId)
+        let allSDiscountOfCustomer = self.getCustomerDiscount(uId: cId)
         if allSDiscountOfCustomer.count > 0 {
             var souldDoneCal = false
             for customerDiscount in allSDiscountOfCustomer {
@@ -136,38 +167,29 @@ class BillCheckController {
                     profit += Int16(Double(customerDiscount.remain_money) * storeRuleRatio)
                     saveBackMoney = 0
                 }
-                let _ = entitySetter.updateCustomerDiscount(id: customerDiscount.id, remain: saveBackMoney)
+                if shouldSave {
+                    let _ = entitySetter.updateCustomerDiscount(id: customerDiscount.id, remain: saveBackMoney)
+                }
                 if souldDoneCal {
                     break
                 }
             }
         }
         
-//        if price > 0 && !shouldSave{
-//            if let selectedRule = self.viewModel.selectedDiscountRuleId {
-//                let storeMoneyThisTime = self.getDiscountRuleValue(ruleId: selectedRule)
-//                if storeMoneyThisTime > price {
-//                    let _ = storeMoneyThisTime - price
-//                    price = 0
-//                } else {
-//                    price = price - storeMoneyThisTime
-//                }
-//            }
-//        }
         if !shouldSave {
-            if let deleteId = self.viewModel.customerDiscountId {
+            if let deleteId = self.customerDiscountId {
                 removeCustomerDiscountFromDb(id: deleteId)
             }
         }
         let methodRatio = self.getPayMethodRatio()
         let pricePayByMethod = Int16(Double(price) * methodRatio)
-        self.viewModel.currentProfit = profit + price - pricePayByMethod
+        self.currentProfit = profit + price - pricePayByMethod
         return price
     }
     
-    public func getCurrentRemainMoney() -> Int16{
+    func getCurrentRemainMoney() -> Int16{
         var savedMoney: Int16 = 0
-        guard let orderTmp = self.viewModel.orderOfCustomer else {return savedMoney}
+        guard let orderTmp = self.orderOfCustomer else {return savedMoney}
         let cId = orderTmp.user_id
         let allSDiscountOfCustomer = entityGetter.getCustomerDiscount(withMoneyLeft: cId)
         if allSDiscountOfCustomer.count > 0 {
@@ -180,7 +202,7 @@ class BillCheckController {
     
     public func getCurrentRemainMoney(price: String) -> Int16{
         var savedMoney = getCurrentRemainMoney()
-        if let selectedRule = self.viewModel.selectedDiscountRuleId {
+        if let selectedRule = self.selectedDiscountRuleId {
             let storeMoneyThisTime = self.getDiscountRuleValue(ruleId: selectedRule)
             savedMoney = savedMoney + storeMoneyThisTime
         }
@@ -196,7 +218,7 @@ class BillCheckController {
     }
     
     public func saveRemainMoneyToCustomer(remain: Int16) {
-        guard let orderTmp = self.viewModel.orderOfCustomer else {return}
+        guard let orderTmp = self.orderOfCustomer else {return}
         let cId = orderTmp.user_id
         let _ = entitySetter.updateCustomer(id: cId, remain: remain)
     }

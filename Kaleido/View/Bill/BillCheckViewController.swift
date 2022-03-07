@@ -22,25 +22,10 @@ class BillCheckViewController: BaseViewController {
             view.endEditing(true)
     }
     @IBAction func saveBtnAct(_ sender: Any) {
-        let profit = controller.getProfit()
+        let profit = viewModel.getProfit()
         prsentNormalAlert(msg: "本次收益：\(profit)", btn: "確定", viewCTL: self, completion: {
-            _ = self.controller.getCalcResult(price: self.priceText.text!, shouldSave: true)
-            guard var savedOrderTmp = self.viewModel.orderOfCustomer else {
-                print("Temporary order data not exist")
-                return
-            }
-            //save customer.remain_money
-            let remainStoredMoney = self.controller.getCurrentRemainMoney()
-            self.controller.saveRemainMoneyToCustomer(remain: remainStoredMoney)
             
-            savedOrderTmp.income = profit
-            savedOrderTmp.pay_method = self.controller.getPayMethodName()
-            savedOrderTmp.store_money = remainStoredMoney
-            savedOrderTmp.total_price = Int16(self.priceText.text!) ?? 0
-            let orderId = self.controller.setOrderToDb(detail: savedOrderTmp)
-            if let custDiscount = self.viewModel.customerDiscountId {
-                self.controller.updateCustomerDiscount(id: custDiscount, orderId: orderId)
-            }
+            self.viewModel.handleSaveBtn(price: self.priceText.text!, shouldSave: true)
             self.navigationController?.popToRootViewController(animated: false)
         })
     }
@@ -51,17 +36,10 @@ class BillCheckViewController: BaseViewController {
             self.priceText.layer.borderColor = UIColor.red.cgColor
             return
         }
-        let needPay = controller.getCalcResult(price: priceText, shouldSave: false)
-        let remainStoredMoney = controller.getCurrentRemainMoney(price: priceText)
-        needPayMoney.text = String(needPay)
-        totalRemainText.text = String(remainStoredMoney)
-        saveBtn.isHidden = false
+        viewModel.handleCheckBtn(price: priceText, shouldSave: false)
     }
     
-    var controller: BillCheckController = BillCheckController()
-    var viewModel: BillCheckModel {
-        return controller.viewModel
-    }
+    var viewModel: BillCheckViewModel = BillCheckViewModel()
     let aCellHightOfViewRadio = 2
     let typePicker: UIPickerView = UIPickerView()
     override func removeBinding() {
@@ -69,9 +47,13 @@ class BillCheckViewController: BaseViewController {
         typePicker.dataSource = nil
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("")
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.payMethodTableView.delegate = self
+        self.payMethodTableView.dataSource = self
+        self.viewModel.start()
     }
+    
     override func initView() {
         super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
@@ -83,7 +65,7 @@ class BillCheckViewController: BaseViewController {
         saveBtn.layer.cornerRadius = BigBtnCornerRadius
         saveBtn.isHidden = true
         guard let orderTmp = self.viewModel.orderOfCustomer,
-              let customerDetail = self.controller.getCustomer(id: orderTmp.user_id)
+              let customerDetail = self.viewModel.getCustomer(id: orderTmp.user_id)
         else {return}
         let customerMoney = customerDetail.remain_money
         remainText.text = String(customerMoney)
@@ -99,6 +81,12 @@ class BillCheckViewController: BaseViewController {
         tabBackgroundGesture.numberOfTapsRequired = 1
         tabBackgroundGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tabBackgroundGesture)
+        
+        self.viewModel.updateCalculateClosure = { [weak self] info in
+            self?.needPayMoney.text = String(info.needPay)
+            self?.totalRemainText.text = String(info.remainStoredMoney)
+            self?.saveBtn.isHidden = false
+        }
     }
     
     @IBAction func tapViewForReturn(_ sender: Any) {
@@ -112,17 +100,12 @@ class BillCheckViewController: BaseViewController {
     }
     
     public func setOrderData(detail: OrderEntityType) {
-        controller.setOrderDetail(detail: detail)
+        viewModel.setOrderDetail(detail: detail)
     }
     
 }
 
 extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.payMethodTableView.delegate = self
-        self.payMethodTableView.dataSource = self
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let methodArr = self.viewModel.payMethodArr else {

@@ -46,9 +46,9 @@
 		63B527E927C768C100F51D7C /* LashOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527E827C768C000F51D7C /* LashOrderViewModel.swift */; };
 		63B527EB27C768CB00F51D7C /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527EA27C768CB00F51D7C /* LashOrderModel.swift */; };
 		63B527F027CF1D0600F51D7C /* LashOrderVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */; };
+		63B527F227D2024900F51D7C /* BillCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527F127D2024900F51D7C /* BillCheckModel.swift */; };
 		63CA9CAC2754760E00051F7A /* BillCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */; };
-		63CA9CAE275482AE00051F7A /* BillCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAD275482AE00051F7A /* BillCheckController.swift */; };
-		63CA9CB0275482D400051F7A /* BillCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAF275482D400051F7A /* BillCheckModel.swift */; };
+		63CA9CAE275482AE00051F7A /* BillCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAD275482AE00051F7A /* BillCheckViewModel.swift */; };
 		63CD4F1F272BD8500085BD4C /* LashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* LashListViewController.swift */; };
 		63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F21272BDEDC0085BD4C /* LashListType.swift */; };
 		63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */; };
@@ -156,9 +156,9 @@
 		63B527E827C768C000F51D7C /* LashOrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LashOrderViewModel.swift; sourceTree = "<group>"; };
 		63B527EA27C768CB00F51D7C /* LashOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LashOrderModel.swift; sourceTree = "<group>"; };
 		63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderVMTest.swift; sourceTree = "<group>"; };
+		63B527F127D2024900F51D7C /* BillCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckModel.swift; sourceTree = "<group>"; };
 		63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckViewController.swift; sourceTree = "<group>"; };
-		63CA9CAD275482AE00051F7A /* BillCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckController.swift; sourceTree = "<group>"; };
-		63CA9CAF275482D400051F7A /* BillCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckModel.swift; sourceTree = "<group>"; };
+		63CA9CAD275482AE00051F7A /* BillCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckViewModel.swift; sourceTree = "<group>"; };
 		63CD4F1E272BD8500085BD4C /* LashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListViewController.swift; sourceTree = "<group>"; };
 		63CD4F21272BDEDC0085BD4C /* LashListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListType.swift; sourceTree = "<group>"; };
 		63CD4F28272FD8220085BD4C /* SearchCustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCustomsViewController.swift; sourceTree = "<group>"; };
@@ -310,8 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */,
-				63CA9CAD275482AE00051F7A /* BillCheckController.swift */,
-				63CA9CAF275482D400051F7A /* BillCheckModel.swift */,
+				63CA9CAD275482AE00051F7A /* BillCheckViewModel.swift */,
+				63B527F127D2024900F51D7C /* BillCheckModel.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -745,7 +745,6 @@
 				630B7D2A277427BF0006FABD /* UIImage.swift in Sources */,
 				63F73FDD27425239007DC0BC /* OrderEntityType.swift in Sources */,
 				63CD4F57273373C30085BD4C /* EntityCRUDService.swift in Sources */,
-				63CA9CB0275482D400051F7A /* BillCheckModel.swift in Sources */,
 				63CD4F29272FD8220085BD4C /* SearchCustomsViewController.swift in Sources */,
 				63D88BF62741FC2100665728 /* PayMethod+CoreDataProperties.swift in Sources */,
 				63CD4F312730EA510085BD4C /* SearchCustomsModel.swift in Sources */,
@@ -780,8 +779,9 @@
 				636F3474275089FD00444DC9 /* OrderRecordController.swift in Sources */,
 				63E99F82276C280D0025CE97 /* DemoSearchCustModel.swift in Sources */,
 				63E99F92277054270025CE97 /* DemoBindingModel.swift in Sources */,
-				63CA9CAE275482AE00051F7A /* BillCheckController.swift in Sources */,
+				63CA9CAE275482AE00051F7A /* BillCheckViewModel.swift in Sources */,
 				63F346B6277AA0E7008FCFDE /* DemoShowModel.swift in Sources */,
+				63B527F227D2024900F51D7C /* BillCheckModel.swift in Sources */,
 				63CD4F6E273521450085BD4C /* UserDefaultKey.swift in Sources */,
 				A1ADDDED26E1F8E6000EBE9A /* SceneDelegate.swift in Sources */,
 				A120DBDA27269215009B1C7E /* MainViewController.swift in Sources */,
