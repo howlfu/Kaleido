@@ -47,6 +47,8 @@
 		63B527EB27C768CB00F51D7C /* LashOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527EA27C768CB00F51D7C /* LashOrderModel.swift */; };
 		63B527F027CF1D0600F51D7C /* LashOrderVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */; };
 		63B527F227D2024900F51D7C /* BillCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527F127D2024900F51D7C /* BillCheckModel.swift */; };
+		63B527F427D5B73100F51D7C /* BillCheckVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527F327D5B73100F51D7C /* BillCheckVMTest.swift */; };
+		63B527FA27D5E09C00F51D7C /* BillCheckVMTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B527F927D5E09C00F51D7C /* BillCheckVMTester.swift */; };
 		63CA9CAC2754760E00051F7A /* BillCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */; };
 		63CA9CAE275482AE00051F7A /* BillCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9CAD275482AE00051F7A /* BillCheckViewModel.swift */; };
 		63CD4F1F272BD8500085BD4C /* LashListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD4F1E272BD8500085BD4C /* LashListViewController.swift */; };
@@ -157,6 +159,8 @@
 		63B527EA27C768CB00F51D7C /* LashOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LashOrderModel.swift; sourceTree = "<group>"; };
 		63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashOrderVMTest.swift; sourceTree = "<group>"; };
 		63B527F127D2024900F51D7C /* BillCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckModel.swift; sourceTree = "<group>"; };
+		63B527F327D5B73100F51D7C /* BillCheckVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckVMTest.swift; sourceTree = "<group>"; };
+		63B527F927D5E09C00F51D7C /* BillCheckVMTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckVMTester.swift; sourceTree = "<group>"; };
 		63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckViewController.swift; sourceTree = "<group>"; };
 		63CA9CAD275482AE00051F7A /* BillCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCheckViewModel.swift; sourceTree = "<group>"; };
 		63CD4F1E272BD8500085BD4C /* LashListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LashListViewController.swift; sourceTree = "<group>"; };
@@ -302,13 +306,23 @@
 			isa = PBXGroup;
 			children = (
 				63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */,
+				63B527F327D5B73100F51D7C /* BillCheckVMTest.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		63B527F827D5E08D00F51D7C /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				63B527F927D5E09C00F51D7C /* BillCheckVMTester.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		63CA9CAA275475E300051F7A /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				63B527F827D5E08D00F51D7C /* Test */,
 				63CA9CAB2754760E00051F7A /* BillCheckViewController.swift */,
 				63CA9CAD275482AE00051F7A /* BillCheckViewModel.swift */,
 				63B527F127D2024900F51D7C /* BillCheckModel.swift */,
@@ -721,6 +735,7 @@
 				63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */,
 				63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */,
 				A1ADDDF526E1F8E6000EBE9A /* Kaleido.xcdatamodeld in Sources */,
+				63B527FA27D5E09C00F51D7C /* BillCheckVMTester.swift in Sources */,
 				63E99F96277060DB0025CE97 /* PhotoBind+CoreDataProperties.swift in Sources */,
 				638A0063276AE1F10055E73B /* BindingController.swift in Sources */,
 				63E36725274384D000FCCA77 /* BaseOrderController.swift in Sources */,
@@ -803,6 +818,7 @@
 				63CD4F5A2733D3EF0085BD4C /* Kaleido.xcdatamodeld in Sources */,
 				63CD4F702738D0630085BD4C /* EntitySetHelperTest.swift in Sources */,
 				63B527F027CF1D0600F51D7C /* LashOrderVMTest.swift in Sources */,
+				63B527F427D5B73100F51D7C /* BillCheckVMTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

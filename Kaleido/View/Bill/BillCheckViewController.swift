@@ -150,25 +150,25 @@ extension BillCheckViewController: UITableViewDataSource, UITableViewDelegate {
             return
         }
         let statusIcon : UIImageView = selectedCell.contentView.viewWithTag(1) as! UIImageView
-        guard let lastInex = self.viewModel.lastSelectionInex else {
-            self.viewModel.lastSelectionInex = currentIndex
+        guard let lastIndex = self.viewModel.paymethodSelectIndex else {
+            self.viewModel.paymethodSelectIndex = currentIndex
             statusIcon.image = UIImage(named: "Checked")
             return
         }
         
-        if lastInex == currentIndex {
+        if lastIndex == currentIndex {
             // clear the same selected
             statusIcon.image =  nil
-            self.viewModel.lastSelectionInex = nil
+            self.viewModel.paymethodSelectIndex = nil
         } else {
             statusIcon.image = UIImage(named: "Checked")
             // clear selected before
-            guard let lastCell = self.payMethodTableView.cellForRow(at: lastInex) else {
+            guard let lastCell = self.payMethodTableView.cellForRow(at: lastIndex) else {
                 return
             }
             let lastStatusIcon : UIImageView = lastCell.contentView.viewWithTag(1) as! UIImageView
             lastStatusIcon.image = nil
-            self.viewModel.lastSelectionInex = currentIndex
+            self.viewModel.paymethodSelectIndex = currentIndex
         }
        
     }
