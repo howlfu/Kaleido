@@ -31,6 +31,8 @@
 		637EA9D7275612F800C1DBE1 /* ProductLashBott+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637EA9D3275612F800C1DBE1 /* ProductLashBott+CoreDataProperties.swift */; };
 		637EA9D8275612F800C1DBE1 /* ProductLashTop+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637EA9D4275612F800C1DBE1 /* ProductLashTop+CoreDataClass.swift */; };
 		637EA9D9275612F800C1DBE1 /* ProductLashTop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637EA9D5275612F800C1DBE1 /* ProductLashTop+CoreDataProperties.swift */; };
+		6388C9D627D99DBB00F87AB7 /* DemoSelectMainVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388C9D527D99DBB00F87AB7 /* DemoSelectMainVMTest.swift */; };
+		6388C9D927D9A4BC00F87AB7 /* DemoSelectMainViewModelTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388C9D827D9A4BC00F87AB7 /* DemoSelectMainViewModelTester.swift */; };
 		638A005B276896EE0055E73B /* CustomerDiscount+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A0059276896EE0055E73B /* CustomerDiscount+CoreDataClass.swift */; };
 		638A005C276896EE0055E73B /* CustomerDiscount+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A005A276896EE0055E73B /* CustomerDiscount+CoreDataProperties.swift */; };
 		638A005F2769DA470055E73B /* BindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A005E2769DA470055E73B /* BindingViewController.swift */; };
@@ -73,13 +75,11 @@
 		63E36725274384D000FCCA77 /* BaseOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E36724274384D000FCCA77 /* BaseOrderController.swift */; };
 		63E7746F273B744A00F197AC /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7746E273B744A00F197AC /* UIColorExt.swift */; };
 		63E99F7E276C27970025CE97 /* DemoSearchCustViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F7D276C27970025CE97 /* DemoSearchCustViewController.swift */; };
-		63E99F80276C27DF0025CE97 /* DemoSearchCustController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F7F276C27DF0025CE97 /* DemoSearchCustController.swift */; };
-		63E99F82276C280D0025CE97 /* DemoSearchCustModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F81276C280D0025CE97 /* DemoSearchCustModel.swift */; };
+		63E99F80276C27DF0025CE97 /* DemoSearchCustViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F7F276C27DF0025CE97 /* DemoSearchCustViewModel.swift */; };
 		63E99F85276C63970025CE97 /* DemoSelectMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F84276C63970025CE97 /* DemoSelectMainViewController.swift */; };
-		63E99F87276C75640025CE97 /* DemoSelectMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F86276C75640025CE97 /* DemoSelectMainController.swift */; };
+		63E99F87276C75640025CE97 /* DemoSelectMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F86276C75640025CE97 /* DemoSelectMainViewModel.swift */; };
 		63E99F8E277027770025CE97 /* DemoBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F8D277027770025CE97 /* DemoBindingViewController.swift */; };
-		63E99F902770540F0025CE97 /* DemoBindingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F8F2770540F0025CE97 /* DemoBindingController.swift */; };
-		63E99F92277054270025CE97 /* DemoBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F91277054270025CE97 /* DemoBindingModel.swift */; };
+		63E99F902770540F0025CE97 /* DemoBindingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F8F2770540F0025CE97 /* DemoBindingViewModel.swift */; };
 		63E99F95277060DB0025CE97 /* PhotoBind+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F93277060DB0025CE97 /* PhotoBind+CoreDataClass.swift */; };
 		63E99F96277060DB0025CE97 /* PhotoBind+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E99F94277060DB0025CE97 /* PhotoBind+CoreDataProperties.swift */; };
 		63F346B4277AA0DB008FCFDE /* DemoShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F346B3277AA0DB008FCFDE /* DemoShowController.swift */; };
@@ -143,6 +143,8 @@
 		637EA9D3275612F800C1DBE1 /* ProductLashBott+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductLashBott+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		637EA9D4275612F800C1DBE1 /* ProductLashTop+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductLashTop+CoreDataClass.swift"; sourceTree = "<group>"; };
 		637EA9D5275612F800C1DBE1 /* ProductLashTop+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductLashTop+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6388C9D527D99DBB00F87AB7 /* DemoSelectMainVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSelectMainVMTest.swift; sourceTree = "<group>"; };
+		6388C9D827D9A4BC00F87AB7 /* DemoSelectMainViewModelTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSelectMainViewModelTester.swift; sourceTree = "<group>"; };
 		638A0059276896EE0055E73B /* CustomerDiscount+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerDiscount+CoreDataClass.swift"; sourceTree = "<group>"; };
 		638A005A276896EE0055E73B /* CustomerDiscount+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerDiscount+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		638A005E2769DA470055E73B /* BindingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingViewController.swift; sourceTree = "<group>"; };
@@ -184,13 +186,11 @@
 		63E36724274384D000FCCA77 /* BaseOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOrderController.swift; sourceTree = "<group>"; };
 		63E7746E273B744A00F197AC /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		63E99F7D276C27970025CE97 /* DemoSearchCustViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSearchCustViewController.swift; sourceTree = "<group>"; };
-		63E99F7F276C27DF0025CE97 /* DemoSearchCustController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSearchCustController.swift; sourceTree = "<group>"; };
-		63E99F81276C280D0025CE97 /* DemoSearchCustModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSearchCustModel.swift; sourceTree = "<group>"; };
+		63E99F7F276C27DF0025CE97 /* DemoSearchCustViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSearchCustViewModel.swift; sourceTree = "<group>"; };
 		63E99F84276C63970025CE97 /* DemoSelectMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSelectMainViewController.swift; sourceTree = "<group>"; };
-		63E99F86276C75640025CE97 /* DemoSelectMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSelectMainController.swift; sourceTree = "<group>"; };
+		63E99F86276C75640025CE97 /* DemoSelectMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSelectMainViewModel.swift; sourceTree = "<group>"; };
 		63E99F8D277027770025CE97 /* DemoBindingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingViewController.swift; sourceTree = "<group>"; };
-		63E99F8F2770540F0025CE97 /* DemoBindingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingController.swift; sourceTree = "<group>"; };
-		63E99F91277054270025CE97 /* DemoBindingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingModel.swift; sourceTree = "<group>"; };
+		63E99F8F2770540F0025CE97 /* DemoBindingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingViewModel.swift; sourceTree = "<group>"; };
 		63E99F93277060DB0025CE97 /* PhotoBind+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoBind+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63E99F94277060DB0025CE97 /* PhotoBind+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoBind+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63F346B3277AA0DB008FCFDE /* DemoShowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoShowController.swift; sourceTree = "<group>"; };
@@ -282,6 +282,14 @@
 			name = OrderRecord;
 			sourceTree = "<group>";
 		};
+		6388C9D727D9A4A300F87AB7 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				6388C9D827D9A4BC00F87AB7 /* DemoSelectMainViewModelTester.swift */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
 		638A005D2769DA210055E73B /* Binding */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +315,7 @@
 			children = (
 				63B527EF27CF1D0600F51D7C /* LashOrderVMTest.swift */,
 				63B527F327D5B73100F51D7C /* BillCheckVMTest.swift */,
+				6388C9D527D99DBB00F87AB7 /* DemoSelectMainVMTest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,8 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				63E99F7D276C27970025CE97 /* DemoSearchCustViewController.swift */,
-				63E99F7F276C27DF0025CE97 /* DemoSearchCustController.swift */,
-				63E99F81276C280D0025CE97 /* DemoSearchCustModel.swift */,
+				63E99F7F276C27DF0025CE97 /* DemoSearchCustViewModel.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -454,8 +462,9 @@
 		63E99F83276C61C70025CE97 /* Select */ = {
 			isa = PBXGroup;
 			children = (
+				6388C9D727D9A4A300F87AB7 /* Test */,
 				63E99F84276C63970025CE97 /* DemoSelectMainViewController.swift */,
-				63E99F86276C75640025CE97 /* DemoSelectMainController.swift */,
+				63E99F86276C75640025CE97 /* DemoSelectMainViewModel.swift */,
 			);
 			name = Select;
 			sourceTree = "<group>";
@@ -464,8 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				63E99F8D277027770025CE97 /* DemoBindingViewController.swift */,
-				63E99F8F2770540F0025CE97 /* DemoBindingController.swift */,
-				63E99F91277054270025CE97 /* DemoBindingModel.swift */,
+				63E99F8F2770540F0025CE97 /* DemoBindingViewModel.swift */,
 			);
 			name = Bind;
 			sourceTree = "<group>";
@@ -731,6 +739,7 @@
 				636F347627508AB100444DC9 /* BaseSearchController.swift in Sources */,
 				634EB9CD276096D300A53917 /* LashViewAllType.swift in Sources */,
 				637EA9D7275612F800C1DBE1 /* ProductLashBott+CoreDataProperties.swift in Sources */,
+				6388C9D927D9A4BC00F87AB7 /* DemoSelectMainViewModelTester.swift in Sources */,
 				630C85A4274F7D5E001E6ED7 /* OtherMainViewController.swift in Sources */,
 				63CD4F2F2730E9E40085BD4C /* Observable.swift in Sources */,
 				63CD4F22272BDEDC0085BD4C /* LashListType.swift in Sources */,
@@ -776,15 +785,15 @@
 				A1A2B13B272A8A8A00943C9E /* BaseViewController.swift in Sources */,
 				630C85A2274F7B5C001E6ED7 /* SettingMainViewController.swift in Sources */,
 				63F3B7D02739106E00D4C6A8 /* DateExt.swift in Sources */,
-				63E99F902770540F0025CE97 /* DemoBindingController.swift in Sources */,
+				63E99F902770540F0025CE97 /* DemoBindingViewModel.swift in Sources */,
 				63E7746F273B744A00F197AC /* UIColorExt.swift in Sources */,
 				630C85A7274F85BB001E6ED7 /* OrderRecordViewController.swift in Sources */,
 				63E99F8E277027770025CE97 /* DemoBindingViewController.swift in Sources */,
 				63CD4F372733681A0085BD4C /* EntityGetHelper.swift in Sources */,
-				63E99F87276C75640025CE97 /* DemoSelectMainController.swift in Sources */,
+				63E99F87276C75640025CE97 /* DemoSelectMainViewModel.swift in Sources */,
 				A1A2B130272A831900943C9E /* ViewExt.swift in Sources */,
 				634EB9CF2761D96B00A53917 /* StoreRecordViewController.swift in Sources */,
-				63E99F80276C27DF0025CE97 /* DemoSearchCustController.swift in Sources */,
+				63E99F80276C27DF0025CE97 /* DemoSearchCustViewModel.swift in Sources */,
 				63E99F95277060DB0025CE97 /* PhotoBind+CoreDataClass.swift in Sources */,
 				634EB9D52762F5C800A53917 /* StoreRecordController.swift in Sources */,
 				637EA9C82754A18700C1DBE1 /* Customer+CoreDataClass.swift in Sources */,
@@ -792,8 +801,6 @@
 				63CD4F6C27351D250085BD4C /* EntitySetHelper.swift in Sources */,
 				636F34722750887700444DC9 /* OrderRecordModel.swift in Sources */,
 				636F3474275089FD00444DC9 /* OrderRecordController.swift in Sources */,
-				63E99F82276C280D0025CE97 /* DemoSearchCustModel.swift in Sources */,
-				63E99F92277054270025CE97 /* DemoBindingModel.swift in Sources */,
 				63CA9CAE275482AE00051F7A /* BillCheckViewModel.swift in Sources */,
 				63F346B6277AA0E7008FCFDE /* DemoShowModel.swift in Sources */,
 				63B527F227D2024900F51D7C /* BillCheckModel.swift in Sources */,
@@ -817,6 +824,7 @@
 				63CD4F592733C1B10085BD4C /* CoreDataCRUDTest.swift in Sources */,
 				63CD4F5A2733D3EF0085BD4C /* Kaleido.xcdatamodeld in Sources */,
 				63CD4F702738D0630085BD4C /* EntitySetHelperTest.swift in Sources */,
+				6388C9D627D99DBB00F87AB7 /* DemoSelectMainVMTest.swift in Sources */,
 				63B527F027CF1D0600F51D7C /* LashOrderVMTest.swift in Sources */,
 				63B527F427D5B73100F51D7C /* BillCheckVMTest.swift in Sources */,
 			);

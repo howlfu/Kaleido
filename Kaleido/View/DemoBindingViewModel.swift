@@ -12,19 +12,24 @@ class DemoBindingViewModel {
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     lazy var entitySetter: EntitySetHelper = EntitySetHelper(entity: entitySerice, get: entityGetter)
-    let viewModel: DemoBindingModel
-    init(
-        viewModel: DemoBindingModel = DemoBindingModel()
-    ) {
-        self.viewModel = viewModel
+//    var pathSelected = Observable<[String]>(value: [])
+    var imageSelected: Dictionary<String, UIImage> = [:] {
+        didSet {
+            guard let closure = imageSelectedClosure else{
+                return
+            }
+            closure()
+        }
     }
+    var imageSelectedClosure: (() -> ())?
+    var orderData: Order?
     
     public func getOrderData() -> Order? {
-        return self.viewModel.orderData
+        return self.orderData
     }
     
     public func setOrderInfo(data: Order) {
-        self.viewModel.orderData = data
+        self.orderData = data
     }
     
     public func saveImage(data: UIImage,forlder: String ,name: String) -> String {
@@ -63,13 +68,13 @@ class DemoBindingViewModel {
     }
     
     public func saveImageAndStoreDb() {
-        let userSelectedImgs = self.viewModel.imageSelected.value
+        let userSelectedImgs = self.imageSelected
         for pathName in userSelectedImgs.keys {
             if let selectedImg = userSelectedImgs[pathName] {
-                let forlderName = self.viewModel.orderData?.id ?? 0
+                let forlderName = self.orderData?.id ?? 0
                 _ = self.saveImage(data: selectedImg, forlder: String(forlderName),name: pathName)
             }
-            if let curOrder = self.viewModel.orderData {
+            if let curOrder = self.orderData {
                 _ = entitySetter.createPhotoBind(cId: curOrder.user_id, orderId: curOrder.id, path: pathName)
             }
         }
@@ -85,7 +90,6 @@ class DemoBindingViewModel {
                 retImageDic[photoName] = getImage
             }
         }
-        self.viewModel.imageSelected.value = retImageDic
-        self.viewModel.shouldUpdateTable.value = true
+        self.imageSelected = retImageDic
     }
 }

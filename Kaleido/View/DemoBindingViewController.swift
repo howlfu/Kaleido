@@ -16,18 +16,16 @@ class DemoBindingViewController: BaseViewController {
     @IBOutlet weak var orderPhotoBindBtn: UIButton!
     @IBAction func bindAct(_ sender: Any) {
         prsentNormalAlert(msg: "綁定照片", btn: "確定", viewCTL: self, completion: {
-            self.controller.saveImageAndStoreDb()
+            self.viewModel.saveImageAndStoreDb()
             self.performSegue(withIdentifier: "backToDemoSearch", sender: self)
         })
     }
-    var controller: DemoBindingController = DemoBindingController()
-    var viewModel: DemoBindingModel {
-        return controller.viewModel
-    }
+    var viewModel: DemoBindingViewModel = DemoBindingViewModel()
+    
     let imageZoomIn = UIImageView()
     
     public func setSelectedOrder(data: Order) {
-        controller.setOrderInfo(data: data)
+        viewModel.setOrderInfo(data: data)
     }
     
     override func initView() {
@@ -35,7 +33,7 @@ class DemoBindingViewController: BaseViewController {
         titleView.roundedBottRight(radius: titleViewRadius)
         orderCreateDayText.layer.cornerRadius = textFieldCornerRadius
         orderPhotoBindBtn.layer.cornerRadius = BigBtnCornerRadius
-        let orderData = controller.getOrderData()
+        let orderData = viewModel.getOrderData()
         orderCreateDayText.text = orderData?.created_at?.toYearMonthDayStr()
         orderPhotoBindBtn.isHidden = true
     }
@@ -49,26 +47,31 @@ class DemoBindingViewController: BaseViewController {
         let toPhotoViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         toPhotoViewTap.numberOfTapsRequired = 1
         photoSelectTableView.addGestureRecognizer(toPhotoViewTap)
-        self.viewModel.shouldUpdateTable.addObserver(fireNow: false) {[weak self] (newData) in
-            self?.photoSelectTableView.reloadData()
-        }
         updateImageInDb()
+        self.viewModel.imageSelectedClosure =  {[weak self] in
+            self?.reloadImageTableView()
+        }
     }
     override func removeBinding() {
         super.removeBinding()
         self.photoSelectTableView.delegate = nil
         self.photoSelectTableView.dataSource = nil
-        self.viewModel.shouldUpdateTable.removeObserver()
     }
     @IBAction func handleTap(_ sender: Any){
         self.selectPhoto()
+    }
+    
+    func reloadImageTableView() {
+        DispatchQueue.main.async {
+            self.photoSelectTableView.reloadData()
+        }
     }
     
     func updateImageInDb() {
         guard let orderData = self.viewModel.orderData else {
             return
         }
-        self.controller.getImageFromDb(orderId: orderData.id)
+        self.viewModel.getImageFromDb(orderId: orderData.id)
     }
     
     public func checkPhotoAuth(_self: UIViewController) {
@@ -103,7 +106,7 @@ class DemoBindingViewController: BaseViewController {
 
 extension DemoBindingViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.imageSelected.value.count
+        return self.viewModel.imageSelected.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -121,8 +124,8 @@ extension DemoBindingViewController: UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "demoBindCell", for: indexPath)
         let index = indexPath.row
-        let pathName = viewModel.imageSelected.value.map{$0.key}[index]
-        let cellImage = viewModel.imageSelected.value[pathName]
+        let pathName = viewModel.imageSelected.map{$0.key}[index]
+        let cellImage = viewModel.imageSelected[pathName]
         let imageItem : UIImageView = cell.contentView.viewWithTag(1) as! UIImageView
         // images get from capture are always need rotate 90 degrees
 //        imageItem.transform = CGAffineTransform(rotationAngle: Double.pi / 2) 
@@ -179,34 +182,44 @@ extension DemoBindingViewController: UIImagePickerControllerDelegate, UINavigati
     @available(iOS 14, *)
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: false, completion: nil)
+        var allSelectImageCount = 1
         if results.count > 0 {
             orderPhotoBindBtn.isHidden = false
+            var tmpImageDict:Dictionary<String, UIImage> = self.viewModel.imageSelected
             for result in results {
                 let itemProvider = result.itemProvider
                 if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                    var savedName = ""
-                    if let forTypeId = itemProvider.registeredTypeIdentifiers.first {
-                        itemProvider.loadFileRepresentation(forTypeIdentifier: forTypeId) { (url, error) in
-                            if error != nil {
-                               print("error \(error!)");
-                            } else {
-                                if let url = url {
-                                    let filePath = url.lastPathComponent;
-                                    savedName = filePath
-                                }
-                            }
-                        }
-                    }
+//                    var savedName = ""
+//                    if let forTypeId = itemProvider.registeredTypeIdentifiers.first {
+//                        itemProvider.loadFileRepresentation(forTypeIdentifier: forTypeId) { (url, error) in
+//                            if error != nil {
+//                               print("error \(error!)");
+//                            } else {
+//                                if let url = url {
+//                                    let filePath = url.lastPathComponent;
+//                                    savedName = filePath
+//                                }
+//                            }
+//                        }
+//                    }
                     itemProvider.loadObject(ofClass: UIImage.self) { [weak self]  image, error in
                         if let selectedImage = image as? UIImage {
-                            self?.viewModel.imageSelected.value[savedName] = selectedImage
-                            if result == results.last {
-                                self?.viewModel.shouldUpdateTable.value = true
+                            guard let fileName = itemProvider.suggestedName else { return }
+                            tmpImageDict[fileName] = selectedImage
+                            if allSelectImageCount == results.count {
+                                //last picked image is loaded
+                                self?.viewModel.imageSelected = tmpImageDict
+                                self?.reloadImageTableView()
                             }
+                            print("image count:\(allSelectImageCount), real count: \(tmpImageDict.count)")
+                            allSelectImageCount += 1
+                        } else {
+                            print("load object fail")
                         }
                     }
                 }
-            }
+            }// for results
+            
         }
     }
     
