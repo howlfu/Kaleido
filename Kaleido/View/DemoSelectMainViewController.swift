@@ -15,14 +15,14 @@ class DemoSelectMainViewController: BaseViewController {
     @IBAction func bindingAct(_ sender: Any) {
     }
     
-    var controller: DemoSelectMainController = DemoSelectMainController()
+    var viewModel: DemoSelectMainViewModel = DemoSelectMainViewModel()
     
     override func initView() {
         super.initView()
         titleView.roundedBottRight(radius: titleViewRadius)
         bindingBtn.layer.cornerRadius = BigBtnCornerRadius
-        let orderDetail = controller.getOrderData()
-        let orderStr = controller.getOrderInforStr(data: orderDetail)
+        let orderDetail = viewModel.getOrderData()
+        let orderStr = viewModel.getOrderInforStr(data: orderDetail)
         OrderDetail.text = String(orderStr.dropLast(2))
     }
     
@@ -72,13 +72,13 @@ class DemoSelectMainViewController: BaseViewController {
     }
     
     public func setOrderInfo(data: Order) {
-        self.controller.setOrderInfo(data: data)
+        self.viewModel.setOrderInfo(data: data)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is DemoBindingViewController {
             let demoMainVC = segue.destination as! DemoBindingViewController
-            guard let orderDetail = controller.getOrderData() else {
+            guard let orderDetail = viewModel.getOrderData() else {
                 return
             }
             demoMainVC.setSelectedOrder(data: orderDetail)

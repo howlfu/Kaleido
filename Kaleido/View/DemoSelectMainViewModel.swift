@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DemoSelectMainController {
+class DemoSelectMainViewModel {
     let entitySerice = EntityCRUDService()
     lazy var entityGetter: EntityGetHelper = EntityGetHelper(entity: entitySerice)
     private var orderData: Order?
@@ -20,7 +20,7 @@ class DemoSelectMainController {
     }
     
     public func getOrderInforStr(data: Order?) -> String{
-        var retStr = ""
+        var retStr:String = ""
         guard let orderDetail = data else {
             return retStr
         }
@@ -28,8 +28,8 @@ class DemoSelectMainController {
         let pId = orderDetail.product_id
         let note = orderDetail.note ?? ""
         let doer = orderDetail.doer ?? ""
-        let customer = entityGetter.getCustomer(id: uId)
-        let product = entityGetter.getProductType(id: pId)
+        let customer = getCustomerById(id: uId)
+        let product = getProductTypeById(id: pId)
         if let customer = customer {
             retStr += customer.full_name ?? ""
             retStr += ", "
@@ -58,10 +58,10 @@ class DemoSelectMainController {
         }
         retStr += "\n備註：\(note), \(doer), "
         
-        return retStr
+        return String(retStr.dropLast(2))
     }
     
-    public func setTopData(data: ProductLashTop) -> String {
+    func setTopData(data: ProductLashTop) -> String {
         var retStr = "\n上睫毛：\n"
         if let topType = data.type {
             retStr += topType + ", "
@@ -129,11 +129,19 @@ class DemoSelectMainController {
         return retStr
     }
     
-    public func getProductLashTop(id: Int32) -> ProductLashTop? {
+    func getProductTypeById(id: Int64) -> ProductType? {
+        entityGetter.getProductType(id: id)
+    }
+    
+    func getCustomerById(id: Int32) -> Customer?{
+        return entityGetter.getCustomer(id: id)
+    }
+    
+    func getProductLashTop(id: Int32) -> ProductLashTop? {
         return entityGetter.getProductTopLash(id: id)
     }
     
-    public func getProductLashBott(id: Int32) -> ProductLashBott?{
+    func getProductLashBott(id: Int32) -> ProductLashBott?{
         return entityGetter.getProductBottLash(id: id)
     }
 }

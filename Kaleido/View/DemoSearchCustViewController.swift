@@ -20,19 +20,18 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var birthBackground: UIView!
     @IBOutlet weak var orderListTableView: UITableView!
-    var viewModel: DemoSearchCustModel {
-        return controller.viewModel
-    }
-    var controller: DemoSearchCustController = DemoSearchCustController()
+    var selectedCustomerId: Int32?
+    var didSelectTimePicker: Bool = false
+    var viewModel: DemoSearchCustViewModel = DemoSearchCustViewModel()
     @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
             view.endEditing(true)
     }
     
     @IBAction func timeChanged(_ sender: UIDatePicker) {
         if Calendar.current.isDateInToday(sender.date) {
-            self.viewModel.didSelectTimePicker = false
+            self.didSelectTimePicker = false
         } else {
-            self.viewModel.didSelectTimePicker = true
+            self.didSelectTimePicker = true
         }
         presentedViewController?.dismiss(animated: false, completion: nil)
     }
@@ -47,17 +46,17 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
     }
     
     private func tryGetCustomerData() {
-        if nameTextField.hasText || phoneTextField.hasText || self.viewModel.didSelectTimePicker {
+        if nameTextField.hasText || phoneTextField.hasText || self.didSelectTimePicker {
             guard
                 let name = nameTextField.text,
                 let phone = phoneTextField.text else {
                     return
                 }
             var birth = datePicker.date.toYearMonthDayStr()
-            if !self.viewModel.didSelectTimePicker {
+            if !self.didSelectTimePicker {
                 birth = ""
             }
-            controller.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
+            viewModel.tryGetDataFromDb(name: name, phone: phone, birthday: birth)
         }
     }
     
@@ -77,25 +76,21 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
     override func initBinding() {
         super.initBinding()
         self.titleView.addGestureRecognizer(tapTitleView)
-        viewModel.customerOders.addObserver(fireNow: false) {[weak self] (newCustomsData) in
+        viewModel.customerOderClosure = {[weak self] (newCustomsData) in
             DispatchQueue.main.async {
                 self?.orderListTableView.reloadData()
             }
         }
-        viewModel.customerData.addObserver(fireNow: false) {[weak self] (customer) in
+        viewModel.customerDataClosure = { [weak self] (customer) in
             self?.nameTextField.text = customer.full_name
             self?.phoneTextField.text = customer.phone_number
             if let birthStr = customer.birthday, let birthDate = birthStr.toDate() {
                 self?.datePicker.setDate(birthDate, animated: false)
-                self?.viewModel.didSelectTimePicker = true
+                self?.didSelectTimePicker = true
             }
         }
         nameTextField.delegate = self
         phoneTextField.delegate = self
-    }
-    
-    override func removeBinding() {
-        viewModel.customerData.removeObserver()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -105,13 +100,13 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
             else {
                     return
             }
-            let selectedOrder = self.viewModel.customerOders.value[index.row]
+            let selectedOrder = self.viewModel.customerOders[index.row]
             demoMainVC.setOrderInfo(data: selectedOrder)
         }
         
         if segue.destination is DemoShowAllPhotoViewController {
             let showPhotoVC = segue.destination as! DemoShowAllPhotoViewController
-            if let cId = self.viewModel.selectedCustomerId {
+            if let cId = self.selectedCustomerId {
                 showPhotoVC.setSelectedCustomerId(data: cId)
             }
         }
@@ -133,7 +128,7 @@ extension DemoSearchCustViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "demoCustomsListCell", for: indexPath)
-        let foundOrders = viewModel.customerOders.value
+        let foundOrders = viewModel.customerOders
         let index = indexPath.row
         let order = foundOrders[index]
         guard let createDate = order.created_at else {
@@ -157,7 +152,7 @@ extension DemoSearchCustViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let allTableCellCount = viewModel.customerOders.value.count
+        let allTableCellCount = viewModel.customerOders.count
         return allTableCellCount
     }
     //UITableViewDelegate
@@ -168,12 +163,14 @@ extension DemoSearchCustViewController: UITableViewDataSource, UITableViewDelega
        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCustomer: Customer = self.viewModel.customerData.value
+        guard let selectedCustomer: Customer = self.viewModel.customerData else {
+            return
+        }
         self.nameTextField.text = selectedCustomer.full_name
         self.phoneTextField.text = selectedCustomer.phone_number
         if let birthStr = selectedCustomer.birthday, let birthDate = birthStr.toDate() {
             self.datePicker.setDate(birthDate, animated: false)
-            self.viewModel.didSelectTimePicker = true
+            self.didSelectTimePicker = true
         }
     }
 }
