@@ -17,7 +17,7 @@
     - shared-macos-amd64
   image: macos-11-xcode-12
   
-image: mcr.microsoft.com/dotnet/sdk:5.0
+#image: mcr.microsoft.com/dotnet/sdk:5.0
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
