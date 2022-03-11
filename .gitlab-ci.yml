@@ -15,8 +15,6 @@
 # .macos_saas_runners:
 #   tags:
 #     - shared-macos-amd64
-# image: macos-11-xcode-12
-image: shared-macos-amd64
   
 #image: mcr.microsoft.com/dotnet/sdk:5.0
 stages:          # List of stages for jobs, and their order of execution
