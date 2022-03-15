@@ -16,7 +16,7 @@ class DemoBindingViewController: BaseViewController {
     @IBOutlet weak var orderPhotoBindBtn: UIButton!
     @IBAction func bindAct(_ sender: Any) {
         prsentNormalAlert(msg: "綁定照片", btn: "確定", viewCTL: self, completion: {
-            self.viewModel.saveImageAndStoreDb()
+            self.viewModel.saveImage()
             self.performSegue(withIdentifier: "backToDemoSearch", sender: self)
         })
     }
@@ -47,10 +47,10 @@ class DemoBindingViewController: BaseViewController {
         let toPhotoViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         toPhotoViewTap.numberOfTapsRequired = 1
         photoSelectTableView.addGestureRecognizer(toPhotoViewTap)
-        updateImageInDb()
         self.viewModel.imageSelectedClosure =  {[weak self] in
             self?.reloadImageTableView()
         }
+        updateImageInDb()
     }
     override func removeBinding() {
         super.removeBinding()
@@ -209,13 +209,13 @@ extension DemoBindingViewController: UIImagePickerControllerDelegate, UINavigati
                             if allSelectImageCount == results.count {
                                 //last picked image is loaded
                                 self?.viewModel.imageSelected = tmpImageDict
-                                self?.reloadImageTableView()
+//                                self?.reloadImageTableView()
                             }
                             print("image count:\(allSelectImageCount), real count: \(tmpImageDict.count)")
-                            allSelectImageCount += 1
                         } else {
                             print("load object fail")
                         }
+                        allSelectImageCount += 1
                     }
                 }
             }// for results

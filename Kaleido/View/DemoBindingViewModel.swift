@@ -21,6 +21,7 @@ class DemoBindingViewModel {
             closure()
         }
     }
+    let cacheService = CacheService.inst
     var imageSelectedClosure: (() -> ())?
     var orderData: Order?
     
@@ -32,7 +33,7 @@ class DemoBindingViewModel {
         self.orderData = data
     }
     
-    public func saveImage(data: UIImage,forlder: String ,name: String) -> String {
+    public func saveImageDetail(data: UIImage,forlder: String ,name: String) -> String {
         var retPath = ""
         do {
             
@@ -67,29 +68,48 @@ class DemoBindingViewModel {
         return nil
     }
     
-    public func saveImageAndStoreDb() {
+    public func saveImage() {
+        //binding btn action
         let userSelectedImgs = self.imageSelected
+        let cacheFromDb = cacheService.getCache(by: CacheKeyType.demoBindImg)
+        
         for pathName in userSelectedImgs.keys {
+            //save image
             if let selectedImg = userSelectedImgs[pathName] {
                 let forlderName = self.orderData?.id ?? 0
-                _ = self.saveImage(data: selectedImg, forlder: String(forlderName),name: pathName)
+                _ = self.saveImageDetail(data: selectedImg, forlder: String(forlderName),name: pathName)
+                //save to cache
+                if var dictImgs = cacheFromDb as? Dictionary<String, UIImage>{
+                    dictImgs[pathName] = selectedImg
+                }
             }
+            //save image path binding
             if let curOrder = self.orderData {
                 _ = entitySetter.createPhotoBind(cId: curOrder.user_id, orderId: curOrder.id, path: pathName)
             }
+            
+            
+            
         }
     }
     
     public func getImageFromDb(orderId: Int32) {
-        var retImageDic: Dictionary<String, UIImage> = [:]
-        guard let photoBindArr = entityGetter.getPhotoBind(orderId: orderId) else {
-            return
-        }
-        for photoBind in photoBindArr {
-            if let photoName = photoBind.path, let getImage = self.getImageByPath(forlder: String(orderId) , name: photoName) {
-                retImageDic[photoName] = getImage
+        let cacheFromDb = cacheService.getCache(by: CacheKeyType.demoBindImg)
+        if let  dictImgs = cacheFromDb as? Dictionary<String, UIImage>
+        {
+            self.imageSelected = dictImgs
+        } else {
+            var retImageDic: Dictionary<String, UIImage> = [:]
+            guard let photoBindArr = entityGetter.getPhotoBind(orderId: orderId) else {
+                return
             }
+            for photoBind in photoBindArr {
+                if let photoName = photoBind.path, let getImage = self.getImageByPath(forlder: String(orderId) , name: photoName) {
+                    retImageDic[photoName] = getImage
+                }
+            }
+            self.imageSelected = retImageDic
+            cacheService.cacheNew(id: CacheKeyType.demoBindImg, object: retImageDic)
         }
-        self.imageSelected = retImageDic
     }
 }

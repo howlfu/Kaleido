@@ -22,6 +22,7 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var orderListTableView: UITableView!
     var selectedCustomerId: Int32?
     var didSelectTimePicker: Bool = false
+    var selectedOrderId: Int32?
     var viewModel: DemoSearchCustViewModel = DemoSearchCustViewModel()
     @IBAction func textPrimaryKeyTrigger(_ sender: Any) {
             view.endEditing(true)
@@ -102,6 +103,11 @@ class DemoSearchCustViewController: BaseViewController, UITextFieldDelegate {
             }
             let selectedOrder = self.viewModel.customerOders[index.row]
             demoMainVC.setOrderInfo(data: selectedOrder)
+            if self.selectedOrderId != selectedOrder.id {
+                self.selectedOrderId = selectedOrder.id
+                CacheService.inst.cacheRemove(by: CacheKeyType.demoBindImg)
+            }
+            
         }
         
         if segue.destination is DemoShowAllPhotoViewController {

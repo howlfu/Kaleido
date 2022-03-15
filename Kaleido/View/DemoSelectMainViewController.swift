@@ -32,6 +32,10 @@ class DemoSelectMainViewController: BaseViewController {
         self.titleView.addGestureRecognizer(tapTitleView)
     }
     
+    override func removeBinding() {
+        super.removeBinding()
+    }
+    
     func tryGetPhotoAuth() {
         PHPhotoLibrary.requestAuthorization({
             (curStatus) in
