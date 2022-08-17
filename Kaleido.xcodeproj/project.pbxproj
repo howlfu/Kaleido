@@ -156,6 +156,7 @@
 		638A005E2769DA470055E73B /* BindingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingViewController.swift; sourceTree = "<group>"; };
 		638A0060276ADF240055E73B /* BindingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingViewModel.swift; sourceTree = "<group>"; };
 		638A0062276AE1F10055E73B /* BindingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingController.swift; sourceTree = "<group>"; };
+		63AA363B28AB7C28002A7A61 /* testUsage.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testUsage.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		63AA685A27576C2A00BD929B /* DiscountRule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscountRule+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63AA685B27576C2A00BD929B /* DiscountRule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscountRule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63ABF1E22775533F007E420B /* DemoShowAllPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoShowAllPhotoViewController.swift; sourceTree = "<group>"; };
@@ -577,6 +578,7 @@
 		A1ADDDE926E1F8E6000EBE9A /* Kaleido */ = {
 			isa = PBXGroup;
 			children = (
+				63AA363B28AB7C28002A7A61 /* testUsage.playground */,
 				63CD4F35273367D20085BD4C /* Helper */,
 				A120DBDB272693CD009B1C7E /* Extension */,
 				A120DBD72726917E009B1C7E /* View */,
